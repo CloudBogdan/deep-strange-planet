@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+		"target": "ES6",
+        "module": "ES2020",
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "moduleResolution": "Node",
+        "allowJs": true,
+        "strict": true
+        // "allowSyntheticDefaultImports": true
+	},
+	"include": [
+		"src/**/*.ts",
+	],
+    "exclude": [
+        "./dist"
+    ]
+}
