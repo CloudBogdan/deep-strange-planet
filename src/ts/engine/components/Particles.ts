@@ -55,7 +55,7 @@ export class Particle {
                 this.size * .2,
                 this.size * .2,
                 this.position, this.rotation,
-                "particles"
+                1, "particles"
             );
         }
     }

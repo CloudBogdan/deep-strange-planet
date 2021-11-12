@@ -51,8 +51,8 @@ game.addInit(()=> {
         // Ores
         {
             value: [.85, 1],
-            height: [12, Config.WORLD_HEIGHT - 10],
-            // height: [0, Config.WORLD_HEIGHT - 10],
+            // height: [12, Config.WORLD_HEIGHT - 10],
+            height: [0, Config.WORLD_HEIGHT - 10],
             divider: 5,
             ore: Cidium
         },

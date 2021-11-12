@@ -1,7 +1,7 @@
 import { Color, Config } from "../config";
 import { Particle } from "./components/Particles";
 import { Game } from "./Game";
-import { Vector2 } from "./utils/math";
+import { safeValue, Vector2 } from "./utils/math";
 
 type RendererLayer = {
     canvas: HTMLCanvasElement
@@ -10,14 +10,11 @@ type RendererLayer = {
 }
 
 export class Renderer {
-    // app: PIXI.Application
     game: Game
 
     particles: Particle[]
 
     layers:{ [name: string]: RendererLayer }
-    // canvas: HTMLCanvasElement
-    // context: CanvasRenderingContext2D
     
     constructor(game: Game) {
         this.game = game;
@@ -28,20 +25,14 @@ export class Renderer {
             "bg": this.createLayer("bg"),
             "game": this.createLayer("game"),
             "particles": this.createLayer("particles"),
+            "ui": this.createLayer("ui"),
             "debug": this.createLayer("debug", false),
         };
         
-        // this.canvas = document.createElement("canvas");
-        // this.canvas.width = game.width;
-        // this.canvas.height = game.height;
-        // this.canvas.style.background = Color.GROUND_COLOR;
-        // document.body.appendChild(this.canvas);
         document.body.style.background = Color.GROUND_COLOR;
-
-        // this.context = this.canvas.getContext("2d");
-        // this.context.imageSmoothingEnabled = false;
     }
     
+    // Create new layer
     createLayer(name: string, update?: boolean): RendererLayer {
         const canvas = document.createElement("canvas");
 
@@ -57,27 +48,25 @@ export class Renderer {
     }
 
     render() {
+        // > Clear layers
         Object.keys(this.layers).map(key=> {
             if (this.layers[key].update)
                 this.layers[key].context.clearRect(0, 0, window.innerWidth, window.innerHeight)
         });
     }
+    // > Render particles
     renderParticles(game: Game) {
-        // Render particles
-        for (let i = 0; i < this.particles.length; i ++) {
-            const part = this.particles[i];
+        this.particles.map(part=> {
             
             part.update(this.game);
 
-            // if (part.custom) {
-            //     part.custom.render(game, this);
-            // } else
             part.render(this, part);
-            // this.drawRect(part.color, part.size * .2, part.size * .2, part.position, part.rotation, "particles");
+        });
+        this.particles.map((part, index)=> {
 
-            if (part.size <= 0)
-                this.particles.splice(i, 1);
-        }
+            if (part.size <= 0) 
+                this.particles.splice(index, 1);
+        });
     }
     checkCameraDistance(pos: Vector2, width: number, height: number): boolean {
         const cam = this.game.camera.position;
@@ -92,7 +81,11 @@ export class Renderer {
         );
     }
 
-    startTransform(layer?: string, pos?: Vector2, rotation?: number, scale?: Vector2) {
+    // Get layer context
+    getContext(layer?: string): Renderer["layers"][0]["context"] {
+        return this.layers[layer || "game"].context;
+    }
+    startTransform(layer?: string, pos?: Vector2, rotation?: number, scale?: Vector2, opacity?: number) {
         const context = this.layers[layer || "game"].context;
 
         const p = pos || Vector2.zero();
@@ -104,9 +97,12 @@ export class Renderer {
             p.y - this.game.camera.position.y + window.innerHeight / 2
         );
         context.rotate(rotation || 0);
+
+        const op = safeValue(opacity, 1);
+        context.globalAlpha = op > 0 ? op : 0;
     }
-    endTransform(layer: string) {
-        this.layers[layer].context.restore();
+    endTransform(layer?: string) {
+        this.layers[layer || "game"].context.restore();
     }
     
     // Draw primitives
@@ -114,30 +110,29 @@ export class Renderer {
         color: string,
         width?: number, height?: number,
         pos?: Vector2, rotation?: number,
-        layer?: string
+        opacity?: number, layer?: string
     ) {
-        const w = (width || 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
-        const h = (height || 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
+        const w = safeValue(width, 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
+        const h = safeValue(height, 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
 
-        if (this.checkCameraDistance(pos || Vector2.zero(), w, h)) return;
-        
-        const context = this.layers[layer || "game"].context;
+        if (this.checkCameraDistance(safeValue(pos, Vector2.zero()), w, h)) return;
 
-        this.startTransform(layer || "game", pos, rotation);
+        this.startTransform(layer, pos, rotation, Vector2.all(), opacity);
 
+        this.getContext(layer).fillStyle = color;
+        this.getContext(layer).fillRect(-w / 2, -h / 2, w, h);
 
-        context.fillStyle = color;
-        context.fillRect(-w / 2, -h / 2, w, h);
-
-        this.endTransform(layer || "game");
+        this.endTransform(layer);
     }
     drawLine(
         color: string, width: number,
         points: [Vector2, Vector2],
-        layer?: string
+        opacity?: number, layer?: string
     ) { 
-        const context = this.layers[layer || "game"].context;
+        const context = this.getContext(layer);
         context.save();
+
+        context.globalAlpha = safeValue(opacity, 1);
         
         context.lineWidth = width;
         context.strokeStyle = color;
@@ -156,13 +151,21 @@ export class Renderer {
         text: string, color?: string, font?: string,
         pos?: Vector2, rotation?: number,
         scale?: Vector2,
-        layer?: string
-    ) {
-        const l = layer || "game"
-        const context = this.layers[l].context;
+        opacity?: number, layer?: string
+    ) { 
+        const context = this.getContext(layer);
         
-        this.startTransform(l, pos, rotation, scale);
+        this.startTransform(layer, pos, rotation, scale, opacity);
 
+        function renderText(text: string, pos: Vector2) {
+            context.strokeText(text, pos.x, pos.y);
+            context.fillText(text, pos.x, pos.y);
+        }
+        
+        context.strokeStyle = Color.GROUND_COLOR;
+        context.lineWidth = 8;
+        context.miterLimit = 8;
+        context.lineJoin = "round";
         
         context.fillStyle = color || "#ff";
         context.font = font || "18px Pixel";
@@ -170,11 +173,13 @@ export class Renderer {
         context.textBaseline = "middle"
         if (text.indexOf("\n") >= 0) {
             for (let i = 0; i < text.split("\n").length; i ++)
-                context.fillText(text.split("\n")[i], 0, i * (parseInt(context.font.split(" ")[0])));
+                renderText(text.split("\n")[i], new Vector2(0, i * (parseInt(context.font.split(" ")[0]))));
         } else
-            context.fillText(text, 0, 0);
+            renderText(text, Vector2.zero());
+
+        // context.s();
         
-        this.endTransform(l);
+        this.endTransform(layer);
     }
     
     drawSprite(
@@ -184,34 +189,35 @@ export class Renderer {
         layer?: string,
         scale?: Vector2, flip?: { x: boolean, y: boolean }, opacity?: number, repeat?: number
     ) {
-        const w = (width || 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
-        const h = (height || 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
+        const w = safeValue(width, 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
+        const h = safeValue(height, 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
         
-        const p = pos || Vector2.zero();
-        const o = offset || Vector2.zero();
+        const p = safeValue(pos, Vector2.zero());
+        const o = safeValue(offset, Vector2.zero());
         
-        if (this.checkCameraDistance(p, w * ((repeat || 1) + 4), h) || !texture) return;
+        if (this.checkCameraDistance(p, w * (safeValue(repeat, 1) + 4), h) || !texture) return;
         
         const f = flip || { x: false, y: false };
-        const s = scale ? scale : Vector2.all();
-        const context = this.layers[layer || "game"].context;
+        const s = safeValue(scale, Vector2.all());
+        const context = this.getContext(layer);
         
         this.startTransform(
-            layer || "game",
+            layer,
             p.add(o),
             rotation,
-            new Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1))
+            new Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)),
+            opacity
         );
         
-        context.globalAlpha = (opacity === undefined ? 1 : opacity);
-        
+        // Draw sprite without repeat
         if (!repeat)
             context.drawImage(texture, -w / 2, -h / 2, w, h);
         else
+            // And... With repeat?
             for (let i = 0; i < repeat; i ++)
                 context.drawImage(texture, -w / 2 + i * w, -h / 2, w, h);
 
-        this.endTransform(layer || "game");
+        this.endTransform(layer);
     }
 
     updateAspect() {
@@ -222,7 +228,5 @@ export class Renderer {
             this.layers[key].context.imageSmoothingEnabled = false;
 
         })
-        // this.app.view.width = window.innerWidth;
-        // this.app.view.height = window.innerHeight;
     }
 }

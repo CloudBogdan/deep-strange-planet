@@ -6,7 +6,8 @@ import { Entity } from "./Entity";
 import { Ore } from "../ores/Ore";
 import { RawType } from "../raws/Raw";
 
-export type ToolLevel = 1 | 2 | 3 | 4;
+// > 5 is "god tool"
+export type ToolLevel = 1 | 2 | 3 | 4 | 5;
 export type Tool = {
     speed: number,
     damage: number
@@ -29,11 +30,16 @@ const tools: { [key: string]: Tool }  = {
         speed: 10,
         damage: 6
     },
+    "5": {
+        speed: 5,
+        damage: 20
+    },
 }
 
 export class Player extends Entity {
     wire: Vector2
     inventory: {
+        totalCount: number
         [key: string]: number
     }
     toolLevel: ToolLevel
@@ -44,8 +50,11 @@ export class Player extends Entity {
         });
     
         this.wire = Vector2.zero();
-        this.inventory = {};
-        this.toolLevel = 1;
+        this.inventory = {
+            totalCount: 0
+        };
+        // ! God tool
+        this.toolLevel = 5;
     }
     
     init(game: Game) {
@@ -113,6 +122,7 @@ export class Player extends Entity {
     }
     
     pickup(game: Game, type: RawType, count: number) {
+        this.inventory.totalCount += count;
         if (this.inventory[type])
             this.inventory[type] += count;
         else

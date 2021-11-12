@@ -15,6 +15,7 @@ export class Gear extends Sprite {
     level: Level
     playerIsNear: boolean
     allowInteract: boolean
+    interactText: string
 
     animatedScale: number
     
@@ -28,8 +29,9 @@ export class Gear extends Sprite {
         this.gearName = gearName;
         this.level = level;
         this.playerIsNear = false;
-        this.allowInteract = false;
+        this.allowInteract = true;
         this.layer = "bg";
+        this.interactText = "";
 
         this.animatedScale = 0;
     }
@@ -62,18 +64,25 @@ export class Gear extends Sprite {
             const okAsset = game.getAssetByName("interact");
             const outlineAsset = game.getAssetByName([this.gearType, this.level, "outline"].join("-"));
 
+            // Draw ok button sprite
             if (assetIsValid(okAsset, "image") && okAsset)
                 renderer.drawSprite(
                     (okAsset.element as HTMLImageElement[])[0],
                     this.animatedScale, this.animatedScale,
-                    this.position.add(new Vector2(0, -80))
+                    this.position.add(new Vector2(0, -110))
                 );
+            // Draw gear outline
             if (assetIsValid(outlineAsset, "image") && outlineAsset)
                 renderer.drawSprite(
                     (outlineAsset.element as HTMLImageElement[])[0],
                     2, 2,
                     this.position, 0, Vector2.zero(), this.layer, Vector2.all(), this.flip
                 );
+
+            renderer.drawText(
+                this.interactText, "#fff", "22px Pixel",
+                this.position.add(new Vector2(0, -70))
+            );
                 
         }
     }
@@ -96,16 +105,16 @@ export class Gear extends Sprite {
             render(renderer, part) {
                 renderer.drawText(
                     text, "#fff", "22px Pixel",
-                    part.position, 0, Vector2.all(part.size),
-                    "particles"
+                    part.position, 0, Vector2.all(),
+                    part.size, "particles"
                 );
             },
-            size: [1, 1.2],
+            size: [5, 5],
             count: 1,
             gravity: 0,
             rotationVelocity: ()=> random(-.02, .02),
             velocity: ()=> new Vector2(0, -1.5),
-            downSize: .01,
+            downSize: -.08,
             box: ()=> new Vector2(random(-10, 10), random(-10, 10))
         });
     }
