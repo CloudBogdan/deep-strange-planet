@@ -1,10 +1,10 @@
 import { Vector2 } from "../../engine/utils/math";
 import { Ore } from "./Ore";
 
-export class Stone extends Ore {
+export class Basalt extends Ore {
     constructor(position: Vector2) {
-        super("stone", position);
-        
-        this.hp = 10;
+        super("basalt", position);
+
+        this.hp = 40;
     }
 }

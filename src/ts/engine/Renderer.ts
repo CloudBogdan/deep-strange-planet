@@ -7,6 +7,7 @@ type RendererLayer = {
     canvas: HTMLCanvasElement
     context: CanvasRenderingContext2D
     update: boolean
+    cameraFactor: number
 }
 
 export class Renderer {
@@ -25,15 +26,16 @@ export class Renderer {
             "bg": this.createLayer("bg"),
             "game": this.createLayer("game"),
             "particles": this.createLayer("particles"),
-            "ui": this.createLayer("ui"),
+            "ui": this.createLayer("ui", true, 0),
             "debug": this.createLayer("debug", false),
         };
+        console.log(this.layers);
         
         document.body.style.background = Color.GROUND_COLOR;
     }
     
     // Create new layer
-    createLayer(name: string, update?: boolean): RendererLayer {
+    createLayer(name: string, update?: boolean, cameraFactor?: number): RendererLayer {
         const canvas = document.createElement("canvas");
 
         canvas.setAttribute("id", name);
@@ -44,7 +46,7 @@ export class Renderer {
         const context = canvas.getContext("2d")!;
         context.imageSmoothingEnabled = false;
 
-        return { canvas, context, update: update == undefined ? true : update };
+        return { canvas, context, update: safeValue(update, true), cameraFactor: safeValue(cameraFactor, 1) };
     }
 
     render() {
@@ -88,20 +90,20 @@ export class Renderer {
         return this.layers[layer || "game"].context;
     }
     startTransform(layer?: string, pos?: Vector2, rotation?: number, scale?: Vector2, opacity?: number) {
-        const context = this.layers[layer || "game"].context;
+        const l = this.layers[layer || "game"];
 
         const p = pos || Vector2.zero();
         
-        context.save();
-        context.transform(
+        l.context.save();
+        l.context.transform(
             scale?.x || 1, 0, 0, scale?.y || 1,
-            p.x - this.game.camera.position.x + window.innerWidth / 2,
-            p.y - this.game.camera.position.y + window.innerHeight / 2
+            p.x - this.game.camera.position.x * l.cameraFactor + window.innerWidth / 2 * l.cameraFactor,
+            p.y - this.game.camera.position.y * l.cameraFactor + window.innerHeight / 2 * l.cameraFactor
         );
-        context.rotate(rotation || 0);
+        l.context.rotate(rotation || 0);
 
         const op = safeValue(opacity, 1);
-        context.globalAlpha = op > 0 ? op : 0;
+        l.context.globalAlpha = op > 0 ? op : 0;
     }
     endTransform(layer?: string) {
         this.layers[layer || "game"].context.restore();

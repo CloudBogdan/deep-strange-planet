@@ -6,5 +6,6 @@ export class DeepStone extends Ore {
         super("deep-stone", position);
         this.randomRotate = false;
         this.needToolLevel = 2;
+        this.hp = 26
     }
 }

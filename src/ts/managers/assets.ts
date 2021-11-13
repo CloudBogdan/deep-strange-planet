@@ -6,7 +6,9 @@ import player_walk_1_img from "../../images/player/walk/1.png"; // @ts-ignore
 import player_walk_2_img from "../../images/player/walk/2.png"; // @ts-ignore
 
 import stone_img from "../../images/ores/stone.png"; // @ts-ignore
+import basalt_img from "../../images/ores/basalt.png"; // @ts-ignore
 import deep_stone_img from "../../images/ores/deep-stone.png"; // @ts-ignore
+import burnt_basalt_img from "../../images/ores/burnt-basalt.png"; // @ts-ignore
 import destrony_img from "../../images/ores/destrony.png"; // @ts-ignore
 import stone_1_img from "../../images/ores/stone-1.png"; // @ts-ignore
 import stone_2_img from "../../images/ores/stone-2.png"; // @ts-ignore
@@ -16,10 +18,13 @@ import cracked_stone_img from "../../images/ores/cracked-stone.png"; // @ts-igno
 
 import cidium_img from "../../images/ores/cidium.png"; // @ts-ignore
 import osmy_img from "../../images/ores/osmy.png"; // @ts-ignore
+import antin_img from "../../images/ores/antin.png"; // @ts-ignore
+import rady_img from "../../images/ores/rady.png"; // @ts-ignore
 
 import raw_cidium_img from "../../images/raw/raw-cidium.png"; // @ts-ignore
 import raw_grade_cidium_img from "../../images/raw/raw-grade-cidium.png"; // @ts-ignore
 import raw_osmy_img from "../../images/raw/raw-osmy.png"; // @ts-ignore
+import raw_antin_img from "../../images/raw/raw-antin.png"; // @ts-ignore
 
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
@@ -44,7 +49,9 @@ export function initAssets(game: Game) {
 
     // > Ores
     game.loadAsset("stone", [stone_img]);
+    game.loadAsset("basalt", [basalt_img]);
     game.loadAsset("deep-stone", [deep_stone_img]);
+    game.loadAsset("burnt-basalt", [burnt_basalt_img]);
     game.loadAsset("destrony", [destrony_img]);
     game.loadAsset("stone-1", [stone_1_img]);
     game.loadAsset("stone-2", [stone_2_img]);
@@ -54,10 +61,13 @@ export function initAssets(game: Game) {
 
     game.loadAsset("cidium", [cidium_img]);
     game.loadAsset("osmy", [osmy_img]);
+    game.loadAsset("antin", [antin_img]);
+    game.loadAsset("rady", [rady_img]);
 
     game.loadAsset("raw-cidium", [raw_cidium_img]);
     game.loadAsset("raw-grade-cidium", [raw_grade_cidium_img]);
     game.loadAsset("raw-osmy", [raw_osmy_img]);
+    game.loadAsset("raw-antin", [raw_antin_img]);
 
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])

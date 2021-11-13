@@ -70,7 +70,7 @@ export class Point {
         
         let allowCollide = true
         
-        if (!this.collider.collidable && point.collider.type == "dynamic")
+        if (!this.collider.collidable && point.collider.type == "dynamic" || !point.collider.collidable)
             allowCollide = false;
 
         if (allowCollide)

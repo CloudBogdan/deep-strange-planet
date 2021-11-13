@@ -10,6 +10,11 @@ import { DeepStone } from "./objects/ores/DeepStone";
 import { Cidium } from "./objects/ores/Cidium";
 import { initDome } from "./managers/dome";
 import { Osmy } from "./objects/ores/Osmy";
+import { Basalt } from "./objects/ores/Basalt";
+import { Vector2 } from "./engine/utils/math";
+import { Antin } from "./objects/ores/Antin";
+import { Rady } from "./objects/ores/Rady";
+import { BurntBasalt } from "./objects/ores/BurntBasalt";
 
 const game = new Game();
 
@@ -25,7 +30,7 @@ game.addInit(()=> {
     initDome(game);
     
     game.generator.settings = [
-        // Stones
+        // > Stones
         {
             value: [0, 1],
             height: [0, 43],
@@ -33,54 +38,100 @@ game.addInit(()=> {
         },
         {
             value: [.5, .6],
-            height: [5, Config.WORLD_HEIGHT],
+            height: [5, 90],
             divider: 5,
             ore: CrackedStone
         },
+
+        // > Deepest stones
+        // Deep stone blend layer
         {
             value: [.8, 1],
             height: [30, 43],
             divider: 2,
             ore: DeepStone
         },
+        // Deep stone layer
         {
             value: [0, 1],
-            height: [42, Config.WORLD_HEIGHT],
+            height: [42, 150],
             ore: DeepStone
         },
+        // Basalt blend layer
+        {
+            value: [.7, 1],
+            height: [135, 150],
+            divider: 3,
+            ore: Basalt
+        },
+        // Basalt layer
+        {
+            value: [0, 1],
+            height: [150, Config.WORLD_HEIGHT],
+            ore: Basalt
+        },
+        // Burnt basalt blend layer
+        {
+            value: [.8, 1],
+            height: [Config.WORLD_HEIGHT - 20, Config.WORLD_HEIGHT],
+            divider: 3,
+            ore: BurntBasalt
+        },
+        // Burnt basalt layer
+        {
+            value: [0, 1],
+            height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT],
+            ore: BurntBasalt
+        },
         
-        // Ores
+        // > Ores
         {
             value: [.85, 1],
             // height: [12, Config.WORLD_HEIGHT - 10],
-            height: [0, Config.WORLD_HEIGHT - 10],
+            height: [0, 140],
             divider: 5,
             ore: Cidium
         },
         {
             value: [.85, 1],
-            height: [46, Config.WORLD_HEIGHT - 10],
+            height: [46, 140],
             divider: 2,
             ore: Osmy
         },
+        {
+            value: [0, .4],
+            // height: [0, Config.WORLD_HEIGHT - 40],
+            height: [160, Config.WORLD_HEIGHT - 40],
+            divider: 2,
+            ore: Antin
+        },
+        {
+            value: [0, .3],
+            height: [200, Config.WORLD_HEIGHT - 5],
+            divider: 2,
+            ore: Rady
+        },
 
-        // Holes
+        // > Holes
         {
             value: [0, .5],
-            height: [5, Config.WORLD_HEIGHT],
+            height: [5, 150],
+            ore: null,
+        },
+        {
+            value: [0, .4],
+            height: [155, Config.WORLD_HEIGHT - 40],
+            divider: 5,
             ore: null,
         },
     ];
     game.camera.follow(player.position);
-
-    setInterval(()=> {
-        document.querySelector("span")!.innerHTML = fps.toString();
-    }, 500);
     
 });
 game.addUpdate(()=> {
     const thisLoop = Date.now();
-    fps = +(1000 / (thisLoop - lastLoop)).toFixed(1);
+    if (game.clock.elapsed % 30 == 0)
+        fps = +(1000 / (thisLoop - lastLoop)).toFixed(1);
     lastLoop = thisLoop;
 
     level.update(player);
@@ -88,19 +139,12 @@ game.addUpdate(()=> {
     game.camera.follow(player.position, .1);
     game.generator.generateChunksAt(player.position);
 });
+game.addRender(renderer=> {
 
-/*
-function removeChunks() {
-    chunks.map((chunk, index)=> {
+    renderer.drawText(fps.toString(), "#fff", "20px Pixel", new Vector2(40, 40), 0, undefined, 1, "ui");
+    renderer.drawText(`Height: ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`, "#fff", "20px Pixel", new Vector2(70, 80), 0, undefined, 1, "ui");
 
-        if (player.position.expand().distance(chunk.pos.mul(Config.SPRITE_SIZE * 5).expand()) > 900) {
-            game.removeChildrenByGroupName(chunk.id);
-            chunks.splice(index, 1);
-        }
-    
-    });
-}
-*/
+});
 
 game.init();
 

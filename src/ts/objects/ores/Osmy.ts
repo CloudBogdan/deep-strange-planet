@@ -10,6 +10,7 @@ export class Osmy extends Ore {
 
         this.needToolLevel = 2;
         this.randomRotate = false;
+        this.hp = 36;
     }
 
     onBreak(game: Game) {

@@ -19,16 +19,16 @@ const tools: { [key: string]: Tool }  = {
         damage: 2
     },
     "2": {
-        speed: 12,
-        damage: 3
+        speed: 16,
+        damage: 4
     },
     "3": {
-        speed: 14,
-        damage: 8
+        speed: 10,
+        damage: 3
     },
     "4": {
-        speed: 10,
-        damage: 6
+        speed: 14,
+        damage: 8
     },
     "5": {
         speed: 5,
@@ -53,7 +53,11 @@ export class Player extends Entity {
         this.inventory = {
             totalCount: 0
         };
-        // ! God tool
+        // this.acceleration = Vector2.all(.7);
+        // ! God
+        // this.moveSpeed = 2;
+        // this.moveSpeed = 90;
+        // this.collider.collidable = false;
         this.toolLevel = 5;
     }
     

@@ -1,6 +1,6 @@
 import { chance, lerp, random, Vector2 } from "../../engine/utils/math";
 import { Game, Sprite } from "../../engine";
-import { Config, Color, OreHp } from "../../config";
+import { Config, Color } from "../../config";
 import { Player, ToolLevel } from "../entities/Player";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { Renderer } from "../../engine/Renderer";
@@ -8,8 +8,8 @@ import { Raw } from "../raws/Raw";
 
 export type OreType =
     "stone" | "deep-stone" | "destrony" |
-    "cracked-stone" |
-    "cidium" | "osmy";
+    "cracked-stone" | "basalt" | "burnt-basalt" |
+    "cidium" | "osmy" | "antin" | "rady";
 
 export class Ore extends Sprite {
     oreType: OreType
@@ -36,7 +36,8 @@ export class Ore extends Sprite {
         this.tilePosition = position
         this.inChunkId = "";
         
-        this.hp = OreHp[type];
+        // this.hp = OreHp[type];
+        this.hp = 10;
         this.unbreakable = false;
         this.needToolLevel = 1;
         
@@ -113,11 +114,11 @@ export class Ore extends Sprite {
 
     darken(game: Game) {
 
-        const player = game.getChildById<Player>("player");
-        if (!player) return;
+        // const player = game.getChildById<Player>("player");
+        // if (!player) return;
         
-        const t = 1 - player.position.y / 200;
-        const d = (player.position.distance(this.position) - 200);
+        const t = 1 - game.camera.position.y / 200;
+        const d = (game.camera.position.distance(this.position) - 200);
         this.darkenFactor = (d > 96 ? 1 : d / 96) + (t > 0 ? t : 0);
         
         if (this.darkenFactor < 1)

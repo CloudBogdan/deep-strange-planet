@@ -24,7 +24,7 @@ export class Game extends Container {
     clock: Clock
     initListeners: (()=> void)[]
     updateListeners: ((clock: Clock)=> void)[]
-    renderListeners: ((clock: Clock)=> void)[]
+    renderListeners: ((renderer: Renderer)=> void)[]
     
     renderer: Renderer
     physics: Physics
@@ -99,7 +99,7 @@ export class Game extends Container {
             this.updateListeners.map(listener=> listener(this.clock));
             
             this.callChildren("render", this, this.renderer);
-            this.renderListeners.map(listener=> listener(this.clock));
+            this.renderListeners.map(listener=> listener(this.renderer));
 
             this.renderer.renderParticles(this);
             

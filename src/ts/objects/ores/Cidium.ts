@@ -6,6 +6,8 @@ import { Ore } from "./Ore";
 export class Cidium extends Ore {
     constructor(position: Vector2) {
         super("cidium", position);
+
+        this.hp = 20;
     }
 
     onBreak(game: Game) {

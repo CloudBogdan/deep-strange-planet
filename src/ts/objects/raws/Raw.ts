@@ -6,14 +6,13 @@ import { Cidium } from "../ores/Cidium";
 import { Ore, OreType } from "../ores/Ore";
 
 export type RawType = 
-    "raw-cidium" | "raw-osmy" | "raw-grade-cidium";
+    "raw-cidium" | "raw-osmy" | "raw-grade-cidium" | "raw-antin";
 
 export class Raw extends Sprite {
     picked: boolean
     allowPickup: boolean
     rawType: RawType
     foldToPosition: Vector2
-    parent: typeof Ore
     liveStartElapsed: number
     
     constructor(type: RawType, position: Vector2) {
@@ -22,7 +21,6 @@ export class Raw extends Sprite {
             colliderType: null
         });
 
-        this.parent = Cidium as any;
         this.rawType = type;
         this.allowPickup = true;
         this.picked = false;
@@ -81,8 +79,6 @@ export class Raw extends Sprite {
     collideWidthOtherRaw(raws: Raw[], player: Player | undefined) {
         if (!this.picked || !player) return;
         
-        // const raw = raws.find(r=> Vector2.compare(r.position.sub(player.wire).div(100).apply(Math.floor), this.position.sub(player.wire).div(100).apply(Math.floor),))
-        // const raw = raws.find(r=> r.position.distance(this.position) < 8 * Config.SPRITE_SCALE)
         [...raws].filter(r=> r.picked && !compareNames(r.id, this.id)).map((raw, index)=> {
         
             if (raw.position.distance(this.position) < 8 * Config.SPRITE_SCALE) {

@@ -27,18 +27,11 @@ export enum Color {
     YELLOW = "#fbc67e",
     YELLOW_LIGHT = "#fde3bf",
     BLUE_LIGHT = "#e0e6ff",
+    RED_LIGHT = "#f9cace",
 }
 export enum RawLineColor {
     "raw-cidium" = Color.YELLOW_LIGHT,
     "raw-grade-cidium" = Color.YELLOW_LIGHT,
     "raw-osmy" = Color.BLUE_LIGHT,
-}
-// > -1 is unbreakable
-export enum OreHp {
-    "stone" = 10,
-    "deep-stone" = 20,
-    "destrony" = -1,
-    "cracked-stone" = 6,
-    "cidium" = 20,
-    "osmy" = 36,
+    "raw-antin" = Color.RED_LIGHT,
 }
