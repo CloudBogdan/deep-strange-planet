@@ -49,7 +49,7 @@ export class Player extends Entity {
             position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE)
         });
     
-        this.wire = Vector2.zero();
+        this.wire = this.position.expand();
         this.inventory = {
             totalCount: 0
         };

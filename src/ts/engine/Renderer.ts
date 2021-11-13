@@ -68,13 +68,15 @@ export class Renderer {
                 this.particles.splice(index, 1);
         });
     }
-    checkCameraDistance(pos: Vector2, width: number, height: number): boolean {
+    inCameraViewport(pos: Vector2, width?: number, height?: number, repeat?: number): boolean {
         const cam = this.game.camera.position;
         const 
             w = innerWidth + 150,
             h = innerHeight + 150;
-        return !(
-            pos.x + width / 2 > cam.x - w / 2 &&
+        width = safeValue(width, Config.SPRITE_SIZE);
+        height = safeValue(height, Config.SPRITE_SIZE);
+        return (
+            pos.x + width / 2 + (repeat ? repeat * width : 1) > cam.x - w / 2 &&
             pos.y + height / 2 > cam.y - h / 2 &&
             pos.x - width / 2 < cam.x + w / 2 &&
             pos.y - height / 2 < cam.y + h / 2
@@ -112,10 +114,10 @@ export class Renderer {
         pos?: Vector2, rotation?: number,
         opacity?: number, layer?: string
     ) {
-        const w = safeValue(width, 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
-        const h = safeValue(height, 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
+        const w = safeValue(width, 1) * Config.SPRITE_SIZE;
+        const h = safeValue(height, 1) * Config.SPRITE_SIZE;
 
-        if (this.checkCameraDistance(safeValue(pos, Vector2.zero()), w, h)) return;
+        if (!this.inCameraViewport(safeValue(pos, Vector2.zero()), w, h)) return;
 
         this.startTransform(layer, pos, rotation, Vector2.all(), opacity);
 
@@ -189,13 +191,13 @@ export class Renderer {
         layer?: string,
         scale?: Vector2, flip?: { x: boolean, y: boolean }, opacity?: number, repeat?: number
     ) {
-        const w = safeValue(width, 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
-        const h = safeValue(height, 1) * Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE;
+        const w = safeValue(width, 1) * Config.SPRITE_SIZE;
+        const h = safeValue(height, 1) * Config.SPRITE_SIZE;
         
         const p = safeValue(pos, Vector2.zero());
         const o = safeValue(offset, Vector2.zero());
         
-        if (this.checkCameraDistance(p, w * (safeValue(repeat, 1) + 4), h) || !texture) return;
+        if (!this.inCameraViewport(p, w, h, repeat) || !texture) return;
         
         const f = flip || { x: false, y: false };
         const s = safeValue(scale, Vector2.all());

@@ -1,18 +1,20 @@
-import { lerp, random, Vector2 } from "../../engine/utils/math";
+import { chance, lerp, random, Vector2 } from "../../engine/utils/math";
 import { Game, Sprite } from "../../engine";
 import { Config, Color, OreHp } from "../../config";
 import { Player, ToolLevel } from "../entities/Player";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { Renderer } from "../../engine/Renderer";
+import { Raw } from "../raws/Raw";
 
 export type OreType =
     "stone" | "deep-stone" | "destrony" |
     "cracked-stone" |
-    "cidium";
+    "cidium" | "osmy";
 
 export class Ore extends Sprite {
     oreType: OreType
     inChunkId: string
+    // rawOre: typeof Raw | null
 
     hp: number
     tilePosition: Vector2
@@ -29,6 +31,7 @@ export class Ore extends Sprite {
             position: position.add(new Vector2(0, 0)).mul(Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE),
             colliderType: "solid"
         });
+        // this.rawOre = null;
         this.oreType = type;
         this.tilePosition = position
         this.inChunkId = "";
@@ -36,7 +39,7 @@ export class Ore extends Sprite {
         this.hp = OreHp[type];
         this.unbreakable = false;
         this.needToolLevel = 1;
-
+        
         this.animatedScale = 1;
         this.darkenFactor = 1;
         this.randomRotate = true;
@@ -85,18 +88,27 @@ export class Ore extends Sprite {
         if (this.hp <= 0) {
             // if (onBreak)
             //     onBreak();
-            this.break(game);
+            this.onBreak(game);
         }
 
     }
-    break(game: Game) {
+    onBreak(game: Game) {
 
         SpawnParticles(game, this.position, {
             colors: this.oreType == "cidium" ? [Color.BLACK, Color.YELLOW] : [Color.BLACK],
         });
         game.removeChildById(this.id);
-        // game.generator.destroyOre(this.inChunkId);
 
+    }
+    dropRawOre(game: Game, rawOre: typeof Raw | any, chancePercent?: number) {
+        let drop = true;
+        
+        if (chancePercent)
+            drop = chance(chancePercent);
+            
+        if (!drop) return;
+        game.add<typeof rawOre>(new (rawOre as any)(this.position.add(new Vector2(random(-10, 10), random(-10, 10)))));
+        game.initChildren(game);
     }
 
     darken(game: Game) {

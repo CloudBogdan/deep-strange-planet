@@ -8,10 +8,9 @@ export class Cidium extends Ore {
         super("cidium", position);
     }
 
-    break(game: Game) {
-        super.break(game);
+    onBreak(game: Game) {
+        super.onBreak(game);
 
-        game.add<RawCidium>(new RawCidium(this.position));
-        game.initChildren(game);
+        this.dropRawOre(game, RawCidium);
     }
 }

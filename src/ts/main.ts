@@ -9,6 +9,7 @@ import { Config } from "./config";
 import { DeepStone } from "./objects/ores/DeepStone";
 import { Cidium } from "./objects/ores/Cidium";
 import { initDome } from "./managers/dome";
+import { Osmy } from "./objects/ores/Osmy";
 
 const game = new Game();
 
@@ -55,6 +56,12 @@ game.addInit(()=> {
             height: [0, Config.WORLD_HEIGHT - 10],
             divider: 5,
             ore: Cidium
+        },
+        {
+            value: [.85, 1],
+            height: [46, Config.WORLD_HEIGHT - 10],
+            divider: 2,
+            ore: Osmy
         },
 
         // Holes

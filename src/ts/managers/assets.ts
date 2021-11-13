@@ -13,9 +13,13 @@ import stone_2_img from "../../images/ores/stone-2.png"; // @ts-ignore
 import stone_3_img from "../../images/ores/stone-3.png"; // @ts-ignore
 import stone_4_img from "../../images/ores/stone-4.png"; // @ts-ignore
 import cracked_stone_img from "../../images/ores/cracked-stone.png"; // @ts-ignore
+
 import cidium_img from "../../images/ores/cidium.png"; // @ts-ignore
+import osmy_img from "../../images/ores/osmy.png"; // @ts-ignore
 
 import raw_cidium_img from "../../images/raw/raw-cidium.png"; // @ts-ignore
+import raw_grade_cidium_img from "../../images/raw/raw-grade-cidium.png"; // @ts-ignore
+import raw_osmy_img from "../../images/raw/raw-osmy.png"; // @ts-ignore
 
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
@@ -47,9 +51,13 @@ export function initAssets(game: Game) {
     game.loadAsset("stone-3", [stone_3_img]);
     game.loadAsset("stone-4", [stone_4_img]);
     game.loadAsset("cracked-stone", [cracked_stone_img]);
+
     game.loadAsset("cidium", [cidium_img]);
+    game.loadAsset("osmy", [osmy_img]);
 
     game.loadAsset("raw-cidium", [raw_cidium_img]);
+    game.loadAsset("raw-grade-cidium", [raw_grade_cidium_img]);
+    game.loadAsset("raw-osmy", [raw_osmy_img]);
 
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])

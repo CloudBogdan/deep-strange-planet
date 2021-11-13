@@ -107,3 +107,6 @@ export function lerp(from: number, to: number, time: number): number {
 export function random(from: number, to: number): number {
     return Math.random() * (to - from) + from;    
 }
+export function chance(percent: number): boolean {
+    return Math.floor(random(0, 101)) <= percent;
+}

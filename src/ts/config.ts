@@ -17,6 +17,7 @@ export enum Config {
     GROUND_HEIGHT = SPRITE_SIZE * 2,
     
     ALLOW_DARK = 1,
+    RAW_LIVE_TIME = 400,
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,
 }
@@ -25,6 +26,12 @@ export enum Color {
     BLACK = "#0f1531",
     YELLOW = "#fbc67e",
     YELLOW_LIGHT = "#fde3bf",
+    BLUE_LIGHT = "#e0e6ff",
+}
+export enum RawLineColor {
+    "raw-cidium" = Color.YELLOW_LIGHT,
+    "raw-grade-cidium" = Color.YELLOW_LIGHT,
+    "raw-osmy" = Color.BLUE_LIGHT,
 }
 // > -1 is unbreakable
 export enum OreHp {
@@ -33,4 +40,5 @@ export enum OreHp {
     "destrony" = -1,
     "cracked-stone" = 6,
     "cidium" = 20,
+    "osmy" = 36,
 }

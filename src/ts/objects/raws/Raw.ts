@@ -1,16 +1,20 @@
-import { Color, Config } from "../../config";
+import { Color, Config, RawLineColor } from "../../config";
 import { Game, Sprite } from "../../engine";
 import { random, Vector2 } from "../../engine/utils/math";
 import { Player } from "../entities/Player";
+import { Cidium } from "../ores/Cidium";
+import { Ore, OreType } from "../ores/Ore";
 
 export type RawType = 
-    "raw-cidium";
+    "raw-cidium" | "raw-osmy" | "raw-grade-cidium";
 
 export class Raw extends Sprite {
     picked: boolean
     allowPickup: boolean
     rawType: RawType
     foldToPosition: Vector2
+    parent: typeof Ore
+    liveStartElapsed: number
     
     constructor(type: RawType, position: Vector2) {
         super(`raw-${ type }`, type, {
@@ -18,15 +22,18 @@ export class Raw extends Sprite {
             colliderType: null
         });
 
+        this.parent = Cidium as any;
         this.rawType = type;
         this.allowPickup = true;
         this.picked = false;
         this.foldToPosition = Vector2.zero();
+        this.liveStartElapsed = 0;
     }
-
+    
     init(game: Game) {
         super.init(game);
-
+        
+        this.liveStartElapsed = game.clock.elapsed;
         this.layer = "particles";
         this.velocity.set(random(-8, 8), random(-8, 8));
         this.acceleration.copy(Vector2.all(.8));
@@ -35,6 +42,13 @@ export class Raw extends Sprite {
     update(game: Game) {
         super.update(game);
 
+        if (!game.renderer.inCameraViewport(this.position)) {
+            if (game.clock.elapsed - this.liveStartElapsed >= Config.RAW_LIVE_TIME)
+                game.removeChildById(this.id);
+        } else {
+            this.liveStartElapsed = game.clock.elapsed;
+        }
+        
         if (this.allowPickup) {
             this.followPlayer(game, game.getChildById<Player>("player"));
             this.collideWidthOtherRaw(game.getChildrenByName<Raw>("raw"));
@@ -60,7 +74,7 @@ export class Raw extends Sprite {
         if (!this.picked) return;
 
         this.moveTo(player.wire);
-        game.renderer.drawLine(Color.YELLOW_LIGHT, 2, [this.position, player.position], "bg");
+        game.renderer.drawLine(RawLineColor[this.rawType] as any, 2, [this.position, player.position], 1, "bg");
 
     }
 
