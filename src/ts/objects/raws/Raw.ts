@@ -1,6 +1,6 @@
 import { Color, Config, RawLineColor } from "../../config";
 import { Game, Sprite } from "../../engine";
-import { random, Vector2 } from "../../engine/utils/math";
+import { random, Vector2, compareNames } from "../../engine/utils/math";
 import { Player } from "../entities/Player";
 import { Cidium } from "../ores/Cidium";
 import { Ore, OreType } from "../ores/Ore";
@@ -51,7 +51,7 @@ export class Raw extends Sprite {
         
         if (this.allowPickup) {
             this.followPlayer(game, game.getChildById<Player>("player"));
-            this.collideWidthOtherRaw(game.getChildrenByName<Raw>("raw"));
+            this.collideWidthOtherRaw(game.getChildrenByName<Raw>("raw"), game.getChildById<Player>("player"));
         } else {
             this.moveTo(this.foldToPosition);
             if (this.foldToPosition.distance(this.position) < 30)
@@ -78,11 +78,13 @@ export class Raw extends Sprite {
 
     }
 
-    collideWidthOtherRaw(raws: Raw[]) {
-        if (!this.picked) return;
+    collideWidthOtherRaw(raws: Raw[], player: Player | undefined) {
+        if (!this.picked || !player) return;
         
-        raws.map(raw=> {
-
+        // const raw = raws.find(r=> Vector2.compare(r.position.sub(player.wire).div(100).apply(Math.floor), this.position.sub(player.wire).div(100).apply(Math.floor),))
+        // const raw = raws.find(r=> r.position.distance(this.position) < 8 * Config.SPRITE_SCALE)
+        [...raws].filter(r=> r.picked && !compareNames(r.id, this.id)).map((raw, index)=> {
+        
             if (raw.position.distance(this.position) < 8 * Config.SPRITE_SCALE) {
                 raw.position.copy(raw.position.add(raw.position.sub(this.position).normalize()));
             }
