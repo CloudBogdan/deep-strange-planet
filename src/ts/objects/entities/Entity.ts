@@ -1,5 +1,6 @@
 import { Game, ISpriteProps, Sprite } from "../../engine"
-import { Vector2 } from "../../engine/utils/math"
+import { SpawnParticles } from "../../engine/components/Particles";
+import { random, safeValue, Vector2 } from "../../engine/utils/math"
 
 export type IEntityProps = {
     hp?: number
@@ -43,5 +44,25 @@ export class Entity extends Sprite {
             this.playAnimation(game, this.name + "-walk");
         else
             this.playAnimation(game, this.name + "-stay");
+    }
+
+    spawnText(game: Game, text: string, offset?: Vector2) {
+        SpawnParticles(game, this.position.add(safeValue(offset, new Vector2(0, -30))), {
+            // custom: new Text("store-text", text, { font: "22px Pixel" }),
+            render(renderer, part) {
+                renderer.drawText(
+                    text, "#fff", "22px Pixel",
+                    part.position, 0, Vector2.all(),
+                    part.size, "particles"
+                );
+            },
+            size: [5, 5],
+            count: 1,
+            gravity: 0,
+            rotationVelocity: ()=> random(-.02, .02),
+            velocity: ()=> new Vector2(0, -1.5),
+            downSize: -.08,
+            box: ()=> new Vector2(random(-10, 10), random(-10, 10))
+        });
     }
 }

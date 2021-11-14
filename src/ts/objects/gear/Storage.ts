@@ -5,63 +5,74 @@ import { Raw } from "../raws/Raw";
 import { Gear, Level } from "./Gear";
 
 type InteractType = "store" | "view";
+enum MaxStorageTotalCount {
+    "1-level" = 16,
+    "2-level" = 28,
+    "3-level" = 42,
+}
 
 export class Storage extends Gear {
-    contains: {
-        [key: string]: number
-    }
+    contains: Player["inventory"]
     interactType: InteractType
+    maxTotalCount: number
     
     constructor(level: Level, props?: ISpriteProps) {
         super("Хранилище ресурсов", "storage", level, props);
-        this.contains = {};
+        this.contains = { totalCount: 0, slots: {} };
         this.interactType = "view";
+        this.maxTotalCount = MaxStorageTotalCount[`${ level }-level`];
     }
 
     update(game: Game) {
         super.update(game);
-
-        this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
-
+        
         const player = game.getChildById<Player>("player");
         if (!player) return;
         
-        this.interactType = player.inventory.totalCount == 0 ? "view" : "store";
-        // const player = game.getChildById<Player>("player");
-
-        // if (!player) return;
-        // if (this.playerIsNear)
-
-        // Object.keys(player.inventory).map(slot=> {
-        //     this.allowInteract = player.inventory[slot] > 0;
-        // })
+        this.interactType = (player.inventory.totalCount == 0 || this.contains.totalCount >= this.maxTotalCount) ? "view" : "store";
+        this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
     }
 
-    onInteract(game: Game, player: Player | undefined) {
+    onInteract(game: Game, player: Player) {
         super.onInteract(game, player);
-        if (!player) return;
 
-        game.getChildrenByName<Raw>("raw").map(raw=> {
-            // Destroy on fold in storage
-            if (!raw.picked) return;
+        if (this.interactType == "store") 
+            this.store(game, player);
+        else if (this.interactType == "view")
+            console.log(this.contains.totalCount, this.contains.slots);
+    }
 
+    store(game: Game, player: Player) {
+        if (this.contains.totalCount >= this.maxTotalCount) return;
+        
+        let storedCount = 0;
+        
+        [...Object.keys(player.inventory.slots)].map(slot=> {
+            this.contains.slots[slot] = this.contains.slots[slot] || 0
+            
+            // Add items
+            for (let i = player.inventory.slots[slot]; i --;) {
+                this.contains.slots[slot] ++;
+                this.contains.totalCount ++;
+                storedCount ++;
+                if (this.contains.totalCount >= this.maxTotalCount) {
+                    player.spawnText(game, "Хранилище перепольнено", new Vector2(0, -50));
+                    break;
+                }
+            }
+        });
+        
+        [...game.getChildrenByName<Raw>("raw")].filter(r=> r.picked).map((raw, index)=> {
+            if (!(index < storedCount)) return;
+            // Destroy on fold in storages
             raw.allowPickup = false;
             raw.picked = false;
             raw.foldToPosition = this.position;
         });
-        Object.keys(player.inventory).map(slot=> {
-            // rawsCount += player.inventory[slot]
-            
-            if (this.contains[slot])
-                this.contains[slot] += player.inventory[slot];
-            else
-                this.contains[slot] = player.inventory[slot];
-        })
         
         if (player.inventory.totalCount <= 0) return;
         
-        this.spawnText(game, player.inventory.totalCount.toString());
-        
-        player.inventory = { totalCount: 0 };
+        player.spawnText(game, storedCount.toString());
+        player.inventory = { totalCount: 0, slots: {} };
     }
 }

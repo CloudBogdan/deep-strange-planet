@@ -41,7 +41,9 @@ export class Player extends Entity {
     wire: Vector2
     inventory: {
         totalCount: number
-        [key: string]: number
+        slots: {
+            [key: string]: number
+        }
     }
     toolLevel: ToolLevel
 
@@ -54,7 +56,8 @@ export class Player extends Entity {
     
         this.wire = this.position.expand();
         this.inventory = {
-            totalCount: 0
+            totalCount: 0,
+            slots: {}
         };
         // this.acceleration = Vector2.all(.7);
         // ! God
@@ -152,10 +155,9 @@ export class Player extends Entity {
     
     pickup(game: Game, type: RawType, count: number) {
         this.inventory.totalCount += count;
-        if (this.inventory[type])
-            this.inventory[type] += count;
-        else
-            this.inventory[type] = count;
+
+        this.inventory.slots[type] = this.inventory.slots[type] || 0;
+        this.inventory.slots[type] += count;
     }
     pullWire() {
         

@@ -16,6 +16,6 @@ export class Upgrader extends Gear {
         if (player.toolLevel > 4)
             player.toolLevel = 1;
 
-        this.spawnText(game, `Инструменты обновлены\nдо ${ player.toolLevel }ур.`);
+        player.spawnText(game, `Инструменты обновлены\nдо ${ player.toolLevel }ур.`);
     }
 }

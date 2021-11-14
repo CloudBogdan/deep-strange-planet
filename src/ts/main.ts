@@ -96,7 +96,7 @@ game.addInit(()=> {
         },
         {
             value: [.95, 1],
-            height: [46, 140],
+            height: [0, 140],
             divider: .8,
             ore: Osmy
         },

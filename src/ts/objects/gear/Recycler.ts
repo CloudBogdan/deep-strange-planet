@@ -14,9 +14,9 @@ export class Recycler extends Gear {
         this.allowInteract = true;
     }
 
-    onInteract(game: Game, player: Player | undefined) {
+    onInteract(game: Game, player: Player) {
         super.onInteract(game, player);
 
-        this.spawnText(game, "Кажется это пока\nне работает :P")
+        player.spawnText(game, "Кажется это пока\nне работает :P");
     }
 }

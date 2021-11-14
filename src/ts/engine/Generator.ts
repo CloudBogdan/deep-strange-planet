@@ -126,7 +126,6 @@ export class Generator {
     }
 
     destroyOre(inChunkId: Point["id"]) {
-        console.log(inChunkId);
         this.destroyedOres.push(inChunkId);
     }
 }

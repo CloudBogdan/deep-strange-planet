@@ -42,7 +42,9 @@ export class Gear extends Sprite {
         game.gamepad.onKeyDown("enter", ()=> {
             if (!this.playerIsNear) return;
 
-            this.onInteract(game, game.getChildById<Player>("player"));
+            const player = game.getChildById<Player>("player");
+            if (player)
+                this.onInteract(game, player);
         });
     }
 
@@ -93,30 +95,8 @@ export class Gear extends Sprite {
         this.playerIsNear = player.position.distance(this.position) < Config.GEAR_INTERACT_DISTANCE;
     }
 
-    onInteract(game: Game, player: Player | undefined) {
+    onInteract(game: Game, player: Player) {
         this.animatedScale = .5;
-    }
-    spawnText(game: Game, text: string) {
-        const player = game.getChildById<Player>("player");
-        if (!player) return;
-        
-        SpawnParticles(game, player.position.add(new Vector2(0, -30)), {
-            // custom: new Text("store-text", text, { font: "22px Pixel" }),
-            render(renderer, part) {
-                renderer.drawText(
-                    text, "#fff", "22px Pixel",
-                    part.position, 0, Vector2.all(),
-                    part.size, "particles"
-                );
-            },
-            size: [5, 5],
-            count: 1,
-            gravity: 0,
-            rotationVelocity: ()=> random(-.02, .02),
-            velocity: ()=> new Vector2(0, -1.5),
-            downSize: -.08,
-            box: ()=> new Vector2(random(-10, 10), random(-10, 10))
-        });
     }
     
 }
