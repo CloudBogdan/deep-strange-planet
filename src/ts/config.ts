@@ -16,7 +16,7 @@ export enum Config {
     DOME_DIAMETER = SPRITE_SIZE * 6,
     GROUND_HEIGHT = SPRITE_SIZE * 2,
     
-    ALLOW_DARK = 1,
+    ALLOW_DARK = 0,
     RAW_LIVE_TIME = 400,
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,

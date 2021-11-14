@@ -55,7 +55,7 @@ export class Generator {
     generateChunksAt(position: Vector2) {
         const pos = position.div(Config.SPRITE_SIZE * Config.CHUNK_SIZE).apply(Math.floor);
         
-        if (pos.add(new Vector2(.5, .5)).mul(Config.SPRITE_SIZE * 5).distance(position) > 80) {
+        if (pos.add(new Vector2(.5, .5)).mul(Config.SPRITE_SIZE * 5).distance(position) > 100) {
 
             this.range.map(p=> {
 
@@ -68,6 +68,16 @@ export class Generator {
             });
             
         }
+
+        this.chunks.map((chunk, index)=> {
+
+            if (position.distance(chunk.pos.mul(Config.SPRITE_SIZE * Config.CHUNK_SIZE)) > 900) {
+                this.game.removeChildrenByGroupName(chunk.group);
+                this.chunks.splice(index, 1);
+            }
+        
+        });
+        
     }
     
     createChunk(pos: Vector2): Chunk | undefined {

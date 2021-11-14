@@ -139,7 +139,7 @@ game.addUpdate(()=> {
     level.update(player);
     
     game.camera.follow(player.position, .1);
-    game.generator.generateChunksAt(player.position);
+    game.generator.generateChunksAt(game.camera.position);
 });
 game.addRender(renderer=> {
 
