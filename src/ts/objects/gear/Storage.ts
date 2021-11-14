@@ -6,7 +6,7 @@ import { Gear, Level } from "./Gear";
 
 type InteractType = "store" | "view";
 enum MaxStorageTotalCount {
-    "1-level" = 16,
+    "1-level" = 4,
     "2-level" = 28,
     "3-level" = 42,
 }
@@ -46,24 +46,26 @@ export class Storage extends Gear {
         if (this.contains.totalCount >= this.maxTotalCount) return;
         
         let storedCount = 0;
+        let totalStoredCount = 0;
         
         [...Object.keys(player.inventory.slots)].map(slot=> {
             this.contains.slots[slot] = this.contains.slots[slot] || 0
             
             // Add items
-            for (let i = player.inventory.slots[slot]; i --;) {
-                this.contains.slots[slot] ++;
-                this.contains.totalCount ++;
-                storedCount ++;
-                if (this.contains.totalCount >= this.maxTotalCount) {
-                    player.spawnText(game, "Хранилище перепольнено", new Vector2(0, -50));
-                    break;
-                }
+            if (this.contains.totalCount >= this.maxTotalCount) {
+                player.spawnText(game, "Хранилище перепольнено", new Vector2(0, -50));
+                return;
             }
+
+            storedCount = player.inventory.slots[slot] + this.contains.totalCount <= this.maxTotalCount ? player.inventory.slots[slot] : (this.maxTotalCount - this.contains.totalCount);
+            this.contains.slots[slot] += storedCount;
+            this.contains.totalCount += storedCount;
+            totalStoredCount += storedCount;
+            
         });
         
         [...game.getChildrenByName<Raw>("raw")].filter(r=> r.picked).map((raw, index)=> {
-            if (!(index < storedCount)) return;
+            if (!(index <= storedCount)) return;
             // Destroy on fold in storages
             raw.allowPickup = false;
             raw.picked = false;
@@ -72,7 +74,7 @@ export class Storage extends Gear {
         
         if (player.inventory.totalCount <= 0) return;
         
-        player.spawnText(game, storedCount.toString());
+        player.spawnText(game, totalStoredCount.toString());
         player.inventory = { totalCount: 0, slots: {} };
     }
 }
