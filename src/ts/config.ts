@@ -21,8 +21,16 @@ export enum Config {
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,
 }
+export enum GeneratorConfig {
+    LAYERS_BLEND_HEIGHT = 10,
+    BASALT_LAYER_HEIGHT = 150,
+    BURNT_BASALT_LAYER_HEIGHT = Config.WORLD_HEIGHT - 5,
+}
 export enum Color {
-    GROUND_COLOR = "#090d23",
+    STONE_LAYER_COLOR = "#090d23",
+    BASALT_LAYER_COLOR = "#1b1d27",
+    BURNT_BASALT_LAYER_COLOR = "#040508",
+
     BLACK = "#0f1531",
     YELLOW = "#fbc67e",
     YELLOW_LIGHT = "#fde3bf",

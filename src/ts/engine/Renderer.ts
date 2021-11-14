@@ -1,4 +1,4 @@
-import { Color, Config } from "../config";
+import { Color, Config, GeneratorConfig } from "../config";
 import { Particle } from "./components/Particles";
 import { Game } from "./Game";
 import { safeValue, Vector2 } from "./utils/math";
@@ -31,7 +31,7 @@ export class Renderer {
         };
         console.log(this.layers);
         
-        document.body.style.background = Color.GROUND_COLOR;
+        document.body.style.background = Color.STONE_LAYER_COLOR;
     }
     
     // Create new layer
@@ -55,6 +55,23 @@ export class Renderer {
             if (this.layers[key].update)
                 this.layers[key].context.clearRect(0, 0, window.innerWidth, window.innerHeight)
         });
+
+        this.changeBGColor();
+    }
+    // > Change bg color
+    changeBGColor() {
+        const spriteSize = Config.SPRITE_SIZE;
+        const layerBlendHeight = GeneratorConfig.LAYERS_BLEND_HEIGHT;
+        
+        // Basalt layer color
+        if (this.game.camera.position.y > (GeneratorConfig.BASALT_LAYER_HEIGHT - layerBlendHeight) * spriteSize)
+            document.body.style.background = Color.BASALT_LAYER_COLOR;
+        // Burnt basalt layer color
+        if (this.game.camera.position.y > (GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - layerBlendHeight) * spriteSize)
+            document.body.style.background = Color.BURNT_BASALT_LAYER_COLOR;
+        // Stone layer color
+        else if (this.game.camera.position.y < (GeneratorConfig.BASALT_LAYER_HEIGHT - layerBlendHeight) * spriteSize)
+            document.body.style.background = Color.STONE_LAYER_COLOR;
     }
     // > Render particles
     renderParticles(game: Game) {
@@ -166,7 +183,7 @@ export class Renderer {
             context.fillText(text, pos.x, pos.y);
         }
         
-        context.strokeStyle = Color.GROUND_COLOR;
+        context.strokeStyle = Color.STONE_LAYER_COLOR;
         context.lineWidth = 8;
         context.miterLimit = 8;
         context.lineJoin = "round";

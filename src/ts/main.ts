@@ -5,7 +5,7 @@ import { SpawnParticles } from "./engine/components/Particles";
 import { initLevel } from "./managers/level";
 import { Stone } from "./objects/ores/Stone";
 import { CrackedStone } from "./objects/ores/CrackedStone";
-import { Config } from "./config";
+import { Config, GeneratorConfig } from "./config";
 import { DeepStone } from "./objects/ores/DeepStone";
 import { Cidium } from "./objects/ores/Cidium";
 import { initDome } from "./managers/dome";
@@ -54,33 +54,35 @@ game.addInit(()=> {
         // Deep stone layer
         {
             value: [0, 1],
-            height: [42, 150],
+            height: [42, GeneratorConfig.BASALT_LAYER_HEIGHT],
             ore: DeepStone
         },
+
         // Basalt blend layer
         {
             value: [.7, 1],
-            height: [135, 150],
+            height: [GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT, GeneratorConfig.BASALT_LAYER_HEIGHT],
             divider: 3,
             ore: Basalt
         },
         // Basalt layer
         {
             value: [0, 1],
-            height: [150, Config.WORLD_HEIGHT],
+            height: [GeneratorConfig.BASALT_LAYER_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT],
             ore: Basalt
         },
+
         // Burnt basalt blend layer
         {
             value: [.8, 1],
-            height: [Config.WORLD_HEIGHT - 20, Config.WORLD_HEIGHT],
+            height: [GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT],
             divider: 3,
             ore: BurntBasalt
         },
         // Burnt basalt layer
         {
             value: [0, 1],
-            height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT],
+            height: [GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT, Config.WORLD_HEIGHT],
             ore: BurntBasalt
         },
         
@@ -93,16 +95,16 @@ game.addInit(()=> {
             ore: Cidium
         },
         {
-            value: [.85, 1],
+            value: [.95, 1],
             height: [46, 140],
-            divider: 2,
+            divider: .8,
             ore: Osmy
         },
         {
-            value: [0, .4],
+            value: [0, .35],
             // height: [0, Config.WORLD_HEIGHT - 40],
-            height: [160, Config.WORLD_HEIGHT - 40],
-            divider: 2,
+            height: [160, Config.WORLD_HEIGHT - 22],
+            divider: .9,
             ore: Antin
         },
         {

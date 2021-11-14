@@ -56,8 +56,8 @@ export class Player extends Entity {
         // this.acceleration = Vector2.all(.7);
         // ! God
         // this.moveSpeed = 2;
-        // this.moveSpeed = 90;
-        // this.collider.collidable = false;
+        this.moveSpeed = 90;
+        this.collider.collidable = false;
         this.toolLevel = 5;
     }
     
