@@ -1,3 +1,4 @@
+import { Color } from "../../config";
 import { Game } from "../../engine";
 import { Vector2 } from "../../engine/utils/math";
 import { RawCidium } from "../raws/RawCidium";
@@ -8,6 +9,7 @@ export class Cidium extends Ore {
         super("cidium", position);
 
         this.hp = 20;
+        this.particlesColors = [Color.BLACK, Color.YELLOW];
     }
 
     onBreak(game: Game) {

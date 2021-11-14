@@ -1,3 +1,4 @@
+import { Color } from "../../config";
 import { Game } from "../../engine";
 import { Vector2 } from "../../engine/utils/math";
 import { RawGradeCidium } from "../raws/RawGradeCidium";
@@ -11,6 +12,7 @@ export class Osmy extends Ore {
         this.needToolLevel = 2;
         this.randomRotate = false;
         this.hp = 36;
+        this.particlesColors = [Color.BLACK, Color.BLUE];
     }
 
     onBreak(game: Game) {

@@ -1,10 +1,11 @@
 import { Config } from "../../config";
 import { Game } from "../../engine";
-import { Vector2 } from "../../engine/utils/math";
+import { assetIsValid, lerp, Vector2 } from "../../engine/utils/math";
 import { Direction } from "../../types";
 import { Entity } from "./Entity";
 import { Ore } from "../ores/Ore";
 import { RawType } from "../raws/Raw";
+import { Renderer } from "../../engine/Renderer";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5;
@@ -43,6 +44,8 @@ export class Player extends Entity {
         [key: string]: number
     }
     toolLevel: ToolLevel
+
+    damageAnimatedOpacity: number
     
     constructor() {
         super("player", "player-stay", {
@@ -56,9 +59,16 @@ export class Player extends Entity {
         // this.acceleration = Vector2.all(.7);
         // ! God
         // this.moveSpeed = 2;
-        this.moveSpeed = 90;
-        this.collider.collidable = false;
         this.toolLevel = 5;
+
+        this.damageAnimatedOpacity = 0;
+
+        window.addEventListener("keydown", e=> {
+            if (e.code == "KeyT") {
+                this.moveSpeed = this.moveSpeed == 5 ? 90 : 5;
+                this.collider.collidable = !this.collider.collidable;
+            }
+        })
     }
     
     init(game: Game) {
@@ -108,8 +118,23 @@ export class Player extends Entity {
             this.dig(game, this.movement.y > 0 ? "bottom" : "top");
 
         this.offset.lerp(Vector2.zero(), .2);
+        this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .02);
 
         this.bounds();
+    }
+    render(game: Game, renderer: Renderer) {
+        super.render(game, renderer);
+
+        const damageUIAsset = game.getAssetByName("damage");
+        if (damageUIAsset && assetIsValid(damageUIAsset, "image")) {
+            renderer.drawSprite(
+                (damageUIAsset.element as HTMLImageElement[])[0],
+                innerWidth / Config.SPRITE_SIZE,
+                innerHeight / Config.SPRITE_SIZE,
+                new Vector2(innerWidth / 2, innerHeight / 2), 0, undefined, "ui", undefined,
+                undefined, this.damageAnimatedOpacity
+            );
+        }
     }
 
     bounds() {
@@ -138,5 +163,9 @@ export class Player extends Entity {
             this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed)));
         }
 
+    }
+    hit(damage: number) {
+        this.hp -= damage;
+        this.damageAnimatedOpacity = 1;
     }
 }

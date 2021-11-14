@@ -103,7 +103,7 @@ game.addInit(()=> {
         {
             value: [0, .35],
             // height: [0, Config.WORLD_HEIGHT - 40],
-            height: [160, Config.WORLD_HEIGHT - 22],
+            height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
             divider: .9,
             ore: Antin
         },

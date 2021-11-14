@@ -136,7 +136,7 @@ export class Renderer {
         const w = safeValue(width, 1) * Config.SPRITE_SIZE;
         const h = safeValue(height, 1) * Config.SPRITE_SIZE;
 
-        if (!this.inCameraViewport(safeValue(pos, Vector2.zero()), w, h)) return;
+        if (!this.inCameraViewport(safeValue(pos, Vector2.zero()), w, h) && this.layers[layer || "game"].cameraFactor == 1) return;
 
         this.startTransform(layer, pos, rotation, Vector2.all(), opacity);
 
@@ -216,7 +216,7 @@ export class Renderer {
         const p = safeValue(pos, Vector2.zero());
         const o = safeValue(offset, Vector2.zero());
         
-        if (!this.inCameraViewport(p, w, h, repeat) || !texture) return;
+        if ((!this.inCameraViewport(p, w, h, repeat) || !texture) && this.layers[layer || "game"].cameraFactor == 1) return;
         
         const f = flip || { x: false, y: false };
         const s = safeValue(scale, Vector2.all());

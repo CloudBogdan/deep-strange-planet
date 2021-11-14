@@ -25,6 +25,7 @@ import raw_cidium_img from "../../images/raw/raw-cidium.png"; // @ts-ignore
 import raw_grade_cidium_img from "../../images/raw/raw-grade-cidium.png"; // @ts-ignore
 import raw_osmy_img from "../../images/raw/raw-osmy.png"; // @ts-ignore
 import raw_antin_img from "../../images/raw/raw-antin.png"; // @ts-ignore
+import raw_rady_img from "../../images/raw/raw-rady.png"; // @ts-ignore
 
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
@@ -35,6 +36,7 @@ import storage_1_outline_img from "../../images/gear/storage-1-outline.png"; // 
 import recycler_1_outline_img from "../../images/gear/recycler-1-outline.png"; // @ts-ignore
 
 import interact_img from "../../images/ui/interact.png"; // @ts-ignore
+import damage_img from "../../images/ui/damage.png"; // @ts-ignore
 
 export function initAssets(game: Game) {
     
@@ -68,6 +70,7 @@ export function initAssets(game: Game) {
     game.loadAsset("raw-grade-cidium", [raw_grade_cidium_img]);
     game.loadAsset("raw-osmy", [raw_osmy_img]);
     game.loadAsset("raw-antin", [raw_antin_img]);
+    game.loadAsset("raw-rady", [raw_rady_img]);
 
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])
@@ -78,5 +81,6 @@ export function initAssets(game: Game) {
     game.loadAsset("recycler-1-outline", [recycler_1_outline_img])
 
     game.loadAsset("interact", [interact_img])
+    game.loadAsset("damage", [damage_img])
 
 }

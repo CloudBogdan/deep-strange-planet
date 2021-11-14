@@ -16,7 +16,7 @@ export enum Config {
     DOME_DIAMETER = SPRITE_SIZE * 6,
     GROUND_HEIGHT = SPRITE_SIZE * 2,
     
-    ALLOW_DARK = 0,
+    ALLOW_DARK = 1,
     RAW_LIVE_TIME = 400,
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,
@@ -32,14 +32,21 @@ export enum Color {
     BURNT_BASALT_LAYER_COLOR = "#040508",
 
     BLACK = "#0f1531",
+    GREY = "#2c2f3d",
+    DARK_GREY = "#13151e",
     YELLOW = "#fbc67e",
+    BLUE = "#b9c5ff",
+    RED = "#fb7e88",
+    GREEN = "#6aff81",
     YELLOW_LIGHT = "#fde3bf",
     BLUE_LIGHT = "#e0e6ff",
     RED_LIGHT = "#f9cace",
+    GREEN_LIGHT = "#d4ffdb",
 }
 export enum RawLineColor {
     "raw-cidium" = Color.YELLOW_LIGHT,
     "raw-grade-cidium" = Color.YELLOW_LIGHT,
     "raw-osmy" = Color.BLUE_LIGHT,
     "raw-antin" = Color.RED_LIGHT,
+    "raw-rady" = Color.GREEN_LIGHT,
 }

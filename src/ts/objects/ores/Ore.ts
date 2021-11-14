@@ -14,13 +14,13 @@ export type OreType =
 export class Ore extends Sprite {
     oreType: OreType
     inChunkId: string
-    // rawOre: typeof Raw | null
 
     hp: number
     tilePosition: Vector2
     unbreakable: boolean
     needToolLevel: ToolLevel
     
+    particlesColors: string[]
     animatedScale: number
     darkenFactor: number
     randomRotate: boolean
@@ -41,6 +41,7 @@ export class Ore extends Sprite {
         this.unbreakable = false;
         this.needToolLevel = 1;
         
+        this.particlesColors = [Color.BLACK];
         this.animatedScale = 1;
         this.darkenFactor = 1;
         this.randomRotate = true;
@@ -80,7 +81,7 @@ export class Ore extends Sprite {
         this.hp -= damage;
         this.animatedScale = .8;
         SpawnParticles(game, this.position, {
-            colors: this.oreType == "cidium" ? [Color.BLACK, Color.YELLOW] : [Color.BLACK],
+            colors: this.particlesColors,
             size: [.2, .5],
             count: 6,
             box: ()=> new Vector2(random(-Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE / 2), random(-Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE / 2))
@@ -96,9 +97,10 @@ export class Ore extends Sprite {
     onBreak(game: Game) {
 
         SpawnParticles(game, this.position, {
-            colors: this.oreType == "cidium" ? [Color.BLACK, Color.YELLOW] : [Color.BLACK],
+            colors: this.particlesColors,
         });
         game.removeChildById(this.id);
+        game.generator.destroyOre(this.inChunkId);
 
     }
     dropRawOre(game: Game, rawOre: typeof Raw | any, chancePercent?: number) {

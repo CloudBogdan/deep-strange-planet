@@ -99,14 +99,11 @@ export class Generator {
                     const gen = this.settings[i];
     
                     const div = gen.divider || 10;
-                    const value = (+perlin2((x + pos.x * Config.CHUNK_SIZE) / div, (y + pos.y * Config.CHUNK_SIZE) / div).toFixed(2) + 1) / 1.5;
+                    const value = (+perlin2((x + pos.x * Config.CHUNK_SIZE) / div, (y + pos.y * Config.CHUNK_SIZE) / div) + 1) / 1.5;
     
                     if (!(_x == Math.floor(Config.WORLD_WIDTH / 2) && (_y == 0 || _y == 1 || _y == 2))) {
-                        // if (_x == 0 || _x == Config.WORLD_WIDTH + 4 || _y == 0 || _y == Config.WORLD_HEIGHT + 4)
-                        //     ores[y][x] = Destrony as any;
-                        // else
-                            if (value >= gen.value[0] && value <= gen.value[1] && _y >= gen.height[0] && _y <= gen.height[1])
-                                ores[y][x] = gen.ore;
+                        if (value >= gen.value[0] && value <= gen.value[1] && _y >= gen.height[0] && _y <= gen.height[1])
+                            ores[y][x] = gen.ore;
                     }
                 }
                 
@@ -129,6 +126,7 @@ export class Generator {
     }
 
     destroyOre(inChunkId: Point["id"]) {
+        console.log(inChunkId);
         this.destroyedOres.push(inChunkId);
     }
 }
