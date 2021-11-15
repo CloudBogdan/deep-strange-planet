@@ -73,7 +73,12 @@ export class Raw extends Sprite {
         if (!this.picked) return;
 
         this.moveTo(player.wire);
-        game.renderer.drawLine(RawLineColor[this.rawType] as any, 2, [this.position, player.position], 1, "bg");
+        game.renderer.drawLine({
+            color: RawLineColor[this.rawType] as any,
+            width: 2,
+            points: [this.position, player.position],
+            layer: "bg"
+        });
 
     }
 

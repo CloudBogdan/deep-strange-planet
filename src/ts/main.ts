@@ -96,20 +96,22 @@ game.addInit(()=> {
         },
         {
             value: [.95, 1],
-            height: [0, 140],
+            // height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             divider: .8,
             ore: Osmy
         },
         {
             value: [0, .35],
-            // height: [0, Config.WORLD_HEIGHT - 40],
-            height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
+            height: [0, Config.WORLD_HEIGHT - 40],
+            // height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
             divider: .9,
             ore: Antin
         },
         {
             value: [0, .3],
-            height: [200, Config.WORLD_HEIGHT - 5],
+            // height: [200, Config.WORLD_HEIGHT - 5],
+            height: [0, Config.WORLD_HEIGHT - 5],
             divider: 2,
             ore: Rady
         },
@@ -143,8 +145,18 @@ game.addUpdate(()=> {
 });
 game.addRender(renderer=> {
 
-    renderer.drawText(fps.toString(), "#fff", "20px Pixel", new Vector2(40, 40), 0, undefined, 1, "ui");
-    renderer.drawText(`Height: ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`, "#fff", "20px Pixel", new Vector2(70, 80), 0, undefined, 1, "ui");
+    renderer.drawText({
+        text: fps.toString(),
+        font: "20px Pixel",
+        position: new Vector2(40, 40),
+        layer: "ui"
+    });
+    renderer.drawText({
+        text: `Height: ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`,
+        font: "20px Pixel",
+        position: new Vector2(70, 80),
+        layer: "ui"
+    });
 
 });
 

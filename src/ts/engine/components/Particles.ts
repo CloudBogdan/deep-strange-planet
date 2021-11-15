@@ -50,13 +50,13 @@ export class Particle {
         this.downSize = settings?.downSize || .01;
 
         this.render = settings?.render ? settings?.render : (renderer, part)=> {
-            renderer.drawRect(
-                this.color,
-                this.size * .2,
-                this.size * .2,
-                this.position, this.rotation,
-                1, "particles"
-            );
+            renderer.drawRect({
+                color: this.color,
+                width: this.size * .2,
+                height: this.size * .2,
+                position: this.position, rotation: this.rotation,
+                layer: "particles"
+            });
         }
     }
 

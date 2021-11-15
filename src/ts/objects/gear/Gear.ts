@@ -1,8 +1,7 @@
 import { Config } from "../../config";
-import { Game, ISpriteProps, Sprite, Text } from "../../engine";
-import { Particle, SpawnParticles } from "../../engine/components/Particles";
+import { Game, ISpriteProps, Sprite } from "../../engine";
 import { Renderer } from "../../engine/Renderer";
-import { assetIsValid, lerp, random, Vector2 } from "../../engine/utils/math";
+import { asImage, assetIsValid, lerp, Vector2 } from "../../engine/utils/math";
 import { Player } from "../entities/Player";
 
 export type GearType = 
@@ -11,7 +10,6 @@ export type Level = 1 | 2 | 3;
 
 export class Gear extends Sprite {
     gearType: GearType;
-    gearName: string
     level: Level
     playerIsNear: boolean
     allowInteract: boolean
@@ -19,14 +17,13 @@ export class Gear extends Sprite {
 
     animatedScale: number
     
-    constructor(gearName: string, type: GearType, level: Level, props?: ISpriteProps) {
+    constructor(type: GearType, level: Level, props?: ISpriteProps) {
         super(type, [type, level].join("-"), props);
 
         this.width = 
         this.height = 2;
         
         this.gearType = type;
-        this.gearName = gearName;
         this.level = level;
         this.playerIsNear = false;
         this.allowInteract = true;
@@ -62,32 +59,36 @@ export class Gear extends Sprite {
     render(game: Game, renderer: Renderer) {
         super.render(game, renderer);
 
+        this.renderUI(game, renderer);
+
         if (this.playerIsNear && this.allowInteract) {
             const okAsset = game.getAssetByName("interact");
             const outlineAsset = game.getAssetByName([this.gearType, this.level, "outline"].join("-"));
 
             // Draw ok button sprite
-            if (assetIsValid(okAsset, "image") && okAsset)
-                renderer.drawSprite(
-                    (okAsset.element as HTMLImageElement[])[0],
-                    this.animatedScale, this.animatedScale,
-                    this.position.add(new Vector2(0, -110))
-                );
+            renderer.drawSprite({
+                texture: asImage(okAsset),
+                scale: Vector2.all(this.animatedScale),
+                position: this.position.add(new Vector2(0, -110))
+            });
             // Draw gear outline
-            if (assetIsValid(outlineAsset, "image") && outlineAsset)
-                renderer.drawSprite(
-                    (outlineAsset.element as HTMLImageElement[])[0],
-                    2, 2,
-                    this.position, 0, Vector2.zero(), this.layer, Vector2.all(), this.flip
-                );
+            renderer.drawSprite({
+                texture: asImage(outlineAsset),
+                width: 2, height: 2,
+                position: this.position,
+                layer: this.layer,
+                flip: this.flip
+            });
 
-            renderer.drawText(
-                this.interactText, "#fff", "22px Pixel",
-                this.position.add(new Vector2(0, -70))
-            );
+            renderer.drawText({
+                text: this.interactText,
+                font: "22px Pixel",
+                position: this.position.add(new Vector2(0, -70))
+            });
                 
         }
     }
+    renderUI(game: Game, renderer: Renderer) {}
 
     checkInteract(player: Player | undefined) {
         if (!player) return;

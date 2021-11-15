@@ -1,6 +1,6 @@
 import { IPointProps, Point } from "./Point";
 import { Game } from "..";
-import { assetIsValid, Vector2 } from "../utils/math";
+import { asImage, assetIsValid, Vector2 } from "../utils/math";
 import messages from "../../messages";
 import { Config } from "../../config";
 import { Renderer } from "../Renderer";
@@ -57,8 +57,8 @@ export class Sprite extends Point {
     updateAsset(game: Game) {
 
         const asset = game.getAssetByName(this.assetName);
-        if (assetIsValid(asset, "image"))
-            this.texture = (asset!.element as HTMLImageElement[])[0];
+        if (assetIsValid(asset, "image") && asset)
+            this.texture = asImage(asset);
         else 
             console.error(messages.err.animationLoadError(this.assetName));
         
@@ -70,13 +70,10 @@ export class Sprite extends Point {
         super.render(game, renderer);
 
         if (this.texture && this.visible)
-            game.renderer.drawSprite(
-                this.texture,
-                this.width, this.height,
-                this.position, this.rotation, this.offset,
-                this.layer,
-                this.scale, this.flip, this.opacity, this.repeat
-            );
+            game.renderer.drawSprite({
+                ...this,
+                texture: this.texture
+            });
     }
 
     playAnimation(game: Game, assetName: string, speed?: number) {

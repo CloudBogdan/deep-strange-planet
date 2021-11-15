@@ -9,12 +9,39 @@ type RendererLayer = {
     update: boolean
     cameraFactor: number
 }
+export type StrokeSettings = { width: number, color: string }
+export type DrawRectProps = {
+    color?: string
+    width?: number
+    height?: number
+    position?: Vector2
+    rotation?: number
+    opacity?: number
+    stroke?: StrokeSettings
+    layer?: string
+};
+export type DrawLineProps = {
+    color?: string
+    width: number
+    points: [Vector2, Vector2]
+    opacity?: number
+    layer?: string
+};
+export type DrawTextProps = {
+    text?: string
+    color?: string
+    font?: string
+    centered?: boolean
+    position?: Vector2
+    rotation?: number
+    scale?: Vector2
+    opacity?: number
+    layer?: string
+};
 
 export class Renderer {
     game: Game
-
     particles: Particle[]
-
     layers:{ [name: string]: RendererLayer }
     
     constructor(game: Game) {
@@ -127,56 +154,49 @@ export class Renderer {
     }
     
     // Draw primitives
-    drawRect(
-        color: string,
-        width?: number, height?: number,
-        pos?: Vector2, rotation?: number,
-        opacity?: number, layer?: string
-    ) {
-        const w = safeValue(width, 1) * Config.SPRITE_SIZE;
-        const h = safeValue(height, 1) * Config.SPRITE_SIZE;
+    drawRect(props: DrawRectProps) {
+        const w = safeValue(props.width, 1) * Config.SPRITE_SIZE;
+        const h = safeValue(props.height, 1) * Config.SPRITE_SIZE;
 
-        if (!this.inCameraViewport(safeValue(pos, Vector2.zero()), w, h) && this.layers[layer || "game"].cameraFactor == 1) return;
+        if (!this.inCameraViewport(safeValue(props.position, Vector2.zero()), w, h) && this.layers[props.layer || "game"].cameraFactor == 1) return;
 
-        this.startTransform(layer, pos, rotation, Vector2.all(), opacity);
+        this.startTransform(props.layer, props.position, props.rotation, Vector2.all(), props.opacity);
 
-        this.getContext(layer).fillStyle = color;
-        this.getContext(layer).fillRect(-w / 2, -h / 2, w, h);
+        const context = this.getContext(props.layer);
 
-        this.endTransform(layer);
+        context.fillStyle = props.color || "#fff";
+        context.fillRect(-w / 2, -h / 2, w, h);
+        if (props.stroke) {
+            context.lineWidth = props.stroke.width;
+            context.strokeStyle = props.stroke.color;
+            context.strokeRect(-w / 2, -h / 2, w, h);
+        }
+
+        this.endTransform(props.layer);
     }
-    drawLine(
-        color: string, width: number,
-        points: [Vector2, Vector2],
-        opacity?: number, layer?: string
-    ) { 
-        const context = this.getContext(layer);
+    drawLine(props: DrawLineProps) { 
+        const context = this.getContext(props.layer);
         context.save();
 
-        context.globalAlpha = safeValue(opacity, 1);
+        context.globalAlpha = safeValue(props.opacity, 1);
         
-        context.lineWidth = width;
-        context.strokeStyle = color;
+        context.lineWidth = props.width;
+        context.strokeStyle = props.color || "#fff";
 
         const w = window.innerWidth / 2;
         const h = window.innerHeight / 2;
         
-        context.moveTo(points[0].x - this.game.camera.position.x + w, points[0].y - this.game.camera.position.y + h);
-        context.lineTo(points[1].x - this.game.camera.position.x + w, points[1].y - this.game.camera.position.y + h);
+        context.moveTo(props.points[0].x - this.game.camera.position.x + w, props.points[0].y - this.game.camera.position.y + h);
+        context.lineTo(props.points[1].x - this.game.camera.position.x + w, props.points[1].y - this.game.camera.position.y + h);
         
         context.stroke();
         context.beginPath();
         context.restore();
     }
-    drawText(
-        text: string, color?: string, font?: string,
-        pos?: Vector2, rotation?: number,
-        scale?: Vector2,
-        opacity?: number, layer?: string
-    ) { 
-        const context = this.getContext(layer);
+    drawText(props: DrawTextProps) { 
+        const context = this.getContext(props.layer);
         
-        this.startTransform(layer, pos, rotation, scale, opacity);
+        this.startTransform(props.layer, props.position, props.rotation, props.scale, props.opacity);
 
         function renderText(text: string, pos: Vector2) {
             context.strokeText(text, pos.x, pos.y);
@@ -188,10 +208,13 @@ export class Renderer {
         context.miterLimit = 8;
         context.lineJoin = "round";
         
-        context.fillStyle = color || "#ff";
-        context.font = font || "18px Pixel";
-        context.textAlign = "center";
+        context.fillStyle = props.color || "#fff";
+        context.font = props.font || "18px Pixel";
+        if (safeValue(props.centered, true))
+            context.textAlign = "center";
         context.textBaseline = "middle"
+
+        const text = props.text || "";
         if (text.indexOf("\n") >= 0) {
             for (let i = 0; i < text.split("\n").length; i ++)
                 renderText(text.split("\n")[i], new Vector2(0, i * (parseInt(context.font.split(" ")[0]))));
@@ -200,45 +223,47 @@ export class Renderer {
 
         // context.s();
         
-        this.endTransform(layer);
+        this.endTransform(props.layer);
     }
     
-    drawSprite(
-        texture: HTMLImageElement,
+    drawSprite(props: {
+        texture: HTMLImageElement | undefined,
         width?: number, height?: number,
-        pos?: Vector2, rotation?: number, offset?: Vector2,
+        position?: Vector2, rotation?: number, offset?: Vector2,
         layer?: string,
         scale?: Vector2, flip?: { x: boolean, y: boolean }, opacity?: number, repeat?: number
-    ) {
-        const w = safeValue(width, 1) * Config.SPRITE_SIZE;
-        const h = safeValue(height, 1) * Config.SPRITE_SIZE;
+    }) {
+        if (!props.texture) return;
+
+        const w = safeValue(props.width, 1) * Config.SPRITE_SIZE;
+        const h = safeValue(props.height, 1) * Config.SPRITE_SIZE;
         
-        const p = safeValue(pos, Vector2.zero());
-        const o = safeValue(offset, Vector2.zero());
+        const p = safeValue(props.position, Vector2.zero());
+        const o = safeValue(props.offset, Vector2.zero());
         
-        if ((!this.inCameraViewport(p, w, h, repeat) || !texture) && this.layers[layer || "game"].cameraFactor == 1) return;
+        if ((!this.inCameraViewport(p, w, h, props.repeat)) && this.layers[props.layer || "game"].cameraFactor == 1) return;
         
-        const f = flip || { x: false, y: false };
-        const s = safeValue(scale, Vector2.all());
-        const context = this.getContext(layer);
+        const f = safeValue(props.flip, { x: false, y: false });
+        const s = safeValue(props.scale, Vector2.all());
+        const context = this.getContext(props.layer);
         
         this.startTransform(
-            layer,
+            props.layer,
             p.add(o),
-            rotation,
+            props.rotation,
             new Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)),
-            opacity
+            props.opacity
         );
         
         // Draw sprite without repeat
-        if (!repeat)
-            context.drawImage(texture, -w / 2, -h / 2, w, h);
+        if (!props.repeat)
+            context.drawImage(props.texture, -w / 2, -h / 2, w, h);
         else
             // And... With repeat?
-            for (let i = 0; i < repeat; i ++)
-                context.drawImage(texture, -w / 2 + i * w, -h / 2, w, h);
+            for (let i = 0; i < props.repeat; i ++)
+                context.drawImage(props.texture, -w / 2 + i * w, -h / 2, w, h);
 
-        this.endTransform(layer);
+        this.endTransform(props.layer);
     }
 
     updateAspect() {

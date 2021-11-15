@@ -11,6 +11,8 @@ export class Group extends Container {
     name: string
     
     position: Vector2
+    visible: boolean
+    allowUpdateChildren: boolean
     
     constructor(name: string, position?: Vector2) {
         super();
@@ -19,16 +21,19 @@ export class Group extends Container {
         this.name = standardName(name);
 
         this.position = position || Vector2.zero();
+        this.visible = true;
+        this.allowUpdateChildren = true;
     }
 
     init(game: Game) {
         this.initChildren(game);
     }
     update(game: Game) {
-        this.callChildren("update", game);
-        this.position = new Vector2();
+        if (this.allowUpdateChildren)
+            this.callChildren("update", game);
     }
     render(game: Game) {
-        this.callChildren("render", game);
+        if (this.visible)
+            this.callChildren("render", game);
     }
 }

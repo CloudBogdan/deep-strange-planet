@@ -1,6 +1,6 @@
 import { Config } from "../../config";
 import { Game } from "../../engine";
-import { assetIsValid, lerp, Vector2 } from "../../engine/utils/math";
+import { asImage, assetIsValid, lerp, Vector2 } from "../../engine/utils/math";
 import { Direction } from "../../types";
 import { Entity } from "./Entity";
 import { Ore } from "../ores/Ore";
@@ -110,6 +110,7 @@ export class Player extends Entity {
 
     update(game: Game) {
         super.update(game);
+        if (!this.allowMove) return;
 
         this.movement.set((+game.gamepad.keys.right - +game.gamepad.keys.left), (+game.gamepad.keys.down - +game.gamepad.keys.up));
         this.move();
@@ -129,15 +130,14 @@ export class Player extends Entity {
         super.render(game, renderer);
 
         const damageUIAsset = game.getAssetByName("damage");
-        if (damageUIAsset && assetIsValid(damageUIAsset, "image")) {
-            renderer.drawSprite(
-                (damageUIAsset.element as HTMLImageElement[])[0],
-                innerWidth / Config.SPRITE_SIZE,
-                innerHeight / Config.SPRITE_SIZE,
-                new Vector2(innerWidth / 2, innerHeight / 2), 0, undefined, "ui", undefined,
-                undefined, this.damageAnimatedOpacity
-            );
-        }
+        renderer.drawSprite({
+            texture: asImage(damageUIAsset),
+            width: innerWidth / Config.SPRITE_SIZE,
+            height: innerHeight / Config.SPRITE_SIZE,
+            position: new Vector2(innerWidth / 2, innerHeight / 2),
+            layer: "ui",
+            opacity: this.damageAnimatedOpacity
+        });
     }
 
     bounds() {

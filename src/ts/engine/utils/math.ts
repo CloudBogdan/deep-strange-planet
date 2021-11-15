@@ -85,12 +85,51 @@ export function assetIsValid(asset: Asset | undefined | null, type: AssetType): 
 export function safeValue<T>(value: T | undefined, safe: T): T {
     return value === undefined ? safe : value;
 }
+export function asImage(asset: Asset | Asset["element"] | undefined | null): HTMLImageElement | undefined {
+    if (!asset) return;
+
+    if ((asset as any).length != undefined) {
+        return (asset as HTMLImageElement[])[0];
+    } else {
+        if ((asset as Asset).type == "image" && assetIsValid((asset as any), "image"))
+            return ((asset as Asset).element as HTMLImageElement[])[0];
+    }
+}
 
 export function standardName(name: string): string {
     return name.trim().split(" ").join("-").toLocaleLowerCase();
 }
 export function compareNames(name1: string, name2: string): boolean {
     return standardName(name1) == standardName(name2);
+}
+export function buildName(...args: string[]) {
+    return [...args].join(" ");
+}
+export function wrapText(text: string, maxLength: number): string {
+    let result: string = "";
+
+    // text.split("").map((word, index)=> {
+    for (let i = 0; i < text.length; i ++) {
+
+        if ((i-1) > 0 && (i-1) % maxLength == 0) {
+            if (text[i] != " ")
+                result += `-\n`;
+            else
+                result += `\n`;
+        }
+        result += text[i];
+        // const last = text.split(" ")[index - 1] || "";
+        // let current = word;
+
+        // if ([last, current].join(" ").length > maxLength)
+        //     current = `\n${ current }`;
+
+        // result.push(current);
+
+    }
+    // });
+        
+    return result;
 }
 export function axesToDirection(axes: Axes): Direction {
     if (axes == "down")

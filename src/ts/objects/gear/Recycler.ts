@@ -4,7 +4,7 @@ import { Gear, Level } from "./Gear";
 
 export class Recycler extends Gear {
     constructor(level: Level, props?: ISpriteProps) {
-        super("Переработчик", "recycler", level, props);
+        super("recycler", level, props);
 
     }
     

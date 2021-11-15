@@ -4,7 +4,7 @@ import { Gear, Level } from "./Gear";
 
 export class Upgrader extends Gear {
     constructor(level: Level, props?: ISpriteProps) {
-        super("Улучшатель", "recycler", level, props);
+        super("recycler", level, props);
 
         this.allowInteract = true;
     }

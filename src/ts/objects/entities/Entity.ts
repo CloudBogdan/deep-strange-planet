@@ -12,6 +12,7 @@ export class Entity extends Sprite {
     moveSpeed: number
 
     movement: Vector2
+    allowMove: boolean
     
     constructor(name: string, assetName: string, props?: IEntityProps) {
         super(name, assetName, props);
@@ -20,6 +21,7 @@ export class Entity extends Sprite {
         this.moveSpeed = props?.moveSpeed || 5;
         
         this.movement = new Vector2();
+        this.allowMove = true;
     }
 
     init(game: Game) {
@@ -28,6 +30,10 @@ export class Entity extends Sprite {
 
     update(game: Game) {
         super.update(game);
+        if (!this.allowMove) {
+            this.movement.set();
+            this.velocity.set();
+        }
 
         this.animate(game);
     }
@@ -50,11 +56,13 @@ export class Entity extends Sprite {
         SpawnParticles(game, this.position.add(safeValue(offset, new Vector2(0, -30))), {
             // custom: new Text("store-text", text, { font: "22px Pixel" }),
             render(renderer, part) {
-                renderer.drawText(
-                    text, "#fff", "22px Pixel",
-                    part.position, 0, Vector2.all(),
-                    part.size, "particles"
-                );
+                renderer.drawText({
+                    text,
+                    font: "22px Pixel",
+                    position: part.position,
+                    opacity: part.size, 
+                    layer: "particles"
+                });
             },
             size: [5, 5],
             count: 1,

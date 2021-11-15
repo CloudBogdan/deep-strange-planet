@@ -37,6 +37,7 @@ import recycler_1_outline_img from "../../images/gear/recycler-1-outline.png"; /
 
 import interact_img from "../../images/ui/interact.png"; // @ts-ignore
 import damage_img from "../../images/ui/damage.png"; // @ts-ignore
+import storage_ui_img from "../../images/ui/storage-ui.png"; // @ts-ignore
 
 export function initAssets(game: Game) {
     
@@ -82,5 +83,6 @@ export function initAssets(game: Game) {
 
     game.loadAsset("interact", [interact_img])
     game.loadAsset("damage", [damage_img])
+    game.loadAsset("storage-ui", [storage_ui_img])
 
 }

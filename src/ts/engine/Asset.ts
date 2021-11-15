@@ -1,4 +1,3 @@
-import * as PIXI from "pixi.js";
 import { standardName } from "./utils/math";
 
 export type AssetType = "image" | "audio"; 
