@@ -1,4 +1,4 @@
-import { Color, Config } from "../../config";
+import { Color, Config, OreSettings } from "../../config";
 import { Game, ISpriteProps } from "../../engine";
 import { UI } from "../../engine/components/UI";
 import { Renderer } from "../../engine/Renderer";
@@ -10,7 +10,7 @@ import { Gear, Level } from "./Gear";
 
 type InteractType = "store" | "view";
 enum MaxStorageTotalCount {
-    "1-level" = 4,
+    "1-level" = 16,
     "2-level" = 28,
     "3-level" = 42,
 }
@@ -119,27 +119,40 @@ export class Storage extends Gear {
         this.renderInventoryUI(slots, game, renderer);
         this.renderDescriptionUI(slots[this.ui.buttonFocused], game, renderer);
 
-        // Title
-        renderer.drawText({
-            text: `${ GearNames[this.name].name } ${ this.level }ур.`,
-            position: new Vector2(-2.5 * size, -1 * size + 10).add(windowCenter),
-            centered: false,
-            layer: "ui"
-        });
-
     }
 
     renderInventoryUI(slots: string[], game: Game, renderer: Renderer) {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
+        const height = 140;
 
         // Container
-        this.ui.drawContainer(
-            (size * 5 + 40) / size,
-            (size + 70) / size,
-            new Vector2(0, -20)
-        );
-        this.renderEmptySlots(renderer);
+        // this.ui.drawContainer(
+        //     (size * 5 + 40) / size,
+        //     (size + height) / size,
+        //     new Vector2(0, -(height / 3))
+        // );
+        renderer.drawSprite({
+            texture: asImage(game.getAssetByName("storage-ui")),
+            position: new Vector2().add(windowCenter),
+            width: 7,
+            height: 5,
+            layer: "ui"
+        });
+        renderer.drawSprite({
+            texture: asImage(game.getAssetByName([this.gearType, this.level].join("-"))),
+            position: new Vector2(-size * 2, -size - 15).add(windowCenter),
+            width: 2,
+            height: 2,
+            layer: "ui"
+        });
+        // Title
+        renderer.drawText({
+            text: `${ GearNames[this.name].name } ${ this.level }ур.`,
+            position: new Vector2(-size * 1.2, -size - 15).add(windowCenter),
+            centered: false,
+            layer: "ui"
+        });
 
         slots.map((slot, index)=> {
 
@@ -172,15 +185,20 @@ export class Storage extends Gear {
     renderDescriptionUI(currentSlotName: string, game: Game, renderer: Renderer) {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
+        const margin = 6;
+        const lineHeight = 22;
 
         // Container
-        this.ui.drawContainer(
-            (size * 5 + 40) / size,
-            (size * 2 + 40) / size,
-            new Vector2(0, (size + 70 + size / 2))
-        );
-
-        if (!RawNames[currentSlotName]) return;
+        renderer.drawSprite({
+            texture: asImage(game.getAssetByName("description-ui")),
+            position: new Vector2(0, size * 3).add(windowCenter),
+            width: 7,
+            height: 5,
+            layer: "ui"
+        });
+        
+        const raw = RawNames[currentSlotName];
+        if (!raw) return;
 
         // Sprite
         renderer.drawSprite({
@@ -190,37 +208,33 @@ export class Storage extends Gear {
         });
 
         // Texts
+        const rawName = wrapText(raw.name, 26);
+        const oreSettings = OreSettings[currentSlotName.replace("raw-", "")];
+        const descTextArray = [
+            oreSettings ? `> Нужен инструмент ${ oreSettings.tool || 1 }ур. и выше` : "> Можно найти",
+            raw.special || ""
+        ];
+        
         renderer.drawText({
-            text: wrapText(RawNames[currentSlotName].name, 26),
+            text: rawName.text,
             font: "20px Pixel",
             position: new Vector2(-size * 1.2, size + 70 - size / 2 + 15).add(windowCenter),
             centered: false,
             layer: "ui"
         });
         renderer.drawText({
-            text: wrapText(RawNames[currentSlotName].desc, 31),
-            position: new Vector2(-size * 1.2, size + 70 + 10).add(windowCenter),
+            text: descTextArray.join("\n"),
+            color: Color.ORANGE,
+            position: new Vector2(-size * 1.2, size + 70 + margin + (rawName.wrapCount >= 1 ? lineHeight : 0)).add(windowCenter),
+            centered: false,
+            layer: "ui"
+        });
+        renderer.drawText({
+            text: wrapText(raw.desc, 31).text,
+            position: new Vector2(-size * 1.2, size + 70 + lineHeight + margin * 2 + lineHeight * rawName.wrapCount + lineHeight * (descTextArray.length - 1)).add(windowCenter),
             centered: false,
             layer: "ui"
         });
 
-    }
-
-    renderEmptySlots(renderer: Renderer) {
-        
-        // Draw empty slots
-        for (let i = 0; i < 5; i ++) {
-            renderer.drawRect({
-                color: Color.BLACK,
-                width: .4,
-                height: .4,
-                position: new Vector2(
-                    (i * Config.SPRITE_SIZE) - (5 * Config.SPRITE_SIZE) / 2 + Config.SPRITE_SIZE / 2,
-                    0
-                ).add(new Vector2(innerWidth / 2, innerHeight / 2)).apply(Math.floor),
-                layer: "ui"
-            });
-        }
-        
     }
 }

@@ -9,9 +9,9 @@ export class Osmy extends Ore {
     constructor(position: Vector2) {
         super("osmy", position);
 
-        this.needToolLevel = 2;
+        // this.needToolLevel = 2;
         this.randomRotate = false;
-        this.hp = 36;
+        // this.hp = 36;
         this.particlesColors = [Color.BLACK, Color.BLUE];
     }
 

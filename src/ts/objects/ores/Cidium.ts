@@ -8,7 +8,7 @@ export class Cidium extends Ore {
     constructor(position: Vector2) {
         super("cidium", position);
 
-        this.hp = 20;
+        // this.hp = 20;
         this.particlesColors = [Color.BLACK, Color.YELLOW];
     }
 

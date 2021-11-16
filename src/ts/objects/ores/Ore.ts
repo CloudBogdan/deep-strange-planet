@@ -1,6 +1,6 @@
 import { chance, lerp, random, Vector2 } from "../../engine/utils/math";
 import { Game, Sprite } from "../../engine";
-import { Config, Color } from "../../config";
+import { Config, Color, OreSettings } from "../../config";
 import { Player, ToolLevel } from "../entities/Player";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { Renderer } from "../../engine/Renderer";
@@ -36,10 +36,9 @@ export class Ore extends Sprite {
         this.tilePosition = position
         this.inChunkId = "";
         
-        // this.hp = OreHp[type];
-        this.hp = 10;
+        this.hp = OreSettings[type].hp;
+        this.needToolLevel = OreSettings[type].tool || 1;
         this.unbreakable = false;
-        this.needToolLevel = 1;
         
         this.particlesColors = [Color.BLACK];
         this.animatedScale = 1;

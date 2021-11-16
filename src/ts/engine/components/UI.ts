@@ -48,7 +48,7 @@ export class UI {
             this.game.renderer.drawRect({
                 color: "rgba(0, 0, 0, 0)",
                 position: pos.apply(Math.floor),
-                stroke: { width: 4, color: Color.YELLOW },
+                stroke: { width: 4, color: Color.ORANGE },
                 layer: "ui"
             });
             

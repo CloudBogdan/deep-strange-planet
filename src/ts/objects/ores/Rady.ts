@@ -9,8 +9,8 @@ export class Rady extends Ore {
     constructor(position: Vector2) {
         super("rady", position);
 
-        this.needToolLevel = 2;
-        this.hp = 58;
+        // this.needToolLevel = 2;
+        // this.hp = 58;
         this.particlesColors = [Color.GREY, Color.GREEN];
     }
 

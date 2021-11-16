@@ -9,8 +9,8 @@ export class Antin extends Ore {
     constructor(position: Vector2) {
         super("antin", position);
 
-        this.needToolLevel = 3;
-        this.hp = 52;
+        // this.needToolLevel = 3;
+        // this.hp = 52;
         this.particlesColors = [Color.GREY, Color.RED];
     }
 

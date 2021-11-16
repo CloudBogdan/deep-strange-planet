@@ -1,3 +1,5 @@
+import { ToolLevel } from "./objects/entities/Player";
+
 export enum Config {
     // World size and chunks size in blocks
     WORLD_WIDTH = 25,
@@ -35,6 +37,7 @@ export enum Color {
     GREY = "#2c2f3d",
     DARK_GREY = "#13151e",
     YELLOW = "#fbc67e",
+    ORANGE = "#ff935c",
     BLUE = "#b9c5ff",
     RED = "#fb7e88",
     GREEN = "#6aff81",
@@ -42,6 +45,17 @@ export enum Color {
     BLUE_LIGHT = "#e0e6ff",
     RED_LIGHT = "#f9cace",
     GREEN_LIGHT = "#d4ffdb",
+}
+export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = {
+    "stone": { hp: 10 },
+    "antin": { hp: 52, tool: 3 },
+    "basalt": { hp: 40, tool: 3 },
+    "burnt-basalt": { hp: 80, tool: 4 },
+    "cidium": { hp: 20 },
+    "cracked-stone": { hp: 6 },
+    "deep-stone": { hp: 26, tool: 2 },
+    "osmy": { hp: 36, tool: 2 },
+    "rady": { hp: 58, tool: 2 },
 }
 export enum RawLineColor {
     "raw-cidium" = Color.YELLOW_LIGHT,

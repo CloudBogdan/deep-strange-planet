@@ -15,7 +15,7 @@ export class Gear extends Sprite {
     allowInteract: boolean
     interactText: string
 
-    animatedScale: number
+    animatedPosY: number
     
     constructor(type: GearType, level: Level, props?: ISpriteProps) {
         super(type, [type, level].join("-"), props);
@@ -30,7 +30,7 @@ export class Gear extends Sprite {
         this.layer = "bg";
         this.interactText = "";
 
-        this.animatedScale = 0;
+        this.animatedPosY = 0;
     }
 
     init(game: Game) {
@@ -53,7 +53,7 @@ export class Gear extends Sprite {
         this.checkInteract(player);
 
         //
-        this.animatedScale = lerp(this.animatedScale, .7, .2);
+        this.animatedPosY = lerp(this.animatedPosY, 0, .2);
     }
 
     render(game: Game, renderer: Renderer) {
@@ -68,8 +68,8 @@ export class Gear extends Sprite {
             // Draw ok button sprite
             renderer.drawSprite({
                 texture: asImage(okAsset),
-                scale: Vector2.all(this.animatedScale),
-                position: this.position.add(new Vector2(0, -110))
+                scale: Vector2.all(.7),
+                position: this.position.add(new Vector2(0, -110 + this.animatedPosY))
             });
             // Draw gear outline
             renderer.drawSprite({
@@ -97,7 +97,7 @@ export class Gear extends Sprite {
     }
 
     onInteract(game: Game, player: Player) {
-        this.animatedScale = .5;
+        this.animatedPosY = 10;
     }
     
 }

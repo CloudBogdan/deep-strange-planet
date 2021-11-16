@@ -105,31 +105,31 @@ export function compareNames(name1: string, name2: string): boolean {
 export function buildName(...args: string[]) {
     return [...args].join(" ");
 }
-export function wrapText(text: string, maxLength: number): string {
+export function wrapText(text: string, maxLength: number): { text: string, wrapCount: number } {
     let result: string = "";
+    let wrapCount = 0;
 
-    // text.split("").map((word, index)=> {
     for (let i = 0; i < text.length; i ++) {
 
+        let letter = text[i];
+        
         if ((i-1) > 0 && (i-1) % maxLength == 0) {
             if (text[i] != " ")
                 result += `-\n`;
             else
                 result += `\n`;
+
+            wrapCount ++;
+            letter = text[i].trim();
         }
-        result += text[i];
-        // const last = text.split(" ")[index - 1] || "";
-        // let current = word;
-
-        // if ([last, current].join(" ").length > maxLength)
-        //     current = `\n${ current }`;
-
-        // result.push(current);
-
-    }
-    // });
+        result += letter;
         
-    return result;
+    }
+        
+    return {
+        text: result,
+        wrapCount
+    };
 }
 export function axesToDirection(axes: Axes): Direction {
     if (axes == "down")

@@ -5,6 +5,6 @@ export class Stone extends Ore {
     constructor(position: Vector2) {
         super("stone", position);
         
-        this.hp = 10;
+        // this.hp = 10;
     }
 }
