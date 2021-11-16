@@ -16,35 +16,23 @@ enum MaxStorageTotalCount {
 }
 
 export class Storage extends Gear {
-    ui: UI
-    
     contains: Player["inventory"]
     interactType: InteractType
     maxTotalCount: number
-    uiEnabled: boolean
     
     constructor(level: Level, props?: ISpriteProps) {
         super("storage", level, props);
-
-        this.ui = new UI();
         
         this.contains = { totalCount: 0, slots: {} };
         this.interactType = "view";
         this.maxTotalCount = MaxStorageTotalCount[`${ level }-level`];
-        this.uiEnabled = false;
     }
 
-    init(game: Game) {
-        super.init(game);
-
-        this.ui.init(game);
-    }
     update(game: Game) {
         super.update(game);
         
         const player = game.getChildById<Player>("player");
         if (!player) return;
-        player.allowMove = !this.uiEnabled;
         
         this.interactType = (player.inventory.totalCount == 0 || this.contains.totalCount >= this.maxTotalCount) ? "view" : "store";
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
@@ -55,10 +43,9 @@ export class Storage extends Gear {
 
         if (this.interactType == "store") {
             this.store(game, player);
-            this.uiEnabled = false;
+            this.ui.enabled = false;
         } else if (this.interactType == "view") {
-            console.log(this.contains.totalCount, this.contains.slots);
-            this.uiEnabled = !this.uiEnabled;
+            this.ui.enabled = !this.ui.enabled;
         }
     }
 
@@ -99,25 +86,15 @@ export class Storage extends Gear {
 
     renderUI(game: Game, renderer: Renderer) {
         super.renderUI(game, renderer);
-        this.ui.allowSelectButtons = this.uiEnabled;
-        if (!this.uiEnabled || !this.ui) return;
+
+        this.ui.allowSelectButtons = this.ui.enabled;
+        if (!this.ui.enabled || !this.ui) return;
 
         const slots = Object.keys(this.contains.slots).filter(s=> this.contains.slots[s] > 0);
-        const size = Config.SPRITE_SIZE;
-        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
-        this.ui.buttonsCount = slots.length;
-
-        // BG
-        renderer.drawRect({
-            color: "rgba(0, 0, 0, .6)",
-            width: innerWidth / size,
-            height: innerHeight / size,
-            position: windowCenter,
-            layer: "ui"
-        });
+        this.ui.slotCount = slots.length;
 
         this.renderInventoryUI(slots, game, renderer);
-        this.renderDescriptionUI(slots[this.ui.buttonFocused], game, renderer);
+        this.renderDescriptionUI(slots[this.ui.slotFocused], game, renderer);
 
     }
 
@@ -127,11 +104,6 @@ export class Storage extends Gear {
         const height = 140;
 
         // Container
-        // this.ui.drawContainer(
-        //     (size * 5 + 40) / size,
-        //     (size + height) / size,
-        //     new Vector2(0, -(height / 3))
-        // );
         renderer.drawSprite({
             texture: asImage(game.getAssetByName("storage-ui")),
             position: new Vector2().add(windowCenter),
@@ -139,6 +111,7 @@ export class Storage extends Gear {
             height: 5,
             layer: "ui"
         });
+        // Storage preview
         renderer.drawSprite({
             texture: asImage(game.getAssetByName([this.gearType, this.level].join("-"))),
             position: new Vector2(-size * 2, -size - 15).add(windowCenter),
@@ -161,7 +134,7 @@ export class Storage extends Gear {
                 0
             ).add(windowCenter);
 
-            this.ui.renderButton(pos, index, ()=> {
+            this.ui.renderSlot(pos, index, ()=> {
 
                 // Draw item sprite
                 renderer.drawSprite({
@@ -213,25 +186,25 @@ export class Storage extends Gear {
         const descTextArray = [
             oreSettings ? `> Нужен инструмент ${ oreSettings.tool || 1 }ур. и выше` : "> Можно найти",
             raw.special || ""
-        ];
+        ].filter(t=> t != "");
         
         renderer.drawText({
             text: rawName.text,
             font: "20px Pixel",
-            position: new Vector2(-size * 1.2, size + 70 - size / 2 + 15).add(windowCenter),
+            position: new Vector2(-size * 1.3, size + 70 - size / 2 + 15).add(windowCenter),
             centered: false,
             layer: "ui"
         });
         renderer.drawText({
             text: descTextArray.join("\n"),
             color: Color.ORANGE,
-            position: new Vector2(-size * 1.2, size + 70 + margin + (rawName.wrapCount >= 1 ? lineHeight : 0)).add(windowCenter),
+            position: new Vector2(-size * 1.3, size + 70 + margin + (rawName.wrapCount >= 1 ? lineHeight : 0)).add(windowCenter),
             centered: false,
             layer: "ui"
         });
         renderer.drawText({
             text: wrapText(raw.desc, 31).text,
-            position: new Vector2(-size * 1.2, size + 70 + lineHeight + margin * 2 + lineHeight * rawName.wrapCount + lineHeight * (descTextArray.length - 1)).add(windowCenter),
+            position: new Vector2(-size * 1.3, size + 70 + lineHeight + margin * 2 + lineHeight * rawName.wrapCount + lineHeight * (descTextArray.length - 1)).add(windowCenter),
             centered: false,
             layer: "ui"
         });

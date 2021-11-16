@@ -1,21 +1,54 @@
 import { Color, Config } from "../../config";
 import { Game } from "../Game";
 import { Renderer, StrokeSettings } from "../Renderer";
-import { asImage, assetIsValid, safeValue, Vector2 } from "../utils/math";
+import { asImage, assetIsValid, lerp, safeValue, Vector2 } from "../utils/math";
+
+export class Button {
+    position: Vector2
+    assetName: string
+    layer: string
+
+    animatedPosY: number
+    
+    constructor(position?: Vector2, layer?: string, assetName?: string) {
+        this.position = position || Vector2.zero(); 
+        this.assetName = assetName || "interact";
+        this.layer = layer || "game";
+
+        this.animatedPosY = 0;
+    }
+    
+    render(game: Game) {
+        this.animatedPosY = lerp(this.animatedPosY, 0, .2);
+        
+        game.renderer.drawSprite({
+            texture: asImage(game.getAssetByName("interact")),
+            position: this.position.add(new Vector2(0, this.animatedPosY)),
+            scale: Vector2.all(.7),
+            layer: this.layer
+        });
+    }
+    
+    click() {
+        this.animatedPosY = 10;
+    }
+}
 
 export class UI {
     game: Game | null
+    enabled: boolean
     
     allowSelectButtons: boolean
-    buttonFocused: number
-    buttonsCount: number
+    slotFocused: number
+    slotCount: number
     
     constructor() {
         this.game = null;
-        
-        this.buttonFocused = 0;
+        this.enabled = true;
+
+        this.slotFocused = 0;
         this.allowSelectButtons = true;
-        this.buttonsCount = 1;
+        this.slotCount = 1;
     }
 
     init(game: Game) {
@@ -26,25 +59,29 @@ export class UI {
 
             switch (name) {
                 case "right":
-                    this.buttonFocused ++;
-                    if (this.buttonFocused > this.buttonsCount-1)
-                        this.buttonFocused = 0;
+                    this.slotFocused ++;
+                    if (this.slotFocused > this.slotCount-1)
+                        this.slotFocused = 0;
                     break;
                 case "left":
-                    this.buttonFocused --;
-                    if (this.buttonFocused < 0)
-                        this.buttonFocused = this.buttonsCount-1;
+                    this.slotFocused --;
+                    if (this.slotFocused < 0)
+                        this.slotFocused = this.slotCount-1;
                     break;
             }
 
         });
     }
+    render() {
+        if (!this.game || !this.enabled) return;
+        
+    }
 
-    renderButton(pos: Vector2, tabIndex: number, render: ()=> void, isFocused?: ()=> void) {
-        if (!this.game) return;
+    renderSlot(pos: Vector2, tabIndex: number, render: ()=> void, isFocused?: ()=> void) {
+        if (!this.game || !this.enabled) return;
 
         render();
-        if (tabIndex == this.buttonFocused) {
+        if (tabIndex == this.slotFocused) {
             this.game.renderer.drawRect({
                 color: "rgba(0, 0, 0, 0)",
                 position: pos.apply(Math.floor),
@@ -56,18 +93,5 @@ export class UI {
                 isFocused();
         }
 
-    }
-
-    drawContainer(width: number, height: number, pos?: Vector2) {
-        if (!this.game) return;
-        
-        this.game.renderer.drawRect({
-            color: Color.STONE_LAYER_COLOR, 
-            width: width, 
-            height: height, 
-            stroke: { width: 4, color: Color.BLACK },
-            position: new Vector2(innerWidth / 2, innerHeight / 2).add(safeValue(pos, Vector2.zero())).apply(Math.floor),
-            layer: "ui"
-        });
     }
 }
