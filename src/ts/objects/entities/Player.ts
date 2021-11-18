@@ -1,10 +1,10 @@
 import { Config } from "../../config";
 import { Game } from "../../engine";
-import { asImage, assetIsValid, lerp, Vector2 } from "../../engine/utils/math";
+import { asImage, assetIsValid, compareNames, lerp, Vector2 } from "../../engine/utils/math";
 import { Direction } from "../../types";
 import { Entity } from "./Entity";
 import { Ore } from "../ores/Ore";
-import { RawType } from "../raws/Raw";
+import { Raw, RawType } from "../raws/Raw";
 import { Renderer } from "../../engine/Renderer";
 
 // > 5 is "god tool"
@@ -42,7 +42,10 @@ export class Player extends Entity {
     inventory: {
         totalCount: number
         slots: {
-            [key: string]: number
+            [key: string]: {
+                count: number
+                instances: Raw[]
+            }
         }
     }
     toolLevel: ToolLevel
@@ -153,11 +156,16 @@ export class Player extends Entity {
         }
     }
     
-    pickup(game: Game, type: RawType, count: number) {
+    pickup(game: Game, raw: Raw, type: RawType, count: number) {
         this.inventory.totalCount += count;
 
-        this.inventory.slots[type] = this.inventory.slots[type] || 0;
-        this.inventory.slots[type] += count;
+        this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
+        this.inventory.slots[type].count += count;
+        const instances = this.inventory.slots[type].instances;
+        this.inventory.slots[type].instances.push(raw);
+            
+        this.inventory.slots[type].instances = instances.filter((i, index)=> instances.indexOf(i) == index);
+
     }
     pullWire() {
         

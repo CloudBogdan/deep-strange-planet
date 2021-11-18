@@ -5,18 +5,23 @@ import { Renderer } from "../../engine/Renderer";
 import { asImage, assetIsValid, safeValue, Vector2, wrapText } from "../../engine/utils/math";
 import { GearNames, RawNames } from "../../names";
 import { Player } from "../entities/Player";
-import { Raw } from "../raws/Raw";
+import { Raw, RawType } from "../raws/Raw";
 import { Gear, Level } from "./Gear";
 
 type InteractType = "store" | "view";
 enum MaxStorageTotalCount {
-    "1-level" = 16,
+    "1-level" = 4,
     "2-level" = 28,
     "3-level" = 42,
 }
 
 export class Storage extends Gear {
-    contains: Player["inventory"]
+    contains: {
+        totalCount: number
+        slots: {
+            [key: string]: number
+        }
+    }
     interactType: InteractType
     maxTotalCount: number
     
@@ -36,14 +41,15 @@ export class Storage extends Gear {
         
         this.interactType = (player.inventory.totalCount == 0 || this.contains.totalCount >= this.maxTotalCount) ? "view" : "store";
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
+        this.ui.allowSelectSlots = this.ui.enabled;
     }
 
     onInteract(game: Game, player: Player) {
         super.onInteract(game, player);
 
         if (this.interactType == "store") {
-            this.store(game, player);
             this.ui.enabled = false;
+            this.store(game, player);
         } else if (this.interactType == "view") {
             this.ui.enabled = !this.ui.enabled;
         }
@@ -54,8 +60,9 @@ export class Storage extends Gear {
         
         let storedCount = 0;
         let totalStoredCount = 0;
+        const slotNames = Object.keys(player.inventory.slots);
         
-        Object.keys(player.inventory.slots).map(slot=> {
+        slotNames.map(slot=> {
             this.contains.slots[slot] = this.contains.slots[slot] || 0
             
             // Add items
@@ -64,18 +71,20 @@ export class Storage extends Gear {
                 return;
             }
 
-            storedCount = player.inventory.slots[slot] + this.contains.totalCount <= this.maxTotalCount ? player.inventory.slots[slot] : (this.maxTotalCount - this.contains.totalCount);
+            const rawInstances = player.inventory.slots[slot].instances;
+            
+            for (let i = 0; i < rawInstances.length; i ++) {
+                if (rawInstances[i] && rawInstances[i].picked) {
+                    rawInstances[i].allowPickup = false;
+                    rawInstances[i].picked = false;
+                    rawInstances[i].foldToPosition = this.position;
+                }
+            }
+
+            storedCount = player.inventory.slots[slot].count + this.contains.totalCount <= this.maxTotalCount ? player.inventory.slots[slot].count : (this.maxTotalCount - this.contains.totalCount);
             this.contains.slots[slot] += storedCount;
             this.contains.totalCount += storedCount;
             totalStoredCount += storedCount;
-        });
-        
-        game.getChildrenByName<Raw>("raw").filter(r=> r.picked).map((raw, index)=> {
-            if (!(index <= storedCount)) return;
-            // Destroy on fold in storages
-            raw.allowPickup = false;
-            raw.picked = false;
-            raw.foldToPosition = this.position;
         });
         
         if (player.inventory.totalCount <= 0) return;
@@ -87,54 +96,59 @@ export class Storage extends Gear {
     renderUI(game: Game, renderer: Renderer) {
         super.renderUI(game, renderer);
 
-        this.ui.allowSelectButtons = this.ui.enabled;
-        if (!this.ui.enabled || !this.ui) return;
+        if (!this.ui.enabled) return;
 
         const slots = Object.keys(this.contains.slots).filter(s=> this.contains.slots[s] > 0);
-        this.ui.slotCount = slots.length;
+        this.ui.updateTemplate([slots.length]);
 
         this.renderInventoryUI(slots, game, renderer);
-        this.renderDescriptionUI(slots[this.ui.slotFocused], game, renderer);
+
+        const name = slots[this.ui.focused.slot]
+        const raw = RawNames[name];
+        if (!raw) return;
+        
+        const oreSettings = OreSettings[name.replace("raw-", "")];
+        const special = [
+            oreSettings ? `> Нужен инструмент ${ oreSettings.tool || 1 }ур. и выше` : "> Можно найти",
+            raw.special || ""
+        ].filter(t=> t != "");
+
+        this.ui.renderDescriptionUI({
+            title: raw.name,
+            specials: special,
+            description: raw.desc, 
+            renderIcon: (pos)=> {
+                renderer.drawSprite({
+                    texture: asImage(game.getAssetByName(name)),
+                    position: pos,
+                    layer: "ui"
+                });
+            }
+        }, game, renderer);
 
     }
 
     renderInventoryUI(slots: string[], game: Game, renderer: Renderer) {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
-        const height = 140;
 
-        // Container
-        renderer.drawSprite({
-            texture: asImage(game.getAssetByName("storage-ui")),
-            position: new Vector2().add(windowCenter),
-            width: 7,
-            height: 5,
-            layer: "ui"
-        });
-        // Storage preview
-        renderer.drawSprite({
-            texture: asImage(game.getAssetByName([this.gearType, this.level].join("-"))),
-            position: new Vector2(-size * 2, -size - 15).add(windowCenter),
-            width: 2,
-            height: 2,
-            layer: "ui"
-        });
-        // Title
+        // Draw count text
         renderer.drawText({
-            text: `${ GearNames[this.name].name } ${ this.level }ур.`,
-            position: new Vector2(-size * 1.2, -size - 15).add(windowCenter),
+            text: `${ this.contains.totalCount }/${ this.maxTotalCount }`,
+            position: new Vector2(-size * 1.2, -size + 10).add(windowCenter),
+            color: this.contains.totalCount >= this.maxTotalCount ? Color.RED : "#fff",
             centered: false,
             layer: "ui"
-        });
+        })
 
         slots.map((slot, index)=> {
 
             const pos = new Vector2(
-                (index * size) - (5 * size) / 2 + size / 2,
+                (index * size) - size * 2,
                 0
             ).add(windowCenter);
 
-            this.ui.renderSlot(pos, index, ()=> {
+            this.ui.renderSlot(pos, 0, index    , ()=> {
 
                 // Draw item sprite
                 renderer.drawSprite({
@@ -154,60 +168,5 @@ export class Storage extends Gear {
 
         });
         
-    }
-    renderDescriptionUI(currentSlotName: string, game: Game, renderer: Renderer) {
-        const size = Config.SPRITE_SIZE;
-        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
-        const margin = 6;
-        const lineHeight = 22;
-
-        // Container
-        renderer.drawSprite({
-            texture: asImage(game.getAssetByName("description-ui")),
-            position: new Vector2(0, size * 3).add(windowCenter),
-            width: 7,
-            height: 5,
-            layer: "ui"
-        });
-        
-        const raw = RawNames[currentSlotName];
-        if (!raw) return;
-
-        // Sprite
-        renderer.drawSprite({
-            texture: asImage(game.getAssetByName(currentSlotName)),
-            position: new Vector2(-2.5 * size + size / 2, size + 70).add(windowCenter),
-            layer: "ui"
-        });
-
-        // Texts
-        const rawName = wrapText(raw.name, 26);
-        const oreSettings = OreSettings[currentSlotName.replace("raw-", "")];
-        const descTextArray = [
-            oreSettings ? `> Нужен инструмент ${ oreSettings.tool || 1 }ур. и выше` : "> Можно найти",
-            raw.special || ""
-        ].filter(t=> t != "");
-        
-        renderer.drawText({
-            text: rawName.text,
-            font: "20px Pixel",
-            position: new Vector2(-size * 1.3, size + 70 - size / 2 + 15).add(windowCenter),
-            centered: false,
-            layer: "ui"
-        });
-        renderer.drawText({
-            text: descTextArray.join("\n"),
-            color: Color.ORANGE,
-            position: new Vector2(-size * 1.3, size + 70 + margin + (rawName.wrapCount >= 1 ? lineHeight : 0)).add(windowCenter),
-            centered: false,
-            layer: "ui"
-        });
-        renderer.drawText({
-            text: wrapText(raw.desc, 31).text,
-            position: new Vector2(-size * 1.3, size + 70 + lineHeight + margin * 2 + lineHeight * rawName.wrapCount + lineHeight * (descTextArray.length - 1)).add(windowCenter),
-            centered: false,
-            layer: "ui"
-        });
-
     }
 }

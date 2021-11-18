@@ -3,6 +3,7 @@ import { Game, ISpriteProps, Sprite } from "../../engine";
 import { UI, Button } from "../../engine/components/UI";
 import { Renderer } from "../../engine/Renderer";
 import { asImage, assetIsValid, lerp, Vector2 } from "../../engine/utils/math";
+import { GearNames } from "../../names";
 import { Player } from "../entities/Player";
 
 export type GearType = 
@@ -18,6 +19,7 @@ export class Gear extends Sprite {
     playerIsNear: boolean
     allowInteract: boolean
     interactText: string
+    closeText: string
     
     constructor(type: GearType, level: Level, props?: ISpriteProps) {
         super(type, [type, level].join("-"), props);
@@ -34,6 +36,7 @@ export class Gear extends Sprite {
         this.allowInteract = true;
         this.layer = "bg";
         this.interactText = "";
+        this.closeText = "закрыть";
     }
 
     init(game: Game) {
@@ -89,7 +92,10 @@ export class Gear extends Sprite {
     renderUI(game: Game, renderer: Renderer) {
         this.ui.render();
 
-        if (this.ui.enabled)
+        if (this.ui.enabled) {
+            const size = Config.SPRITE_SIZE;
+            const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
+
             renderer.drawRect({
                 color: "rgba(0, 0, 0, .6)",
                 width: innerWidth / Config.SPRITE_SIZE,
@@ -97,9 +103,42 @@ export class Gear extends Sprite {
                 position: new Vector2(innerWidth / 2, innerHeight / 2),
                 layer: "ui"
             });
+
+            // Container
+            renderer.drawSprite({
+                texture: asImage(game.getAssetByName([this.gearType, "ui"].join("-"))),
+                position: new Vector2(0, -size).add(windowCenter),
+                width: 7,
+                height: 5,
+                layer: "ui"
+            });
+            // Preview
+            renderer.drawSprite({
+                texture: asImage(game.getAssetByName([this.gearType, this.level].join("-"))),
+                position: new Vector2(-size * 2, -size - 15).add(windowCenter),
+                width: 2,
+                height: 2,
+                layer: "ui"
+            });
+            // Title
+            renderer.drawText({
+                text: `${ GearNames[this.name].name } ${ this.level }ур.`,
+                position: new Vector2(-size * 1.2, -size - 15).add(windowCenter),
+                centered: false,
+                layer: "ui"
+            });
+            // Close
+            renderer.drawText({
+                text: `[OK] - ${ this.closeText }`,
+                position: new Vector2(-size * 3 + 20, -size * 2 - 40).add(windowCenter),
+                layer: "ui",
+                centered: false
+            })
+
+        }
         
         // Draw interact button
-        if (this.playerIsNear) {
+        if (this.playerIsNear && !this.ui.enabled) {
             this.interactButton.position = this.position.add(new Vector2(0, -110));
             this.interactButton.render(game);
         }

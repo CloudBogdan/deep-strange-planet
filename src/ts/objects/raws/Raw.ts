@@ -62,11 +62,11 @@ export class Raw extends Sprite {
         if (!player) return;
 
         if (!this.picked && player.position.distance(this.position) < Config.PICKUP_DISTANCE) {
-            player.pickup(game, this.rawType, 1);
+            player.pickup(game, this, this.rawType, 1);
             this.picked = true;
         }
         else if (this.picked && player.wire.distance(this.position) > Config.PICKUP_DISTANCE) {
-            player.pickup(game, this.rawType, -1);
+            player.pickup(game, this, this.rawType, -1);
             this.picked = false;
         }
         

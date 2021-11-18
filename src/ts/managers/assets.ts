@@ -36,8 +36,12 @@ import storage_1_outline_img from "../../images/gear/storage-1-outline.png"; // 
 import recycler_1_outline_img from "../../images/gear/recycler-1-outline.png"; // @ts-ignore
 
 import interact_img from "../../images/ui/interact.png"; // @ts-ignore
+import close_img from "../../images/ui/close.png"; // @ts-ignore
+import button_img from "../../images/ui/button.png"; // @ts-ignore
 import damage_img from "../../images/ui/damage.png"; // @ts-ignore
+import level_up_img from "../../images/ui/level-up.png"; // @ts-ignore
 import storage_ui_img from "../../images/ui/storage-ui.png"; // @ts-ignore
+import recycler_ui_img from "../../images/ui/recycler-ui.png"; // @ts-ignore
 import description_ui_img from "../../images/ui/description-ui.png"; // @ts-ignore
 
 export function initAssets(game: Game) {
@@ -83,8 +87,12 @@ export function initAssets(game: Game) {
     game.loadAsset("recycler-1-outline", [recycler_1_outline_img])
 
     game.loadAsset("interact", [interact_img])
+    game.loadAsset("close", [close_img])
+    game.loadAsset("button", [button_img])
     game.loadAsset("damage", [damage_img])
     game.loadAsset("storage-ui", [storage_ui_img])
+    game.loadAsset("level-up", [level_up_img])
+    game.loadAsset("recycler-ui", [recycler_ui_img])
     game.loadAsset("description-ui", [description_ui_img])
 
 }

@@ -47,3 +47,9 @@ export const GearNames: { [key: string]: NameType } = {
         desc: ""
     },
 }
+export const RecipeNames: { [key: string]: NameType } = {
+    "storage-level-up": {
+        name: "Улучшить хранилище",
+        desc: "Улучшите своё хранилище для того, чтобы можно было хранить больше ресурсов и их типов."
+    }
+};

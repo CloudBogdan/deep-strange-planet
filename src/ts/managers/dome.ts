@@ -8,7 +8,7 @@ import { Upgrader } from "../objects/gear/Upgrader";
 export function initDome(game: Game) {
     const domePosition = new Vector2(Math.round(Config.WORLD_X_CENTER), -Config.SPRITE_SIZE * 1.5);
 
-    game.add<Sprite>(new Storage(1, {
+    const storage = game.add<Storage>(new Storage(1, {
         position: domePosition.add(new Vector2(-150, 0))
     }));
 
@@ -16,7 +16,7 @@ export function initDome(game: Game) {
         flip: { x: true, y: false },
         position: domePosition.add(new Vector2(50, -70))
     }));
-    game.add<Sprite>(new Recycler(1, {
+    game.add<Sprite>(new Recycler(1, storage, {
         flip: { x: true, y: false },
         position: domePosition.add(new Vector2(140, 0))
     }));

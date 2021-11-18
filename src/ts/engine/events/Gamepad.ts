@@ -14,6 +14,7 @@ export class Gamepad {
     pressed: boolean
 
     onKeyDownListeners: ({ name: string, callback: ()=> void})[]
+    onAnyKeyDownListeners: ({ callback: (name: string)=> void })[]
     
     constructor() {
         this.eventKeys = {
@@ -35,11 +36,12 @@ export class Gamepad {
         this.pressed = false;
     
         this.onKeyDownListeners = [];
+        this.onAnyKeyDownListeners = [];
         
         window.addEventListener("keydown", e=> {
             this.updateKey(e.code, true)
 
-            if (!this.pressed)
+            if (this.pressed) return;
             this.onKeyDownListeners.map(listener=> {
                 this.eventKeys[listener.name].map(key=> {
                     
@@ -47,6 +49,20 @@ export class Gamepad {
                         listener.callback();
                         this.pressed = true;
                     }
+                    
+                });
+            });
+            this.onAnyKeyDownListeners.map(listener=> {
+                Object.keys(this.eventKeys).map(ekey=> {
+                
+                    this.eventKeys[ekey].map(key=> {
+    
+                        if (key == e.code) {
+                            listener.callback(ekey);
+                            this.pressed = true;
+                        }
+    
+                    })
                     
                 });
             });
@@ -60,36 +76,15 @@ export class Gamepad {
 
     onKeyDown(name: string, callback: ()=> void) {
 
-        // window.addEventListener("keydown", e=> {
-            // this.eventKeys[name].map(key=> {
-                
-            //     if (e.code == key && !this.pressed) {
-            //         callback();
-            //         this.pressed = true;
-            //     }
-                
-            // });
-        // });
         this.onKeyDownListeners.push({
             name, callback
         });
-
+        
     }
     onAnyKeyDown(callback: (name: string)=> void) {
-
-        window.addEventListener("keydown", e=> {
-            Object.keys(this.eventKeys).map(ekey=> {
-                
-                this.eventKeys[ekey].map(key=> {
-
-                    if (key == e.code && !this.pressed) {
-                        callback(ekey);
-                        this.pressed = true;
-                    }
-
-                })
-                
-            });
+        
+        this.onAnyKeyDownListeners.push({
+            callback
         });
 
     }
