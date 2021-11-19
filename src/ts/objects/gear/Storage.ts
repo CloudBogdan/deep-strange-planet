@@ -6,7 +6,7 @@ import { asImage, assetIsValid, safeValue, Vector2, wrapText } from "../../engin
 import { GearNames, RawNames } from "../../names";
 import { Player } from "../entities/Player";
 import { Raw, RawType } from "../raws/Raw";
-import { Gear, Level } from "./Gear";
+import { Gear, GearLevel } from "./Gear";
 
 type InteractType = "store" | "view";
 enum MaxStorageTotalCount {
@@ -25,7 +25,7 @@ export class Storage extends Gear {
     interactType: InteractType
     maxTotalCount: number
     
-    constructor(level: Level, props?: ISpriteProps) {
+    constructor(level: GearLevel, props?: ISpriteProps) {
         super("gear-storage", level, props);
         
         this.contains = { totalCount: 0, slots: {} };

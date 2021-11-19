@@ -9,6 +9,7 @@ import { Renderer } from "../../engine/Renderer";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5;
+export const MaxToolLevel = 4;
 export type Tool = {
     speed: number,
     damage: number
@@ -49,6 +50,7 @@ export class Player extends Entity {
         }
     }
     toolLevel: ToolLevel
+    hasBottle: boolean
 
     damageAnimatedOpacity: number
     
@@ -62,10 +64,11 @@ export class Player extends Entity {
             totalCount: 0,
             slots: {}
         };
+        this.hasBottle = false;
         // this.acceleration = Vector2.all(.7);
         // ! God
         // this.moveSpeed = 2;
-        this.toolLevel = 5;
+        this.toolLevel = 1;
 
         this.damageAnimatedOpacity = 0;
 
@@ -114,7 +117,6 @@ export class Player extends Entity {
     update(game: Game) {
         super.update(game);
         if (!this.allowMove) return;
-        console.log(this.allowMove);
 
         this.movement.set((+game.gamepad.keys.right - +game.gamepad.keys.left), (+game.gamepad.keys.down - +game.gamepad.keys.up));
         this.move();
@@ -178,5 +180,9 @@ export class Player extends Entity {
     hit(damage: number) {
         this.hp -= damage;
         this.damageAnimatedOpacity = 1;
+    }
+    upgradeTool(levelUp: number) {
+        if (this.toolLevel < MaxToolLevel)
+            this.toolLevel += levelUp;
     }
 }

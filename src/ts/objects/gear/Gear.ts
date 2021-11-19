@@ -8,7 +8,8 @@ import { Player } from "../entities/Player";
 
 export type GearType = 
     "gear-storage" | "gear-recycler" | "gear-upgrader";
-export type Level = 1 | 2 | 3;
+export type GearLevel = 1 | 2 | 3;
+export const MaxGearLevel = 3;
 
 export class Gear extends Sprite {
     ui: UI
@@ -16,13 +17,13 @@ export class Gear extends Sprite {
     player: Player | undefined
 
     gearType: GearType;
-    level: Level
+    level: GearLevel
     playerIsNear: boolean
     allowInteract: boolean
     interactText: string
     closeText: string
     
-    constructor(type: GearType, level: Level, props?: ISpriteProps) {
+    constructor(type: GearType, level: GearLevel, props?: ISpriteProps) {
         super(type, [type, 1].join("-"), props);
 
         this.width = 
@@ -143,7 +144,8 @@ export class Gear extends Sprite {
     }
 
     upgrade(levelUp: number) {
-        this.level += levelUp;
+        if (this.level < MaxGearLevel)
+            this.level += levelUp;
     }
     checkInteract() {
         if (!this.player) return;

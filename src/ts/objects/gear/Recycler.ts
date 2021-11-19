@@ -4,15 +4,15 @@ import { Button } from "../../engine/components/UI";
 import { Renderer } from "../../engine/Renderer";
 import { asImage, Vector2 } from "../../engine/utils/math";
 import { GearNames, RawNames, RecipeNames } from "../../names";
-import { Player } from "../entities/Player";
-import { Gear, Level } from "./Gear";
+import { MaxToolLevel, Player } from "../entities/Player";
+import { Gear, GearLevel, MaxGearLevel } from "./Gear";
 import { Storage } from "./Storage";
 
 export class Recycler extends Gear {
     storage: Storage
     recipes: { [key: string]: Recipe }
     
-    constructor(level: Level, storage: Storage, props?: ISpriteProps) {
+    constructor(level: GearLevel, storage: Storage, props?: ISpriteProps) {
         super("gear-recycler", level, props);
 
         this.ui.focused.slot = 1;
@@ -20,27 +20,110 @@ export class Recycler extends Gear {
 
         this.storage = storage;
         this.recipes = {
-            "storage-level-up": new Recipe(
-                { "raw-cidium": 10, "raw-osmy": 4 },
-                ()=> {
+            // Storage up
+            "storage-level-up": new Recipe({
+                recipe: ()=> {
+                    return [
+                        { "raw-cidium": 6, "raw-osmy": 2 }, // Level 2
+                        { "raw-cidium": 12, "raw-osmy": 6, "raw-grade-cidium": 2 }, // Level 3
+                    ][this.storage.level - 1] as any;
+                },
+                // On craft
+                onCraft: ()=> {
                     this.storage.upgrade(1);
                 },
-                (game, pos)=> {
+                // Render icon
+                icon: (game, pos)=> {
                     game.renderer.drawSprite({
                         texture: asImage(game.getAssetByName("gear-storage-1")),
                         position: pos,
                         width: 2,
                         height: 2,
-                        scale: Vector2.all(.8),
+                        scale: Vector2.all(.7),
                         layer: "ui"
                     });
                     game.renderer.drawText({
-                        text: "2ур.",
-                        position: pos.add(Vector2.all(Config.SPRITE_SIZE * .4)),
+                        text: `${ this.storage.level + 1 }ур.`,
+                        position: pos.add(Vector2.all(Config.SPRITE_SIZE * .3)),
                         layer: "ui"
                     });
-                }
-            )
+                },
+                isRemoved: ()=> this.storage.level >= MaxGearLevel
+            }),
+            // Storage up
+            "new-storage": new Recipe({
+                recipe: ()=> ({ "raw-grade-cidium": 2, "raw-antin": 2 }),
+                // On craft
+                onCraft: ()=> {
+                    this.storage.upgrade(1);
+                },
+                // Render icon
+                icon: (game, pos)=> {
+                    game.renderer.drawSprite({
+                        texture: asImage(game.getAssetByName("gear-storage-1")),
+                        position: pos,
+                        width: 2,
+                        height: 2,
+                        scale: Vector2.all(.7),
+                        layer: "ui"
+                    });
+                    game.renderer.drawText({
+                        text: "+",
+                        position: pos.add(Vector2.all(Config.SPRITE_SIZE * .3)),
+                        layer: "ui"
+                    });
+                },
+            }),
+
+            // Tool up
+            "tool-level-up": new Recipe({
+                recipe: ()=> {
+                    return [
+                        { "raw-cidium": 4  }, // Level 2
+                        { "raw-cidium": 14, "raw-osmy": 4, "raw-grade-cidium": 1 }, // Level 3
+                        { "raw-cidium": 2, "raw-osmy": 8, "raw-grade-cidium": 4, "raw-antin": 3 }, // Level 4
+                    ][this.player ? this.player?.toolLevel - 1 : 0] as any;
+                },
+                onCraft: ()=> {
+                    if (!this.player) return;
+
+                    this.player.upgradeTool(1);
+                },
+                icon: (game, pos)=> {
+                    if (!this.player) return;
+
+                    game.renderer.drawSprite({
+                        texture: asImage(game.getAssetByName("tools")),
+                        position: pos,
+                        layer: "ui"
+                    });
+                    game.renderer.drawText({
+                        text: `${ this.player.toolLevel + 1 }ур.`,
+                        position: pos.add(Vector2.all(Config.SPRITE_SIZE * .3)),
+                        layer: "ui"
+                    });
+                },
+                isRemoved: ()=> this.player ? this.player.toolLevel >= MaxToolLevel : false
+            }),
+
+            // Craft bottle
+            "bottle": new Recipe({
+                recipe: ()=> ({ "raw-osmy": 8, "raw-antin": 4 }),
+                onCraft: ()=> {
+                    if (!this.player) return
+
+                    this.player.hasBottle = true;
+                },
+                icon: (game, pos)=> {
+                    game.renderer.drawSprite({
+                        texture: asImage(game.getAssetByName("bottle")),
+                        position: pos,
+                        layer: "ui"
+                    });
+                },
+                isRemoved: ()=> this.player ? this.player.hasBottle : false
+            })
+            
         };
     }
     
@@ -70,8 +153,9 @@ export class Recycler extends Gear {
             const recipesKeys = Object.keys(this.recipes);
             const recipe = this.recipes[recipesKeys[this.ui.focused.slot]];
 
-            if (recipe.canCraft(this.storage))
-                recipe.onCraft();
+            if (recipe.canCraft(this.storage)) {
+                recipe.onCraft(this.storage);
+            }
 
         }
     }
@@ -79,7 +163,7 @@ export class Recycler extends Gear {
     renderUI(game: Game, renderer: Renderer) {
         super.renderUI(game, renderer);
 
-        const recipesKeys = Object.keys(this.recipes);
+        const recipesKeys = Object.keys(this.recipes).filter(name=> !this.recipes[name].isRemoved());
 
         this.closeText = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "закрыть" : "изготовить";
 
@@ -100,7 +184,7 @@ export class Recycler extends Gear {
 
         if (!recipeDescription) return;
 
-        const selectedRecipe = this.recipes[recipesKeys[this.ui.focused.slot]].recipe;
+        const selectedRecipe = this.recipes[recipesKeys[this.ui.focused.slot]].recipe();
         const isInStockCount = (slotName: string)=> this.storage.contains.slots[slotName];
         
         this.ui.renderDescriptionUI({
@@ -110,7 +194,8 @@ export class Recycler extends Gear {
                 "Ресурсы:",
                 ...Object.keys(selectedRecipe).map(slotName=> {
                     const count = isInStockCount(slotName);
-                    return `> ${ RawNames[slotName].name } ${ count || 0 } из ${ selectedRecipe[slotName] }`
+                    const recipeItem = RawNames[slotName];
+                    return `> ${ recipeItem?.name || "ERROR" } ${ count || 0 } из ${ selectedRecipe[slotName] }`
                 })
             ],
             description: recipeDescription.desc,
@@ -151,14 +236,15 @@ export class Recycler extends Gear {
                 // Render recipe icon
                 this.recipes[recipeName].icon(game, pos);
                 
+                // Darken
                 if (!this.recipes[recipeName].canCraft(this.storage))
                     renderer.drawRect({
                         position: pos,
                         color: Color.STONE_LAYER_COLOR,
                         layer: "ui",
                         opacity: .5,
-                        width: 1.1,
-                        height: 1.1
+                        width: .95,
+                        height: .95,
                     });
 
             });
@@ -169,24 +255,43 @@ export class Recycler extends Gear {
 }
 
 class Recipe {
-    recipe: Storage["contains"]["slots"]
-    onCraft: ()=> void
+    recipe: ()=> Storage["contains"]["slots"]
+    _onCraft: ()=> void
+    isRemoved: ()=> boolean
     icon: (game: Game, pos: Vector2)=> void
     
-    constructor(recipe: Recipe["recipe"], onCraft: Recipe["onCraft"], icon: Recipe["icon"]) {
-        this.recipe = recipe;
-        this.onCraft = onCraft;
-        this.icon = icon;
+    constructor(props: {
+        recipe: Recipe["recipe"]
+        onCraft: Recipe["_onCraft"]
+        icon: Recipe["icon"]
+        isRemoved?: Recipe["isRemoved"]
+    }) {
+        this.recipe = props.recipe;
+        this._onCraft = props.onCraft;
+        this.icon = props.icon;
+        this.isRemoved = props.isRemoved || (()=> false);
     }
 
     canCraft(storage: Storage): boolean {
-        const recipes = Object.keys(this.recipe);
-        let can = false;
+        const recipes = Object.keys(this.recipe());
+        // let can = false;
+        let hasCount = 0;
 
         for (let i = 0; i < recipes.length; i ++) {
-            can = storage.contains.slots[recipes[i]] >= this.recipe[recipes[i]];
+            if (storage.contains.slots[recipes[i]] >= this.recipe()[recipes[i]])
+                hasCount ++;
         }
         
-        return can;
+        return hasCount >= recipes.length;
+        // return can;
+    }
+    onCraft(storage: Storage) {
+        const recipes = Object.keys(this.recipe());
+
+        for (let i = 0; i < recipes.length; i ++) {
+            storage.contains.slots[recipes[i]] -= this.recipe()[recipes[i]];
+        }
+
+        this._onCraft();
     }
 }

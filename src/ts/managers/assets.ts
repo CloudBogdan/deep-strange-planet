@@ -38,6 +38,8 @@ import gear_recycler_1_outline_img from "../../images/gear/gear-recycler-1-outli
 import interact_img from "../../images/ui/interact.png"; // @ts-ignore
 import close_img from "../../images/ui/close.png"; // @ts-ignore
 import button_img from "../../images/ui/button.png"; // @ts-ignore
+import tools_img from "../../images/ui/tools.png"; // @ts-ignore
+import bottle_img from "../../images/ui/bottle.png"; // @ts-ignore
 import damage_img from "../../images/ui/damage.png"; // @ts-ignore
 import level_up_img from "../../images/ui/level-up.png"; // @ts-ignore
 import storage_ui_img from "../../images/ui/storage-ui.png"; // @ts-ignore
@@ -89,6 +91,8 @@ export function initAssets(game: Game) {
     game.loadAsset("interact", [interact_img])
     game.loadAsset("close", [close_img])
     game.loadAsset("button", [button_img])
+    game.loadAsset("tools", [tools_img])
+    game.loadAsset("bottle", [bottle_img])
     game.loadAsset("damage", [damage_img])
     game.loadAsset("storage-ui", [storage_ui_img])
     game.loadAsset("level-up", [level_up_img])
