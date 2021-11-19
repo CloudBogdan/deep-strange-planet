@@ -72,6 +72,12 @@ export class Game extends Container {
         // this.renderer.app.stage.children.find(child=> compareNames((child as any).id, id)).visible = false;
     }
 
+    initChildren() {
+        // this.gamepad.onAnyKeyDownListeners = [];
+        // this.gamepad.onKeyDownListeners = [];
+        super.initChildren(this);
+    }
+    
     addInit(listener: Game["initListeners"][0]) {
         this.initListeners.push(listener);
     }
@@ -86,7 +92,7 @@ export class Game extends Container {
 
         // Init
         this.initListeners.map(listener=> listener());
-        this.initChildren(this);
+        this.initChildren();
         
         const loop = ()=> {
             requestAnimationFrame(loop);

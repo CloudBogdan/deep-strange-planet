@@ -34,15 +34,15 @@ export const RawNames: { [key: string]: NameType } = {
     },
 }
 export const GearNames: { [key: string]: NameType } = {
-    "storage": {
+    "gear-storage": {
         name: "Хранилище ресурсов",
         desc: ""
     },
-    "recycler": {
+    "gear-recycler": {
         name: "Переработчик",
         desc: ""
     },
-    "upgrader": {
+    "gear-upgrader": {
         name: "Улучшатель",
         desc: ""
     },

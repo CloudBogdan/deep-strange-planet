@@ -114,6 +114,7 @@ export class Player extends Entity {
     update(game: Game) {
         super.update(game);
         if (!this.allowMove) return;
+        console.log(this.allowMove);
 
         this.movement.set((+game.gamepad.keys.right - +game.gamepad.keys.left), (+game.gamepad.keys.down - +game.gamepad.keys.up));
         this.move();

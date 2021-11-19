@@ -30,10 +30,10 @@ import raw_rady_img from "../../images/raw/raw-rady.png"; // @ts-ignore
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
 
-import storage_1_img from "../../images/gear/storage-1.png"; // @ts-ignore
-import recycler_1_img from "../../images/gear/recycler-1.png"; // @ts-ignore
-import storage_1_outline_img from "../../images/gear/storage-1-outline.png"; // @ts-ignore
-import recycler_1_outline_img from "../../images/gear/recycler-1-outline.png"; // @ts-ignore
+import gear_storage_1_img from "../../images/gear/gear-storage-1.png"; // @ts-ignore
+import gear_recycler_1_img from "../../images/gear/gear-recycler-1.png"; // @ts-ignore
+import gear_storage_1_outline_img from "../../images/gear/gear-storage-1-outline.png"; // @ts-ignore
+import gear_recycler_1_outline_img from "../../images/gear/gear-recycler-1-outline.png"; // @ts-ignore
 
 import interact_img from "../../images/ui/interact.png"; // @ts-ignore
 import close_img from "../../images/ui/close.png"; // @ts-ignore
@@ -81,10 +81,10 @@ export function initAssets(game: Game) {
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])
 
-    game.loadAsset("storage-1", [storage_1_img])
-    game.loadAsset("recycler-1", [recycler_1_img])
-    game.loadAsset("storage-1-outline", [storage_1_outline_img])
-    game.loadAsset("recycler-1-outline", [recycler_1_outline_img])
+    game.loadAsset("gear-storage-1", [gear_storage_1_img])
+    game.loadAsset("gear-recycler-1", [gear_recycler_1_img])
+    game.loadAsset("gear-storage-1-outline", [gear_storage_1_outline_img])
+    game.loadAsset("gear-recycler-1-outline", [gear_recycler_1_outline_img])
 
     game.loadAsset("interact", [interact_img])
     game.loadAsset("close", [close_img])

@@ -12,10 +12,10 @@ export function initDome(game: Game) {
         position: domePosition.add(new Vector2(-150, 0))
     }));
 
-    game.add<Sprite>(new Upgrader(1, {
-        flip: { x: true, y: false },
-        position: domePosition.add(new Vector2(50, -70))
-    }));
+    // game.add<Sprite>(new Upgrader(1, {
+    //     flip: { x: true, y: false },
+    //     position: domePosition.add(new Vector2(50, -70))
+    // }));
     game.add<Sprite>(new Recycler(1, storage, {
         flip: { x: true, y: false },
         position: domePosition.add(new Vector2(140, 0))

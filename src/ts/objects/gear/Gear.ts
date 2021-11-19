@@ -7,12 +7,13 @@ import { GearNames } from "../../names";
 import { Player } from "../entities/Player";
 
 export type GearType = 
-    "storage" | "recycler" | "upgrader";
+    "gear-storage" | "gear-recycler" | "gear-upgrader";
 export type Level = 1 | 2 | 3;
 
 export class Gear extends Sprite {
     ui: UI
     interactButton: Button
+    player: Player | undefined
 
     gearType: GearType;
     level: Level
@@ -22,13 +23,14 @@ export class Gear extends Sprite {
     closeText: string
     
     constructor(type: GearType, level: Level, props?: ISpriteProps) {
-        super(type, [type, level].join("-"), props);
+        super(type, [type, 1].join("-"), props);
 
         this.width = 
         this.height = 2;
 
         this.ui = new UI();
         this.interactButton = new Button();
+        this.player = undefined;
         
         this.gearType = type;
         this.level = level;
@@ -44,24 +46,20 @@ export class Gear extends Sprite {
 
         this.ui.init(game);
         this.ui.enabled = false;
+        this.player = game.getChildById("player");
 
         game.gamepad.onKeyDown("enter", ()=> {
             if (!this.playerIsNear) return;
 
-            const player = game.getChildById<Player>("player");
-            if (player)
-                this.onInteract(game, player);
+            if (this.player)
+                this.onInteract(game);
         });
     }
 
     update(game: Game) {
         super.update(game);
-
-        const player = game.getChildById<Player>("player");
-        if (!player) return;
         
-        player.allowMove = !this.ui.enabled;
-        this.checkInteract(player);
+        this.checkInteract();
     }
 
     render(game: Game, renderer: Renderer) {
@@ -70,7 +68,7 @@ export class Gear extends Sprite {
         this.renderUI(game, renderer);
 
         if (this.playerIsNear && this.allowInteract) {
-            const outlineAsset = game.getAssetByName([this.gearType, this.level, "outline"].join("-"));
+            const outlineAsset = game.getAssetByName([this.gearType, 1, "outline"].join("-"));
 
             // Draw gear outline
             renderer.drawSprite({
@@ -106,7 +104,7 @@ export class Gear extends Sprite {
 
             // Container
             renderer.drawSprite({
-                texture: asImage(game.getAssetByName([this.gearType, "ui"].join("-"))),
+                texture: asImage(game.getAssetByName([this.gearType.replace("gear-", ""), "ui"].join("-"))),
                 position: new Vector2(0, -size).add(windowCenter),
                 width: 7,
                 height: 5,
@@ -144,13 +142,18 @@ export class Gear extends Sprite {
         }
     }
 
-    checkInteract(player: Player | undefined) {
-        if (!player) return;
+    upgrade(levelUp: number) {
+        this.level += levelUp;
+    }
+    checkInteract() {
+        if (!this.player) return;
 
-        this.playerIsNear = player.position.distance(this.position) < Config.GEAR_INTERACT_DISTANCE;
+        this.playerIsNear = this.player.position.distance(this.position) < Config.GEAR_INTERACT_DISTANCE;
+        if (this.playerIsNear)
+            this.player.allowMove = !this.ui.enabled;
     }
 
-    onInteract(game: Game, player: Player) {
+    onInteract(game: Game) {
         this.interactButton.click();
     }
     

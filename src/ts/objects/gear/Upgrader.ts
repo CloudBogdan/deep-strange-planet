@@ -4,18 +4,19 @@ import { Gear, Level } from "./Gear";
 
 export class Upgrader extends Gear {
     constructor(level: Level, props?: ISpriteProps) {
-        super("recycler", level, props);
+        super("gear-recycler", level, props);
 
         this.allowInteract = true;
     }
 
-    onInteract(game: Game, player: Player) {
-        super.onInteract(game, player);
+    onInteract(game: Game) {
+        super.onInteract(game);
+        if (!this.player) return;
 
-        player.toolLevel ++;
-        if (player.toolLevel > 4)
-            player.toolLevel = 1;
+        this.player.toolLevel ++;
+        if (this.player.toolLevel > 4)
+            this.player.toolLevel = 1;
 
-        player.spawnText(game, `Инструменты обновлены\nдо ${ player.toolLevel }ур.`);
+        this.player.spawnText(game, `Инструменты обновлены\nдо ${ this.player.toolLevel }ур.`);
     }
 }

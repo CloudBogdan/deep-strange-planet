@@ -10,7 +10,7 @@ import { Gear, Level } from "./Gear";
 
 type InteractType = "store" | "view";
 enum MaxStorageTotalCount {
-    "1-level" = 4,
+    "1-level" = 18,
     "2-level" = 28,
     "3-level" = 42,
 }
@@ -26,7 +26,7 @@ export class Storage extends Gear {
     maxTotalCount: number
     
     constructor(level: Level, props?: ISpriteProps) {
-        super("storage", level, props);
+        super("gear-storage", level, props);
         
         this.contains = { totalCount: 0, slots: {} };
         this.interactType = "view";
@@ -44,34 +44,41 @@ export class Storage extends Gear {
         this.ui.allowSelectSlots = this.ui.enabled;
     }
 
-    onInteract(game: Game, player: Player) {
-        super.onInteract(game, player);
+    onInteract(game: Game) {
+        super.onInteract(game);
 
         if (this.interactType == "store") {
             this.ui.enabled = false;
-            this.store(game, player);
+            this.store(game);
         } else if (this.interactType == "view") {
             this.ui.enabled = !this.ui.enabled;
         }
     }
+    upgrade(levelUp: number) {
+        super.upgrade(levelUp);
 
-    store(game: Game, player: Player) {
-        if (this.contains.totalCount >= this.maxTotalCount) return;
+        this.maxTotalCount = MaxStorageTotalCount[`${ this.level }-level`];
+    }
+
+    store(game: Game) {
+        if (this.contains.totalCount >= this.maxTotalCount || !this.player) return;
         
         let storedCount = 0;
         let totalStoredCount = 0;
-        const slotNames = Object.keys(player.inventory.slots);
+        const slotNames = Object.keys(this.player.inventory.slots);
         
         slotNames.map(slot=> {
+            if (!this.player) return;
+            
             this.contains.slots[slot] = this.contains.slots[slot] || 0
             
             // Add items
             if (this.contains.totalCount >= this.maxTotalCount) {
-                player.spawnText(game, "Хранилище перепольнено", new Vector2(0, -50));
+                this.player.spawnText(game, "Хранилище перепольнено", new Vector2(0, -50));
                 return;
             }
 
-            const rawInstances = player.inventory.slots[slot].instances;
+            const rawInstances = this.player.inventory.slots[slot].instances;
             
             for (let i = 0; i < rawInstances.length; i ++) {
                 if (rawInstances[i] && rawInstances[i].picked) {
@@ -81,16 +88,16 @@ export class Storage extends Gear {
                 }
             }
 
-            storedCount = player.inventory.slots[slot].count + this.contains.totalCount <= this.maxTotalCount ? player.inventory.slots[slot].count : (this.maxTotalCount - this.contains.totalCount);
+            storedCount = this.player.inventory.slots[slot].count + this.contains.totalCount <= this.maxTotalCount ? this.player.inventory.slots[slot].count : (this.maxTotalCount - this.contains.totalCount);
             this.contains.slots[slot] += storedCount;
             this.contains.totalCount += storedCount;
             totalStoredCount += storedCount;
         });
         
-        if (player.inventory.totalCount <= 0) return;
+        if (this.player.inventory.totalCount <= 0) return;
         
-        player.spawnText(game, totalStoredCount.toString());
-        player.inventory = { totalCount: 0, slots: {} };
+        this.player.spawnText(game, totalStoredCount.toString());
+        this.player.inventory = { totalCount: 0, slots: {} };
     }
 
     renderUI(game: Game, renderer: Renderer) {

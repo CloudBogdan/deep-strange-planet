@@ -140,6 +140,7 @@ export class UI {
     }
     renderDescriptionUI(props: {
         title: string,
+        titleColor?: string,
         specials: string[],
         description: string,
         renderIcon: (pos: Vector2)=> void
@@ -161,22 +162,20 @@ export class UI {
         
         // Icon
         props.renderIcon(new Vector2(-2.5 * size + size / 2, size + 70).add(windowCenter));
-        // renderer.drawSprite({
-        //     texture: asImage(game.getAssetByName(titleText)),
-        //     position: new Vector2(-2.5 * size + size / 2, size + 70).add(windowCenter),
-        //     layer: "ui"
-        // });
 
         // Texts
         const title = wrapText(props.title, 26);
         
+        // Title
         renderer.drawText({
             text: title.text,
             font: "20px Pixel",
             position: new Vector2(-size * 1.3, size + 70 - size / 2 + 15).add(windowCenter),
             centered: false,
+            color: props.titleColor || "#fff",
             layer: "ui"
         });
+        // Specials
         renderer.drawText({
             text: props.specials.join("\n"),
             color: Color.ORANGE,
@@ -184,6 +183,7 @@ export class UI {
             centered: false,
             layer: "ui"
         });
+        // Description
         renderer.drawText({
             text: wrapText(props.description, 31).text,
             position: new Vector2(-size * 1.3, size + 70 + lineHeight + margin * 2 + lineHeight * title.wrapCount + lineHeight * (props.specials.length - 1)).add(windowCenter),
