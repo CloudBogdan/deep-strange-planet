@@ -31,6 +31,7 @@ export class Storage extends Gear {
         this.contains = { totalCount: 0, slots: {} };
         this.interactType = "view";
         this.maxTotalCount = MaxStorageTotalCount[`${ level }-level`];
+        this.headerOffset = new Vector2(0, -Config.SPRITE_SIZE);
     }
 
     update(game: Game) {
@@ -138,11 +139,12 @@ export class Storage extends Gear {
     renderInventoryUI(slots: string[], game: Game, renderer: Renderer) {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
+        const maxRowItemsCount = 5;
 
         // Draw count text
         renderer.drawText({
             text: `${ this.contains.totalCount }/${ this.maxTotalCount }`,
-            position: new Vector2(-size * 1.2, -size + 10).add(windowCenter),
+            position: new Vector2(-size * 1.2, -size * 2 + 10).add(windowCenter),
             color: this.contains.totalCount >= this.maxTotalCount ? Color.RED : "#fff",
             centered: false,
             layer: "ui"
@@ -151,11 +153,11 @@ export class Storage extends Gear {
         slots.map((slot, index)=> {
 
             const pos = new Vector2(
-                (index * size) - size * 2,
-                0
-            ).add(windowCenter);
+                (index * size) - size * Math.floor(maxRowItemsCount / 2) + (index > maxRowItemsCount-1 ? -size * maxRowItemsCount : 0),
+                index > maxRowItemsCount-1 ? size : 0
+            ).add(windowCenter).add(new Vector2(0, -size));
 
-            this.ui.renderSlot(pos, 0, index    , ()=> {
+            this.ui.renderSlot(pos, 0, index, ()=> {
 
                 // Draw item sprite
                 renderer.drawSprite({

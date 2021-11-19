@@ -68,7 +68,7 @@ export class Player extends Entity {
         // this.acceleration = Vector2.all(.7);
         // ! God
         // this.moveSpeed = 2;
-        this.toolLevel = 1;
+        this.toolLevel = 5;
 
         this.damageAnimatedOpacity = 0;
 

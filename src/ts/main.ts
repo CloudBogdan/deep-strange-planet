@@ -15,6 +15,7 @@ import { Vector2 } from "./engine/utils/math";
 import { Antin } from "./objects/ores/Antin";
 import { Rady } from "./objects/ores/Rady";
 import { BurntBasalt } from "./objects/ores/BurntBasalt";
+import { Nerius } from "./objects/ores/Nerius";
 
 const game = new Game();
 
@@ -87,13 +88,16 @@ game.addInit(()=> {
         },
         
         // > Ores
+        // Cidium
         {
             value: [.85, 1],
             // height: [12, Config.WORLD_HEIGHT - 10],
-            height: [0, 140],
+            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
             divider: 5,
             ore: Cidium
         },
+
+        // Osmy - deep stone layer
         {
             value: [.95, 1],
             // height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
@@ -102,16 +106,26 @@ game.addInit(()=> {
             ore: Osmy
         },
         {
+            value: [.95, 1],
+            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            // height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            divider: 5,
+            ore: Nerius
+        },
+        
+        // Antin - basalt layer
+        {
             value: [0, .35],
             height: [0, Config.WORLD_HEIGHT - 40],
             // height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
             divider: .9,
             ore: Antin
         },
+        // Rady - basalt layer
         {
             value: [0, .3],
-            // height: [200, Config.WORLD_HEIGHT - 5],
             height: [0, Config.WORLD_HEIGHT - 5],
+            // height: [200, Config.WORLD_HEIGHT - 5],
             divider: 2,
             ore: Rady
         },

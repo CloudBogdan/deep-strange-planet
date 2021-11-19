@@ -20,12 +20,14 @@ import cidium_img from "../../images/ores/cidium.png"; // @ts-ignore
 import osmy_img from "../../images/ores/osmy.png"; // @ts-ignore
 import antin_img from "../../images/ores/antin.png"; // @ts-ignore
 import rady_img from "../../images/ores/rady.png"; // @ts-ignore
+import nerius_img from "../../images/ores/nerius.png"; // @ts-ignore
 
 import raw_cidium_img from "../../images/raw/raw-cidium.png"; // @ts-ignore
 import raw_grade_cidium_img from "../../images/raw/raw-grade-cidium.png"; // @ts-ignore
 import raw_osmy_img from "../../images/raw/raw-osmy.png"; // @ts-ignore
 import raw_antin_img from "../../images/raw/raw-antin.png"; // @ts-ignore
 import raw_rady_img from "../../images/raw/raw-rady.png"; // @ts-ignore
+import raw_nerius_img from "../../images/raw/raw-nerius.png"; // @ts-ignore
 
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
@@ -73,12 +75,14 @@ export function initAssets(game: Game) {
     game.loadAsset("osmy", [osmy_img]);
     game.loadAsset("antin", [antin_img]);
     game.loadAsset("rady", [rady_img]);
+    game.loadAsset("nerius", [nerius_img]);
 
     game.loadAsset("raw-cidium", [raw_cidium_img]);
     game.loadAsset("raw-grade-cidium", [raw_grade_cidium_img]);
     game.loadAsset("raw-osmy", [raw_osmy_img]);
     game.loadAsset("raw-antin", [raw_antin_img]);
     game.loadAsset("raw-rady", [raw_rady_img]);
+    game.loadAsset("raw-nerius", [raw_nerius_img]);
 
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])

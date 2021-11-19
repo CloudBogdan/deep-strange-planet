@@ -7,7 +7,7 @@ import { Ore, OreType } from "../ores/Ore";
 
 export type RawType = 
     "raw-cidium" | "raw-osmy" | "raw-grade-cidium" | "raw-antin" |
-    "raw-rady";
+    "raw-rady" | "raw-nerius";
 
 export class Raw extends Sprite {
     picked: boolean

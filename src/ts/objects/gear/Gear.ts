@@ -20,6 +20,8 @@ export class Gear extends Sprite {
     level: GearLevel
     playerIsNear: boolean
     allowInteract: boolean
+
+    headerOffset: Vector2
     interactText: string
     closeText: string
     
@@ -38,6 +40,8 @@ export class Gear extends Sprite {
         this.playerIsNear = false;
         this.allowInteract = true;
         this.layer = "bg";
+
+        this.headerOffset = new Vector2();
         this.interactText = "";
         this.closeText = "закрыть";
     }
@@ -114,7 +118,7 @@ export class Gear extends Sprite {
             // Preview
             renderer.drawSprite({
                 texture: asImage(game.getAssetByName([this.gearType, this.level].join("-"))),
-                position: new Vector2(-size * 2, -size - 15).add(windowCenter),
+                position: new Vector2(-size * 2, -size - 15).add(windowCenter).add(this.headerOffset),
                 width: 2,
                 height: 2,
                 layer: "ui"
@@ -122,14 +126,14 @@ export class Gear extends Sprite {
             // Title
             renderer.drawText({
                 text: `${ GearNames[this.name].name } ${ this.level }ур.`,
-                position: new Vector2(-size * 1.2, -size - 15).add(windowCenter),
+                position: new Vector2(-size * 1.2, -size - 15).add(windowCenter).add(this.headerOffset),
                 centered: false,
                 layer: "ui"
             });
             // Close
             renderer.drawText({
                 text: `[OK] - ${ this.closeText }`,
-                position: new Vector2(-size * 3 + 20, -size * 2 - 40).add(windowCenter),
+                position: new Vector2(-size * 3 + 20, -size * 2 - 40).add(windowCenter).add(this.headerOffset),
                 layer: "ui",
                 centered: false
             })

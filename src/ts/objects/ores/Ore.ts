@@ -9,7 +9,7 @@ import { Raw } from "../raws/Raw";
 export type OreType =
     "stone" | "deep-stone" | "destrony" |
     "cracked-stone" | "basalt" | "burnt-basalt" |
-    "cidium" | "osmy" | "antin" | "rady";
+    "cidium" | "osmy" | "antin" | "rady" | "nerius";
 
 export class Ore extends Sprite {
     oreType: OreType
@@ -110,7 +110,7 @@ export class Ore extends Sprite {
             
         if (!drop) return;
         game.add<typeof rawOre>(new (rawOre as any)(this.position.add(new Vector2(random(-10, 10), random(-10, 10)))));
-        game.initChildren(game);
+        game.initChildren();
     }
 
     darken(game: Game) {

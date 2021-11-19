@@ -33,6 +33,7 @@ export enum Color {
     BASALT_LAYER_COLOR = "#1b1d27",
     BURNT_BASALT_LAYER_COLOR = "#040508",
 
+    WHITE = "#fff",
     BLACK = "#0f1531",
     GREY = "#2c2f3d",
     DARK_GREY = "#13151e",
@@ -55,6 +56,7 @@ export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = 
     "cracked-stone": { hp: 6 },
     "deep-stone": { hp: 26, tool: 2 },
     "osmy": { hp: 36, tool: 2 },
+    "nerius": { hp: 32, tool: 2 },
     "rady": { hp: 58, tool: 2 },
 }
 export enum RawLineColor {
@@ -63,4 +65,5 @@ export enum RawLineColor {
     "raw-osmy" = Color.BLUE_LIGHT,
     "raw-antin" = Color.RED_LIGHT,
     "raw-rady" = Color.GREEN_LIGHT,
+    "raw-nerius" = Color.WHITE,
 }
