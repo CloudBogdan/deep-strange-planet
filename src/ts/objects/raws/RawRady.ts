@@ -13,9 +13,10 @@ export class RawRady extends Raw {
         
         const player = game.getChildById<Player>("player");
         if (!player) return;
+        if (player.hasBottle) return;
 
         // If is picked, player get damage (2-4)
         if (game.clock.elapsed % 80 == 0 && this.picked)
-            player.hit(Math.floor(random(2, 5)));
+            player.hit(game, Math.floor(random(2, 5)));
     }
 }

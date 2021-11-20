@@ -40,7 +40,7 @@ export const RawNames: { [key: string]: NameType } = {
 }
 export const GearNames: { [key: string]: NameType } = {
     "gear-storage": {
-        name: "Хранилище ресурсов",
+        name: "Хранилище",
         desc: ""
     },
     "gear-recycler": {

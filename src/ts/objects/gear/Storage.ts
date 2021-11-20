@@ -1,11 +1,10 @@
 import { Color, Config, OreSettings } from "../../config";
 import { Game, ISpriteProps } from "../../engine";
-import { UI } from "../../engine/components/UI";
 import { Renderer } from "../../engine/Renderer";
-import { asImage, assetIsValid, safeValue, Vector2, wrapText } from "../../engine/utils/math";
-import { GearNames, RawNames } from "../../names";
+import { asImage, Vector2 } from "../../engine/utils/math";
+import { RawNames } from "../../names";
+import { Raws } from "../../objects";
 import { Player } from "../entities/Player";
-import { Raw, RawType } from "../raws/Raw";
 import { Gear, GearLevel } from "./Gear";
 
 type InteractType = "store" | "view";
@@ -24,6 +23,8 @@ export class Storage extends Gear {
     }
     interactType: InteractType
     maxTotalCount: number
+    maxRowItemsCount: number
+    selectedSlotIndex: number
     
     constructor(level: GearLevel, props?: ISpriteProps) {
         super("gear-storage", level, props);
@@ -32,6 +33,8 @@ export class Storage extends Gear {
         this.interactType = "view";
         this.maxTotalCount = MaxStorageTotalCount[`${ level }-level`];
         this.headerOffset = new Vector2(0, -Config.SPRITE_SIZE);
+        this.maxRowItemsCount = 5;
+        this.selectedSlotIndex = 0;
     }
 
     update(game: Game) {
@@ -43,17 +46,30 @@ export class Storage extends Gear {
         this.interactType = (player.inventory.totalCount == 0 || this.contains.totalCount >= this.maxTotalCount) ? "view" : "store";
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
         this.ui.allowSelectSlots = this.ui.enabled;
+        if (this.ui.focused.row == 1)
+            this.selectedSlotIndex = this.ui.focused.slot;
     }
 
     onInteract(game: Game) {
         super.onInteract(game);
 
+        if (this.ui.enabled && this.ui.focused.row == 0 && this.ui.focused.slot == 0) {
+            const slotName = Object.keys(this.contains.slots).filter(name=> this.contains.slots[name] > 0)[this.selectedSlotIndex];
+            this.drop(game, slotName, 1)
+            return;
+        }
+        
         if (this.interactType == "store") {
             this.ui.enabled = false;
             this.store(game);
         } else if (this.interactType == "view") {
+            if (!this.ui.enabled) {
+                this.ui.focused.row = 1;
+                this.ui.focused.slot = 0;
+            }
             this.ui.enabled = !this.ui.enabled;
-        }
+        }        
+
     }
     upgrade(levelUp: number) {
         super.upgrade(levelUp);
@@ -100,15 +116,31 @@ export class Storage extends Gear {
         this.player.spawnText(game, totalStoredCount.toString());
         this.player.inventory = { totalCount: 0, slots: {} };
     }
+    drop(game: Game, slotName: string, count: number) {
+        if (!this.contains.slots[slotName]) return
+        
+        this.contains.slots[slotName] -= count;
+        this.contains.totalCount -= count;
+
+        game.add(new Raws[slotName](this.position));
+        game.initChildren();
+    }
 
     renderUI(game: Game, renderer: Renderer) {
         super.renderUI(game, renderer);
 
         if (!this.ui.enabled) return;
 
-        const slots = Object.keys(this.contains.slots).filter(s=> this.contains.slots[s] > 0);
-        this.ui.updateTemplate([slots.length]);
-
+        const slots = Object.keys(this.contains.slots).filter(name=> this.contains.slots[name] > 0);
+        this.ui.updateTemplate([
+            slots.length > 0 ? 1 : 0,
+            slots.length
+        ]);
+        if (!this.ui.template[0]) {
+            this.ui.focused.row = 1;
+            this.ui.focused.slot = 0;
+        }
+            
         this.renderInventoryUI(slots, game, renderer);
 
         const name = slots[this.ui.focused.slot]
@@ -139,7 +171,26 @@ export class Storage extends Gear {
     renderInventoryUI(slots: string[], game: Game, renderer: Renderer) {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
-        const maxRowItemsCount = 5;
+
+        if (slots.length != 0) {
+            const closePosition = new Vector2(size * 1.5 + 20, -size * 2 - 20).add(windowCenter);
+            this.ui.renderSlot(closePosition, 0, 0, ()=> {
+
+                renderer.drawSprite({
+                    // texture: asImage(game.getAssetByName("close")),
+                    texture: asImage(game.getAssetByName("button")),
+                    position: closePosition,
+                    width: 2,
+                    layer: "ui"
+                });
+                renderer.drawText({
+                    text: "Выбросить x1",
+                    position: closePosition,
+                    layer: "ui"
+                });
+
+            }, 1.75);
+        }
 
         // Draw count text
         renderer.drawText({
@@ -150,14 +201,16 @@ export class Storage extends Gear {
             layer: "ui"
         })
 
+        
         slots.map((slot, index)=> {
+            const isOverflow = index > this.maxRowItemsCount-1;
 
             const pos = new Vector2(
-                (index * size) - size * Math.floor(maxRowItemsCount / 2) + (index > maxRowItemsCount-1 ? -size * maxRowItemsCount : 0),
-                index > maxRowItemsCount-1 ? size : 0
+                (index * size) - size * Math.floor(this.maxRowItemsCount / 2) + (isOverflow ? -size * this.maxRowItemsCount : 0),
+                isOverflow ? size : 0
             ).add(windowCenter).add(new Vector2(0, -size));
 
-            this.ui.renderSlot(pos, 0, index, ()=> {
+            this.ui.renderSlot(pos, 1, index, ()=> {
 
                 // Draw item sprite
                 renderer.drawSprite({
@@ -173,7 +226,7 @@ export class Storage extends Gear {
                     layer: "ui"
                 });
                 
-            });
+            }, 1, 1, this.selectedSlotIndex == index);
 
         });
         

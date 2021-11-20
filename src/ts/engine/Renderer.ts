@@ -128,6 +128,11 @@ export class Renderer {
             pos.y - height / 2 < cam.y + h / 2
         );
     }
+    getCameraPosition(layer?: string): Vector2 {
+        const factor = this.layers[layer || "game"];
+        
+        return this.game.camera.position.add(this.game.camera.offset).mul(factor.cameraFactor);
+    }
 
     // Get layer context
     getContext(layer?: string): Renderer["layers"][0]["context"] {
@@ -141,8 +146,8 @@ export class Renderer {
         l.context.save();
         l.context.transform(
             scale?.x || 1, 0, 0, scale?.y || 1,
-            p.x - this.game.camera.position.x * l.cameraFactor + window.innerWidth / 2 * l.cameraFactor,
-            p.y - this.game.camera.position.y * l.cameraFactor + window.innerHeight / 2 * l.cameraFactor
+            p.x - this.getCameraPosition(layer).x + window.innerWidth / 2 * l.cameraFactor,
+            p.y - this.getCameraPosition(layer).y + window.innerHeight / 2 * l.cameraFactor
         );
         l.context.rotate(rotation || 0);
 
@@ -186,8 +191,8 @@ export class Renderer {
         const w = window.innerWidth / 2;
         const h = window.innerHeight / 2;
         
-        context.moveTo(props.points[0].x - this.game.camera.position.x + w, props.points[0].y - this.game.camera.position.y + h);
-        context.lineTo(props.points[1].x - this.game.camera.position.x + w, props.points[1].y - this.game.camera.position.y + h);
+        context.moveTo(props.points[0].x - this.getCameraPosition(props.layer).x + w, props.points[0].y - this.getCameraPosition(props.layer).y + h);
+        context.lineTo(props.points[1].x - this.getCameraPosition(props.layer).x + w, props.points[1].y - this.getCameraPosition(props.layer).y + h);
         
         context.stroke();
         context.beginPath();

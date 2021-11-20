@@ -22,12 +22,10 @@ export class Recycler extends Gear {
         this.recipes = {
             // Storage up
             "storage-level-up": new Recipe({
-                recipe: ()=> {
-                    return [
-                        { "raw-cidium": 6, "raw-osmy": 2 }, // Level 2
-                        { "raw-cidium": 12, "raw-osmy": 6, "raw-grade-cidium": 2 }, // Level 3
-                    ][this.storage.level - 1] as any;
-                },
+                recipe: ()=> [
+                    { "raw-cidium": 6, "raw-osmy": 2 }, // Level 2
+                    { "raw-cidium": 12, "raw-osmy": 6, "raw-grade-cidium": 2 }, // Level 3
+                ][this.storage.level - 1] as any,
                 // On craft
                 onCraft: ()=> {
                     this.storage.upgrade(1);
@@ -77,13 +75,11 @@ export class Recycler extends Gear {
 
             // Tool up
             "tool-level-up": new Recipe({
-                recipe: ()=> {
-                    return [
-                        { "raw-cidium": 4  }, // Level 2
-                        { "raw-cidium": 14, "raw-osmy": 4, "raw-grade-cidium": 1 }, // Level 3
-                        { "raw-cidium": 2, "raw-osmy": 8, "raw-grade-cidium": 4, "raw-antin": 3 }, // Level 4
-                    ][this.player ? this.player?.toolLevel - 1 : 0] as any;
-                },
+                recipe: ()=> [
+                    { "raw-cidium": 4  }, // Level 2
+                    { "raw-cidium": 14, "raw-osmy": 4, "raw-grade-cidium": 1 }, // Level 3
+                    { "raw-cidium": 2, "raw-osmy": 8, "raw-grade-cidium": 4, "raw-antin": 3 }, // Level 4
+                ][this.player ? this.player?.toolLevel - 1 : 0] as any,
                 onCraft: ()=> {
                     if (!this.player) return;
 
@@ -108,7 +104,7 @@ export class Recycler extends Gear {
 
             // Craft bottle
             "bottle": new Recipe({
-                recipe: ()=> ({ "raw-osmy": 8, "raw-antin": 4 }),
+                recipe: ()=> ({ "raw-osmy": 1, "raw-antin": 1, "raw-nerius": 1 } as any),
                 onCraft: ()=> {
                     if (!this.player) return
 
@@ -122,7 +118,7 @@ export class Recycler extends Gear {
                     });
                 },
                 isRemoved: ()=> this.player ? this.player.hasBottle : false
-            })
+            }),
             
         };
     }
@@ -150,11 +146,13 @@ export class Recycler extends Gear {
         // Craft
         if (this.ui.focused.row == 1) {
 
-            const recipesKeys = Object.keys(this.recipes);
+            const recipesKeys = this.getRecipesKeys();
             const recipe = this.recipes[recipesKeys[this.ui.focused.slot]];
 
             if (recipe.canCraft(this.storage)) {
                 recipe.onCraft(this.storage);
+            } else {
+                this.ui.spawnMessageText(game, "Недостатачно ресурсов");
             }
 
         }
@@ -163,7 +161,7 @@ export class Recycler extends Gear {
     renderUI(game: Game, renderer: Renderer) {
         super.renderUI(game, renderer);
 
-        const recipesKeys = Object.keys(this.recipes).filter(name=> !this.recipes[name].isRemoved());
+        const recipesKeys = this.getRecipesKeys();
 
         this.closeText = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "закрыть" : "изготовить";
 
@@ -225,7 +223,7 @@ export class Recycler extends Gear {
                 layer: "ui"
             });
 
-        }, 1.8);
+        }, 1.75);
         
         recipes.map((recipeName, index)=> {
 
@@ -251,6 +249,10 @@ export class Recycler extends Gear {
 
         });
 
+    }
+
+    getRecipesKeys(): string[] {
+        return Object.keys(this.recipes).filter(name=> !this.recipes[name].isRemoved())
     }
 }
 

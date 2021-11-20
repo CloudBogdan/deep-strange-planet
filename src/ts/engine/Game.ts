@@ -4,7 +4,7 @@ import { Container } from "./components/Container";
 import { Gamepad } from "./events/Gamepad";
 import { Physics } from "./Physics";
 import { Renderer } from "./Renderer";
-import { Vector2 } from "./utils/math";
+import { random, Vector2 } from "./utils/math";
 import { Generator } from "./Generator";
 
 export type Clock = {
@@ -12,7 +12,12 @@ export type Clock = {
 };
 type Camera = {
     position: Vector2
+    offset: Vector2
+    startShakeElapsed: number
+    shaking: boolean
+    shakeAmplitude: number
     follow: (pos: Vector2, lerp?: number)=> void
+    shake: (amplitude?: number)=> void
 }
 
 export class Game extends Container {
@@ -36,11 +41,21 @@ export class Game extends Container {
         this.gamepad = new Gamepad();
         this.camera = {
             position: Vector2.zero(),
+            offset: Vector2.zero(),
+            startShakeElapsed: 0,
+            shaking: false,
+            shakeAmplitude: 2,
             follow(pos: Vector2, lerp?: number) {
                 if (lerp)
                     this.position.lerp(pos, lerp);
                 else
                     this.position.copy(pos);
+            },
+            shake(amplitude?: number) {
+                this.shakeAmplitude = amplitude || 2;
+                if (!this.shaking) {
+                    this.shaking = true;
+                }
             }
         };
         
@@ -98,6 +113,15 @@ export class Game extends Container {
             requestAnimationFrame(loop);
             this.renderer.render();
             this.clock.elapsed ++;
+            if (!this.camera.shaking) {
+                this.camera.startShakeElapsed = this.clock.elapsed;
+                this.camera.offset.lerp(Vector2.zero(), .2);
+            } else {
+                if ((this.clock.elapsed - this.camera.startShakeElapsed) % 20 == 0)
+                    this.camera.shaking = false;
+                this.camera.offset.copy(this.camera.offset.add(new Vector2(random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude), random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude))));
+                console.log(this.camera.offset);
+            }
             
             // Update
             this.physics.update();

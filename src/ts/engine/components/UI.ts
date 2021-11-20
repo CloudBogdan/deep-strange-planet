@@ -1,7 +1,8 @@
 import { Color, Config } from "../../config";
 import { Game } from "../Game";
 import { Renderer, StrokeSettings } from "../Renderer";
-import { asImage, assetIsValid, lerp, safeValue, Vector2, wrapText } from "../utils/math";
+import { asImage, assetIsValid, lerp, random, safeValue, Vector2, wrapText } from "../utils/math";
+import { SpawnParticles } from "./Particles";
 
 export class Button {
     width: number
@@ -81,60 +82,61 @@ export class UI {
             switch (name) {
                 case "right":
                     this.focused.slot ++;
-                    bounds();
+                    this.bounds();
                     break;
                 case "left":
                     this.focused.slot --;
-                    bounds();
+                    this.bounds();
                     break;
                 case "up":
                     this.focused.row --;
-                    bounds();
+                    this.bounds();
                     break;
                 case "down":
                     this.focused.row ++;
-                    bounds();
+                    this.bounds();
                     break;
             }
 
         });
 
-        const bounds = ()=> {
-            if (this.focused.row < 0)
-                this.focused.row = this.template.length-1;
-            else if (this.focused.row > this.template.length-1)
-                this.focused.row = 0;
-            
-            if (this.focused.slot > this.template[this.focused.row]-1)
-                this.focused.slot = 0;
-            else if (this.focused.slot < 0)
-                this.focused.slot = this.template[this.focused.row]-1;
-        }
+        
+    }
+    bounds() {
+        if (this.focused.row < 0)
+            this.focused.row = this.template.length-1;
+        else if (this.focused.row > this.template.length-1)
+            this.focused.row = 0;
+        
+        if (this.focused.slot > this.template[this.focused.row]-1)
+            this.focused.slot = 0;
+        else if (this.focused.slot < 0)
+            this.focused.slot = this.template[this.focused.row]-1;
     }
     render() {
         if (!this.game || !this.enabled) return;
         
     }
     updateTemplate(template: UI["template"]) {
-        this.template = template.filter(t=> t !== 0)
+        this.template = template.filter(t=> t > 0)
     }
 
-    renderSlot(pos: Vector2, row: number, slot: number, render: ()=> void, width?: number, height?: number, isFocused?: ()=> void) {
+    renderSlot(pos: Vector2, row: number, slot: number, render: ()=> void, width?: number, height?: number, ghost?: boolean) {
         if (!this.game || !this.enabled) return;
 
+        const focused = this.focused.row == row && this.focused.slot == slot;
+
         render();
-        if (this.focused.row == row && this.focused.slot == slot) {
+        if (focused || ghost) {
             this.game.renderer.drawRect({
                 color: "rgba(0, 0, 0, 0)",
                 width: safeValue(width, 1),
                 height: safeValue(height, 1),
                 position: pos.apply(Math.floor),
                 stroke: { width: 4, color: Color.ORANGE },
+                opacity: (ghost && !focused) ? .2 : 1,
                 layer: "ui"
             });
-            
-            if (isFocused)
-                isFocused();
         }
 
     }
@@ -191,5 +193,27 @@ export class UI {
             layer: "ui"
         });
 
+    }
+
+    spawnMessageText(game: Game, text: string) {
+        SpawnParticles(game, new Vector2(20, innerHeight - 40), {
+            // custom: new Text("store-text", text, { font: "22px Pixel" }),
+            render(renderer, part) {
+                renderer.drawText({
+                    text,
+                    font: "22px Pixel",
+                    position: part.position,
+                    opacity: part.size, 
+                    layer: "ui",
+                    centered: false
+                });
+            },
+            size: [5, 5],
+            count: 1,
+            gravity: 0,
+            rotationVelocity: ()=> random(-.02, .02),
+            velocity: ()=> new Vector2(0, -1.5),
+            downSize: -.08,
+        });
     }
 }

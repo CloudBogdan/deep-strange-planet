@@ -128,16 +128,15 @@ export class Player extends Entity {
             this.dig(game, this.movement.y > 0 ? "bottom" : "top");
 
         this.offset.lerp(Vector2.zero(), .2);
-        this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .02);
+        this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .05);
 
         this.bounds();
     }
     render(game: Game, renderer: Renderer) {
         super.render(game, renderer);
 
-        const damageUIAsset = game.getAssetByName("damage");
         renderer.drawSprite({
-            texture: asImage(damageUIAsset),
+            texture: asImage(game.getAssetByName("damage")),
             width: innerWidth / Config.SPRITE_SIZE,
             height: innerHeight / Config.SPRITE_SIZE,
             position: new Vector2(innerWidth / 2, innerHeight / 2),
@@ -177,9 +176,10 @@ export class Player extends Entity {
         }
 
     }
-    hit(damage: number) {
+    hit(game: Game, damage: number) {
         this.hp -= damage;
-        this.damageAnimatedOpacity = 1;
+        this.damageAnimatedOpacity = 1.5;
+        game.camera.shake();
     }
     upgradeTool(levelUp: number) {
         if (this.toolLevel < MaxToolLevel)

@@ -1,9 +1,7 @@
-import { Color, Config, RawLineColor } from "../../config";
+import { Config, RawLineColor } from "../../config";
 import { Game, Sprite } from "../../engine";
 import { random, Vector2, compareNames } from "../../engine/utils/math";
 import { Player } from "../entities/Player";
-import { Cidium } from "../ores/Cidium";
-import { Ore, OreType } from "../ores/Ore";
 
 export type RawType = 
     "raw-cidium" | "raw-osmy" | "raw-grade-cidium" | "raw-antin" |
@@ -15,10 +13,11 @@ export class Raw extends Sprite {
     rawType: RawType
     foldToPosition: Vector2
     liveStartElapsed: number
+    nearOnInit: boolean
     
     constructor(type: RawType, position: Vector2) {
         super(`raw-${ type }`, type, {
-            position,
+            position: position.expand(),
             colliderType: null
         });
 
@@ -27,6 +26,7 @@ export class Raw extends Sprite {
         this.picked = false;
         this.foldToPosition = Vector2.zero();
         this.liveStartElapsed = 0;
+        this.nearOnInit = false;
     }
     
     init(game: Game) {
@@ -36,6 +36,9 @@ export class Raw extends Sprite {
         this.layer = "particles";
         this.velocity.set(random(-8, 8), random(-8, 8));
         this.acceleration.copy(Vector2.all(.8));
+
+        if (this.checkDistanceToPlayer(game.getChildById("player")))
+            this.nearOnInit = true;
     }
 
     update(game: Game) {
@@ -61,7 +64,12 @@ export class Raw extends Sprite {
     followPlayer(game: Game, player: Player | undefined) {
         if (!player) return;
 
-        if (!this.picked && player.position.distance(this.position) < Config.PICKUP_DISTANCE) {
+        if (!this.checkDistanceToPlayer(player))
+            this.nearOnInit = false;
+
+        if (this.nearOnInit) return;
+            
+        if (!this.picked && this.checkDistanceToPlayer(player)) {
             player.pickup(game, this, this.rawType, 1);
             this.picked = true;
         }
@@ -80,6 +88,10 @@ export class Raw extends Sprite {
             layer: "bg"
         });
 
+    }
+    checkDistanceToPlayer(player: Player | undefined): boolean | undefined {
+        if (player)
+            return player.position.distance(this.position) < Config.PICKUP_DISTANCE;
     }
 
     collideWidthOtherRaw(raws: Raw[], player: Player | undefined) {
