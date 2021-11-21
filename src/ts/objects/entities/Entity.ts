@@ -67,7 +67,6 @@ export class Entity extends Sprite {
             size: [5, 5],
             count: 1,
             gravity: 0,
-            rotationVelocity: ()=> random(-.02, .02),
             velocity: ()=> new Vector2(0, -1.5),
             downSize: -.08,
             box: ()=> new Vector2(random(-10, 10), random(-10, 10))

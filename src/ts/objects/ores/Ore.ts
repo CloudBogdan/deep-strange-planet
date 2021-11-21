@@ -7,7 +7,7 @@ import { Renderer } from "../../engine/Renderer";
 import { Raw } from "../raws/Raw";
 
 export type OreType =
-    "stone" | "deep-stone" | "destrony" |
+    "stone" | "stony-ground" | "deep-stone" | "destrony" |
     "cracked-stone" | "basalt" | "burnt-basalt" |
     "cidium" | "osmy" | "antin" | "rady" | "nerius";
 
@@ -36,8 +36,9 @@ export class Ore extends Sprite {
         this.tilePosition = position
         this.inChunkId = "";
         
-        this.hp = OreSettings[type].hp;
-        this.needToolLevel = OreSettings[type].tool || 1;
+        const settings = OreSettings[type];
+        this.hp = settings ? settings.hp : OreSettings["stone"].hp;
+        this.needToolLevel = OreSettings[type]?.tool || 1;
         this.unbreakable = false;
         
         this.particlesColors = [Color.BLACK];

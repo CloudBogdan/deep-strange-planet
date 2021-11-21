@@ -16,6 +16,7 @@ import { Antin } from "./objects/ores/Antin";
 import { Rady } from "./objects/ores/Rady";
 import { BurntBasalt } from "./objects/ores/BurntBasalt";
 import { Nerius } from "./objects/ores/Nerius";
+import { StonyGround } from "./objects/ores/StonyGround";
 
 const game = new Game();
 
@@ -42,6 +43,12 @@ game.addInit(()=> {
             height: [5, 90],
             divider: 5,
             ore: CrackedStone
+        },
+        {
+            value: [.5, .6],
+            height: [0, 14],
+            divider: 5,
+            ore: StonyGround
         },
 
         // > Deepest stones

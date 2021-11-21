@@ -49,6 +49,7 @@ export enum Color {
 }
 export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = {
     "stone": { hp: 10 },
+    "stony-ground": { hp: 8 },
     "antin": { hp: 52, tool: 3 },
     "basalt": { hp: 40, tool: 3 },
     "burnt-basalt": { hp: 80, tool: 4 },
@@ -57,7 +58,7 @@ export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = 
     "deep-stone": { hp: 26, tool: 2 },
     "osmy": { hp: 36, tool: 2 },
     "nerius": { hp: 32, tool: 2 },
-    "rady": { hp: 58, tool: 2 },
+    "rady": { hp: 58, tool: 4 },
 }
 export enum RawLineColor {
     "raw-cidium" = Color.YELLOW_LIGHT,

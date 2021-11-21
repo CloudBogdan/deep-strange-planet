@@ -71,8 +71,8 @@ export class Storage extends Gear {
         }        
 
     }
-    upgrade(levelUp: number) {
-        super.upgrade(levelUp);
+    upgrade(game: Game, levelUp: number) {
+        super.upgrade(game, levelUp);
 
         this.maxTotalCount = MaxStorageTotalCount[`${ this.level }-level`];
     }
@@ -140,10 +140,12 @@ export class Storage extends Gear {
             this.ui.focused.row = 1;
             this.ui.focused.slot = 0;
         }
+
+        this.closeText = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "выбросить" : "закрыть";
             
         this.renderInventoryUI(slots, game, renderer);
 
-        const name = slots[this.ui.focused.slot]
+        const name = slots[this.selectedSlotIndex]
         const raw = RawNames[name];
         if (!raw) return;
         
@@ -153,6 +155,7 @@ export class Storage extends Gear {
             raw.special || ""
         ].filter(t=> t != "");
 
+        // Render description
         this.ui.renderDescriptionUI({
             title: raw.name,
             specials: special,

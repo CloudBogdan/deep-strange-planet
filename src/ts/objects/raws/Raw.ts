@@ -37,8 +37,10 @@ export class Raw extends Sprite {
         this.velocity.set(random(-8, 8), random(-8, 8));
         this.acceleration.copy(Vector2.all(.8));
 
-        if (this.checkDistanceToPlayer(game.getChildById("player")))
+        if (this.checkDistanceToPlayer(game.getChildById("player"), Config.PICKUP_DISTANCE * 2)) {
             this.nearOnInit = true;
+            console.log(true);
+        }
     }
 
     update(game: Game) {
@@ -89,9 +91,9 @@ export class Raw extends Sprite {
         });
 
     }
-    checkDistanceToPlayer(player: Player | undefined): boolean | undefined {
+    checkDistanceToPlayer(player: Player | undefined, distance?: number): boolean | undefined {
         if (player)
-            return player.position.distance(this.position) < Config.PICKUP_DISTANCE;
+            return player.position.distance(this.position) < (distance || Config.PICKUP_DISTANCE);
     }
 
     collideWidthOtherRaw(raws: Raw[], player: Player | undefined) {

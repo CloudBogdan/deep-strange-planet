@@ -28,18 +28,35 @@ export class FallingOre extends Ore {
         super.update(game);
 
         
-        // game.getChildrenByName<Ore>("ore").map(ore=> {
-            // if (this.inChunkId == ore.inChunkId) return;
+        // game.getChildrenByName<Ore>("ore").filter(ore=> this.id != ore.id).map(ore=> {
             
-            // if (+ore.inChunkId.split(" ")[0])
+        //     const collide = game.physics.collide(this, ore);
+
+        //     this.allowGravity = !collide.bottom;
+                // this.offset.set(0, 20);
+
+            // [0] - x
+            // [1] - y
+            // [2] - chunk x
+            // [3] - chunk y
+            // const oreChunkPos = ore.inChunkId.split("-").map(n=> +n);
+            // const thisChunkPos = this.inChunkId.split("-").map(n=> +n);
+
+            // if (thisChunkPos[2] == oreChunkPos[2] && thisChunkPos[3] == oreChunkPos[3]) {
+
+            //     if (thisChunkPos[1] + 1 != oreChunkPos[1] && thisChunkPos[0] == oreChunkPos[0])
+            //         this.offset.set(0, 20);
+
+            // }
             // this.allowGravity = !(this.position.y > ore.position.y - Config.SPRITE_SIZE && ((this.position.x + Config.SPRITE_SIZE) > (ore.position.x - Config.SPRITE_SIZE)) && ore.position.x > this.position.x);
             // const collide = game.physics.collide(this, ore);
             // this.allowGravity = !collide.any;
             
-            // console.log(collide);
             // this.collider.collidesWith = collide;
             // this.collideWidth(game, ore);
         // })
+
+        // this.gravity(game, this.allowGravity);
         // console.log(this.collider.collidesWith?.bottom);
         // this.gravity(game, !this.collider.collidesWith?.bottom);
     }
@@ -49,26 +66,27 @@ export class FallingOre extends Ore {
 
         // if (!this.collider.collidesWith?.bottom && this.collider.collidesWith?.id) {
         // if (!this.collider.collidesWith?.bottom) {
-        if (this.allowGravity) {
+        if (allow) {
 
-            if (!this.willFall) {
-                this.crumble(game);
-                this.willFall = true;
-            }
+            // if (!this.willFall) {
+            //     this.crumble(game);
+            //     this.willFall = true;
+            // }
 
-            if (!this.allowFall) {
-                if ((game.clock.elapsed - this.elapsedBeforeFall) % Config.ORE_FALL_DELAY == 0)
-                    this.allowFall = true;
-            } else {
+            // if (!this.allowFall) {
+            //     if ((game.clock.elapsed - this.elapsedBeforeFall) % Config.ORE_FALL_DELAY == 0)
+            //         this.allowFall = true;
+            // } else {
                 this.velocity.y ++;
                 // this.collider.type = "dynamic";
-            }
+            // }
 
         } else {
-            this.allowFall = false;
-            this.willFall = false;
-            this.elapsedBeforeFall = game.clock.elapsed;
-            this.collider.type = "solid";
+            this.velocity.y = 0;
+            // this.allowFall = false;
+            // this.willFall = false;
+            // this.elapsedBeforeFall = game.clock.elapsed;
+            // this.collider.type = "solid";
         }
         // this.collider.collidable = this.collider.collidesWith?.bottom || false;
 

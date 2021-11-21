@@ -119,7 +119,7 @@ export class Generator {
             }
         }
     
-        this.game.initChildren(this.game);
+        this.game.initChildren();
     
         return { group: `chunk-${ __chunkId }`, pos };
 

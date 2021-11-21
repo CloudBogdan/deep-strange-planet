@@ -6,6 +6,7 @@ import player_walk_1_img from "../../images/player/walk/1.png"; // @ts-ignore
 import player_walk_2_img from "../../images/player/walk/2.png"; // @ts-ignore
 
 import stone_img from "../../images/ores/stone.png"; // @ts-ignore
+import stony_ground_img from "../../images/ores/stony-ground.png"; // @ts-ignore
 import basalt_img from "../../images/ores/basalt.png"; // @ts-ignore
 import deep_stone_img from "../../images/ores/deep-stone.png"; // @ts-ignore
 import burnt_basalt_img from "../../images/ores/burnt-basalt.png"; // @ts-ignore
@@ -61,6 +62,7 @@ export function initAssets(game: Game) {
 
     // > Ores
     game.loadAsset("stone", [stone_img]);
+    game.loadAsset("stony-ground", [stony_ground_img]);
     game.loadAsset("basalt", [basalt_img]);
     game.loadAsset("deep-stone", [deep_stone_img]);
     game.loadAsset("burnt-basalt", [burnt_basalt_img]);

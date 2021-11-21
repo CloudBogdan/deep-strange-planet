@@ -1,5 +1,6 @@
 import { Config } from "../../config";
 import { Game, ISpriteProps, Sprite } from "../../engine";
+import { SpawnParticles } from "../../engine/components/Particles";
 import { UI, Button } from "../../engine/components/UI";
 import { Renderer } from "../../engine/Renderer";
 import { asImage, assetIsValid, lerp, Vector2 } from "../../engine/utils/math";
@@ -117,7 +118,7 @@ export class Gear extends Sprite {
             });
             // Preview
             renderer.drawSprite({
-                texture: asImage(game.getAssetByName([this.gearType, this.level].join("-"))),
+                texture: asImage(game.getAssetByName([this.gearType, 1].join("-"))),
                 position: new Vector2(-size * 2, -size - 15).add(windowCenter).add(this.headerOffset),
                 width: 2,
                 height: 2,
@@ -147,9 +148,27 @@ export class Gear extends Sprite {
         }
     }
 
-    upgrade(levelUp: number) {
-        if (this.level < MaxGearLevel)
+    upgrade(game: Game, levelUp: number) {
+        if (this.level < MaxGearLevel) {
             this.level += levelUp;
+
+            SpawnParticles(game, this.position, {
+                render: (renderer, part)=> {
+                    renderer.drawSprite({
+                        texture: asImage(game.getAssetByName("level-up")),
+                        position: part.position,
+                        opacity: part.size,
+                        scale: Vector2.all(.8),
+                        layer: "particles"
+                    })
+                },
+                velocity: ()=> new Vector2(0, -1.5),
+                size: [5, 5],
+                downSize: -.08,
+                count: 1,
+                gravity: 0
+            });
+        }
     }
     checkInteract() {
         if (!this.player) return;

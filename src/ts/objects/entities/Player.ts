@@ -133,8 +133,35 @@ export class Player extends Entity {
         this.bounds();
     }
     render(game: Game, renderer: Renderer) {
+        this.renderUI(game, renderer);    
         super.render(game, renderer);
 
+    }
+    renderUI(game: Game, renderer: Renderer) {
+        const size = Config.SPRITE_SIZE;
+        
+        // Tool level
+        renderer.drawSprite({
+            texture: asImage(game.getAssetByName("tools")),
+            position: new Vector2(size, innerHeight - size),
+            layer: "ui"
+        });
+        renderer.drawText({
+            text: this.toolLevel + "ур.",
+            position: new Vector2(size, innerHeight - size).add(Vector2.all(size * .3)),
+            font: "22px Pixel",
+            layer: "ui"
+        });
+
+        // Bottle
+        if (this.hasBottle)
+            renderer.drawSprite({
+                texture: asImage(game.getAssetByName("bottle")),
+                position: new Vector2(size * 2 + 20, innerHeight - size),
+                layer: "ui"
+            })
+
+        // Damage vignette
         renderer.drawSprite({
             texture: asImage(game.getAssetByName("damage")),
             width: innerWidth / Config.SPRITE_SIZE,
