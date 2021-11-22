@@ -23,8 +23,7 @@ export class Robot extends Entity {
         this.pickupButton = new Button();
         this.playerIsNear = false;
         
-        this.moveSpeed = 2;
-        this.movement = new Vector2(0, 2);
+        this.movement = new Vector2(0, 1);
         this.allowAnimate = false;
         this.acceleration.set(.95, .95);
 
@@ -51,7 +50,7 @@ export class Robot extends Entity {
         this.pickup(game);
         
         if (!this.breaked)
-            this._move(game);
+            this._move();
 
         if (!this.collider.collidesWith) return;
         const ore = game.getChildById<Ore>(this.collider.collidesWith.id);
@@ -84,7 +83,7 @@ export class Robot extends Entity {
 
     }
 
-    _move(game: Game) {
+    _move() {
         this.velocity.copy(this.velocity.add(this.movement.mul(.2)));
     }
 

@@ -16,6 +16,9 @@ export class Item extends Sprite {
         this.picked = false;
         this.liveStartElapsed = 0;
         this.nearOnInit = false;
+
+        this.collider.width = 6 * Config.SPRITE_SCALE;
+        this.collider.height = 6 * Config.SPRITE_SCALE;
     }
 
     init(game: Game) {
@@ -28,6 +31,21 @@ export class Item extends Sprite {
 
         if (this.checkDistanceToPlayer(game.getChildById("player"), Config.PICKUP_DISTANCE * 2))
             this.nearOnInit = true;
+    }
+    update(game: Game) {
+        super.update(game);
+
+        if (!game.renderer.inCameraViewport(this.position)) {
+            if (game.clock.elapsed - this.liveStartElapsed >= Config.RAW_LIVE_TIME)
+                game.removeChildById(this.id);
+        } else {
+            this.liveStartElapsed = game.clock.elapsed;
+        }
+        
+        if (this.allowPickup) {
+            this.followPlayer(game, game.getChildById<Player>("player"));
+            this.collideWidthOtherItems(game.getChildrenByName("raw"));
+        }
     }
 
     pickup(game: Game, player: Player, count: number) {

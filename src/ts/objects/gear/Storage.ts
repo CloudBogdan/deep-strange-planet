@@ -5,6 +5,7 @@ import { asImage, Vector2 } from "../../engine/utils/math";
 import { RawNames } from "../../names";
 import { Raws } from "../../objects";
 import { Player } from "../entities/Player";
+import { Raw } from "../raws/Raw";
 import { Gear, GearLevel } from "./Gear";
 
 type InteractType = "store" | "view";
@@ -101,7 +102,7 @@ export class Storage extends Gear {
                 if (rawInstances[i] && rawInstances[i].picked) {
                     rawInstances[i].allowPickup = false;
                     rawInstances[i].picked = false;
-                    rawInstances[i].foldToPosition = this.position;
+                    rawInstances[i].name.indexOf("raw") >= 0 ? (rawInstances[i] as Raw).foldToPosition = this.position : 0;
                 }
             }
 
@@ -202,9 +203,8 @@ export class Storage extends Gear {
             color: this.contains.totalCount >= this.maxTotalCount ? Color.RED : "#fff",
             centered: false,
             layer: "ui"
-        })
+        });
 
-        
         slots.map((slot, index)=> {
             const isOverflow = index > this.maxRowItemsCount-1;
 

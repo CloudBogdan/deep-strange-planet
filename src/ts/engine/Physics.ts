@@ -54,8 +54,8 @@ export class Physics {
         //     }
         
         const
-            pos1 = Vector2.add(point1.position, point1.collider.offset),
-            pos2 = Vector2.add(point2.position, point2.collider.offset);
+            pos1 = Vector2.add(point1.position, point1.collider.offset).add(point1.velocity),
+            pos2 = Vector2.add(point2.position, point2.collider.offset).add(point2.velocity);
         const
             w1 = point1.collider.width / 2,
             w2 = point2.collider.width / 2;
