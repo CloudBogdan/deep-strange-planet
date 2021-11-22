@@ -64,7 +64,7 @@ export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = 
     "nerius": { hp: 32, tool: 2 },
     "rady": { hp: 58, tool: 4 },
 }
-export enum RawLineColor {
+export enum ItemLineColor {
     "raw-cidium" = Color.YELLOW_LIGHT,
     "raw-grade-cidium" = Color.YELLOW_LIGHT,
     "raw-osmy" = Color.BLUE_LIGHT,
