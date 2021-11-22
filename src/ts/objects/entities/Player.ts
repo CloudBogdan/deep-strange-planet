@@ -7,6 +7,7 @@ import { Ore } from "../ores/Ore";
 import { Raw, RawType } from "../raws/Raw";
 import { Renderer } from "../../engine/Renderer";
 import { Item } from "../item/Item";
+import { Robot } from "./Robot";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5;
@@ -87,6 +88,11 @@ export class Player extends Entity {
         this.collider.width = 10 * Config.SPRITE_SCALE;
         this.collider.height = 10 * Config.SPRITE_SCALE;
         this.collider.offset = new Vector2(3, 0);
+
+        // Set robot
+        game.gamepad.onKeyDown(this.id, "enter", ()=> {
+            this.spawnRobot(game);
+        });
     }
 
     update(game: Game) {
@@ -96,7 +102,8 @@ export class Player extends Entity {
         this.movement.set((+game.gamepad.keys.right - +game.gamepad.keys.left), (+game.gamepad.keys.down - +game.gamepad.keys.up));
         this.move();
         this.pullWire();
-
+        
+        // Dig
         const tool = tools[this.toolLevel.toString()];
 
         if (this.movement.x != 0)
@@ -104,7 +111,7 @@ export class Player extends Entity {
         else if (this.movement.y != 0)
             this.dig(game, tool.damage, tool.speed, this.toolLevel, this.movement.y > 0 ? "bottom" : "top");
 
-        this.offset.lerp(Vector2.zero(), .2);
+        //
         this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .05);
 
         this.bounds();
@@ -171,7 +178,6 @@ export class Player extends Entity {
         this.inventory.slots[type].instances.push(item);
             
         this.inventory.slots[type].instances = instances.filter((i, index)=> instances.indexOf(i) == index);
-
     }
     pullWire() {
         
@@ -188,5 +194,19 @@ export class Player extends Entity {
     upgradeTool(levelUp: number) {
         if (this.toolLevel < MaxToolLevel)
             this.toolLevel += levelUp;
+    }
+    spawnRobot(game: Game) {
+        if (!this.inventory.slots["item-robot"] || this.inventory.slots["item-robot"].count <= 0) return;
+
+        // Sub. robots count in inventory
+        this.inventory.slots["item-robot"].count --;
+
+        // Remove robot inventory instance
+        game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
+        this.inventory.slots["item-robot"].instances.splice(0, 1);
+        
+        // Spawn robot
+        game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
+        game.initChildren();
     }
 }

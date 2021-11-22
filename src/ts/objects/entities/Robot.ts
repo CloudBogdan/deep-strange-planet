@@ -5,6 +5,7 @@ import { Button } from "../../engine/components/UI";
 import { Renderer } from "../../engine/Renderer";
 import { random, Vector2 } from "../../engine/utils/math";
 import { Direction } from "../../types";
+import { RobotItem } from "../item/RobotItem";
 import { Ore } from "../ores/Ore";
 import { Entity } from "./Entity";
 import { Player } from "./Player";
@@ -14,10 +15,14 @@ export class Robot extends Entity {
     playerIsNear: boolean
     
     breaked: boolean
+
+    initElapsed: number
+    allowPickup: boolean
     
-    constructor() {
+    constructor(position: Vector2) {
         super("robot", "robot-stay", {
-            position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2 - Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE)
+            position: position.expand(),
+            scale: Vector2.zero()
         });
 
         this.pickupButton = new Button();
@@ -28,26 +33,40 @@ export class Robot extends Entity {
         this.acceleration.set(.95, .95);
 
         this.breaked = false;
+
+        this.initElapsed = 0;
+        this.allowPickup = false;
+
+        this.digOffsetFactor = .1;
     }
 
     init(game: Game) {
         super.init(game);
 
-        game.gamepad.onKeyDown("enter", ()=> {
-            if (!this.playerIsNear) return;
+        this.scale.set();
 
+        this.initElapsed = game.clock.elapsed;
+        game.gamepad.onKeyDown(this.id, "enter", ()=> {
+            if (!this.playerIsNear || !this.allowPickup) return;
+
+            // Pickup robot
             this.pickupButton.click();
+            this.pickup(game);
             console.log(true);
         });
     }
     update(game: Game) {
         super.update(game);
+        // if ((game.clock.elapsed - this.initElapsed) % Config.ROBOT_ALLOW_PICKUP_DELAY == 0 && !this.allowPickup)
+        if (this.scale.mul(10).apply(Math.round).x >= 10 && !this.allowPickup)
+            this.allowPickup = true;
+        
         if (!game.renderer.inCameraViewport(this.position)) {
             this.velocity.set();
             return;
         }
 
-        this.pickup(game);
+        this.checkPlayerDistance(game);
         
         if (!this.breaked)
             this._move();
@@ -66,6 +85,8 @@ export class Robot extends Entity {
     }
     render(game: Game, renderer: Renderer) {
         super.render(game, renderer);
+
+        this.scale.lerp(Vector2.all(), .1);
 
         // Pickup button
         if (this.playerIsNear) {
@@ -116,11 +137,17 @@ export class Robot extends Entity {
         }
 
     }
-    pickup(game: Game) {
+    checkPlayerDistance(game: Game) {
 
         const player = game.getChildById<Player>("player");
         if (!player) return;
         
         this.playerIsNear = player.position.distance(this.position) < Config.ROBOT_PICKUP_DISTANCE
+    }
+    pickup(game: Game) {
+        game.add(new RobotItem(this.position));
+        game.initChildren();
+        game.removeChildById(this.id);
+        this.playerIsNear = false;
     }
 }

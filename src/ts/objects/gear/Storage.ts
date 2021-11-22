@@ -83,7 +83,7 @@ export class Storage extends Gear {
         
         let storedCount = 0;
         let totalStoredCount = 0;
-        const slotNames = Object.keys(this.player.inventory.slots);
+        const slotNames = Object.keys(this.player.inventory.slots).filter(name=> name.indexOf("raw") >= 0);
         
         slotNames.map(slot=> {
             if (!this.player) return;

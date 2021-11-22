@@ -9,8 +9,12 @@ export class Item extends Sprite {
     liveStartElapsed: number
     nearOnInit: boolean
     
-    constructor(name: string, assetName: string, props?: ISpriteProps) {
-        super(name, assetName, props);
+    constructor(name: string, assetName: string, position: Vector2, props?: ISpriteProps) {
+        super(name, assetName, {
+            ...props,
+            colliderType: "dynamic",
+            position: position.expand()
+        });
 
         this.allowPickup = true;
         this.picked = false;
@@ -44,7 +48,7 @@ export class Item extends Sprite {
         
         if (this.allowPickup) {
             this.followPlayer(game, game.getChildById<Player>("player"));
-            this.collideWidthOtherItems(game.getChildrenByName("raw"));
+            this.collideWidthOtherItems([...game.getChildrenByName("raw"), ...game.getChildrenByName("item")]);
         }
     }
 

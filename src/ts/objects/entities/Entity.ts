@@ -18,6 +18,8 @@ export class Entity extends Sprite {
     movement: Vector2
     allowMove: boolean
     allowAnimate: boolean
+
+    digOffsetFactor: number
     
     constructor(name: string, assetName: string, props?: IEntityProps) {
         super(name, assetName, props);
@@ -28,6 +30,8 @@ export class Entity extends Sprite {
         this.movement = new Vector2();
         this.allowMove = true;
         this.allowAnimate = true;
+
+        this.digOffsetFactor = .2;
     }
 
     init(game: Game) {
@@ -43,6 +47,7 @@ export class Entity extends Sprite {
             this.velocity.set();
         }
 
+        this.offset.lerp(Vector2.zero(), this.digOffsetFactor);
         this.animate(game);
     }
     dig(game: Game, damage: number, speed: number, level: ToolLevel, direction: Direction): boolean {

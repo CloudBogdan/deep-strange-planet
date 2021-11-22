@@ -54,7 +54,7 @@ export class Gear extends Sprite {
         this.ui.enabled = false;
         this.player = game.getChildById("player");
 
-        game.gamepad.onKeyDown("enter", ()=> {
+        game.gamepad.onKeyDown(this.id, "enter", ()=> {
             if (!this.playerIsNear) return;
 
             if (this.player)
@@ -164,7 +164,7 @@ export class Gear extends Sprite {
                 },
                 velocity: ()=> new Vector2(0, -1.5),
                 size: [5, 5],
-                downSize: -.08,
+                downSize: .08,
                 count: 1,
                 gravity: 0
             });

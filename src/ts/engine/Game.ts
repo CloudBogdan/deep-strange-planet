@@ -81,15 +81,12 @@ export class Game extends Container {
         return this.assets.find(asset=> asset.name == name);
     }
     
-    removeChildById(id: Point["id"]) {
+    removeChildById(id: Point["id"], listenerId?: string) {
         super.removeChildById(id);
-        // this.renderer.app.stage.removeChildAt(this.renderer.app.stage.children.findIndex(child=> compareNames((child as any).id, id)));
-        // this.renderer.app.stage.children.find(child=> compareNames((child as any).id, id)).visible = false;
+        this.gamepad.removeListenerById(listenerId || id);
     }
 
     initChildren() {
-        // this.gamepad.onAnyKeyDownListeners = [];
-        // this.gamepad.onKeyDownListeners = [];
         super.initChildren(this);
     }
     
@@ -120,7 +117,6 @@ export class Game extends Container {
                 if ((this.clock.elapsed - this.camera.startShakeElapsed) % 20 == 0)
                     this.camera.shaking = false;
                 this.camera.offset.copy(this.camera.offset.add(new Vector2(random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude), random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude))));
-                console.log(this.camera.offset);
             }
             
             // Update

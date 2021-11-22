@@ -2,6 +2,7 @@ import { Config } from "../../config";
 import { Game } from "../../engine";
 import { asImage, Vector2 } from "../../engine/utils/math";
 import { MaxToolLevel } from "../entities/Player";
+import { RobotItem } from "../item/RobotItem";
 import { MaxGearLevel } from "./Gear";
 import { Recipe, Recycler } from "./Recycler";
 
@@ -88,8 +89,9 @@ const recipes = (recycler: Recycler)=> ({
     // Craft robot
     "robot": new Recipe({
         recipe: ()=> ({ "raw-osmy": 6, "raw-cidium": 12, "raw-nerius": 5 } as any),
-        onCraft: ()=> {
-            
+        onCraft: (game)=> {
+            game.add(new RobotItem(recycler.position))
+            game.initChildren();
         },
         icon: (game, pos)=> {
             game.renderer.drawSprite({

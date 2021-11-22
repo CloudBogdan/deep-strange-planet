@@ -22,7 +22,7 @@ import { Robot } from "./objects/entities/Robot";
 const game = new Game();
 
 const player = game.add<Player>(new Player());
-const robot = game.add<Robot>(new Robot());
+const robot = game.add<Robot>(new Robot(new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2 - Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE)));
 const level = initLevel(game);
 
 let lastLoop = Date.now();

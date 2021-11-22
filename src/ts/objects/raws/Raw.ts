@@ -13,10 +13,7 @@ export class Raw extends Item {
     foldToPosition: Vector2
     
     constructor(type: RawType, position: Vector2) {
-        super(`${ type }`, type, {
-            position: position.expand(),
-            colliderType: "dynamic",
-        });
+        super(`${ type }`, type, position);
 
         this.rawType = type;
         this.foldToPosition = Vector2.zero();

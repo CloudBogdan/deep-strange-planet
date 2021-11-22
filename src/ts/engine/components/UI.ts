@@ -76,7 +76,7 @@ export class UI {
     init(game: Game) {
         this.game = game;
 
-        game.gamepad.onAnyKeyDown(name=> {
+        game.gamepad.onAnyKeyDown("ui-listener", name=> {
             if (this.allowSelectSlots && this.enabled)
 
             switch (name) {

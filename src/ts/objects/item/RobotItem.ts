@@ -1,7 +1,10 @@
+import { Vector2 } from "../../engine/utils/math";
 import { Item } from "./Item";
 
 export class RobotItem extends Item {
-    constructor() {
-        super("robot-item", "robot-stay");
+    constructor(position: Vector2) {
+        super("item-robot", "robot-stay", position, {
+            scale: new Vector2(.9, .8)
+        });
     }
 }

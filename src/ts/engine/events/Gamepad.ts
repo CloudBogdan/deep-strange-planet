@@ -13,8 +13,8 @@ export class Gamepad {
 
     pressed: boolean
 
-    onKeyDownListeners: ({ name: string, callback: ()=> void})[]
-    onAnyKeyDownListeners: ({ callback: (name: string)=> void })[]
+    onKeyDownListeners: ({ id: string, name: string, callback: ()=> void})[]
+    onAnyKeyDownListeners: ({ id: string, callback: (name: string)=> void })[]
     
     constructor() {
         this.eventKeys = {
@@ -74,19 +74,24 @@ export class Gamepad {
         });
     }
 
-    onKeyDown(name: string, callback: ()=> void) {
+    onKeyDown(id: string, name: string, callback: ()=> void) {
 
         this.onKeyDownListeners.push({
-            name, callback
+            id, name, callback
         });
         
     }
-    onAnyKeyDown(callback: (name: string)=> void) {
+    onAnyKeyDown(id: string, callback: (name: string)=> void) {
         
         this.onAnyKeyDownListeners.push({
-            callback
+            id, callback
         });
 
+    }
+
+    removeListenerById(id: string) {
+        this.onKeyDownListeners = this.onKeyDownListeners.filter(l=> l.id != id);
+        this.onAnyKeyDownListeners = this.onAnyKeyDownListeners.filter(l=> l.id != id);
     }
 
     updateKey(code: string, enabled: boolean) {
