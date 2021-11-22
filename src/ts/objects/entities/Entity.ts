@@ -1,6 +1,10 @@
+import { Config } from "../../config";
 import { Game, ISpriteProps, Sprite } from "../../engine"
 import { SpawnParticles } from "../../engine/components/Particles";
 import { random, safeValue, Vector2 } from "../../engine/utils/math"
+import { Direction } from "../../types";
+import { Ore } from "../ores/Ore";
+import { ToolLevel } from "./Player";
 
 export type IEntityProps = {
     hp?: number
@@ -13,6 +17,7 @@ export class Entity extends Sprite {
 
     movement: Vector2
     allowMove: boolean
+    allowAnimate: boolean
     
     constructor(name: string, assetName: string, props?: IEntityProps) {
         super(name, assetName, props);
@@ -22,10 +27,13 @@ export class Entity extends Sprite {
         
         this.movement = new Vector2();
         this.allowMove = true;
+        this.allowAnimate = true;
     }
 
     init(game: Game) {
         super.init(game);
+
+        this.collider.type = "dynamic";
     }
 
     update(game: Game) {
@@ -37,6 +45,37 @@ export class Entity extends Sprite {
 
         this.animate(game);
     }
+    dig(game: Game, damage: number, speed: number, level: ToolLevel, direction: Direction): boolean {
+
+        let successOreHit = false;
+        
+        if (this.collider.collidesWith != null && this.collider.collidesWith.any) {
+            const ore = game.getChildById<Ore>(this.collider.collidesWith.id, true);
+            // const tool = tools[this.toolLevel.toString()];
+
+            if (ore == undefined) return false;
+
+            if (this.collider.collidesWith[direction] && this.position.distance(ore.position) < Config.SPRITE_SIZE * 2 && game.clock.elapsed % speed == 0) {
+                ore.hit(game, damage, level);
+
+                successOreHit = level >= ore.needToolLevel;
+
+                if (direction == "right")
+                    this.offset = new Vector2(10, 0);
+                else if (direction == "left")
+                    this.offset = new Vector2(-10, 0);
+                else if (direction == "top")
+                    this.offset = new Vector2(0, -10);
+                else if (direction == "bottom")
+                    this.offset = new Vector2(0, 10);
+            }
+
+        }
+        this.collider.collidesWith = null;
+
+        return successOreHit;
+
+    }
 
     move() {
         if (this.movement.x != 0)
@@ -46,6 +85,8 @@ export class Entity extends Sprite {
         this.velocity.y = this.movement.normalize().y * this.moveSpeed;
     }
     animate(game: Game) {
+        if (!this.allowAnimate) return;
+        
         if (this.velocity.x != 0 || this.velocity.y != 0)
             this.playAnimation(game, this.name + "-walk");
         else
@@ -68,7 +109,7 @@ export class Entity extends Sprite {
             count: 1,
             gravity: 0,
             velocity: ()=> new Vector2(0, -1.5),
-            downSize: -.08,
+            downSize: .08,
             box: ()=> new Vector2(random(-10, 10), random(-10, 10))
         });
     }

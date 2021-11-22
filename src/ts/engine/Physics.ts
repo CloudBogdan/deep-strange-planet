@@ -11,7 +11,7 @@ export type Collide = {
     bottom: boolean
     any: boolean
 }
-export type ColliderType = "solid" | "dynamic" | "solid-dynamic" | null;
+export type ColliderType = "solid" | "dynamic" | "none";
 export class Collider {
     type: ColliderType
     
@@ -103,17 +103,11 @@ export class Physics {
     }
     
     update() {
-        // for (let i = 0; i < this.game.children.length; i ++) {
-        //     for (let j = 0; j < this.game.children.length; j ++) {                
-        //         this.collideWith(this.game.children[i], this.game.children[j]);
-        //     }
-        // }
-    }
-    tilesCollide(points: Point[], tiles: Point[][]) {
-        for (let y = 0; y < tiles.length; y ++) {
-            for (let x = 0; x < tiles[y].length; x ++) {                
-                if (points.length == 1 && tiles[y][x])
-                    this.collideWith(points[0], tiles[y][x]);
+        const children = this.game.children.filter(child=> (child.collider.type != "none" && child.collider.collidable));
+        
+        for (let i = 0; i < children.length; i ++) {
+            for (let j = 0; j < children.length; j ++) {                
+                this.collideWith(children[i], children[j]);
             }
         }
     }

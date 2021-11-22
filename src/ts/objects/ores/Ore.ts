@@ -66,7 +66,7 @@ export class Ore extends Sprite {
         this.animatedScale = lerp(this.animatedScale, 1, .2);
         this.scale.set(this.animatedScale, this.animatedScale);
         
-        this.collideWidth(game, game.getChildById<Player>("player"));
+        // this.collideWidth(game, game.getChildById<Player>("player"));
     }
     
     render(game: Game, renderer: Renderer) {
@@ -75,8 +75,8 @@ export class Ore extends Sprite {
         if (Config.ALLOW_DARK)
             this.darken(game);
     }
-    hit(game: Game, damage: number, player: Player, onBreak?: ()=> void) {
-        if (this.unbreakable || !(player.toolLevel >= this.needToolLevel)) return;
+    hit(game: Game, damage: number, toolLevel: ToolLevel, onBreak?: ()=> void): boolean {
+        if (this.unbreakable || toolLevel < this.needToolLevel) return false;
 
         this.hp -= damage;
         this.animatedScale = .8;
@@ -92,6 +92,8 @@ export class Ore extends Sprite {
             //     onBreak();
             this.onBreak(game);
         }
+
+        return true;
 
     }
     onBreak(game: Game) {

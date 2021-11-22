@@ -1,7 +1,7 @@
 import { Color } from "../../config";
 import { Game } from "../../engine";
 import { Vector2 } from "../../engine/utils/math";
-import { Player } from "../entities/Player";
+import { Player, ToolLevel } from "../entities/Player";
 import { RawRady } from "../raws/RawRady";
 import { Ore } from "./Ore";
 
@@ -12,8 +12,11 @@ export class Rady extends Ore {
         this.particlesColors = [Color.GREY, Color.GREEN];
     }
 
-    hit(game: Game, damage: number, player: Player) {
-        super.hit(game, damage, player);
+    hit(game: Game, damage: number, level: ToolLevel) {
+        super.hit(game, damage, level);
+
+        const player = game.getChildById<Player>("player");
+        if (!player) return;
 
         if (!player.hasBottle)
             player.hit(game, 1);

@@ -7,6 +7,7 @@ import { Renderer } from "../Renderer";
 type ParticlesSettings = {
     colors?: any[]
     downSize?: number
+    downOpacity?: number
     size?: [number, number]
 
     gravity?: number
@@ -26,15 +27,19 @@ export class Particle {
     rotationVelocity: number
 
     color: string
+    opacity: number
     gravity: number
     size: number
     downSize: number
+    downOpacity: number
     
     render: (renderer: Renderer, part: Particle)=> void
     
     constructor(position: Vector2, settings?: ParticlesSettings) {
         const c = settings?.colors;
         this.color = c ? c[Math.floor(random(0, c.length))] : Color.BLACK;
+        this.opacity = 1;
+        this.downOpacity = settings?.downOpacity || 0;
         
         this.position = new Vector2(position.x, position.y);
         this.rotation = 0;
@@ -64,7 +69,8 @@ export class Particle {
         this.velocity.y += this.gravity;
 
         this.rotation += this.rotationVelocity;
-        this.size -= Math.abs(this.downSize);
+        this.size -= this.downSize;
+        this.opacity -= this.downOpacity;
         
         this.velocity.x *= .99;
         this.velocity.y *= .99;

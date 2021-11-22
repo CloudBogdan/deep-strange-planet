@@ -127,6 +127,7 @@ export class UI {
         const focused = this.focused.row == row && this.focused.slot == slot;
 
         render();
+        
         if (focused || ghost) {
             this.game.renderer.drawRect({
                 color: "rgba(0, 0, 0, 0)",

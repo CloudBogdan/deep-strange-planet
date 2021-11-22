@@ -110,7 +110,7 @@ export class Renderer {
         });
         this.particles.map((part, index)=> {
 
-            if (part.size <= 0) 
+            if (part.size <= 0 || part.opacity <= 0) 
                 this.particles.splice(index, 1);
         });
     }

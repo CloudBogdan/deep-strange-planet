@@ -77,6 +77,8 @@ const recipes = (recycler: Recycler)=> ({
             game.renderer.drawSprite({
                 texture: asImage(game.getAssetByName("bottle")),
                 position: pos,
+                width: .8,
+                height: .8,
                 layer: "ui"
             });
         },
@@ -87,13 +89,11 @@ const recipes = (recycler: Recycler)=> ({
     "robot": new Recipe({
         recipe: ()=> ({ "raw-osmy": 6, "raw-cidium": 12, "raw-nerius": 5 } as any),
         onCraft: ()=> {
-            if (!recycler.player) return
-
-            recycler.player.hasBottle = true;
+            
         },
         icon: (game, pos)=> {
             game.renderer.drawSprite({
-                texture: asImage(game.getAssetByName("bottle")),
+                texture: asImage(game.getAssetByName("robot-stay")),
                 position: pos,
                 layer: "ui"
             });

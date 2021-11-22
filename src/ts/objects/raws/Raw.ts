@@ -18,8 +18,11 @@ export class Raw extends Sprite {
     constructor(type: RawType, position: Vector2) {
         super(`raw-${ type }`, type, {
             position: position.expand(),
-            colliderType: null
+            colliderType: "dynamic",
         });
+
+        this.collider.width = 6 * Config.SPRITE_SCALE;
+        this.collider.height = 6 * Config.SPRITE_SCALE;
 
         this.rawType = type;
         this.allowPickup = true;

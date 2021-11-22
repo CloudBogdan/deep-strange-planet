@@ -88,32 +88,6 @@ export class Player extends Entity {
         this.collider.offset = new Vector2(3, 0);
     }
 
-    dig(game: Game, direction: Direction) {
-        
-        if (this.collider.collidesWith != null && this.collider.collidesWith.any) {
-            const ore = game.getChildById<Ore>(this.collider.collidesWith.id, true);
-            const tool = tools[this.toolLevel.toString()];
-
-            if (ore == undefined) return;
-
-            if (this.collider.collidesWith[direction] && this.position.distance(ore.position) < Config.SPRITE_SIZE * 2 && game.clock.elapsed % tool.speed == 0) {
-                ore.hit(game, tool.damage, this);
-
-                if (direction == "right")
-                    this.offset = new Vector2(10, 0);
-                else if (direction == "left")
-                    this.offset = new Vector2(-10, 0);
-                else if (direction == "top")
-                    this.offset = new Vector2(0, -10);
-                else if (direction == "bottom")
-                    this.offset = new Vector2(0, 10);
-            }
-
-        }
-        this.collider.collidesWith = null;
-
-    }
-
     update(game: Game) {
         super.update(game);
         if (!this.allowMove) return;
@@ -122,10 +96,12 @@ export class Player extends Entity {
         this.move();
         this.pullWire();
 
+        const tool = tools[this.toolLevel.toString()];
+
         if (this.movement.x != 0)
-            this.dig(game, this.movement.x > 0 ? "right" : "left");
+            this.dig(game, tool.damage, tool.speed, this.toolLevel, this.movement.x > 0 ? "right" : "left");
         else if (this.movement.y != 0)
-            this.dig(game, this.movement.y > 0 ? "bottom" : "top");
+            this.dig(game, tool.damage, tool.speed, this.toolLevel, this.movement.y > 0 ? "bottom" : "top");
 
         this.offset.lerp(Vector2.zero(), .2);
         this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .05);
@@ -133,9 +109,9 @@ export class Player extends Entity {
         this.bounds();
     }
     render(game: Game, renderer: Renderer) {
-        this.renderUI(game, renderer);    
         super.render(game, renderer);
-
+        
+        this.renderUI(game, renderer);    
     }
     renderUI(game: Game, renderer: Renderer) {
         const size = Config.SPRITE_SIZE;

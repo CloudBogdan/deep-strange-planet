@@ -5,6 +5,8 @@ import player_walk_0_img from "../../images/player/walk/0.png"; // @ts-ignore
 import player_walk_1_img from "../../images/player/walk/1.png"; // @ts-ignore
 import player_walk_2_img from "../../images/player/walk/2.png"; // @ts-ignore
 
+import robot_stay_img from "../../images/entities/robot/robot-stay.png"; // @ts-ignore
+
 import stone_img from "../../images/ores/stone.png"; // @ts-ignore
 import stony_ground_img from "../../images/ores/stony-ground.png"; // @ts-ignore
 import basalt_img from "../../images/ores/basalt.png"; // @ts-ignore
@@ -60,6 +62,9 @@ export function initAssets(game: Game) {
         player_stay_img,
     ]);
 
+    // > Entities
+    game.loadAsset("robot-stay", [robot_stay_img]);
+
     // > Ores
     game.loadAsset("stone", [stone_img]);
     game.loadAsset("stony-ground", [stony_ground_img]);
@@ -67,10 +72,10 @@ export function initAssets(game: Game) {
     game.loadAsset("deep-stone", [deep_stone_img]);
     game.loadAsset("burnt-basalt", [burnt_basalt_img]);
     game.loadAsset("destrony", [destrony_img]);
-    game.loadAsset("stone-1", [stone_1_img]);
-    game.loadAsset("stone-2", [stone_2_img]);
-    game.loadAsset("stone-3", [stone_3_img]);
-    game.loadAsset("stone-4", [stone_4_img]);
+    // game.loadAsset("stone-1", [stone_1_img]);
+    // game.loadAsset("stone-2", [stone_2_img]);
+    // game.loadAsset("stone-3", [stone_3_img]);
+    // game.loadAsset("stone-4", [stone_4_img]);
     game.loadAsset("cracked-stone", [cracked_stone_img]);
 
     game.loadAsset("cidium", [cidium_img]);

@@ -14,6 +14,6 @@ export class RawNerius extends Raw {
         const player = game.getChildById<Player>("player");
         if (!player) return;
 
-        player.moveSpeed = this.picked ? 2 : 5;
+        // player.moveSpeed = this.picked ? 2 : 5;
     }
 }

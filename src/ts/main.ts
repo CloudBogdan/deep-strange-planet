@@ -17,10 +17,12 @@ import { Rady } from "./objects/ores/Rady";
 import { BurntBasalt } from "./objects/ores/BurntBasalt";
 import { Nerius } from "./objects/ores/Nerius";
 import { StonyGround } from "./objects/ores/StonyGround";
+import { Robot } from "./objects/entities/Robot";
 
 const game = new Game();
 
 const player = game.add<Player>(new Player());
+const robot = game.add<Robot>(new Robot());
 const level = initLevel(game);
 
 let lastLoop = Date.now();
