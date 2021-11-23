@@ -88,7 +88,8 @@ const recipes = (recycler: Recycler)=> ({
 
     // Craft robot
     "robot": new Recipe({
-        recipe: ()=> ({ "raw-osmy": 6, "raw-cidium": 12, "raw-nerius": 5 } as any),
+        // recipe: ()=> ({ "raw-osmy": 6, "raw-cidium": 12, "raw-nerius": 5 } as any),
+        recipe: ()=> ({ "raw-osmy": 1, "raw-cidium": 1, "raw-nerius": 1 } as any),
         onCraft: (game)=> {
             game.add(new RobotItem(recycler.position))
             game.initChildren();

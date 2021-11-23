@@ -91,7 +91,7 @@ export class Player extends Entity {
 
         // Set robot
         game.gamepad.onKeyDown(this.id, "enter", ()=> {
-            this.spawnRobot(game);
+            this.placeRobot(game);
         });
     }
 
@@ -102,6 +102,9 @@ export class Player extends Entity {
         this.movement.set((+game.gamepad.keys.right - +game.gamepad.keys.left), (+game.gamepad.keys.down - +game.gamepad.keys.up));
         this.move();
         this.pullWire();
+
+        // Slow
+        this.moveSpeed = this.checkItemInInventory("raw-nerius") ? 2 : 5;
         
         // Dig
         const tool = tools[this.toolLevel.toString()];
@@ -123,6 +126,15 @@ export class Player extends Entity {
     }
     renderUI(game: Game, renderer: Renderer) {
         const size = Config.SPRITE_SIZE;
+        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
+
+        // Place robot text
+        if (this.checkItemInInventory("item-robot"))
+            renderer.drawText({
+                text: "[OK] - установить",
+                position: new Vector2(0, 150).add(windowCenter),
+                layer: "ui"
+            });
         
         // Tool level
         renderer.drawSprite({
@@ -157,15 +169,35 @@ export class Player extends Entity {
     }
 
     bounds() {
-        if (this.position.y < -Config.GROUND_HEIGHT) {
-            this.position.y = -Config.GROUND_HEIGHT;
-        }
-        if (this.position.y < 0) {
-            const clampX = Config.DOME_DIAMETER / 2;
-            if (this.position.x < Config.WORLD_X_CENTER - clampX + 40)
-                this.position.x = Config.WORLD_X_CENTER - clampX + 40;
-            if (this.position.x > Config.WORLD_X_CENTER + clampX - 40)
-                this.position.x = Config.WORLD_X_CENTER + clampX - 40;
+        // World bounds
+        const worldWidth = Math.floor((Config.WORLD_WIDTH * Config.SPRITE_SIZE));
+        
+        // By width
+        if (this.position.x < 0)
+            this.position.x = 0
+        else if (this.position.x > worldWidth)
+            this.position.x = worldWidth
+        
+        // Dome bounds
+        const halfDiameter = Config.DOME_DIAMETER / 2;
+
+        if (this.position.x > Config.WORLD_X_CENTER - halfDiameter + 40 && this.position.x < Config.WORLD_X_CENTER + halfDiameter - 40) {
+            if (this.position.y < -Config.SPRITE_SIZE / 2) {
+        
+                if (this.position.y < -Config.GROUND_HEIGHT) {
+                    this.position.y = -Config.GROUND_HEIGHT;
+                }
+                if (this.position.x < Config.WORLD_X_CENTER - halfDiameter + 48)
+                    this.position.x = Config.WORLD_X_CENTER - halfDiameter + 48;
+                if (this.position.x > Config.WORLD_X_CENTER + halfDiameter - 48)
+                    this.position.x = Config.WORLD_X_CENTER + halfDiameter - 48;
+
+            }
+
+        } else {
+            // By height
+            if (this.position.y < -Config.SPRITE_SIZE / 2)
+                this.position.y = -Config.SPRITE_SIZE / 2;
         }
     }
     
@@ -195,8 +227,11 @@ export class Player extends Entity {
         if (this.toolLevel < MaxToolLevel)
             this.toolLevel += levelUp;
     }
-    spawnRobot(game: Game) {
-        if (!this.inventory.slots["item-robot"] || this.inventory.slots["item-robot"].count <= 0) return;
+    checkItemInInventory(name: string) {
+        return this.inventory.slots[name] && this.inventory.slots[name].count > 0
+    }
+    placeRobot(game: Game) {
+        if (!this.checkItemInInventory("item-robot")) return;
 
         // Sub. robots count in inventory
         this.inventory.slots["item-robot"].count --;
@@ -205,7 +240,7 @@ export class Player extends Entity {
         game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
         this.inventory.slots["item-robot"].instances.splice(0, 1);
         
-        // Spawn robot
+        // Place robot
         game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
         game.initChildren();
     }

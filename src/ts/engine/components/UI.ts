@@ -214,7 +214,7 @@ export class UI {
             gravity: 0,
             rotationVelocity: ()=> random(-.02, .02),
             velocity: ()=> new Vector2(0, -1.5),
-            downSize: -.08,
+            downSize: .08,
         });
     }
 }

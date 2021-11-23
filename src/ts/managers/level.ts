@@ -8,8 +8,8 @@ export function initLevel(game: Game) {
     const ground = game.add<Sprite>(new Sprite("ground", "ground", {
         width: 4,
         height: 4,
-        position: new Vector2(Math.round(Config.SPRITE_SIZE * 1.5), -Config.SPRITE_SIZE * .5 * 3),
-        repeat: Math.round(Config.WORLD_WIDTH / 4) + 2,
+        position: new Vector2(-Config.SPRITE_SIZE * 10, -Config.SPRITE_SIZE * .5 * 3),
+        repeat: Math.round(Config.WORLD_WIDTH) + 2,
         layer: "bg"
     }));
 

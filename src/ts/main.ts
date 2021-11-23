@@ -18,11 +18,12 @@ import { BurntBasalt } from "./objects/ores/BurntBasalt";
 import { Nerius } from "./objects/ores/Nerius";
 import { StonyGround } from "./objects/ores/StonyGround";
 import { Robot } from "./objects/entities/Robot";
+import { Destrony } from "./objects/ores/Destrony";
 
 const game = new Game();
 
 const player = game.add<Player>(new Player());
-const robot = game.add<Robot>(new Robot(new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2 - Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE)));
+// const robot = game.add<Robot>(new Robot(new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2 - Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE)));
 const level = initLevel(game);
 
 let lastLoop = Date.now();
@@ -94,6 +95,12 @@ game.addInit(()=> {
             value: [0, 1],
             height: [GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT, Config.WORLD_HEIGHT],
             ore: BurntBasalt
+        },
+        // > Destrony layer
+        {
+            value: [0, 1],
+            height: [Config.WORLD_HEIGHT, Config.WORLD_HEIGHT],
+            ore: Destrony
         },
         
         // > Ores
