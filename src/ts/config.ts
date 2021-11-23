@@ -1,4 +1,5 @@
 import { ToolLevel } from "./objects/entities/Player";
+import { GearLevel } from "./objects/gear/Gear";
 
 export enum Config {
     // World size and chunks size in blocks
@@ -66,11 +67,33 @@ export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = 
     "nerius": { hp: 32, tool: 2 },
     "rady": { hp: 58, tool: 4 },
 }
-export enum ItemLineColor {
-    "raw-cidium" = Color.YELLOW_LIGHT,
-    "raw-grade-cidium" = Color.YELLOW_LIGHT,
-    "raw-osmy" = Color.BLUE_LIGHT,
-    "raw-antin" = Color.RED_LIGHT,
-    "raw-rady" = Color.GREEN_LIGHT,
-    "raw-nerius" = Color.WHITE,
+export const ItemSettings: { [key: string]: { lineColor: Color, storage: GearLevel } } = {
+    "raw-cidium": {
+        lineColor: Color.YELLOW_LIGHT,
+        storage: 1
+    },
+    "raw-grade-cidium": {
+        lineColor: Color.YELLOW_LIGHT,
+        storage: 1
+    },
+    "raw-osmy": {
+        lineColor: Color.BLUE_LIGHT,
+        storage: 1
+    },
+    "raw-antin": {
+        lineColor: Color.RED_LIGHT,
+        storage: 3
+    },
+    "raw-rady": {
+        lineColor: Color.GREEN_LIGHT,
+        storage: 3
+    },
+    "raw-nerius": {
+        lineColor: Color.WHITE,
+        storage: 2
+    },
+    "raw-manty": {
+        lineColor: Color.RED_LIGHT,
+        storage: 3
+    },
 }

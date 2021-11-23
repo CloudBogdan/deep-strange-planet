@@ -1,4 +1,4 @@
-import { Config, ItemLineColor } from "../../config"
+import { Config, ItemSettings } from "../../config"
 import { Game, ISpriteProps, Sprite } from "../../engine"
 import { compareNames, random, Vector2 } from "../../engine/utils/math"
 import { Player } from "../entities/Player"
@@ -77,7 +77,7 @@ export class Item extends Sprite {
 
         this.moveTo(player.wire);
         game.renderer.drawLine({
-            color: ItemLineColor[this.name as any] as any,
+            color: ItemSettings[this.name as any].lineColor,
             width: 2,
             points: [this.position, player.position],
             layer: "bg"

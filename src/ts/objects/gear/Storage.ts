@@ -1,4 +1,4 @@
-import { Color, Config, OreSettings } from "../../config";
+import { Color, Config, ItemSettings, OreSettings } from "../../config";
 import { Game, ISpriteProps } from "../../engine";
 import { Renderer } from "../../engine/Renderer";
 import { asImage, Vector2 } from "../../engine/utils/math";
@@ -41,10 +41,13 @@ export class Storage extends Gear {
     update(game: Game) {
         super.update(game);
         
-        const player = game.getChildById<Player>("player");
-        if (!player) return;
+        if (!this.player) return;
         
-        this.interactType = (player.inventory.totalCount == 0 || this.contains.totalCount >= this.maxTotalCount) ? "view" : "store";
+        this.interactType = (
+            this.player.inventory.totalCount == 0 ||
+            this.contains.totalCount >= this.maxTotalCount ||
+            Object.keys(this.player.inventory.slots).filter(name=> this.player && this.player.inventory.slots[name].count > 0).length == Object.keys(this.player.inventory.slots).filter(name=> this.player && this.player.inventory.slots[name].count > 0 && ItemSettings[name].storage > this.level).length
+        ) ? "view" : "store";
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
         this.ui.allowSelectSlots = this.ui.enabled;
         if (this.ui.focused.row == 1)
@@ -83,7 +86,10 @@ export class Storage extends Gear {
         
         let storedCount = 0;
         let totalStoredCount = 0;
-        const slotNames = Object.keys(this.player.inventory.slots).filter(name=> name.indexOf("raw") >= 0);
+        const slotNames = Object.keys(this.player.inventory.slots).filter(name=> name.indexOf("raw") >= 0 && ItemSettings[name].storage <= this.level);
+        // Storage level less then need
+        if (Object.keys(this.player.inventory.slots).filter(name=> name.indexOf("raw") >= 0 && ItemSettings[name].storage > this.level).length > 0)
+            this.player.spawnText(game, "Низкий уровень\nхранилища", new Vector2(0, -90));
         
         slotNames.map(slot=> {
             if (!this.player) return;
@@ -110,12 +116,14 @@ export class Storage extends Gear {
             this.contains.slots[slot] += storedCount;
             this.contains.totalCount += storedCount;
             totalStoredCount += storedCount;
+            this.player.inventory.totalCount -= storedCount;
+            this.player.inventory.slots[slot].count -= storedCount;
         });
         
-        if (this.player.inventory.totalCount <= 0) return;
+        if (slotNames.length <= 0) return;
         
         this.player.spawnText(game, totalStoredCount.toString());
-        this.player.inventory = { totalCount: 0, slots: {} };
+        // this.player.inventory = { totalCount: 0, slots: {} };
     }
     drop(game: Game, slotName: string, count: number) {
         if (!this.contains.slots[slotName]) return

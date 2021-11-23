@@ -149,7 +149,8 @@ game.addInit(()=> {
         // > Manty layer
         {
             value: [0, .3],
-            height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
+            height: [0, Config.WORLD_HEIGHT - 1],
+            // height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
             divider: 2,
             ore: Manty
         },
