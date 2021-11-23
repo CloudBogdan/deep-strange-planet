@@ -104,7 +104,7 @@ export class Player extends Entity {
         this.pullWire();
 
         // Slow
-        this.moveSpeed = this.checkItemInInventory("raw-nerius") ? 2 : 5;
+        // this.moveSpeed = this.checkItemInInventory("raw-nerius") ? 2 : 5;
         
         // Dig
         const tool = tools[this.toolLevel.toString()];

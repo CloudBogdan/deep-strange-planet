@@ -37,6 +37,11 @@ export const RawNames: { [key: string]: NameType } = {
         desc: "Нериус, невероятно плотная руда, что значит она ещё и очень тяжёлая. 1см² весит около 300 грамм",
         special: "> Довольно сильно замедляет вас!"
     },
+    "raw-manty": {
+        name: "Мантий",
+        desc: "Мантий... Это то, для чего ты здесь",
+        special: "> Требуется специальная колба для сбора!"
+    },
 }
 export const GearNames: { [key: string]: NameType } = {
     "gear-storage": {

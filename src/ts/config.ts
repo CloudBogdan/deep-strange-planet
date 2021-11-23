@@ -58,6 +58,7 @@ export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = 
     "antin": { hp: 52, tool: 3 },
     "basalt": { hp: 40, tool: 3 },
     "burnt-basalt": { hp: 80, tool: 4 },
+    "manty": { hp: 108, tool: 4 },
     "cidium": { hp: 20 },
     "cracked-stone": { hp: 6 },
     "deep-stone": { hp: 26, tool: 2 },

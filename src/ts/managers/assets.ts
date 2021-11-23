@@ -13,10 +13,11 @@ import basalt_img from "../../images/ores/basalt.png"; // @ts-ignore
 import deep_stone_img from "../../images/ores/deep-stone.png"; // @ts-ignore
 import burnt_basalt_img from "../../images/ores/burnt-basalt.png"; // @ts-ignore
 import destrony_img from "../../images/ores/destrony.png"; // @ts-ignore
-import stone_1_img from "../../images/ores/stone-1.png"; // @ts-ignore
-import stone_2_img from "../../images/ores/stone-2.png"; // @ts-ignore
-import stone_3_img from "../../images/ores/stone-3.png"; // @ts-ignore
-import stone_4_img from "../../images/ores/stone-4.png"; // @ts-ignore
+import manty_img from "../../images/ores/manty.png"; // @ts-ignore
+// import stone_1_img from "../../images/ores/stone-1.png"; // @ts-ignore
+// import stone_2_img from "../../images/ores/stone-2.png"; // @ts-ignore
+// import stone_3_img from "../../images/ores/stone-3.png"; // @ts-ignore
+// import stone_4_img from "../../images/ores/stone-4.png"; // @ts-ignore
 import cracked_stone_img from "../../images/ores/cracked-stone.png"; // @ts-ignore
 
 import cidium_img from "../../images/ores/cidium.png"; // @ts-ignore
@@ -31,6 +32,7 @@ import raw_osmy_img from "../../images/raw/raw-osmy.png"; // @ts-ignore
 import raw_antin_img from "../../images/raw/raw-antin.png"; // @ts-ignore
 import raw_rady_img from "../../images/raw/raw-rady.png"; // @ts-ignore
 import raw_nerius_img from "../../images/raw/raw-nerius.png"; // @ts-ignore
+import raw_manty_img from "../../images/raw/raw-manty.png"; // @ts-ignore
 
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
@@ -72,6 +74,7 @@ export function initAssets(game: Game) {
     game.loadAsset("deep-stone", [deep_stone_img]);
     game.loadAsset("burnt-basalt", [burnt_basalt_img]);
     game.loadAsset("destrony", [destrony_img]);
+    game.loadAsset("manty", [manty_img]);
     // game.loadAsset("stone-1", [stone_1_img]);
     // game.loadAsset("stone-2", [stone_2_img]);
     // game.loadAsset("stone-3", [stone_3_img]);
@@ -90,6 +93,7 @@ export function initAssets(game: Game) {
     game.loadAsset("raw-antin", [raw_antin_img]);
     game.loadAsset("raw-rady", [raw_rady_img]);
     game.loadAsset("raw-nerius", [raw_nerius_img]);
+    game.loadAsset("raw-manty", [raw_manty_img]);
 
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])

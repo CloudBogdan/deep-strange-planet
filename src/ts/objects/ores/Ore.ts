@@ -7,7 +7,7 @@ import { Renderer } from "../../engine/Renderer";
 import { Raw } from "../raws/Raw";
 
 export type OreType =
-    "stone" | "stony-ground" | "deep-stone" | "destrony" |
+    "stone" | "stony-ground" | "deep-stone" | "destrony" | "manty" |
     "cracked-stone" | "basalt" | "burnt-basalt" |
     "cidium" | "osmy" | "antin" | "rady" | "nerius";
 
@@ -75,8 +75,8 @@ export class Ore extends Sprite {
         if (Config.ALLOW_DARK)
             this.darken(game);
     }
-    hit(game: Game, damage: number, toolLevel: ToolLevel, onBreak?: ()=> void): boolean {
-        if (this.unbreakable || toolLevel < this.needToolLevel) return false;
+    hit(game: Game, damage: number, toolLevel: ToolLevel, onBreak?: ()=> void) {
+        if (this.unbreakable || toolLevel < this.needToolLevel) return;
 
         this.hp -= damage;
         this.animatedScale = .8;
@@ -92,8 +92,6 @@ export class Ore extends Sprite {
             //     onBreak();
             this.onBreak(game);
         }
-
-        return true;
 
     }
     onBreak(game: Game) {

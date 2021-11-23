@@ -19,6 +19,7 @@ import { Nerius } from "./objects/ores/Nerius";
 import { StonyGround } from "./objects/ores/StonyGround";
 import { Robot } from "./objects/entities/Robot";
 import { Destrony } from "./objects/ores/Destrony";
+import { Manty } from "./objects/ores/Manty";
 
 const game = new Game();
 
@@ -144,6 +145,19 @@ game.addInit(()=> {
             // height: [200, Config.WORLD_HEIGHT - 5],
             divider: 2,
             ore: Rady
+        },
+        // > Manty layer
+        {
+            value: [0, .3],
+            height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
+            divider: 2,
+            ore: Manty
+        },
+        {
+            value: [0, .5],
+            height: [Config.WORLD_HEIGHT - 1, Config.WORLD_HEIGHT - 1],
+            divider: 2,
+            ore: Manty
         },
 
         // > Holes
