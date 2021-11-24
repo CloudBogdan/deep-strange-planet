@@ -53,6 +53,16 @@ import storage_ui_img from "../../images/ui/storage-ui.png"; // @ts-ignore
 import recycler_ui_img from "../../images/ui/recycler-ui.png"; // @ts-ignore
 import description_ui_img from "../../images/ui/description-ui.png"; // @ts-ignore
 
+// > Audio
+import stone_hit_mp from "../../audio/stone-hit.mp3"; // @ts-ignore
+import stone_break_mp from "../../audio/stone-break.mp3"; // @ts-ignore
+import step1_mp from "../../audio/steps/1.mp3"; // @ts-ignore
+import step2_mp from "../../audio/steps/2.mp3"; // @ts-ignore
+import step3_mp from "../../audio/steps/3.mp3"; // @ts-ignore
+import storage_mp from "../../audio/storage.mp3"; // @ts-ignore
+import store_mp from "../../audio/store.mp3"; // @ts-ignore
+import craft_mp from "../../audio/craft.mp3"; // @ts-ignore
+
 export function initAssets(game: Game) {
     
     // > Player
@@ -113,5 +123,15 @@ export function initAssets(game: Game) {
     game.loadAsset("level-up", [level_up_img])
     game.loadAsset("recycler-ui", [recycler_ui_img])
     game.loadAsset("description-ui", [description_ui_img])
+
+    // > Audio
+    game.loadAsset("stone-hit", stone_hit_mp, "audio")
+    game.loadAsset("stone-break", stone_break_mp, "audio")
+    game.loadAsset("step-1", step1_mp, "audio")
+    game.loadAsset("step-2", step2_mp, "audio")
+    game.loadAsset("step-3", step3_mp, "audio")
+    game.loadAsset("storage", storage_mp, "audio")
+    game.loadAsset("store", store_mp, "audio")
+    game.loadAsset("craft", craft_mp, "audio")
 
 }

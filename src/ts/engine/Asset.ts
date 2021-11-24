@@ -21,9 +21,9 @@ export class Asset {
                 i.src = s;
                 return i;
             });
-            // this.element = (this.src as string[]).map(s=> PIXI.Texture.from(s));
         }
-        else if (this.type == "audio" && typeof this.src == "string")
-            this.element = new Audio(this.src);
+        else if (type == "audio") {
+            this.element = new Audio(this.src as string);
+        }
     }
 }

@@ -46,7 +46,7 @@ export class Storage extends Gear {
         this.interactType = (
             this.player.inventory.totalCount == 0 ||
             this.contains.totalCount >= this.maxTotalCount ||
-            Object.keys(this.player.inventory.slots).filter(name=> this.player && this.player.inventory.slots[name].count > 0).length == Object.keys(this.player.inventory.slots).filter(name=> this.player && this.player.inventory.slots[name].count > 0 && ItemSettings[name].storage > this.level).length
+            this.filterRaws(this.player.inventory.slots).length == this.filterRaws(this.player.inventory.slots).filter(name=> ItemSettings[name].storage > this.level).length
         ) ? "view" : "store";
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
         this.ui.allowSelectSlots = this.ui.enabled;
@@ -58,7 +58,7 @@ export class Storage extends Gear {
         super.onInteract(game);
 
         if (this.ui.enabled && this.ui.focused.row == 0 && this.ui.focused.slot == 0) {
-            const slotName = Object.keys(this.contains.slots).filter(name=> this.contains.slots[name] > 0)[this.selectedSlotIndex];
+            const slotName = this.filterRaws(this.contains.slots)[this.selectedSlotIndex];
             this.drop(game, slotName, 1)
             return;
         }
@@ -72,6 +72,8 @@ export class Storage extends Gear {
                 this.ui.focused.slot = 0;
             }
             this.ui.enabled = !this.ui.enabled;
+            if (this.ui.enabled)
+                this.audio.play(game, "storage");
         }        
 
     }
@@ -86,9 +88,9 @@ export class Storage extends Gear {
         
         let storedCount = 0;
         let totalStoredCount = 0;
-        const slotNames = Object.keys(this.player.inventory.slots).filter(name=> name.indexOf("raw") >= 0 && ItemSettings[name].storage <= this.level);
+        const slotNames = this.filterRaws(this.player.inventory.slots).filter(name=> ItemSettings[name].storage <= this.level);
         // Storage level less then need
-        if (Object.keys(this.player.inventory.slots).filter(name=> name.indexOf("raw") >= 0 && ItemSettings[name].storage > this.level).length > 0)
+        if (this.filterRaws(this.player.inventory.slots).filter(name=> ItemSettings[name].storage > this.level).length > 0)
             this.player.spawnText(game, "Низкий уровень\nхранилища", new Vector2(0, -90));
         
         slotNames.map(slot=> {
@@ -122,8 +124,9 @@ export class Storage extends Gear {
         
         if (slotNames.length <= 0) return;
         
+        // Play store audio
+        this.audio.play(game, "store");
         this.player.spawnText(game, totalStoredCount.toString());
-        // this.player.inventory = { totalCount: 0, slots: {} };
     }
     drop(game: Game, slotName: string, count: number) {
         if (!this.contains.slots[slotName]) return
@@ -133,6 +136,7 @@ export class Storage extends Gear {
 
         game.add(new Raws[slotName](this.position));
         game.initChildren();
+        this.audio.play(game, "store", false);
     }
 
     renderUI(game: Game, renderer: Renderer) {
@@ -140,7 +144,7 @@ export class Storage extends Gear {
 
         if (!this.ui.enabled) return;
 
-        const slots = Object.keys(this.contains.slots).filter(name=> this.contains.slots[name] > 0);
+        const slots = this.filterRaws(this.contains.slots);
         this.ui.updateTemplate([
             slots.length > 0 ? 1 : 0,
             slots.length
@@ -241,5 +245,9 @@ export class Storage extends Gear {
 
         });
         
+    }
+
+    filterRaws(slots: Player["inventory"]["slots"] | Storage["contains"]["slots"]) {
+        return Object.keys(slots).filter(name=> name.indexOf("raw") >= 0 && ((slots[name] as any).count ? (slots[name] as any).count > 0 : slots[name] > 0));
     }
 }

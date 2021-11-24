@@ -1,6 +1,6 @@
 import { Config } from "../../config";
 import { Game } from "../../engine";
-import { asImage, assetIsValid, compareNames, lerp, Vector2 } from "../../engine/utils/math";
+import { asAudio, asImage, assetIsValid, compareNames, lerp, random, Vector2 } from "../../engine/utils/math";
 import { Direction } from "../../types";
 import { Entity } from "./Entity";
 import { Ore } from "../ores/Ore";
@@ -8,6 +8,7 @@ import { Raw, RawType } from "../raws/Raw";
 import { Renderer } from "../../engine/Renderer";
 import { Item } from "../item/Item";
 import { Robot } from "./Robot";
+import { Audio } from "../../engine/components/Audio";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5;
@@ -41,6 +42,8 @@ const tools: { [key: string]: Tool }  = {
 }
 
 export class Player extends Entity {
+    audio: Audio
+    
     wire: Vector2
     inventory: {
         totalCount: number
@@ -61,15 +64,14 @@ export class Player extends Entity {
             position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE)
         });
     
+        this.audio = new Audio();
+        
         this.wire = this.position.expand();
         this.inventory = {
             totalCount: 0,
             slots: {}
         };
         this.hasBottle = false;
-        // this.acceleration = Vector2.all(.7);
-        // ! God
-        // this.moveSpeed = 2;
         this.toolLevel = 5;
 
         this.damageAnimatedOpacity = 0;
@@ -102,6 +104,9 @@ export class Player extends Entity {
         this.movement.set((+game.gamepad.keys.right - +game.gamepad.keys.left), (+game.gamepad.keys.down - +game.gamepad.keys.up));
         this.move();
         this.pullWire();
+
+        // Foot steps
+        this.footsStep(game);
 
         // Slow
         // this.moveSpeed = this.checkItemInInventory("raw-nerius") ? 2 : 5;
@@ -243,5 +248,22 @@ export class Player extends Entity {
         // Place robot
         game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
         game.initChildren();
+    }
+    footsStep(game: Game) {
+
+        const allow = 
+            (this.velocity.x > 0 && !this.collider.collidesWith?.right) ||
+            (this.velocity.x < 0 && !this.collider.collidesWith?.left) ||
+            (this.velocity.y < 0 && !this.collider.collidesWith?.top) ||
+            (this.velocity.y > 0 && !this.collider.collidesWith?.bottom)
+        
+        if (game.clock.elapsed % 20 == 0 && allow) {
+            this.audio.play(game, `step-${ Math.floor(random(1, 4)) }`)
+
+            if (this.audio.audio)
+                this.audio.audio.volume = .5;
+            
+        }
+
     }
 }

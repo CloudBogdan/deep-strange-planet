@@ -43,15 +43,16 @@ export class Recycler extends Gear {
             this.ui.focused.row = 0;
         }
 
-        // Craft
         if (this.ui.focused.row == 1) {
-
+            
             const recipesKeys = this.getRecipesKeys();
             const recipe = this.recipes[recipesKeys[this.ui.focused.slot]];
-
+            
+            // Craft
             if (recipe.canCraft(this.storage)) {
                 recipe.onCraft(game, this.storage);
                 this.ui.enabled = false;
+                this.audio.play(game, "craft");
             } else {
                 this.ui.spawnMessageText(game, "Недостатачно ресурсов");
             }

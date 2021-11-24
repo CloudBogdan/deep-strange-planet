@@ -77,7 +77,7 @@ export class Item extends Sprite {
 
         this.moveTo(player.wire);
         game.renderer.drawLine({
-            color: ItemSettings[this.name as any].lineColor,
+            color: ItemSettings[this.name] ? ItemSettings[this.name].lineColor : "#fff",
             width: 2,
             points: [this.position, player.position],
             layer: "bg"

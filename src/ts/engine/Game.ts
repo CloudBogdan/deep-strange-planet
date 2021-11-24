@@ -75,7 +75,7 @@ export class Game extends Container {
     }
 
     loadAsset(name: string, src: Asset["src"], type?: AssetType) {
-        this.assets.push(new Asset(name, src));
+        this.assets.push(new Asset(name, src, type));
     }
     getAssetByName(name: string): Asset | null | undefined {
         return this.assets.find(asset=> asset.name == name);

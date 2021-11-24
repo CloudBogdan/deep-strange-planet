@@ -85,15 +85,17 @@ export function assetIsValid(asset: Asset | undefined | null, type: AssetType): 
 export function safeValue<T>(value: T | undefined, safe: T): T {
     return value === undefined ? safe : value;
 }
-export function asImage(asset: Asset | Asset["element"] | undefined | null): HTMLImageElement | undefined {
+export function asImage(asset: Asset | undefined | null): HTMLImageElement | undefined {
     if (!asset) return;
 
-    if ((asset as any).length != undefined) {
-        return (asset as HTMLImageElement[])[0];
-    } else {
-        if ((asset as Asset).type == "image" && assetIsValid((asset as any), "image"))
-            return ((asset as Asset).element as HTMLImageElement[])[0];
-    }
+    if (assetIsValid(asset as any, "image"))
+        return ((asset as Asset).element as HTMLImageElement[])[0];
+}
+export function asAudio(asset: Asset | undefined | null): HTMLAudioElement | undefined {
+    if (!asset) return;
+
+    if (assetIsValid(asset as any, "audio"))
+        return (asset as Asset).element as HTMLAudioElement;
 }
 
 export function standardName(name: string): string {

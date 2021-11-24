@@ -5,6 +5,7 @@ import { Player, ToolLevel } from "../entities/Player";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { Renderer } from "../../engine/Renderer";
 import { Raw } from "../raws/Raw";
+import { Audio } from "../../engine/components/Audio";
 
 export type OreType =
     "stone" | "stony-ground" | "deep-stone" | "destrony" | "manty" |
@@ -12,6 +13,8 @@ export type OreType =
     "cidium" | "osmy" | "antin" | "rady" | "nerius";
 
 export class Ore extends Sprite {
+    audio: Audio
+    
     oreType: OreType
     inChunkId: string
 
@@ -31,7 +34,9 @@ export class Ore extends Sprite {
             position: position.add(new Vector2(0, 0)).mul(Config.SPRITE_PIXEL_SIZE * Config.SPRITE_SCALE),
             colliderType: "solid"
         });
-        // this.rawOre = null;
+
+        this.audio = new Audio();
+        
         this.oreType = type;
         this.tilePosition = position
         this.inChunkId = "";
@@ -75,7 +80,11 @@ export class Ore extends Sprite {
         if (Config.ALLOW_DARK)
             this.darken(game);
     }
-    hit(game: Game, damage: number, toolLevel: ToolLevel, onBreak?: ()=> void) {
+    hit(game: Game, damage: number, toolLevel: ToolLevel) {
+        // Break audio
+        if (this.hp > 0)
+            this.audio.play(game, "stone-hit");
+        
         if (this.unbreakable || toolLevel < this.needToolLevel) return;
 
         this.hp -= damage;
@@ -88,10 +97,11 @@ export class Ore extends Sprite {
         });
 
         if (this.hp <= 0) {
-            // if (onBreak)
-            //     onBreak();
             this.onBreak(game);
+            // Destroy audio
+            this.audio.play(game, "stone-break");
         }
+
 
     }
     onBreak(game: Game) {
