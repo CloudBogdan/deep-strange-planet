@@ -1,9 +1,9 @@
 import { Config } from "../config";
 import { Game, Sprite } from "../engine";
 import { Vector2 } from "../engine/utils/math";
+import { Robot } from "../objects/entities/Robot";
 import { Recycler } from "../objects/gear/Recycler";
 import { Storage } from "../objects/gear/Storage";
-import { Upgrader } from "../objects/gear/Upgrader";
 
 export function initDome(game: Game) {
     const domePosition = new Vector2(Math.round(Config.WORLD_X_CENTER), -Config.SPRITE_SIZE * 1.5);

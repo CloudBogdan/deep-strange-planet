@@ -55,13 +55,17 @@ import description_ui_img from "../../images/ui/description-ui.png"; // @ts-igno
 
 // > Audio
 import stone_hit_mp from "../../audio/stone-hit.mp3"; // @ts-ignore
-import stone_break_mp from "../../audio/stone-break.mp3"; // @ts-ignore
+import stone_break1_mp from "../../audio/stone-break/stone-break-1.mp3"; // @ts-ignore
+import stone_break2_mp from "../../audio/stone-break/stone-break-2.mp3"; // @ts-ignore
+import stone_break3_mp from "../../audio/stone-break/stone-break-3.mp3"; // @ts-ignore
 import step1_mp from "../../audio/steps/1.mp3"; // @ts-ignore
 import step2_mp from "../../audio/steps/2.mp3"; // @ts-ignore
 import step3_mp from "../../audio/steps/3.mp3"; // @ts-ignore
 import storage_mp from "../../audio/storage.mp3"; // @ts-ignore
 import store_mp from "../../audio/store.mp3"; // @ts-ignore
 import craft_mp from "../../audio/craft.mp3"; // @ts-ignore
+import motor_mp from "../../audio/robot/motor.mp3"; // @ts-ignore
+import motor_start_mp from "../../audio/robot/motor-start.mp3"; // @ts-ignore
 
 export function initAssets(game: Game) {
     
@@ -126,12 +130,16 @@ export function initAssets(game: Game) {
 
     // > Audio
     game.loadAsset("stone-hit", stone_hit_mp, "audio")
-    game.loadAsset("stone-break", stone_break_mp, "audio")
+    game.loadAsset("stone-break-1", stone_break1_mp, "audio")
+    game.loadAsset("stone-break-2", stone_break2_mp, "audio")
+    game.loadAsset("stone-break-3", stone_break3_mp, "audio")
     game.loadAsset("step-1", step1_mp, "audio")
     game.loadAsset("step-2", step2_mp, "audio")
     game.loadAsset("step-3", step3_mp, "audio")
     game.loadAsset("storage", storage_mp, "audio")
     game.loadAsset("store", store_mp, "audio")
     game.loadAsset("craft", craft_mp, "audio")
+    game.loadAsset("motor", motor_mp, "audio")
+    game.loadAsset("motor-start", motor_start_mp, "audio")
 
 }

@@ -71,7 +71,7 @@ export class Ore extends Sprite {
         this.animatedScale = lerp(this.animatedScale, 1, .2);
         this.scale.set(this.animatedScale, this.animatedScale);
         
-        // this.collideWidth(game, game.getChildById<Player>("player"));
+        this.audio.update3D(game, this.position);
     }
     
     render(game: Game, renderer: Renderer) {
@@ -99,7 +99,7 @@ export class Ore extends Sprite {
         if (this.hp <= 0) {
             this.onBreak(game);
             // Destroy audio
-            this.audio.play(game, "stone-break");
+            this.audio.play(game, `stone-break-${ Math.floor(random(1, 4)) }`);
         }
 
 

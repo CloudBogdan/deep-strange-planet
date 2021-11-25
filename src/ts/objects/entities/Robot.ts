@@ -54,13 +54,23 @@ export class Robot extends Entity {
             this.pickup(game);
             console.log(true);
         });
+
+        // Play motor start sound
+        // this.audio.play(game, "motor-start");
+        // Play motor sound
+        this.audio.play(game, "motor", .5, true);
     }
     update(game: Game) {
         super.update(game);
-        // if ((game.clock.elapsed - this.initElapsed) % Config.ROBOT_ALLOW_PICKUP_DELAY == 0 && !this.allowPickup)
+
+        // Audio
+        this.audio.update3D(game, this.position);
+
+        // Allow pickup
         if (this.scale.mul(10).apply(Math.round).x >= 10 && !this.allowPickup)
             this.allowPickup = true;
         
+        // If not in the viewport
         if (!game.renderer.inCameraViewport(this.position)) {
             this.velocity.set();
             return;

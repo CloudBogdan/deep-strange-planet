@@ -238,37 +238,39 @@ export class Renderer {
         layer?: string,
         scale?: Vector2, flip?: { x: boolean, y: boolean }, opacity?: number, repeat?: number
     }) {
-        if (!props.texture) return;
+        try {
+            if (!props.texture) return;
 
-        const w = safeValue(props.width, 1) * Config.SPRITE_SIZE;
-        const h = safeValue(props.height, 1) * Config.SPRITE_SIZE;
-        
-        const p = safeValue(props.position, Vector2.zero());
-        const o = safeValue(props.offset, Vector2.zero());
-        
-        if ((!this.inCameraViewport(p, w, h, props.repeat)) && this.layers[props.layer || "game"].cameraFactor == 1) return;
-        
-        const f = safeValue(props.flip, { x: false, y: false });
-        const s = safeValue(props.scale, Vector2.all());
-        const context = this.getContext(props.layer);
-        
-        this.startTransform(
-            props.layer,
-            p.add(o),
-            props.rotation,
-            new Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)),
-            props.opacity
-        );
-        
-        // Draw sprite without repeat
-        if (!props.repeat)
-            context.drawImage(props.texture, -w / 2, -h / 2, w, h);
-        else
-            // And... With repeat?
-            for (let i = 0; i < props.repeat; i ++)
-                context.drawImage(props.texture, -w / 2 + i * w, -h / 2, w, h);
+            const w = safeValue(props.width, 1) * Config.SPRITE_SIZE;
+            const h = safeValue(props.height, 1) * Config.SPRITE_SIZE;
+            
+            const p = safeValue(props.position, Vector2.zero());
+            const o = safeValue(props.offset, Vector2.zero());
+            
+            if ((!this.inCameraViewport(p, w, h, props.repeat)) && this.layers[props.layer || "game"].cameraFactor == 1) return;
+            
+            const f = safeValue(props.flip, { x: false, y: false });
+            const s = safeValue(props.scale, Vector2.all());
+            const context = this.getContext(props.layer);
+            
+            this.startTransform(
+                props.layer,
+                p.add(o),
+                props.rotation,
+                new Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)),
+                props.opacity
+            );
+            
+            // Draw sprite without repeat
+            if (!props.repeat)
+                context.drawImage(props.texture, -w / 2, -h / 2, w, h);
+            else
+                // And... With repeat?
+                for (let i = 0; i < props.repeat; i ++)
+                    context.drawImage(props.texture, -w / 2 + i * w, -h / 2, w, h);
 
-        this.endTransform(props.layer);
+            this.endTransform(props.layer);
+        } catch(err) {}
     }
 
     updateAspect() {

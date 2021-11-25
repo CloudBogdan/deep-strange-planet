@@ -42,8 +42,6 @@ const tools: { [key: string]: Tool }  = {
 }
 
 export class Player extends Entity {
-    audio: Audio
-    
     wire: Vector2
     inventory: {
         totalCount: number
@@ -63,8 +61,6 @@ export class Player extends Entity {
         super("player", "player-stay", {
             position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE)
         });
-    
-        this.audio = new Audio();
         
         this.wire = this.position.expand();
         this.inventory = {
@@ -94,6 +90,8 @@ export class Player extends Entity {
         // Set robot
         game.gamepad.onKeyDown(this.id, "enter", ()=> {
             this.placeRobot(game);
+            game.add(new Robot(this.position));
+            game.initChildren()
         });
     }
 

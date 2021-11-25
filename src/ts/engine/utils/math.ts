@@ -151,3 +151,11 @@ export function random(from: number, to: number): number {
 export function chance(percent: number): boolean {
     return Math.floor(random(0, 101)) <= percent;
 }
+export function clamp(value: number, min: number, max: number) {
+    if (value < min)
+        return min;
+    else if (value > max)
+        return max;
+    else
+        return value;
+}

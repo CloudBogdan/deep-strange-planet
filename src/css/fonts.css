@@ -1,7 +1,0 @@
-@font-face {
-    font-family: "Pixel";
-    src: url("../fonts/CustomFont.woff") format("woff");
-}
-span {
-    font-family: "Pixel";
-}

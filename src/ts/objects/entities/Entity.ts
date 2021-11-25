@@ -1,5 +1,6 @@
 import { Config } from "../../config";
 import { Game, ISpriteProps, Sprite } from "../../engine"
+import { Audio } from "../../engine/components/Audio";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { random, safeValue, Vector2 } from "../../engine/utils/math"
 import { Direction } from "../../types";
@@ -12,6 +13,7 @@ export type IEntityProps = {
 } & ISpriteProps;
 
 export class Entity extends Sprite {
+    audio: Audio
     hp: number
     moveSpeed: number
 
@@ -24,6 +26,7 @@ export class Entity extends Sprite {
     constructor(name: string, assetName: string, props?: IEntityProps) {
         super(name, assetName, props);
         
+        this.audio = new Audio();
         this.hp = props?.hp || 10;
         this.moveSpeed = props?.moveSpeed || 5;
         
