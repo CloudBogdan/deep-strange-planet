@@ -136,7 +136,7 @@ export class Storage extends Gear {
 
         game.add(new Raws[slotName](this.position));
         game.initChildren();
-        this.audio.play(game, "store", false);
+        this.audio.play(game, "store", 1, false, false);
     }
 
     renderUI(game: Game, renderer: Renderer) {

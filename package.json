@@ -7,9 +7,10 @@
         "name": "Bogdanov",
         "url": "https://github.com/CloudBogdan"
     },
+    "main": "dist/index.html",
     "scripts": {
         "dev": "parcel src/index.html --port 3000",
-        "build": "parcel build src/index.html --no-minify",
+        "build": "parcel build src/index.html --no-minify --out-dir ./dist",
         "deploy": "gh-pages -d dist",
         "predeploy": "npm run build"
     },

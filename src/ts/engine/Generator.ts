@@ -126,6 +126,9 @@ export class Generator {
 
     }
 
+    checkIsInLoadedChunk(checkPosition: Vector2): boolean {
+        return this.chunks.findIndex(chunk=> Vector2.compare(chunk.pos, checkPosition.add(Vector2.all(Config.SPRITE_SIZE / 2)).div(Config.SPRITE_SIZE * Config.CHUNK_SIZE).apply(Math.floor))) >= 0;
+    }
     destroyOre(inChunkId: Point["id"]) {
         this.destroyedOres.push(inChunkId);
     }

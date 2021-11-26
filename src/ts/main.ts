@@ -108,8 +108,8 @@ game.addInit(()=> {
         // Cidium
         {
             value: [.85, 1],
-            // height: [12, Config.WORLD_HEIGHT - 10],
-            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
+            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
+            height: [12, GeneratorConfig.BASALT_LAYER_HEIGHT/2],
             divider: 5,
             ore: Cidium
         },
@@ -117,15 +117,15 @@ game.addInit(()=> {
         // Osmy - deep stone layer
         {
             value: [.95, 1],
-            // height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
-            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             divider: .8,
             ore: Osmy
         },
         {
             value: [.95, 1],
-            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
-            // height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             divider: 5,
             ore: Nerius
         },
@@ -133,24 +133,24 @@ game.addInit(()=> {
         // Antin - basalt layer
         {
             value: [0, .35],
-            height: [0, Config.WORLD_HEIGHT - 40],
-            // height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
+            // height: [0, Config.WORLD_HEIGHT - 40],
+            height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
             divider: .9,
             ore: Antin
         },
         // Rady - basalt layer
         {
             value: [0, .3],
-            height: [0, Config.WORLD_HEIGHT - 5],
-            // height: [200, Config.WORLD_HEIGHT - 5],
+            // height: [0, Config.WORLD_HEIGHT - 5],
+            height: [200, Config.WORLD_HEIGHT - 5],
             divider: 2,
             ore: Rady
         },
         // > Manty layer
         {
             value: [0, .3],
-            height: [0, Config.WORLD_HEIGHT - 1],
-            // height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
+            // height: [0, Config.WORLD_HEIGHT - 1],
+            height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
             divider: 2,
             ore: Manty
         },

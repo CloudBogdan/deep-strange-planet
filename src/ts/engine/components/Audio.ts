@@ -51,8 +51,8 @@ export class Audio {
     update3D(game: Game, emitterPosition: Vector2, maxDistance?: number) {
         if (!this.audio) return;
 
-        const distance = safeValue(maxDistance, innerHeight / 2 );
-        this.audio.volume = clamp(this.volume * (1 - game.camera.position.distance(emitterPosition) / distance), 0, 1);
+        const distance = safeValue(maxDistance, innerHeight / 2 + 300);
+        this.audio.volume = clamp(this.volume * clamp((1 - (game.camera.position.distance(emitterPosition) / distance)) * 1.8, 0, 1), 0, 1);
         
     }
 }

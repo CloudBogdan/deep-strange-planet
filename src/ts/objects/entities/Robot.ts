@@ -56,9 +56,9 @@ export class Robot extends Entity {
         });
 
         // Play motor start sound
-        // this.audio.play(game, "motor-start");
+        this.audio.play(game, "motor-start", .5);
         // Play motor sound
-        this.audio.play(game, "motor", .5, true);
+        this.audio.play(game, "motor", 1, true);
     }
     update(game: Game) {
         super.update(game);
@@ -70,8 +70,8 @@ export class Robot extends Entity {
         if (this.scale.mul(10).apply(Math.round).x >= 10 && !this.allowPickup)
             this.allowPickup = true;
         
-        // If not in the viewport
-        if (!game.renderer.inCameraViewport(this.position)) {
+        // If not in loaded chunk
+        if (!game.generator.checkIsInLoadedChunk(this.position)) {
             this.velocity.set();
             return;
         }

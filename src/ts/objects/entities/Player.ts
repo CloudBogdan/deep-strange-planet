@@ -89,9 +89,10 @@ export class Player extends Entity {
 
         // Set robot
         game.gamepad.onKeyDown(this.id, "enter", ()=> {
-            this.placeRobot(game);
-            game.add(new Robot(this.position));
-            game.initChildren()
+            // if (this.checkItemInInventory("item-robot"))
+                this.placeRobot(game);
+            // game.add(new Robot(this.position));
+            // game.initChildren()
         });
     }
 
@@ -234,14 +235,16 @@ export class Player extends Entity {
         return this.inventory.slots[name] && this.inventory.slots[name].count > 0
     }
     placeRobot(game: Game) {
-        if (!this.checkItemInInventory("item-robot")) return;
+        if (this.checkItemInInventory("item-robot")) {
+        
+            // Sub. robots count in inventory
+            this.inventory.slots["item-robot"].count --;
 
-        // Sub. robots count in inventory
-        this.inventory.slots["item-robot"].count --;
+            // Remove robot inventory instance
+            game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
+            this.inventory.slots["item-robot"].instances.splice(0, 1);
 
-        // Remove robot inventory instance
-        game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
-        this.inventory.slots["item-robot"].instances.splice(0, 1);
+        }
         
         // Place robot
         game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
