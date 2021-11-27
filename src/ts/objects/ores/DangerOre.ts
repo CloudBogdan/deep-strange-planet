@@ -8,13 +8,13 @@ export class DangerOre extends Ore {
         super(type, position);
     }
 
-    hit(game: Game, damage: number, level: ToolLevel) {
-        super.hit(game, damage, level);
+    hit(damage: number, level: ToolLevel) {
+        super.hit(damage, level);
 
-        const player = game.getChildById<Player>("player");
+        const player = this.game.getChildById<Player>("player");
         if (!player) return;
 
         if (!player.hasBottle)
-            player.hit(game, 1);
+            player.hit(1);
     }
 }

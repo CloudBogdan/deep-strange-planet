@@ -159,3 +159,6 @@ export function clamp(value: number, min: number, max: number) {
     else
         return value;
 }
+export function inRange(value: number, from: number, to: number): boolean {
+    return value >= from && value <= to;
+}

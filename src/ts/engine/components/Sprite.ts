@@ -48,36 +48,36 @@ export class Sprite extends Point {
         
     }
     
-    init(game: Game) {
-        super.init(game);
+    init() {
+        super.init();
         
-        this.updateAsset(game);
+        this.updateAsset();
     }
     
-    updateAsset(game: Game) {
+    updateAsset() {
 
-        const asset = game.getAssetByName(this.assetName);
+        const asset = this.game.getAssetByName(this.assetName);
         if (assetIsValid(asset, "image") && asset)
             this.texture = asImage(asset);
         else 
             console.error(messages.err.animationLoadError(this.assetName));
         
     }
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
     }
-    render(game: Game, renderer: Renderer) {
-        super.render(game, renderer);
+    render() {
+        super.render();
 
         if (this.texture && this.visible)
-            game.renderer.drawSprite({
+            this.game.renderer.drawSprite({
                 ...this,
                 texture: this.texture
             });
     }
 
-    playAnimation(game: Game, assetName: string, speed?: number) {
-        const asset = game.getAssetByName(assetName);
+    playAnimation(assetName: string, speed?: number) {
+        const asset = this.game.getAssetByName(assetName);
         if (!assetIsValid(asset, "image")) {
             console.error(messages.err.animationLoadError(assetName));
             return;
@@ -85,7 +85,7 @@ export class Sprite extends Point {
 
         const el = asset!.element as HTMLImageElement[];
         
-        if (game.clock.elapsed % (speed || Config.DEFAULT_ANIMATION_SPEED) == 0) {
+        if (this.game.clock.elapsed % (speed || Config.DEFAULT_ANIMATION_SPEED) == 0) {
             this.texture = el.length == 1 ? el[0] : el[this.frame];
             this.frame ++;
         }

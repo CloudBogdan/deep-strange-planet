@@ -147,7 +147,8 @@ export class UI {
         specials: string[],
         description: string,
         renderIcon: (pos: Vector2)=> void
-    }, game: Game, renderer: Renderer) {
+    }) {
+        if (!this.game) return;
 
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
@@ -155,8 +156,8 @@ export class UI {
         const lineHeight = 22;
 
         // Container
-        renderer.drawSprite({
-            texture: asImage(game.getAssetByName("description-ui")),
+        this.game.renderer.drawSprite({
+            texture: asImage(this.game.getAssetByName("description-ui")),
             position: new Vector2(0, size * 3).add(windowCenter),
             width: 7,
             height: 5,
@@ -170,7 +171,7 @@ export class UI {
         const title = wrapText(props.title, 26);
         
         // Title
-        renderer.drawText({
+        this.game.renderer.drawText({
             text: title.text,
             font: "20px Pixel",
             position: new Vector2(-size * 1.3, size + 70 - size / 2 + 15).add(windowCenter),
@@ -179,7 +180,7 @@ export class UI {
             layer: "ui"
         });
         // Specials
-        renderer.drawText({
+        this.game.renderer.drawText({
             text: props.specials.join("\n"),
             color: Color.ORANGE,
             position: new Vector2(-size * 1.3, size + 70 + margin + (title.wrapCount >= 1 ? lineHeight : 0)).add(windowCenter),
@@ -187,7 +188,7 @@ export class UI {
             layer: "ui"
         });
         // Description
-        renderer.drawText({
+        this.game.renderer.drawText({
             text: wrapText(props.description, 31).text,
             position: new Vector2(-size * 1.3, size + 70 + lineHeight + margin * 2 + lineHeight * title.wrapCount + lineHeight * (props.specials.length - 1)).add(windowCenter),
             centered: false,
@@ -196,8 +197,10 @@ export class UI {
 
     }
 
-    spawnMessageText(game: Game, text: string) {
-        SpawnParticles(game, new Vector2(20, innerHeight - 40), {
+    spawnMessageText(text: string) {
+        if (!this.game) return;
+        
+        SpawnParticles(this.game, new Vector2(20, innerHeight - 40), {
             // custom: new Text("store-text", text, { font: "22px Pixel" }),
             render(renderer, part) {
                 renderer.drawText({

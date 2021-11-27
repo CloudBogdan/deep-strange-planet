@@ -10,10 +10,9 @@ export class Manty extends DangerOre {
         this.randomRotate = false;
     }
 
-    onBreak(game: Game) {
-        super.onBreak(game);
+    onBreak() {
+        super.onBreak();
 
-        this.dropRawOre(game, RawManty);
-
+        this.dropRawOre(RawManty);
     }
 }

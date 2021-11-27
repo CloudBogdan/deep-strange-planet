@@ -80,32 +80,33 @@ export class Player extends Entity {
         })
     }
     
-    init(game: Game) {
-        super.init(game);
+    init() {
+        super.init();
         
         this.collider.width = 10 * Config.SPRITE_SCALE;
         this.collider.height = 10 * Config.SPRITE_SCALE;
         this.collider.offset = new Vector2(3, 0);
 
         // Set robot
-        game.gamepad.onKeyDown(this.id, "enter", ()=> {
-            // if (this.checkItemInInventory("item-robot"))
-                this.placeRobot(game);
-            // game.add(new Robot(this.position));
-            // game.initChildren()
+        this.game.gamepad.onKeyDown(this.id, "enter", ()=> {
+            if (this.checkItemInInventory("item-robot"))
+                this.placeRobot();
         });
     }
 
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
         if (!this.allowMove) return;
 
-        this.movement.set((+game.gamepad.keys.right - +game.gamepad.keys.left), (+game.gamepad.keys.down - +game.gamepad.keys.up));
+        this.movement.set(
+            (+this.game.gamepad.keys.right - +this.game.gamepad.keys.left),
+            (+this.game.gamepad.keys.down - +this.game.gamepad.keys.up)
+        );
         this.move();
         this.pullWire();
 
         // Foot steps
-        this.footsStep(game);
+        this.footsStep();
 
         // Slow
         // this.moveSpeed = this.checkItemInInventory("raw-nerius") ? 2 : 5;
@@ -114,39 +115,39 @@ export class Player extends Entity {
         const tool = tools[this.toolLevel.toString()];
 
         if (this.movement.x != 0)
-            this.dig(game, tool.damage, tool.speed, this.toolLevel, this.movement.x > 0 ? "right" : "left");
+            this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.x > 0 ? "right" : "left");
         else if (this.movement.y != 0)
-            this.dig(game, tool.damage, tool.speed, this.toolLevel, this.movement.y > 0 ? "bottom" : "top");
+            this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.y > 0 ? "bottom" : "top");
 
         //
         this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .05);
 
         this.bounds();
     }
-    render(game: Game, renderer: Renderer) {
-        super.render(game, renderer);
+    render() {
+        super.render();
         
-        this.renderUI(game, renderer);    
+        this.renderUI();    
     }
-    renderUI(game: Game, renderer: Renderer) {
+    renderUI() {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
 
         // Place robot text
         if (this.checkItemInInventory("item-robot"))
-            renderer.drawText({
+            this.game.renderer.drawText({
                 text: "[OK] - установить",
                 position: new Vector2(0, 150).add(windowCenter),
                 layer: "ui"
             });
         
         // Tool level
-        renderer.drawSprite({
-            texture: asImage(game.getAssetByName("tools")),
+        this.game.renderer.drawSprite({
+            texture: asImage(this.game.getAssetByName("tools")),
             position: new Vector2(size, innerHeight - size),
             layer: "ui"
         });
-        renderer.drawText({
+        this.game.renderer.drawText({
             text: this.toolLevel + "ур.",
             position: new Vector2(size, innerHeight - size).add(Vector2.all(size * .3)),
             font: "22px Pixel",
@@ -155,15 +156,15 @@ export class Player extends Entity {
 
         // Bottle
         if (this.hasBottle)
-            renderer.drawSprite({
-                texture: asImage(game.getAssetByName("bottle")),
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName("bottle")),
                 position: new Vector2(size * 2 + 20, innerHeight - size),
                 layer: "ui"
             })
 
         // Damage vignette
-        renderer.drawSprite({
-            texture: asImage(game.getAssetByName("damage")),
+        this.game.renderer.drawSprite({
+            texture: asImage(this.game.getAssetByName("damage")),
             width: innerWidth / Config.SPRITE_SIZE,
             height: innerHeight / Config.SPRITE_SIZE,
             position: new Vector2(innerWidth / 2, innerHeight / 2),
@@ -205,7 +206,7 @@ export class Player extends Entity {
         }
     }
     
-    pickup(game: Game, item: Item, type: string, count: number) {
+    pickup(item: Item, type: string, count: number) {
         this.inventory.totalCount += count;
 
         this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
@@ -222,10 +223,10 @@ export class Player extends Entity {
         }
 
     }
-    hit(game: Game, damage: number) {
+    hit(damage: number) {
         this.hp -= damage;
         this.damageAnimatedOpacity = 1.5;
-        game.camera.shake();
+        this.game.camera.shake();
     }
     upgradeTool(levelUp: number) {
         if (this.toolLevel < MaxToolLevel)
@@ -234,23 +235,23 @@ export class Player extends Entity {
     checkItemInInventory(name: string) {
         return this.inventory.slots[name] && this.inventory.slots[name].count > 0
     }
-    placeRobot(game: Game) {
+    placeRobot() {
         if (this.checkItemInInventory("item-robot")) {
         
             // Sub. robots count in inventory
             this.inventory.slots["item-robot"].count --;
 
             // Remove robot inventory instance
-            game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
+            this.game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
             this.inventory.slots["item-robot"].instances.splice(0, 1);
 
         }
         
         // Place robot
-        game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
-        game.initChildren();
+        this.game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
+        this.game.initChildren();
     }
-    footsStep(game: Game) {
+    footsStep() {
 
         const allow = 
             (this.velocity.x > 0 && !this.collider.collidesWith?.right) ||
@@ -258,8 +259,8 @@ export class Player extends Entity {
             (this.velocity.y < 0 && !this.collider.collidesWith?.top) ||
             (this.velocity.y > 0 && !this.collider.collidesWith?.bottom)
         
-        if (game.clock.elapsed % 20 == 0 && allow) {
-            this.audio.play(game, `step-${ Math.floor(random(1, 4)) }`)
+        if (this.game.clock.elapsed % 20 == 0 && allow) {
+            this.audio.play(this.game, `step-${ Math.floor(random(1, 4)) }`)
 
             if (this.audio.audio)
                 this.audio.audio.volume = .5;

@@ -14,10 +14,10 @@ export class Nerius extends Ore {
         this.particlesColors = [Color.BLACK, "#fff"];
     }
 
-    onBreak(game: Game) {
-        super.onBreak(game);
+    onBreak() {
+        super.onBreak();
 
-        this.dropRawOre(game, RawNerius);
+        this.dropRawOre(RawNerius);
         // this.dropRawOre(game, RawGradeCidium, 100);
     }
 }

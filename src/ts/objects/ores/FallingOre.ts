@@ -19,13 +19,13 @@ export class FallingOre extends Ore {
         this.allowGravity = false;
     }
 
-    init(game: Game) {
-        super.init(game);
+    init() {
+        super.init();
         
         this.acceleration.y = .9;
     }
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
 
         
         // game.getChildrenByName<Ore>("ore").filter(ore=> this.id != ore.id).map(ore=> {
@@ -61,7 +61,7 @@ export class FallingOre extends Ore {
         // this.gravity(game, !this.collider.collidesWith?.bottom);
     }
 
-    gravity(game: Game, allow: boolean) {
+    gravity(allow: boolean) {
 
 
         // if (!this.collider.collidesWith?.bottom && this.collider.collidesWith?.id) {
@@ -94,8 +94,8 @@ export class FallingOre extends Ore {
 
     }
 
-    crumble(game: Game) {
-        SpawnParticles(game, this.position.add(new Vector2(0, 40)), {
+    crumble() {
+        SpawnParticles(this.game, this.position.add(new Vector2(0, 40)), {
             velocity: ()=> new Vector2(random(-2, 2), 0),
             box: ()=> new Vector2(random(-40, 40), 0),
             count: 5,

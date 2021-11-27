@@ -25,38 +25,38 @@ export class Item extends Sprite {
         this.collider.height = 6 * Config.SPRITE_SCALE;
     }
 
-    init(game: Game) {
-        super.init(game);
+    init() {
+        super.init();
         
-        this.liveStartElapsed = game.clock.elapsed;
+        this.liveStartElapsed = this.game.clock.elapsed;
         this.layer = "particles";
         this.velocity.set(random(-8, 8), random(-8, 8));
         this.acceleration.copy(Vector2.all(.8));
 
-        if (this.checkDistanceToPlayer(game.getChildById("player"), Config.PICKUP_DISTANCE * 2))
+        if (this.checkDistanceToPlayer(this.game.getChildById("player"), Config.PICKUP_DISTANCE * 2))
             this.nearOnInit = true;
     }
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
 
-        if (!game.renderer.inCameraViewport(this.position)) {
-            if (game.clock.elapsed - this.liveStartElapsed >= Config.RAW_LIVE_TIME)
-                game.removeChildById(this.id);
+        if (!this.game.renderer.inCameraViewport(this.position)) {
+            if (this.game.clock.elapsed - this.liveStartElapsed >= Config.RAW_LIVE_TIME)
+                this.game.removeChildById(this.id);
         } else {
-            this.liveStartElapsed = game.clock.elapsed;
+            this.liveStartElapsed = this.game.clock.elapsed;
         }
         
         if (this.allowPickup) {
-            this.followPlayer(game, game.getChildById<Player>("player"));
-            this.collideWidthOtherItems([...game.getChildrenByName("raw"), ...game.getChildrenByName("item")]);
+            this.followPlayer(this.game.getChildById<Player>("player"));
+            this.collideWidthOtherItems([...this.game.getChildrenByName("raw"), ...this.game.getChildrenByName("item")]);
         }
     }
 
-    pickup(game: Game, player: Player, count: number) {
-        player.pickup(game, this, this.name, count);
+    pickup(player: Player, count: number) {
+        player.pickup(this, this.name, count);
     }
 
-    followPlayer(game: Game, player: Player | undefined) {
+    followPlayer(player: Player | undefined) {
         if (!player) return;
 
         if (!this.checkDistanceToPlayer(player))
@@ -65,18 +65,18 @@ export class Item extends Sprite {
         if (this.nearOnInit) return;
             
         if (!this.picked && this.checkDistanceToPlayer(player)) {
-            this.pickup(game, player, 1);
+            this.pickup(player, 1);
             this.picked = true;
         }
         else if (this.picked && player.wire.distance(this.position) > Config.PICKUP_DISTANCE) {
-            this.pickup(game, player, -1);
+            this.pickup(player, -1);
             this.picked = false;
         }
         
         if (!this.picked) return;
 
         this.moveTo(player.wire);
-        game.renderer.drawLine({
+        this.game.renderer.drawLine({
             color: ItemSettings[this.name] ? ItemSettings[this.name].lineColor : "#fff",
             width: 2,
             points: [this.position, player.position],

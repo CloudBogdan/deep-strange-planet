@@ -121,10 +121,10 @@ export class Game extends Container {
             
             // Update
             this.physics.update();
-            this.callChildren("update", this);
+            this.callChildren("update");
             this.updateListeners.map(listener=> listener(this.clock));
             
-            this.callChildren("render", this, this.renderer);
+            this.callChildren("render");
             this.renderListeners.map(listener=> listener(this.renderer));
 
             this.renderer.renderParticles(this);

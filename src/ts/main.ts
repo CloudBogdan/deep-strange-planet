@@ -5,13 +5,13 @@ import { SpawnParticles } from "./engine/components/Particles";
 import { initLevel } from "./managers/level";
 import { Stone } from "./objects/ores/Stone";
 import { CrackedStone } from "./objects/ores/CrackedStone";
-import { Config, GeneratorConfig } from "./config";
+import { Color, Config, GeneratorConfig } from "./config";
 import { DeepStone } from "./objects/ores/DeepStone";
 import { Cidium } from "./objects/ores/Cidium";
 import { initDome } from "./managers/dome";
 import { Osmy } from "./objects/ores/Osmy";
 import { Basalt } from "./objects/ores/Basalt";
-import { Vector2 } from "./engine/utils/math";
+import { inRange, Vector2 } from "./engine/utils/math";
 import { Antin } from "./objects/ores/Antin";
 import { Rady } from "./objects/ores/Rady";
 import { BurntBasalt } from "./objects/ores/BurntBasalt";
@@ -20,6 +20,8 @@ import { StonyGround } from "./objects/ores/StonyGround";
 import { Robot } from "./objects/entities/Robot";
 import { Destrony } from "./objects/ores/Destrony";
 import { Manty } from "./objects/ores/Manty";
+import { FetusVine } from "./objects/plants/FetusVine";
+import { FetusStone } from "./objects/ores/FetusStone";
 
 const game = new Game();
 
@@ -40,19 +42,19 @@ game.addInit(()=> {
         {
             value: [0, 1],
             height: [0, 43],
-            ore: Stone,
+            block: Stone,
         },
         {
             value: [.5, .6],
             height: [5, 90],
             divider: 5,
-            ore: CrackedStone
+            block: CrackedStone
         },
         {
             value: [.5, .6],
             height: [0, 14],
             divider: 5,
-            ore: StonyGround
+            block: StonyGround
         },
 
         // > Deepest stones
@@ -61,13 +63,13 @@ game.addInit(()=> {
             value: [.8, 1],
             height: [30, 43],
             divider: 2,
-            ore: DeepStone
+            block: DeepStone
         },
         // Deep stone layer
         {
             value: [0, 1],
             height: [42, GeneratorConfig.BASALT_LAYER_HEIGHT],
-            ore: DeepStone
+            block: DeepStone
         },
 
         // Basalt blend layer
@@ -75,13 +77,13 @@ game.addInit(()=> {
             value: [.7, 1],
             height: [GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT, GeneratorConfig.BASALT_LAYER_HEIGHT],
             divider: 3,
-            ore: Basalt
+            block: Basalt
         },
         // Basalt layer
         {
             value: [0, 1],
             height: [GeneratorConfig.BASALT_LAYER_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT],
-            ore: Basalt
+            block: Basalt
         },
 
         // Burnt basalt blend layer
@@ -89,54 +91,73 @@ game.addInit(()=> {
             value: [.8, 1],
             height: [GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT],
             divider: 3,
-            ore: BurntBasalt
+            block: BurntBasalt
         },
         // Burnt basalt layer
         {
             value: [0, 1],
             height: [GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT, Config.WORLD_HEIGHT],
-            ore: BurntBasalt
+            block: BurntBasalt
         },
         // > Destrony layer
         {
             value: [0, 1],
             height: [Config.WORLD_HEIGHT, Config.WORLD_HEIGHT],
-            ore: Destrony
+            block: Destrony
+        },
+
+        // > Other
+        {
+            value: [0, 1],
+            height: [30, GeneratorConfig.BASALT_LAYER_HEIGHT-20],
+            divider: 2,
+            block: FetusStone,
+            rules(noiseX, noiseY, getValue) {
+                return (
+                    inRange(getValue(noiseX, noiseY+1, 10), 0, .5) &&
+                    inRange(getValue(noiseX, noiseY, 5), 0, .5) ||
+                    inRange(getValue(noiseX, noiseY, 2), 0, .3)
+                );
+            }
         },
         
         // > Ores
         // Cidium
         {
-            value: [.85, 1],
+            value: [.95, 1],
             // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
             height: [12, GeneratorConfig.BASALT_LAYER_HEIGHT/2],
             divider: 5,
-            ore: Cidium
+            block: Cidium
         },
 
         // Osmy - deep stone layer
         {
-            value: [.95, 1],
+            value: [0, .7],
             // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
-            divider: .8,
-            ore: Osmy
+            divider: 4,
+            block: Osmy,
+            rules(noiseX, noiseY, getValue) {
+                // return true;
+                return getValue(noiseX+1, noiseY+2, 4) > .85;
+            }
         },
         {
-            value: [.95, 1],
+            value: [.9, 1],
             // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             divider: 5,
-            ore: Nerius
+            block: Nerius
         },
         
         // Antin - basalt layer
         {
-            value: [0, .35],
+            value: [0, .5],
             // height: [0, Config.WORLD_HEIGHT - 40],
             height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
-            divider: .9,
-            ore: Antin
+            divider: 2,
+            block: Antin,
         },
         // Rady - basalt layer
         {
@@ -144,7 +165,7 @@ game.addInit(()=> {
             // height: [0, Config.WORLD_HEIGHT - 5],
             height: [200, Config.WORLD_HEIGHT - 5],
             divider: 2,
-            ore: Rady
+            block: Rady
         },
         // > Manty layer
         {
@@ -152,26 +173,26 @@ game.addInit(()=> {
             // height: [0, Config.WORLD_HEIGHT - 1],
             height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
             divider: 2,
-            ore: Manty
+            block: Manty
         },
         {
             value: [0, .5],
             height: [Config.WORLD_HEIGHT - 1, Config.WORLD_HEIGHT - 1],
             divider: 2,
-            ore: Manty
+            block: Manty
         },
 
         // > Holes
         {
             value: [0, .5],
-            height: [5, 150],
-            ore: null,
+            height: [5, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - 20],
+            block: null,
         },
         {
             value: [0, .4],
-            height: [155, Config.WORLD_HEIGHT - 40],
+            height: [GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT, Config.WORLD_HEIGHT - 40],
             divider: 5,
-            ore: null,
+            block: null,
         },
     ];
     game.camera.follow(player.position);
@@ -202,6 +223,16 @@ game.addRender(renderer=> {
         position: new Vector2(70, 80),
         layer: "ui"
     });
+    
+    for (let y = 0; y < Config.WORLD_HEIGHT / Config.CHUNK_SIZE; y ++)
+    for (let x = 0; x < Config.WORLD_WIDTH / Config.CHUNK_SIZE; x ++)
+        renderer.drawRect({
+            position: new Vector2(x*Config.CHUNK_SIZE*Config.SPRITE_SIZE, y*Config.CHUNK_SIZE*Config.SPRITE_SIZE).add(Vector2.all(Config.SPRITE_SIZE*1.5)),
+            width: Config.CHUNK_SIZE,
+            height: Config.CHUNK_SIZE,
+            color: "rgba(0, 0, 0, 0)",
+            stroke: { width: 2, color: Color.RED }
+        });
 
 });
 

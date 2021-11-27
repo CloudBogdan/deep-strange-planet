@@ -1,7 +1,4 @@
-import { Config } from "../../config";
-import { Game, Sprite } from "../../engine";
-import { random, Vector2, compareNames } from "../../engine/utils/math";
-import { Player } from "../entities/Player";
+import { Vector2 } from "../../engine/utils/math";
 import { Item } from "../item/Item";
 
 export type RawType = 
@@ -19,13 +16,13 @@ export class Raw extends Item {
         this.foldToPosition = Vector2.zero();
     }
 
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
 
         if (!this.allowPickup) {
             this.moveTo(this.foldToPosition);
             if (this.foldToPosition.distance(this.position) < 30)
-                game.removeChildById(this.id);
+                this.game.removeChildById(this.id);
         }
     }
 }

@@ -46,12 +46,12 @@ export class Container {
     }
 
     initChildren(game: Game) {
-        this.children.filter(child=> !child.inited).map(child=> child.init(game));
+        this.children.filter(child=> !child.inited).map(child=> {
+            child.game = game;
+            child.init()
+        });
     }
-    callChildren(method: string, game: Game, args?: any) {
-        if (args)
-            this.children.map(child=> (child as any)[method](game, args));
-        else
-            this.children.map(child=> (child as any)[method](game));
+    callChildren(method: string) {
+        this.children.map(child=> (child as any)[method]());
     }
 }

@@ -6,6 +6,7 @@ import { Container } from "./Container";
 let __id = 0;
 
 export class Group extends Container {
+    game!: Game
     id: string
     type: ComponentType
     name: string
@@ -25,15 +26,15 @@ export class Group extends Container {
         this.allowUpdateChildren = true;
     }
 
-    init(game: Game) {
-        this.initChildren(game);
+    init() {
+        this.initChildren(this.game);
     }
-    update(game: Game) {
+    update() {
         if (this.allowUpdateChildren)
-            this.callChildren("update", game);
+            this.callChildren("update");
     }
-    render(game: Game) {
+    render() {
         if (this.visible)
-            this.callChildren("render", game);
+            this.callChildren("render");
     }
 }

@@ -50,37 +50,37 @@ export class Gear extends Sprite {
         this.closeText = "закрыть";
     }
 
-    init(game: Game) {
-        super.init(game);
+    init() {
+        super.init();
 
-        this.ui.init(game);
+        this.ui.init(this.game);
         this.ui.enabled = false;
-        this.player = game.getChildById("player");
+        this.player = this.game.getChildById("player");
 
-        game.gamepad.onKeyDown(this.id, "enter", ()=> {
+        this.game.gamepad.onKeyDown(this.id, "enter", ()=> {
             if (!this.playerIsNear) return;
 
             if (this.player)
-                this.onInteract(game);
+                this.onInteract();
         });
     }
 
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
         
         this.checkInteract();
     }
 
-    render(game: Game, renderer: Renderer) {
-        super.render(game, renderer);
+    render() {
+        super.render();
 
-        this.renderUI(game, renderer);
+        this.renderUI();
 
         if (this.playerIsNear && this.allowInteract) {
-            const outlineAsset = game.getAssetByName([this.gearType, 1, "outline"].join("-"));
+            const outlineAsset = this.game.getAssetByName([this.gearType, 1, "outline"].join("-"));
 
             // Draw gear outline
-            renderer.drawSprite({
+            this.game.renderer.drawSprite({
                 texture: asImage(outlineAsset),
                 width: 2, height: 2,
                 position: this.position,
@@ -88,7 +88,7 @@ export class Gear extends Sprite {
                 flip: this.flip
             });
 
-            renderer.drawText({
+            this.game.renderer.drawText({
                 text: this.interactText,
                 font: "22px Pixel",
                 position: this.position.add(new Vector2(0, -70))
@@ -96,14 +96,14 @@ export class Gear extends Sprite {
                 
         }
     }
-    renderUI(game: Game, renderer: Renderer) {
+    renderUI() {
         this.ui.render();
 
         if (this.ui.enabled) {
             const size = Config.SPRITE_SIZE;
             const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
 
-            renderer.drawRect({
+            this.game.renderer.drawRect({
                 color: "rgba(0, 0, 0, .6)",
                 width: innerWidth / Config.SPRITE_SIZE,
                 height: innerHeight / Config.SPRITE_SIZE,
@@ -112,30 +112,30 @@ export class Gear extends Sprite {
             });
 
             // Container
-            renderer.drawSprite({
-                texture: asImage(game.getAssetByName([this.gearType.replace("gear-", ""), "ui"].join("-"))),
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName([this.gearType.replace("gear-", ""), "ui"].join("-"))),
                 position: new Vector2(0, -size).add(windowCenter),
                 width: 7,
                 height: 5,
                 layer: "ui"
             });
             // Preview
-            renderer.drawSprite({
-                texture: asImage(game.getAssetByName([this.gearType, 1].join("-"))),
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName([this.gearType, 1].join("-"))),
                 position: new Vector2(-size * 2, -size - 15).add(windowCenter).add(this.headerOffset),
                 width: 2,
                 height: 2,
                 layer: "ui"
             });
             // Title
-            renderer.drawText({
+            this.game.renderer.drawText({
                 text: `${ GearNames[this.name].name } ${ this.level }ур.`,
                 position: new Vector2(-size * 1.2, -size - 15).add(windowCenter).add(this.headerOffset),
                 centered: false,
                 layer: "ui"
             });
             // Close
-            renderer.drawText({
+            this.game.renderer.drawText({
                 text: `[OK] - ${ this.closeText }`,
                 position: new Vector2(-size * 3 + 20, -size * 2 - 40).add(windowCenter).add(this.headerOffset),
                 layer: "ui",
@@ -147,18 +147,18 @@ export class Gear extends Sprite {
         // Draw interact button
         if (this.playerIsNear && !this.ui.enabled) {
             this.interactButton.position = this.position.add(new Vector2(0, -110));
-            this.interactButton.render(game);
+            this.interactButton.render(this.game);
         }
     }
 
-    upgrade(game: Game, levelUp: number) {
+    upgrade(levelUp: number) {
         if (this.level < MaxGearLevel) {
             this.level += levelUp;
 
-            SpawnParticles(game, this.position, {
+            SpawnParticles(this.game, this.position, {
                 render: (renderer, part)=> {
                     renderer.drawSprite({
-                        texture: asImage(game.getAssetByName("level-up")),
+                        texture: asImage(this.game.getAssetByName("level-up")),
                         position: part.position,
                         opacity: part.size,
                         scale: Vector2.all(.8),
@@ -181,7 +181,7 @@ export class Gear extends Sprite {
             this.player.allowMove = !this.ui.enabled;
     }
 
-    onInteract(game: Game) {
+    onInteract() {
         this.interactButton.click();
     }
     

@@ -15,10 +15,10 @@ export class Osmy extends Ore {
         this.particlesColors = [Color.BLACK, Color.BLUE];
     }
 
-    onBreak(game: Game) {
-        super.onBreak(game);
+    onBreak() {
+        super.onBreak();
 
-        this.dropRawOre(game, RawOsmy);
-        this.dropRawOre(game, RawGradeCidium, 100);
+        this.dropRawOre(RawOsmy);
+        this.dropRawOre(RawGradeCidium, 100);
     }
 }

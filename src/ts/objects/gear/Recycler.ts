@@ -23,8 +23,8 @@ export class Recycler extends Gear {
         this.recipes = recipes(this);
     }
     
-    onInteract(game: Game) {
-        super.onInteract(game);
+    onInteract() {
+        super.onInteract();
 
         // Open
         this.ui.enabled = true;
@@ -50,18 +50,18 @@ export class Recycler extends Gear {
             
             // Craft
             if (recipe.canCraft(this.storage)) {
-                recipe.onCraft(game, this.storage);
+                recipe.onCraft(this.game, this.storage);
                 this.ui.enabled = false;
-                this.audio.play(game, "craft");
+                this.audio.play(this.game, "craft");
             } else {
-                this.ui.spawnMessageText(game, "Недостатачно ресурсов");
+                this.ui.spawnMessageText("Недостатачно ресурсов");
             }
 
         }
     }
 
-    renderUI(game: Game, renderer: Renderer) {
-        super.renderUI(game, renderer);
+    renderUI() {
+        super.renderUI();
 
         const recipesKeys = this.getRecipesKeys();
 
@@ -74,7 +74,7 @@ export class Recycler extends Gear {
         ]);
         if (!this.ui.enabled) return;
 
-        this.renderRecipesUI(recipesKeys, game, renderer);
+        this.renderRecipesUI(recipesKeys);
 
         if (this.ui.focused.row != 1) return;
         
@@ -100,26 +100,26 @@ export class Recycler extends Gear {
             ],
             description: recipeDescription.desc,
             renderIcon: (pos)=> {
-                currentRecipe.icon(game, pos);   
+                currentRecipe.icon(this.game, pos);   
             }
-        }, game, renderer);
+        });
     }
 
-    renderRecipesUI(recipes: string[], game: Game, renderer: Renderer) {
+    renderRecipesUI(recipes: string[]) {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
         
         const closePosition = new Vector2(size * 1.5 + 20, -size - 20).add(windowCenter);
         this.ui.renderSlot(closePosition, 0, 0, ()=> {
 
-            renderer.drawSprite({
+            this.game.renderer.drawSprite({
                 // texture: asImage(game.getAssetByName("close")),
-                texture: asImage(game.getAssetByName("button")),
+                texture: asImage(this.game.getAssetByName("button")),
                 position: closePosition,
                 width: 2,
                 layer: "ui"
             });
-            renderer.drawText({
+            this.game.renderer.drawText({
                 text: "Закрыть",
                 position: closePosition,
                 layer: "ui"
@@ -134,11 +134,11 @@ export class Recycler extends Gear {
             this.ui.renderSlot(pos, 1, index, ()=> {
 
                 // Render recipe icon
-                this.recipes[recipeName].icon(game, pos);
+                this.recipes[recipeName].icon(this.game, pos);
                 
                 // Darken
                 if (!this.recipes[recipeName].canCraft(this.storage))
-                    renderer.drawRect({
+                    this.game.renderer.drawRect({
                         position: pos,
                         color: Color.STONE_LAYER_COLOR,
                         layer: "ui",

@@ -9,14 +9,14 @@ export class Upgrader extends Gear {
         this.allowInteract = true;
     }
 
-    onInteract(game: Game) {
-        super.onInteract(game);
+    onInteract() {
+        super.onInteract();
         if (!this.player) return;
 
         this.player.toolLevel ++;
         if (this.player.toolLevel > 4)
             this.player.toolLevel = 1;
 
-        this.player.spawnText(game, `Инструменты обновлены\nдо ${ this.player.toolLevel }ур.`);
+        this.player.spawnText(`Инструменты обновлены\nдо ${ this.player.toolLevel }ур.`);
     }
 }

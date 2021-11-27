@@ -24,7 +24,7 @@ export enum Config {
     DOME_DIAMETER = SPRITE_SIZE * 6,
     GROUND_HEIGHT = SPRITE_SIZE * 2,
     
-    ALLOW_DARK = 1,
+    ALLOW_DARK = 0,
     RAW_LIVE_TIME = 400,
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,
@@ -66,6 +66,7 @@ export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = 
     "osmy": { hp: 36, tool: 2 },
     "nerius": { hp: 32, tool: 2 },
     "rady": { hp: 58, tool: 4 },
+    "root-stone": { hp: 14 },
 }
 export const ItemSettings: { [key: string]: { lineColor: Color, storage: GearLevel } } = {
     "raw-cidium": {

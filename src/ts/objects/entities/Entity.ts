@@ -37,34 +37,34 @@ export class Entity extends Sprite {
         this.digOffsetFactor = .2;
     }
 
-    init(game: Game) {
-        super.init(game);
+    init() {
+        super.init();
 
         this.collider.type = "dynamic";
     }
 
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
         if (!this.allowMove) {
             this.movement.set();
             this.velocity.set();
         }
 
         this.offset.lerp(Vector2.zero(), this.digOffsetFactor);
-        this.animate(game);
+        this.animate();
     }
-    dig(game: Game, damage: number, speed: number, level: ToolLevel, direction: Direction): boolean {
+    dig(damage: number, speed: number, level: ToolLevel, direction: Direction): boolean {
 
         let successOreHit = false;
         
         if (this.collider.collidesWith != null && this.collider.collidesWith.any) {
-            const ore = game.getChildById<Ore>(this.collider.collidesWith.id, true);
+            const ore = this.game.getChildById<Ore>(this.collider.collidesWith.id, true);
             // const tool = tools[this.toolLevel.toString()];
 
             if (ore == undefined) return false;
 
-            if (this.collider.collidesWith[direction] && this.position.distance(ore.position) < Config.SPRITE_SIZE * 2 && game.clock.elapsed % speed == 0) {
-                ore.hit(game, damage, level);
+            if (this.collider.collidesWith[direction] && this.position.distance(ore.position) < Config.SPRITE_SIZE * 2 && this.game.clock.elapsed % speed == 0) {
+                ore.hit(damage, level);
 
                 successOreHit = level >= ore.needToolLevel;
 
@@ -92,17 +92,17 @@ export class Entity extends Sprite {
         this.velocity.x = this.movement.normalize().x * this.moveSpeed;
         this.velocity.y = this.movement.normalize().y * this.moveSpeed;
     }
-    animate(game: Game) {
+    animate() {
         if (!this.allowAnimate) return;
         
         if (this.velocity.x != 0 || this.velocity.y != 0)
-            this.playAnimation(game, this.name + "-walk");
+            this.playAnimation(this.name + "-walk");
         else
-            this.playAnimation(game, this.name + "-stay");
+            this.playAnimation(this.name + "-stay");
     }
 
-    spawnText(game: Game, text: string, offset?: Vector2) {
-        SpawnParticles(game, this.position.add(safeValue(offset, new Vector2(0, -30))), {
+    spawnText(text: string, offset?: Vector2) {
+        SpawnParticles(this.game, this.position.add(safeValue(offset, new Vector2(0, -30))), {
             // custom: new Text("store-text", text, { font: "22px Pixel" }),
             render(renderer, part) {
                 renderer.drawText({

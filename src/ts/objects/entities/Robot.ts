@@ -1,10 +1,7 @@
 import { Config } from "../../config";
-import { Game } from "../../engine";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { Button } from "../../engine/components/UI";
-import { Renderer } from "../../engine/Renderer";
 import { random, Vector2 } from "../../engine/utils/math";
-import { Direction } from "../../types";
 import { RobotItem } from "../item/RobotItem";
 import { Ore } from "../ores/Ore";
 import { Entity } from "./Entity";
@@ -40,49 +37,49 @@ export class Robot extends Entity {
         this.digOffsetFactor = .1;
     }
 
-    init(game: Game) {
-        super.init(game);
+    init() {
+        super.init();
 
         this.scale.set();
 
-        this.initElapsed = game.clock.elapsed;
-        game.gamepad.onKeyDown(this.id, "enter", ()=> {
+        this.initElapsed = this.game.clock.elapsed;
+        this.game.gamepad.onKeyDown(this.id, "enter", ()=> {
             if (!this.playerIsNear || !this.allowPickup) return;
 
             // Pickup robot
             this.pickupButton.click();
-            this.pickup(game);
+            this.pickup();
             console.log(true);
         });
 
         // Play motor start sound
-        this.audio.play(game, "motor-start", .5);
+        this.audio.play(this.game, "motor-start", .5);
         // Play motor sound
-        this.audio.play(game, "motor", 1, true);
+        this.audio.play(this.game, "motor", 1, true);
     }
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
 
         // Audio
-        this.audio.update3D(game, this.position);
+        this.audio.update3D(this.game, this.position);
 
         // Allow pickup
         if (this.scale.mul(10).apply(Math.round).x >= 10 && !this.allowPickup)
             this.allowPickup = true;
         
         // If not in loaded chunk
-        if (!game.generator.checkIsInLoadedChunk(this.position)) {
+        if (!this.game.generator.checkIsInLoadedChunk(this.position)) {
             this.velocity.set();
             return;
         }
 
-        this.checkPlayerDistance(game);
+        this.checkPlayerDistance();
         
         if (!this.breaked)
             this._move();
 
         if (!this.collider.collidesWith) return;
-        const ore = game.getChildById<Ore>(this.collider.collidesWith.id);
+        const ore = this.game.getChildById<Ore>(this.collider.collidesWith.id);
         if (!ore) return;
         
         // If robot cant destroy ore
@@ -90,19 +87,19 @@ export class Robot extends Entity {
             this.breaked = true;
         }
         
-        this.dig(game, Config.ROBOT_DAMAGE, Config.ROBOT_HIT_SPEED, 2, "bottom");
+        this.dig(Config.ROBOT_DAMAGE, Config.ROBOT_HIT_SPEED, 2, "bottom");
         
     }
-    render(game: Game, renderer: Renderer) {
-        super.render(game, renderer);
+    render() {
+        super.render();
 
         this.scale.lerp(Vector2.all(), .1);
 
         // Pickup button
         if (this.playerIsNear) {
             this.pickupButton.position = new Vector2(0, -90).add(this.position)
-            this.pickupButton.render(game);
-            game.renderer.drawText({
+            this.pickupButton.render(this.game);
+            this.game.renderer.drawText({
                 text: "Подобрать",
                 position: new Vector2(0, -50).add(this.position),
             });
@@ -110,7 +107,7 @@ export class Robot extends Entity {
         
         // Smoke
         if (this.breaked)
-            this.smoke(game);
+            this.smoke();
 
     }
 
@@ -118,10 +115,10 @@ export class Robot extends Entity {
         this.velocity.copy(this.velocity.add(this.movement.mul(.2)));
     }
 
-    smoke(game: Game) {
+    smoke() {
 
-        if (game.clock.elapsed % 20 == 0) {
-            SpawnParticles(game, this.position, {
+        if (this.game.clock.elapsed % 20 == 0) {
+            SpawnParticles(this.game, this.position, {
                 render: (renderer, part)=> {
 
                     renderer.drawRect({
@@ -147,17 +144,17 @@ export class Robot extends Entity {
         }
 
     }
-    checkPlayerDistance(game: Game) {
+    checkPlayerDistance() {
 
-        const player = game.getChildById<Player>("player");
+        const player = this.game.getChildById<Player>("player");
         if (!player) return;
         
         this.playerIsNear = player.position.distance(this.position) < Config.ROBOT_PICKUP_DISTANCE
     }
-    pickup(game: Game) {
-        game.add(new RobotItem(this.position));
-        game.initChildren();
-        game.removeChildById(this.id);
+    pickup() {
+        this.game.add(new RobotItem(this.position));
+        this.game.initChildren();
+        this.game.removeChildById(this.id);
         this.playerIsNear = false;
     }
 }

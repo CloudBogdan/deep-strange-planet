@@ -20,9 +20,9 @@ export class Text extends Point {
         this.color = props?.color || "#fff";
     }
 
-    render(game: Game, renderer: Renderer) {
-        super.render(game, renderer);
+    render() {
+        super.render();
 
-        game.renderer.drawText({ ...this });
+        this.game.renderer.drawText({ ...this });
     }
 }

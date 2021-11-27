@@ -1,10 +1,10 @@
 import { Game } from "./Game"
 import { Ore } from "../objects/ores/Ore"
-import { Vector2 } from "./utils/math"
+import { inRange, Vector2 } from "./utils/math"
 import { Point } from "./components/Point";
 import { Config } from "../config";
 import { perlin2, seed } from "./utils/noise";
-import { Destrony } from "../objects/ores/Destrony";
+import { Block } from "../objects/Block";
 
 let __chunkId = 0;
 
@@ -15,8 +15,9 @@ export type Chunk = {
 type GeneratorSettings = {
     value: [number, number]
     height: [number, number]
-    ore: typeof Ore | any | null
+    block: typeof Block | any | null
     divider?: number
+    rules?: (noiseX: number, noiseY: number, getValue: (x: number, y: number, div?: number)=> number)=> boolean
 }
 
 export class Generator {
@@ -55,6 +56,7 @@ export class Generator {
     generateChunksAt(position: Vector2) {
         const pos = position.div(Config.SPRITE_SIZE * Config.CHUNK_SIZE).apply(Math.floor);
         
+        // Create chunks
         if (pos.add(new Vector2(.5, .5)).mul(Config.SPRITE_SIZE * 5).distance(position) > 100) {
 
             this.range.map(p=> {
@@ -69,6 +71,7 @@ export class Generator {
             
         }
 
+        // Remove chunks
         this.chunks.map((chunk, index)=> {
 
             if (position.distance(chunk.pos.mul(Config.SPRITE_SIZE * Config.CHUNK_SIZE)) > 900) {
@@ -99,20 +102,22 @@ export class Generator {
                 for (let i = 0; i < this.settings.length; i ++) {
                     const gen = this.settings[i];
     
-                    const div = gen.divider || 10;
-                    const value = (+perlin2((x + pos.x * Config.CHUNK_SIZE) / div, (y + pos.y * Config.CHUNK_SIZE) / div) + 1) / 1.5;
+                    const noiseX = (x + pos.x * Config.CHUNK_SIZE)
+                    const noiseY = (y + pos.y * Config.CHUNK_SIZE)
+                    const getValue = (x: number, y: number, div?: number)=> (+perlin2(x / (div || 10), y / (div || 10)) + 1) / 1.5;
+                    const value = getValue(noiseX, noiseY, gen.divider);
     
-                    // if (!(_x == Math.floor(Config.WORLD_WIDTH / 2) && (_y == 0 || _y == 1 || _y == 2))) {
-                    if (value >= gen.value[0] && value <= gen.value[1] && _y >= gen.height[0] && _y <= gen.height[1])
-                        ores[y][x] = gen.ore;
-                    // }
+                    const rules = gen.rules ? gen.rules(noiseX, noiseY, getValue) : true;
+                    
+                    if (inRange(value, gen.value[0], gen.value[1]) && inRange(_y, gen.height[0], gen.height[1]) && rules)
+                        ores[y][x] = gen.block;
                 }
                 
                 const inChunkId = [x, y, pos.x, pos.y].join("-");
                 if (ores[y][x] && this.destroyedOres.indexOf(inChunkId) < 0) {
                     const o = new (ores[y][x] as any)(new Vector2(_x, _y));
                     o.inChunkId = inChunkId;
-                    o.group = `chunk-${ __chunkId }`;
+                    o.group = `${ __chunkId }`;
                     this.game.add(o);
                 }
     
@@ -122,7 +127,7 @@ export class Generator {
     
         this.game.initChildren();
     
-        return { group: `chunk-${ __chunkId }`, pos };
+        return { group: `${ __chunkId }`, pos };
 
     }
 

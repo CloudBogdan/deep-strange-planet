@@ -14,9 +14,9 @@ export class Antin extends Ore {
         this.particlesColors = [Color.GREY, Color.RED];
     }
 
-    onBreak(game: Game) {
-        super.onBreak(game);
+    onBreak() {
+        super.onBreak();
 
-        this.dropRawOre(game, RawAntin);
+        this.dropRawOre(RawAntin);
     }
 }

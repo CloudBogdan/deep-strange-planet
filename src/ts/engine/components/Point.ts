@@ -18,6 +18,7 @@ export type IPointProps = {
 }
 
 export class Point {
+    game!: Game
     id: string
     type: ComponentType
     name: string
@@ -51,63 +52,15 @@ export class Point {
         this.collider.type = props?.colliderType || "dynamic";
     }
     
-    init(game: Game) {
+    init() {
         this.inited = true;
     }
-    update(game: Game) {
+    update() {
         this.velocity.x *= this.acceleration.x;
         this.velocity.y *= this.acceleration.y;
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
     }
-    render(game: Game, renderer: Renderer) {
-    }
-
-    collideWidth(game: Game, point: Point | undefined) {
-
-        if (!point) return;
-        if (point.position.distance(this.position) > 200) return;
-        
-        let allowCollide = true
-        
-        if (!this.collider.collidable && point.collider.type == "dynamic" || !point.collider.collidable)
-            allowCollide = false;
-
-        if (allowCollide)
-            if (point.collider.type == "dynamic" && this.collider.type == "solid") {
-
-                const collide = game.physics.collide(point, this as any);
-                
-                const col1 = point.collider;
-                const col2 = this.collider;
-                
-                // Right
-                if (collide.right && point.velocity.x > 0) {
-                    point.position.x = this.position.x - col2.width / 2 - col1.width / 2 + 1 - col1.offset.x;
-                    point.velocity.x = 0;
-                }
-                // Left
-                if (collide.left && point.velocity.x < 0) {
-                    point.position.x = this.position.x + col2.width / 2 + col1.width / 2 - 1 - col1.offset.x;
-                    point.velocity.x = 0;
-                }
-
-                // Top
-                if (collide.top && point.velocity.y < 0) {
-                    point.position.y = this.position.y + col2.height / 2 + col1.height / 2 - 1;
-                    point.velocity.y = 0;
-                } 
-                // Bottom
-                if (collide.bottom && point.velocity.y > 0) {
-                    point.position.y = this.position.y - col2.height / 2 - col1.height / 2 + 1;
-                    point.velocity.y = 0;
-                }
-
-                if (collide.any) {
-                    point.collider.collidesWith = {...collide};
-                }
-
-            }
-        
+    render() {
     }
 }

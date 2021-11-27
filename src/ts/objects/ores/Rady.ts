@@ -11,9 +11,9 @@ export class Rady extends DangerOre {
         this.particlesColors = [Color.GREY, Color.GREEN];
     }
 
-    onBreak(game: Game) {
-        super.onBreak(game);
+    onBreak() {
+        super.onBreak();
 
-        this.dropRawOre(game, RawRady);
+        this.dropRawOre(RawRady);
     }
 }

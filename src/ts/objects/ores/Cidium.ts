@@ -12,9 +12,9 @@ export class Cidium extends Ore {
         this.particlesColors = [Color.BLACK, Color.YELLOW];
     }
 
-    onBreak(game: Game) {
-        super.onBreak(game);
+    onBreak() {
+        super.onBreak();
 
-        this.dropRawOre(game, RawCidium);
+        this.dropRawOre(RawCidium);
     }
 }
