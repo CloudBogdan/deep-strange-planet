@@ -1,7 +1,8 @@
 import { Config } from "../../config";
 import { Game } from "../../engine";
 import { SpawnParticles } from "../../engine/components/Particles";
-import { random, Vector2 } from "../../engine/utils/math";
+import { clamp, random, randomInt, Vector2 } from "../../engine/utils/math";
+import { Player } from "../entities/Player";
 import { Ore, OreType } from "./Ore";
 
 export class FallingOre extends Ore {
@@ -22,75 +23,68 @@ export class FallingOre extends Ore {
     init() {
         super.init();
         
-        this.acceleration.y = .9;
+        this.acceleration.y = .98;
+
+        this.game.generator.onWorldChange(this.id, this.position, ()=> {
+
+            if (!this.checkBlockIn(new Vector2(0, 1), "ore")) {
+                this.allowGravity = true;
+                this.animateScaleTo = .7;
+                this.crumble();
+            }
+
+        });
     }
     update() {
         super.update();
 
-        
-        // game.getChildrenByName<Ore>("ore").filter(ore=> this.id != ore.id).map(ore=> {
-            
-        //     const collide = game.physics.collide(this, ore);
-
-        //     this.allowGravity = !collide.bottom;
-                // this.offset.set(0, 20);
-
-            // [0] - x
-            // [1] - y
-            // [2] - chunk x
-            // [3] - chunk y
-            // const oreChunkPos = ore.inChunkId.split("-").map(n=> +n);
-            // const thisChunkPos = this.inChunkId.split("-").map(n=> +n);
-
-            // if (thisChunkPos[2] == oreChunkPos[2] && thisChunkPos[3] == oreChunkPos[3]) {
-
-            //     if (thisChunkPos[1] + 1 != oreChunkPos[1] && thisChunkPos[0] == oreChunkPos[0])
-            //         this.offset.set(0, 20);
-
-            // }
-            // this.allowGravity = !(this.position.y > ore.position.y - Config.SPRITE_SIZE && ((this.position.x + Config.SPRITE_SIZE) > (ore.position.x - Config.SPRITE_SIZE)) && ore.position.x > this.position.x);
-            // const collide = game.physics.collide(this, ore);
-            // this.allowGravity = !collide.any;
-            
-            // this.collider.collidesWith = collide;
-            // this.collideWidth(game, ore);
-        // })
-
-        // this.gravity(game, this.allowGravity);
-        // console.log(this.collider.collidesWith?.bottom);
-        // this.gravity(game, !this.collider.collidesWith?.bottom);
+        this.gravity();
     }
 
-    gravity(allow: boolean) {
+    gravity() {
 
+        if (this.game.generator.checkIsInLoadedChunk(this.position)) {
+            if (this.allowGravity) {
 
-        // if (!this.collider.collidesWith?.bottom && this.collider.collidesWith?.id) {
-        // if (!this.collider.collidesWith?.bottom) {
-        if (allow) {
+                if ((this.game.clock.elapsed - this.elapsedBeforeFall) % Config.ORE_FALL_DELAY == 0 && !this.allowFall)
+                    this.allowFall = true;
 
-            // if (!this.willFall) {
-            //     this.crumble(game);
-            //     this.willFall = true;
-            // }
+                if (this.allowFall) {
+                    if (this.collider.collidesWith?.bottom) {
+                        this.destroy();
+                    }
+                    
+                    this.collider.type = "dynamic";
+                    this.collider.width =
+                    this.collider.height = Config.SPRITE_SCALE * 6;
+                    this.velocity.y ++;
 
-            // if (!this.allowFall) {
-            //     if ((game.clock.elapsed - this.elapsedBeforeFall) % Config.ORE_FALL_DELAY == 0)
-            //         this.allowFall = true;
-            // } else {
-                this.velocity.y ++;
-                // this.collider.type = "dynamic";
-            // }
+                    const player = this.game.getChildById<Player>("player")
 
+                    if (player && this.game.physics.collide(player, this).any) {
+                        player.hit(clamp(randomInt(0, 5), 2, 5));
+                    }
+                    
+                }
+            }
         } else {
-            this.velocity.y = 0;
-            // this.allowFall = false;
-            // this.willFall = false;
-            // this.elapsedBeforeFall = game.clock.elapsed;
-            // this.collider.type = "solid";
+            // this.velocity.y = 0;
+            if (!this.allowFall)
+                this.elapsedBeforeFall = this.game.clock.elapsed;
+            else
+                this.destroy();
         }
-        // this.collider.collidable = this.collider.collidesWith?.bottom || false;
 
-        // this.collider.collidesWith = null;
+        this.collider.collidesWith = null;
+
+    }
+    destroy() {
+
+        SpawnParticles(this.game, this.position);
+        
+        this.sound.play(this.game, "fall-stone-break"); 
+        this.game.removeChildById(this.id);
+        this.game.generator.destroyOre(this.inChunkId);
 
     }
 

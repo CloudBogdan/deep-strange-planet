@@ -38,6 +38,11 @@ export type DrawTextProps = {
     opacity?: number
     layer?: string
 };
+export type ClipRect = {
+    width?: number
+    height?: number
+    position: Vector2
+}
 
 export class Renderer {
     game: Game
@@ -114,7 +119,7 @@ export class Renderer {
                 this.particles.splice(index, 1);
         });
     }
-    inCameraViewport(pos: Vector2, width?: number, height?: number, repeat?: number): boolean {
+    inCameraViewport(pos: Vector2, width?: number, height?: number): boolean {
         const cam = this.game.camera.position;
         const 
             w = innerWidth + 150,
@@ -122,7 +127,7 @@ export class Renderer {
         width = safeValue(width, Config.SPRITE_SIZE);
         height = safeValue(height, Config.SPRITE_SIZE);
         return (
-            pos.x + width / 2 + (repeat ? repeat * width : 1) > cam.x - w / 2 &&
+            pos.x + width / 2 > cam.x - w / 2 &&
             pos.y + height / 2 > cam.y - h / 2 &&
             pos.x - width / 2 < cam.x + w / 2 &&
             pos.y - height / 2 < cam.y + h / 2
@@ -236,18 +241,22 @@ export class Renderer {
         width?: number, height?: number,
         position?: Vector2, rotation?: number, offset?: Vector2,
         layer?: string,
-        scale?: Vector2, flip?: { x: boolean, y: boolean }, opacity?: number, repeat?: number
+        scale?: Vector2, flip?: { x: boolean, y: boolean },
+        opacity?: number, repeat?: Vector2, clip?: ClipRect
     }) {
         try {
             if (!props.texture) return;
 
-            const w = safeValue(props.width, 1) * Config.SPRITE_SIZE;
-            const h = safeValue(props.height, 1) * Config.SPRITE_SIZE;
+            const size = Config.SPRITE_SIZE;
+
+            const w = safeValue(props.width, 1) * size;
+            const h = safeValue(props.height, 1) * size;
+            const clipPos = safeValue(props.clip?.position, Vector2.zero());
             
             const p = safeValue(props.position, Vector2.zero());
             const o = safeValue(props.offset, Vector2.zero());
             
-            if ((!this.inCameraViewport(p, w, h, props.repeat)) && this.layers[props.layer || "game"].cameraFactor == 1) return;
+            if ((!this.inCameraViewport(p, w*safeValue(props.repeat?.x, 1), h*safeValue(props.repeat?.y, 1))) && this.layers[props.layer || "game"].cameraFactor == 1) return;
             
             const f = safeValue(props.flip, { x: false, y: false });
             const s = safeValue(props.scale, Vector2.all());
@@ -262,12 +271,37 @@ export class Renderer {
             );
             
             // Draw sprite without repeat
-            if (!props.repeat)
-                context.drawImage(props.texture, -w / 2, -h / 2, w, h);
-            else
+            if (!props.repeat) {
+
+                if (props.clip)
+                    context.drawImage(
+                        props.texture,
+                        // Clip rect
+                        clipPos.x, clipPos.y,
+                        w / Config.SPRITE_SCALE, h / Config.SPRITE_SCALE,
+                        
+                        // Transform
+                        -w / 2, -h / 2,
+                        w, h
+                    );
+                else
+                    context.drawImage(
+                        props.texture,
+                        // Transform
+                        -w / 2, -h / 2,
+                        w, h
+                    );
+                
+            } else
                 // And... With repeat?
-                for (let i = 0; i < props.repeat; i ++)
-                    context.drawImage(props.texture, -w / 2 + i * w, -h / 2, w, h);
+                for (let repeatY = 0; repeatY < props.repeat.y; repeatY ++)
+                    for (let repeatX = 0; repeatX < props.repeat.x; repeatX ++)
+                        context.drawImage(
+                            props.texture,
+                            -w / 2 + repeatX * w,
+                            -h / 2 + repeatY * h,
+                            w, h
+                        );
 
             this.endTransform(props.layer);
         } catch(err) {}

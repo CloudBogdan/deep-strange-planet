@@ -3,7 +3,7 @@ import { GearLevel } from "./objects/gear/Gear";
 
 export enum Config {
     // World size and chunks size in blocks
-    WORLD_WIDTH = 25,
+    WORLD_WIDTH = 82,
     WORLD_HEIGHT = 225,
     CHUNK_SIZE = 4,
     
@@ -13,6 +13,11 @@ export enum Config {
     PARTICLES_GRAVITY = .4,
     WORLD_X_CENTER = WORLD_WIDTH * SPRITE_SIZE / 2, // In pixels
 
+    VINE_GROW_TICK = 60,
+    VINE_GROW_CHANCE = 50,
+    VINE_MIN_LENGTH = 4,
+    VINE_MAX_LENGTH = 8,
+    
     ROBOT_PICKUP_DISTANCE = SPRITE_SIZE,
     ROBOT_DAMAGE = 4,
     ROBOT_HIT_SPEED = 10,
@@ -24,7 +29,7 @@ export enum Config {
     DOME_DIAMETER = SPRITE_SIZE * 6,
     GROUND_HEIGHT = SPRITE_SIZE * 2,
     
-    ALLOW_DARK = 0,
+    ALLOW_DARK = 1,
     RAW_LIVE_TIME = 400,
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,

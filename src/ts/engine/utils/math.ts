@@ -1,3 +1,4 @@
+import { Config } from "../../config";
 import { Axes, Direction } from "../../types";
 import { Asset, AssetType } from "../Asset";
 
@@ -133,13 +134,14 @@ export function wrapText(text: string, maxLength: number): { text: string, wrapC
         wrapCount
     };
 }
-export function axesToDirection(axes: Axes): Direction {
-    if (axes == "down")
-        return "bottom";
-    else if (axes == "up")
-        return "top";
-    else
-        return axes;
+export function inChunkIdToPosition(inChunkId: string): Vector2 {
+    const size = Config.SPRITE_SIZE;
+    const inChunkPos = inChunkId.split("-").map(p=> +p);
+
+    return new Vector2(
+        (inChunkPos[0] + inChunkPos[2] * Config.CHUNK_SIZE) * size,
+        (inChunkPos[1] + inChunkPos[3] * Config.CHUNK_SIZE) * size,
+    );
 }
 
 export function lerp(from: number, to: number, time: number): number {
@@ -148,8 +150,11 @@ export function lerp(from: number, to: number, time: number): number {
 export function random(from: number, to: number): number {
     return Math.random() * (to - from) + from;    
 }
+export function randomInt(from: number, to: number): number {
+    return Math.floor(Math.random() * ((to + 1) - from) + from);
+}
 export function chance(percent: number): boolean {
-    return Math.floor(random(0, 101)) <= percent;
+    return randomInt(0, 100) <= percent;
 }
 export function clamp(value: number, min: number, max: number) {
     if (value < min)

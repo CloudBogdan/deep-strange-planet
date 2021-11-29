@@ -16,7 +16,7 @@ const recipes = (recycler: Recycler)=> ({
         ][recycler.storage.level - 1] as any,
         // On craft
         onCraft: (game: Game)=> {
-            recycler.storage.upgrade(game, 1);
+            recycler.storage.upgrade(1);
         },
         // Render icon
         icon: (game, pos)=> {

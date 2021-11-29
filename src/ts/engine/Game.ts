@@ -6,6 +6,7 @@ import { Physics } from "./Physics";
 import { Renderer } from "./Renderer";
 import { random, Vector2 } from "./utils/math";
 import { Generator } from "./Generator";
+import { Sound } from "./components/Sound";
 
 export type Clock = {
     elapsed: number
@@ -25,6 +26,7 @@ export class Game extends Container {
     camera: Camera
     
     assets: Asset[]
+    sounds: Sound[]
 
     clock: Clock
     initListeners: (()=> void)[]
@@ -60,6 +62,7 @@ export class Game extends Container {
         };
         
         this.assets = [];
+        this.sounds = [];
         
         this.clock = {
             elapsed: 0
@@ -82,8 +85,9 @@ export class Game extends Container {
     }
     
     removeChildById(id: Point["id"], listenerId?: string) {
-        super.removeChildById(id);
         this.gamepad.removeListenerById(listenerId || id);
+        this.generator.removeListenerById(listenerId || id);
+        super.removeChildById(id);
     }
 
     initChildren() {
@@ -100,6 +104,21 @@ export class Game extends Container {
         this.renderListeners.push(listener);
     }
 
+    tick(tick: number): boolean {
+        return this.clock.elapsed % tick == 0;
+    }
+    playSoundAt(position: Vector2, assetName: string, volume?: number) {
+        const sound = new Sound();
+
+        sound.play(this, assetName, volume);
+        if (sound.audio)
+            sound.audio.onended = ()=> {
+                console.log(true);
+            }
+        
+        this.sounds.push(sound);
+    }
+
     init() {
 
         // Init
@@ -110,11 +129,13 @@ export class Game extends Container {
             requestAnimationFrame(loop);
             this.renderer.render();
             this.clock.elapsed ++;
+
+            // Camera shake
             if (!this.camera.shaking) {
                 this.camera.startShakeElapsed = this.clock.elapsed;
                 this.camera.offset.lerp(Vector2.zero(), .2);
             } else {
-                if ((this.clock.elapsed - this.camera.startShakeElapsed) % 20 == 0)
+                if ((this.clock.elapsed - this.camera.startShakeElapsed) % 10 == 0)
                     this.camera.shaking = false;
                 this.camera.offset.copy(this.camera.offset.add(new Vector2(random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude), random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude))));
             }

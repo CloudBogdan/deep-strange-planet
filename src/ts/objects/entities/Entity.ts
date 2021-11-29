@@ -1,6 +1,6 @@
-import { Config } from "../../config";
+import { Color, Config } from "../../config";
 import { Game, ISpriteProps, Sprite } from "../../engine"
-import { Audio } from "../../engine/components/Audio";
+import { Sound } from "../../engine/components/Sound";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { random, safeValue, Vector2 } from "../../engine/utils/math"
 import { Direction } from "../../types";
@@ -13,9 +13,11 @@ export type IEntityProps = {
 } & ISpriteProps;
 
 export class Entity extends Sprite {
-    audio: Audio
+    sound: Sound
     hp: number
     moveSpeed: number
+    damaged: boolean
+    damagedElapsed: number
 
     movement: Vector2
     allowMove: boolean
@@ -26,9 +28,11 @@ export class Entity extends Sprite {
     constructor(name: string, assetName: string, props?: IEntityProps) {
         super(name, assetName, props);
         
-        this.audio = new Audio();
+        this.sound = new Sound();
         this.hp = props?.hp || 10;
         this.moveSpeed = props?.moveSpeed || 5;
+        this.damaged = false;
+        this.damagedElapsed = 0;
         
         this.movement = new Vector2();
         this.allowMove = true;
@@ -48,6 +52,16 @@ export class Entity extends Sprite {
         if (!this.allowMove) {
             this.movement.set();
             this.velocity.set();
+        }
+
+        if (!this.damaged) {
+            this.damagedElapsed = this.game.clock.elapsed;
+            this.visible = true;
+        } else {
+            if ((this.game.clock.elapsed - this.damagedElapsed) % 50 == 0)
+                this.damaged = false;
+
+            this.blink();
         }
 
         this.offset.lerp(Vector2.zero(), this.digOffsetFactor);
@@ -101,23 +115,52 @@ export class Entity extends Sprite {
             this.playAnimation(this.name + "-stay");
     }
 
-    spawnText(text: string, offset?: Vector2) {
+    hit(damage: number) {
+        if (this.damaged) return;
+
+        this.hp -= damage;
+        this.damaged = true;
+
+        SpawnParticles(this.game, this.position.add(new Vector2(0, -30)), {
+            render(renderer, part) {
+                renderer.drawText({
+                    text: damage.toString(),
+                    font: "22px Pixel",
+                    color: Color.RED,
+                    position: part.position,
+                    opacity: part.opacity,
+                    layer: "particles"
+                })
+            },
+            count: 1,
+            velocity: ()=> new Vector2(0, random(-3, -5)),
+            downSize: 0,
+            gravity: .1,
+            opacity: 5,
+            downOpacity: .1,
+            box: ()=> new Vector2(random(-10, 10), random(-10, 10))
+        });
+
+        console.log(this.hp);
+    }
+
+    spawnText(text: string, offset?: Vector2, color?: string) {
         SpawnParticles(this.game, this.position.add(safeValue(offset, new Vector2(0, -30))), {
-            // custom: new Text("store-text", text, { font: "22px Pixel" }),
             render(renderer, part) {
                 renderer.drawText({
                     text,
                     font: "22px Pixel",
+                    color: color,
                     position: part.position,
-                    opacity: part.size, 
+                    opacity: part.opacity, 
                     layer: "particles"
                 });
             },
-            size: [5, 5],
+            opacity: 5,
             count: 1,
             gravity: 0,
             velocity: ()=> new Vector2(0, -1.5),
-            downSize: .08,
+            downOpacity: .08,
             box: ()=> new Vector2(random(-10, 10), random(-10, 10))
         });
     }

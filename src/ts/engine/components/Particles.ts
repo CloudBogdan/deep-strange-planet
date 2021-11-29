@@ -1,5 +1,5 @@
 import { Game } from "../Game";
-import { random, Vector2 } from "../utils/math";
+import { random, safeValue, Vector2 } from "../utils/math";
 import { Color, Config } from "../../config";
 import { Point } from "./Point";
 import { Renderer } from "../Renderer";
@@ -9,6 +9,7 @@ type ParticlesSettings = {
     downSize?: number
     downOpacity?: number
     size?: [number, number]
+    opacity?: number
 
     gravity?: number
     box?: ()=> Vector2
@@ -38,11 +39,11 @@ export class Particle {
     constructor(position: Vector2, settings?: ParticlesSettings) {
         const c = settings?.colors;
         this.color = c ? c[Math.floor(random(0, c.length))] : Color.BLACK;
-        this.opacity = 1;
+        this.opacity = safeValue(settings?.opacity, 1);
         this.downOpacity = settings?.downOpacity || 0;
         
         this.position = new Vector2(position.x, position.y);
-        this.rotation = 0;
+        this.rotation = random(0, Math.PI * 4);
 
         const v = settings?.velocity;
         const rv = settings?.rotationVelocity;
@@ -60,7 +61,8 @@ export class Particle {
                 width: this.size * .2,
                 height: this.size * .2,
                 position: this.position, rotation: this.rotation,
-                layer: "particles"
+                layer: "particles",
+                opacity: this.opacity
             });
         }
     }

@@ -8,10 +8,10 @@ import { Raw, RawType } from "../raws/Raw";
 import { Renderer } from "../../engine/Renderer";
 import { Item } from "../item/Item";
 import { Robot } from "./Robot";
-import { Audio } from "../../engine/components/Audio";
+import { Sound } from "../../engine/components/Sound";
 
 // > 5 is "god tool"
-export type ToolLevel = 1 | 2 | 3 | 4 | 5;
+export type ToolLevel = 1 | 2 | 3 | 4 | 5 | 6;
 export const MaxToolLevel = 4;
 export type Tool = {
     speed: number,
@@ -39,9 +39,16 @@ const tools: { [key: string]: Tool }  = {
         speed: 5,
         damage: 20
     },
+    "6": {
+        speed: 16,
+        damage: 2
+    },
 }
 
 export class Player extends Entity {
+    // ambientSound: Sound | null
+    // ambientIsPlaying: boolean
+    
     wire: Vector2
     inventory: {
         totalCount: number
@@ -62,13 +69,16 @@ export class Player extends Entity {
             position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE)
         });
         
+        // this.ambientSound = null;
+        // this.ambientIsPlaying = false;
+
         this.wire = this.position.expand();
         this.inventory = {
             totalCount: 0,
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = 5;
+        this.toolLevel = 3;
 
         this.damageAnimatedOpacity = 0;
 
@@ -105,8 +115,9 @@ export class Player extends Entity {
         this.move();
         this.pullWire();
 
-        // Foot steps
+        // Sounds
         this.footsStep();
+        // this.ambient();
 
         // Slow
         // this.moveSpeed = this.checkItemInInventory("raw-nerius") ? 2 : 5;
@@ -205,6 +216,22 @@ export class Player extends Entity {
                 this.position.y = -Config.SPRITE_SIZE / 2;
         }
     }
+
+    // ambient() {
+    //     if (!this.game.tick(100)) return;
+
+    //     this.game.getChildrenByName<Ore>("ore").filter(ore=> ore.oreType == "fetus-stone").map(ore=> {
+    //         if (this.position.distance(ore.position) < 300 && !this.ambientSound) {
+    //             this.ambientSound = new Sound();
+    //             this.ambientSound.play(this.game, "wave", 1, true);
+    //             this.ambientIsPlaying = true;
+    //         }
+    //         if (this.position.distance(ore.position) > 300 && this.ambientIsPlaying) {
+    //             this.ambientSound
+    //         }
+    //     });
+
+    // }
     
     pickup(item: Item, type: string, count: number) {
         this.inventory.totalCount += count;
@@ -224,9 +251,11 @@ export class Player extends Entity {
 
     }
     hit(damage: number) {
-        this.hp -= damage;
+        super.hit(damage);
+
         this.damageAnimatedOpacity = 1.5;
         this.game.camera.shake();
+        this.sound.play(this.game, "bonk");
     }
     upgradeTool(levelUp: number) {
         if (this.toolLevel < MaxToolLevel)
@@ -259,13 +288,8 @@ export class Player extends Entity {
             (this.velocity.y < 0 && !this.collider.collidesWith?.top) ||
             (this.velocity.y > 0 && !this.collider.collidesWith?.bottom)
         
-        if (this.game.clock.elapsed % 20 == 0 && allow) {
-            this.audio.play(this.game, `step-${ Math.floor(random(1, 4)) }`)
-
-            if (this.audio.audio)
-                this.audio.audio.volume = .5;
-            
-        }
+        if (this.game.clock.elapsed % 20 == 0 && allow)
+            this.sound.play(this.game, `step-${ Math.floor(random(1, 4)) }`, .3)
 
     }
 }

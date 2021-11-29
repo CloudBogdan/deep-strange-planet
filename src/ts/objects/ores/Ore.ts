@@ -1,11 +1,11 @@
-import { chance, lerp, random, Vector2 } from "../../engine/utils/math";
+import { chance, lerp, random, randomInt, Vector2 } from "../../engine/utils/math";
 import { Game, Sprite } from "../../engine";
 import { Config, Color, OreSettings } from "../../config";
 import { Player, ToolLevel } from "../entities/Player";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { Renderer } from "../../engine/Renderer";
 import { Raw } from "../raws/Raw";
-import { Audio } from "../../engine/components/Audio";
+import { Sound } from "../../engine/components/Sound";
 import { Block } from "../Block";
 import { FetusVine } from "../plants/FetusVine";
 
@@ -23,7 +23,8 @@ export class Ore extends Block {
     needToolLevel: ToolLevel
     
     particlesColors: string[]
-    allowGrowVine: boolean
+    hitAudioName: string
+    breakAudioNames: string[]
 
     constructor(type: OreType, position: Vector2) {
         super(`ore-${ type }`, type, position);
@@ -37,43 +38,33 @@ export class Ore extends Block {
         this.unbreakable = false;
 
         this.particlesColors = [Color.BLACK];
-        this.allowGrowVine = false;
+        this.hitAudioName = "stone-hit";
+        this.breakAudioNames = ["stone-break-1", "stone-break-2", "stone-break-3"];
     }
 
-    init() {
-        super.init();
-
-        this.growVine();
-    }
-    update() {
-        super.update();
-        
-        this.animatedScale = lerp(this.animatedScale, 1, .2);
-        this.scale.set(this.animatedScale, this.animatedScale);
-    }
-    
     hit(damage: number, toolLevel: ToolLevel) {
-        // Break audio
-        if (this.hp > 0)
-            this.audio.play(this.game, "stone-hit");
-        
-        if (this.unbreakable || toolLevel < this.needToolLevel) return;
+        if (!this.unbreakable && toolLevel >= this.needToolLevel) {
 
-        this.hp -= damage;
-        this.animatedScale = .8;
-        SpawnParticles(this.game, this.position, {
-            colors: this.particlesColors,
-            size: [.2, .5],
-            count: 6,
-            box: ()=> new Vector2(random(-Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE / 2), random(-Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE / 2))
-        });
+            this.hp -= damage;
+            this.animatedScale = .8;
+            
+            SpawnParticles(this.game, this.position, {
+                colors: this.particlesColors,
+                size: [.2, .5],
+                count: 6,
+                box: ()=> new Vector2(random(-Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE / 2), random(-Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE / 2))
+            });
 
-        if (this.hp <= 0) {
-            this.onBreak();
-            // Destroy audio
-            this.audio.play(this.game, `stone-break-${ Math.floor(random(1, 4)) }`);
+            if (this.hp <= 0) {
+                // Break audio
+                this.sound.play(this.game, this.breakAudioNames[randomInt(0, this.breakAudioNames.length-1)]);
+                this.onBreak();
+            }
         }
 
+        // Hit audio
+        if (this.hp > 0)
+            this.sound.play(this.game, this.hitAudioName);
 
     }
     onBreak() {
@@ -94,14 +85,5 @@ export class Ore extends Block {
         if (!drop) return;
         this.game.add<typeof rawOre>(new (rawOre as any)(this.position.add(new Vector2(random(-10, 10), random(-10, 10)))));
         this.game.initChildren();
-    }
-
-    growVine() {
-        if (!this.allowGrowVine) return;
-
-        if (!this.checkBlockIn(new Vector2(0, 1), "ore")) {
-            this.game.add(new FetusVine(this.position.add(new Vector2(0, Config.SPRITE_SIZE)).div(Config.SPRITE_SIZE).apply(Math.floor)));
-            this.game.initChildren();
-        }
     }
 }

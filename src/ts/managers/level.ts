@@ -9,7 +9,7 @@ export function initLevel(game: Game) {
         width: 4,
         height: 4,
         position: new Vector2(-Config.SPRITE_SIZE * 10, -Config.SPRITE_SIZE * .5 * 3),
-        repeat: Math.round(Config.WORLD_WIDTH) + 2,
+        repeat: new Vector2(Math.round(Config.WORLD_WIDTH) + 2, 1),
         layer: "bg"
     }));
 

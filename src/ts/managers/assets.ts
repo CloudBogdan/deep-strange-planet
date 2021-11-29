@@ -41,7 +41,11 @@ import raw_nerius_img from "../../images/raw/raw-nerius.png"; // @ts-ignore
 import raw_manty_img from "../../images/raw/raw-manty.png"; // @ts-ignore
 
 // > Plants
-import fetus_vine_img from "../../images/flora/fetus-vine.png"; // @ts-ignore
+import fetus_vine_1_img from "../../images/flora/fetus-vine/fetus-vine-1.png"; // @ts-ignore
+import fetus_vine_2_img from "../../images/flora/fetus-vine/fetus-vine-2.png"; // @ts-ignore
+import fetus_vine_3_img from "../../images/flora/fetus-vine/fetus-vine-3.png"; // @ts-ignore
+import fetus_vine_img from "../../images/flora/fetus-vine/fetus-vine.png"; // @ts-ignore
+// import fetus_vine_4_img from "../../images/flora/fetus-vine/fetus-vine-4.png"; // @ts-ignore
 
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
@@ -69,12 +73,20 @@ import stone_hit_mp from "../../audio/stone-hit.mp3"; // @ts-ignore
 import stone_break1_mp from "../../audio/stone-break/stone-break-1.mp3"; // @ts-ignore
 import stone_break2_mp from "../../audio/stone-break/stone-break-2.mp3"; // @ts-ignore
 import stone_break3_mp from "../../audio/stone-break/stone-break-3.mp3"; // @ts-ignore
+import fall_stone_break_mp from "../../audio/stone-break/fall-stone-break.mp3"; // @ts-ignore
+import plant_break_mp from "../../audio/plants/plant-break.mp3"; // @ts-ignore
+import wave_mp from "../../audio/plants/wave.mp3"; // @ts-ignore
+import bonk_mp from "../../audio/bonk.mp3"; // @ts-ignore
+
 import step1_mp from "../../audio/steps/1.mp3"; // @ts-ignore
 import step2_mp from "../../audio/steps/2.mp3"; // @ts-ignore
 import step3_mp from "../../audio/steps/3.mp3"; // @ts-ignore
-import storage_mp from "../../audio/storage.mp3"; // @ts-ignore
-import store_mp from "../../audio/store.mp3"; // @ts-ignore
-import craft_mp from "../../audio/craft.mp3"; // @ts-ignore
+
+import storage_mp from "../../audio/gear/storage.mp3"; // @ts-ignore
+import store_mp from "../../audio/gear/store.mp3"; // @ts-ignore
+import craft_mp from "../../audio/gear/craft.mp3"; // @ts-ignore
+import error_mp from "../../audio/gear/error.mp3"; // @ts-ignore
+
 import motor_mp from "../../audio/robot/motor.mp3"; // @ts-ignore
 import motor_start_mp from "../../audio/robot/motor-start.mp3"; // @ts-ignore
 
@@ -124,7 +136,11 @@ export function initAssets(game: Game) {
     game.loadAsset("raw-manty", [raw_manty_img]);
 
     // > Plants
+    game.loadAsset("fetus-vine-1", [fetus_vine_1_img]);
+    game.loadAsset("fetus-vine-2", [fetus_vine_2_img]);
+    game.loadAsset("fetus-vine-3", [fetus_vine_3_img]);
     game.loadAsset("fetus-vine", [fetus_vine_img]);
+    // game.loadAsset("fetus-vine-4", [fetus_vine_4_img]);
     
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])
@@ -152,12 +168,20 @@ export function initAssets(game: Game) {
     game.loadAsset("stone-break-1", stone_break1_mp, "audio")
     game.loadAsset("stone-break-2", stone_break2_mp, "audio")
     game.loadAsset("stone-break-3", stone_break3_mp, "audio")
+    game.loadAsset("fall-stone-break", fall_stone_break_mp, "audio")
+    game.loadAsset("plant-break", plant_break_mp, "audio")
+    game.loadAsset("wave", wave_mp, "audio")
+    game.loadAsset("bonk", bonk_mp, "audio")
+
     game.loadAsset("step-1", step1_mp, "audio")
     game.loadAsset("step-2", step2_mp, "audio")
     game.loadAsset("step-3", step3_mp, "audio")
     game.loadAsset("storage", storage_mp, "audio")
+    game.loadAsset("error", error_mp, "audio")
+    
     game.loadAsset("store", store_mp, "audio")
     game.loadAsset("craft", craft_mp, "audio")
+
     game.loadAsset("motor", motor_mp, "audio")
     game.loadAsset("motor-start", motor_start_mp, "audio")
 

@@ -53,15 +53,15 @@ export class Robot extends Entity {
         });
 
         // Play motor start sound
-        this.audio.play(this.game, "motor-start", .5);
+        this.sound.play(this.game, "motor-start", .5);
         // Play motor sound
-        this.audio.play(this.game, "motor", 1, true);
+        this.sound.play(this.game, "motor", 1, true);
     }
     update() {
         super.update();
 
         // Audio
-        this.audio.update3D(this.game, this.position);
+        this.sound.update3D(this.game, this.position);
 
         // Allow pickup
         if (this.scale.mul(10).apply(Math.round).x >= 10 && !this.allowPickup)

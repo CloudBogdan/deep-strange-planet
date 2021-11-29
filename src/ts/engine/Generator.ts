@@ -1,10 +1,11 @@
 import { Game } from "./Game"
 import { Ore } from "../objects/ores/Ore"
-import { inRange, Vector2 } from "./utils/math"
+import { inChunkIdToPosition, inRange, Vector2 } from "./utils/math"
 import { Point } from "./components/Point";
 import { Config } from "../config";
 import { perlin2, seed } from "./utils/noise";
 import { Block } from "../objects/Block";
+import messages from "../messages";
 
 let __chunkId = 0;
 
@@ -27,8 +28,13 @@ export class Generator {
     
     chunks: Chunk[]
     destroyedOres: string[]
+    modifiedOres: {
+        [inChunkId: string]: { [dataKey: string]: any }
+    }
     settings: GeneratorSettings[]
     range: Vector2[]
+
+    onWorldChangeListeners: { id: string, pos: Vector2, callback: ()=> void}[]
     
     constructor(game: Game) {
         this.game = game;
@@ -38,8 +44,11 @@ export class Generator {
         console.log(this.seed);
         seed(this.seed);
 
+        this.onWorldChangeListeners = [];
+
         this.chunks = [];
         this.destroyedOres = [];
+        this.modifiedOres = {};
         this.settings = [];
         this.range = [
             new Vector2(1, 0), new Vector2(-1, 0),
@@ -49,7 +58,6 @@ export class Generator {
             new Vector2(1, -1), new Vector2(-1, 1),
             new Vector2(0, 0)
         ];
-
         
     }
 
@@ -115,10 +123,13 @@ export class Generator {
                 
                 const inChunkId = [x, y, pos.x, pos.y].join("-");
                 if (ores[y][x] && this.destroyedOres.indexOf(inChunkId) < 0) {
-                    const o = new (ores[y][x] as any)(new Vector2(_x, _y));
-                    o.inChunkId = inChunkId;
-                    o.group = `${ __chunkId }`;
-                    this.game.add(o);
+
+                    const ore = new (ores[y][x] as any)(new Vector2(_x, _y), this.modifiedOres[inChunkId]);
+                    ore.inChunkId = inChunkId;
+                    ore.group = `${ __chunkId }`;
+
+                    this.game.add(ore);
+
                 }
     
                 
@@ -135,6 +146,23 @@ export class Generator {
         return this.chunks.findIndex(chunk=> Vector2.compare(chunk.pos, checkPosition.add(Vector2.all(Config.SPRITE_SIZE / 2)).div(Config.SPRITE_SIZE * Config.CHUNK_SIZE).apply(Math.floor))) >= 0;
     }
     destroyOre(inChunkId: Point["id"]) {
+
+        delete this.modifiedOres[inChunkId];
         this.destroyedOres.push(inChunkId);
+
+        this.onWorldChangeListeners.map(listener=> {
+            if (listener.pos.distance(inChunkIdToPosition(inChunkId)) < 200)
+                listener.callback()
+        });
+        
+    }
+    modifyOre(inChunkId: Point["id"], data: Generator["modifiedOres"][0]["data"]) {
+        this.modifiedOres[inChunkId] = data;
+    }
+    onWorldChange(id: string, pos: Vector2, callback: Generator["onWorldChangeListeners"][0]["callback"]) {
+        this.onWorldChangeListeners.push({ id, pos, callback });
+    }
+    removeListenerById(id: string) {
+        this.onWorldChangeListeners = this.onWorldChangeListeners.filter(listener=> listener.id != id);
     }
 }

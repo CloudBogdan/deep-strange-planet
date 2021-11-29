@@ -1,15 +1,15 @@
-import { Color, Config } from "../config"
-import { Game, ISpriteProps, Sprite } from "../engine"
-import { Audio } from "../engine/components/Audio"
-import { Renderer } from "../engine/Renderer"
-import { random, Vector2 } from "../engine/utils/math"
+import { Config } from "../config"
+import { ISpriteProps, Sprite } from "../engine"
+import { Sound } from "../engine/components/Sound"
+import { lerp, random, Vector2 } from "../engine/utils/math"
 
 export class Block extends Sprite {
     inChunkId: string
 
-    audio: Audio
+    sound: Sound
     
     animatedScale: number
+    animateScaleTo: number
     darkenFactor: number
     randomRotate: boolean
     randomFlipX: boolean
@@ -23,9 +23,10 @@ export class Block extends Sprite {
 
         this.inChunkId = "";
         
-        this.audio = new Audio();
+        this.sound = new Sound();
 
         this.animatedScale = 1;
+        this.animateScaleTo = 1;
         this.darkenFactor = 1;
         this.randomRotate = true;
         this.randomFlipX = true;
@@ -52,7 +53,10 @@ export class Block extends Sprite {
     update() {
         super.update();
 
-        this.audio.update3D(this.game, this.position);
+        // this.sound.update3D(this.game, this.position);
+
+        this.animatedScale = lerp(this.animatedScale, this.animateScaleTo, .2);
+        this.scale.set(this.animatedScale, this.animatedScale);
     }
 
     darken() {

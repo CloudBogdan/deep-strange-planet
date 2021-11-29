@@ -1,6 +1,6 @@
 import { Config } from "../../config";
 import { Game, ISpriteProps, Sprite } from "../../engine";
-import { Audio } from "../../engine/components/Audio";
+import { Sound } from "../../engine/components/Sound";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { UI, Button } from "../../engine/components/UI";
 import { Renderer } from "../../engine/Renderer";
@@ -14,7 +14,7 @@ export type GearLevel = 1 | 2 | 3;
 export const MaxGearLevel = 3;
 
 export class Gear extends Sprite {
-    audio: Audio
+    sound: Sound
     ui: UI
     interactButton: Button
     player: Player | undefined
@@ -34,7 +34,7 @@ export class Gear extends Sprite {
         this.width = 
         this.height = 2;
 
-        this.audio = new Audio();
+        this.sound = new Sound();
         this.ui = new UI();
         this.interactButton = new Button();
         this.player = undefined;

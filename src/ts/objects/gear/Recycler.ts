@@ -52,8 +52,10 @@ export class Recycler extends Gear {
             if (recipe.canCraft(this.storage)) {
                 recipe.onCraft(this.game, this.storage);
                 this.ui.enabled = false;
-                this.audio.play(this.game, "craft");
+                this.sound.play(this.game, "craft");
             } else {
+                // Can't craft
+                this.sound.play(this.game, "error");
                 this.ui.spawnMessageText("Недостатачно ресурсов");
             }
 

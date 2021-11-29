@@ -57,6 +57,8 @@ export class Storage extends Gear {
     onInteract() {
         super.onInteract();
 
+        console.log(this.level);
+
         if (this.ui.enabled && this.ui.focused.row == 0 && this.ui.focused.slot == 0) {
             const slotName = this.filterRaws(this.contains.slots)[this.selectedSlotIndex];
             this.drop(slotName, 1)
@@ -73,7 +75,7 @@ export class Storage extends Gear {
             }
             this.ui.enabled = !this.ui.enabled;
             if (this.ui.enabled)
-                this.audio.play(this.game, "storage");
+                this.sound.play(this.game, "storage");
         }        
 
     }
@@ -125,7 +127,7 @@ export class Storage extends Gear {
         if (slotNames.length <= 0) return;
         
         // Play store audio
-        this.audio.play(this.game, "store");
+        this.sound.play(this.game, "store");
         this.player.spawnText(totalStoredCount.toString());
     }
     drop(slotName: string, count: number) {
@@ -136,7 +138,7 @@ export class Storage extends Gear {
 
         this.game.add(new Raws[slotName](this.position));
         this.game.initChildren();
-        this.audio.play(this.game, "store", 1, false, false);
+        this.sound.play(this.game, "store", 1, false, false);
     }
 
     renderUI() {

@@ -22,14 +22,6 @@ export class Container {
         return (this.children.filter(child=> child.name.indexOf(name) >= 0) as any[]) as T[];
     }
     getChildById<T>(id: Point["id"] | null, expandAll?: boolean): T | undefined {
-        // if (id) {
-        //     if (expandAll) {
-        //         let b: any[] = [];
-        //         this.children.map(c=> c.type == "group" ? b = (c as any).children : null);
-        //         return [...this.children, ...b].find(child=> child.id ? child.id.indexOf(id) >= 0 : null) as T | undefined;
-        //     } else
-        //         return this.children.find(child=> child.id.indexOf(id) >= 0) as T | undefined;
-        // }
         if (id)
             return this.children.find(child=> child.id.indexOf(id) >= 0) as T | undefined;
     }
@@ -37,7 +29,11 @@ export class Container {
         this.children = this.children.filter(child=> !compareNames(child.id, id));
     }
     removeChildrenByGroupName(group: string) {
-        this.children = this.children.filter(child=> child.group ? !compareNames(child.group, group) : true);
+        this.children.map(child=> {
+            if (child.group && compareNames(child.group, group)) {
+                this.removeChildById(child.id);
+            }
+        });
     }
     
     add<T>(child: Point | Group): T {

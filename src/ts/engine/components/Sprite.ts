@@ -1,16 +1,14 @@
 import { IPointProps, Point } from "./Point";
-import { Game } from "..";
 import { asImage, assetIsValid, Vector2 } from "../utils/math";
 import messages from "../../messages";
 import { Config } from "../../config";
-import { Renderer } from "../Renderer";
 
 export type ISpriteProps = {
     width?: number
     height?: number
 
     flip?: { x: boolean, y: boolean }
-    repeat?: number
+    repeat?: Vector2
 } & IPointProps;
 
 export class Sprite extends Point {
@@ -19,7 +17,7 @@ export class Sprite extends Point {
 
     offset: Vector2
     flip: { x: boolean, y: boolean }
-    repeat: number
+    repeat: Vector2
 
     assetName: string
     texture: HTMLImageElement | null | undefined;
@@ -37,7 +35,7 @@ export class Sprite extends Point {
 
         this.offset = Vector2.zero();
         this.flip = props?.flip || { x: false, y: false };
-        this.repeat = props?.repeat || 1;
+        this.repeat = props?.repeat || Vector2.all();
         this.opacity = 1;
 
         this.assetName = assetName;
@@ -74,6 +72,11 @@ export class Sprite extends Point {
                 ...this,
                 texture: this.texture
             });
+    }
+
+    blink() {
+        if (this.game.tick(5))
+            this.visible = !this.visible;
     }
 
     playAnimation(assetName: string, speed?: number) {

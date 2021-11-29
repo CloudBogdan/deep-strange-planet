@@ -3,7 +3,7 @@ import messages from "../../messages";
 import { Asset } from "../Asset"
 import { asAudio, clamp, safeValue, Vector2 } from "../utils/math";
 
-export class Audio {
+export class Sound {
     assetName: string | null
     audio: HTMLAudioElement | null | undefined
     volume: number

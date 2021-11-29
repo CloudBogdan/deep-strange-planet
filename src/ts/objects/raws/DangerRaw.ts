@@ -8,15 +8,15 @@ export class DangerRaw extends Raw {
         super(type, position);
     }
 
-    update(game: Game) {
-        super.update(game);
+    update() {
+        super.update();
         
-        const player = game.getChildById<Player>("player");
+        const player = this.game.getChildById<Player>("player");
         if (!player) return;
         if (player.hasBottle) return;
 
         // If is picked, player get damage (1-2)
-        if (game.clock.elapsed % 80 == 0 && this.picked)
-            player.hit(game, Math.floor(random(1, 3)));
+        if (this.game.clock.elapsed % 80 == 0 && this.picked)
+            player.hit(Math.floor(random(1, 3)));
     }
 }

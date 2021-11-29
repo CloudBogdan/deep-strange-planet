@@ -115,8 +115,8 @@ game.addInit(()=> {
             rules(noiseX, noiseY, getValue) {
                 return (
                     inRange(getValue(noiseX, noiseY+1, 10), 0, .5) &&
-                    inRange(getValue(noiseX, noiseY, 5), 0, .5) ||
-                    inRange(getValue(noiseX, noiseY, 2), 0, .3)
+                    inRange(getValue(noiseX, noiseY, 8), 0, .8) 
+                    // inRange(getValue(noiseX, noiseY, 2), 0, .3)
                 );
             }
         },
@@ -153,11 +153,14 @@ game.addInit(()=> {
         
         // Antin - basalt layer
         {
-            value: [0, .5],
+            value: [0, .6],
             // height: [0, Config.WORLD_HEIGHT - 40],
             height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
-            divider: 2,
+            divider: 3,
             block: Antin,
+            rules(noiseX, noiseY, getValue) {
+                return inRange(getValue(noiseX+1, noiseY, 5), 0, .4);
+            }
         },
         // Rady - basalt layer
         {
@@ -224,15 +227,15 @@ game.addRender(renderer=> {
         layer: "ui"
     });
     
-    for (let y = 0; y < Config.WORLD_HEIGHT / Config.CHUNK_SIZE; y ++)
-    for (let x = 0; x < Config.WORLD_WIDTH / Config.CHUNK_SIZE; x ++)
-        renderer.drawRect({
-            position: new Vector2(x*Config.CHUNK_SIZE*Config.SPRITE_SIZE, y*Config.CHUNK_SIZE*Config.SPRITE_SIZE).add(Vector2.all(Config.SPRITE_SIZE*1.5)),
-            width: Config.CHUNK_SIZE,
-            height: Config.CHUNK_SIZE,
-            color: "rgba(0, 0, 0, 0)",
-            stroke: { width: 2, color: Color.RED }
-        });
+    // for (let y = 0; y < Config.WORLD_HEIGHT / Config.CHUNK_SIZE; y ++)
+    // for (let x = 0; x < Config.WORLD_WIDTH / Config.CHUNK_SIZE; x ++)
+    //     renderer.drawRect({
+    //         position: new Vector2(x*Config.CHUNK_SIZE*Config.SPRITE_SIZE, y*Config.CHUNK_SIZE*Config.SPRITE_SIZE).add(Vector2.all(Config.SPRITE_SIZE*1.5)),
+    //         width: Config.CHUNK_SIZE,
+    //         height: Config.CHUNK_SIZE,
+    //         color: "rgba(0, 0, 0, 0)",
+    //         stroke: { width: 2, color: Color.RED }
+    //     });
 
 });
 
