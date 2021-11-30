@@ -102,7 +102,7 @@ export class Recycler extends Gear {
             ],
             description: recipeDescription.desc,
             renderIcon: (pos)=> {
-                currentRecipe.icon(this.game, pos);   
+                currentRecipe.icon(this.game, pos, 1);   
             }
         });
     }
@@ -110,6 +110,7 @@ export class Recycler extends Gear {
     renderRecipesUI(recipes: string[]) {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
+        const context = this.game.renderer.getContext("ui");
         
         const closePosition = new Vector2(size * 1.5 + 20, -size - 20).add(windowCenter);
         this.ui.renderSlot(closePosition, 0, 0, ()=> {
@@ -134,20 +135,22 @@ export class Recycler extends Gear {
             // Render recipe
             const pos = new Vector2(index * size - size * 2, 0).add(windowCenter);
             this.ui.renderSlot(pos, 1, index, ()=> {
-
-                // Render recipe icon
-                this.recipes[recipeName].icon(this.game, pos);
                 
-                // Darken
-                if (!this.recipes[recipeName].canCraft(this.storage))
-                    this.game.renderer.drawRect({
-                        position: pos,
-                        color: Color.STONE_LAYER_COLOR,
-                        layer: "ui",
-                        opacity: .5,
-                        width: .95,
-                        height: .95,
-                    });
+                // Background
+                this.game.renderer.drawRect({
+                    position: pos,
+                    color: Color.STONE_LAYER_COLOR,
+                    layer: "ui",
+                    width: .95,
+                    height: .95,
+                });
+                
+                // Render recipe icon
+                this.recipes[recipeName].icon(
+                    this.game,
+                    pos,
+                    this.recipes[recipeName].canCraft(this.storage) ? 1 : .5
+                );
 
             });
 
@@ -164,7 +167,7 @@ export class Recipe {
     recipe: ()=> Storage["contains"]["slots"]
     _onCraft: (game: Game)=> void
     isRemoved: ()=> boolean
-    icon: (game: Game, pos: Vector2)=> void
+    icon: (game: Game, pos: Vector2, opacity: number)=> void
     
     constructor(props: {
         recipe: Recipe["recipe"]

@@ -105,60 +105,65 @@ export class Physics {
     update() {
         const children = this.game.children.filter(child=> (child.collider.type != "none" && child.collider.collidable));
         
-        for (let i = 0; i < children.length; i ++) {
-            for (let j = 0; j < children.length; j ++) {                
-                this.collideWith(children[i], children[j]);
-            }
-        }
+        // for (let i = 0; i < children.length; i ++) {
+        //     for (let j = 0; j < children.length; j ++) {                
+        //         this.collideWith(children[i], children[j]);
+        //     }
+        // }
+        children.filter(child=> child.collider.type == "solid").map(solidChild=> {
+            children.filter(child=> child.collider.type == "dynamic").map(dynamicChild=> {
+                this.collideWith(dynamicChild, solidChild);
+            });
+        })
     }
 
-    collideWith(collider1: Point, collider2: Point) {
+    collideWith(dynamicCollider: Point, solidCollider: Point) {
         
-        let allowCollide = true 
+        // let allowCollide = true 
         
-        if (!collider2.collider.collidable && collider1.collider.type == "dynamic")
-            allowCollide = false;
+        // if (!collider2.collider.collidable && collider1.collider.type == "dynamic")
+        //     allowCollide = false;
 
-        if (allowCollide)
-            if (collider1.collider.type == "dynamic" && collider2.collider.type == "solid") {
+        if (!dynamicCollider.collider.collidable) return;
+            // if (collider1.collider.type == "dynamic" && collider2.collider.type == "solid") {
 
-                const collide = this.collide(collider1, collider2);
+                const collide = this.collide(dynamicCollider, solidCollider);
                 
-                const col1 = collider1.collider;
-                const col2 = collider2.collider;
+                const col1 = dynamicCollider.collider;
+                const col2 = solidCollider.collider;
                 
                 // Right
-                if (collide.right && collider1.velocity.x > 0) {
-                    collider1.position.x = collider2.position.x - col2.width / 2 - col1.width / 2 + 1 - col1.offset.x;
-                    collider1.velocity.x = 0;
+                if (collide.right && dynamicCollider.velocity.x > 0) {
+                    dynamicCollider.position.x = solidCollider.position.x - col2.width / 2 - col1.width / 2 + 1 - col1.offset.x;
+                    dynamicCollider.velocity.x = 0;
                 }
                 // Left
-                if (collide.left && collider1.velocity.x < 0) {
-                    collider1.position.x = collider2.position.x + col2.width / 2 + col1.width / 2 - 1 - col1.offset.x;
-                    collider1.velocity.x = 0;
+                if (collide.left && dynamicCollider.velocity.x < 0) {
+                    dynamicCollider.position.x = solidCollider.position.x + col2.width / 2 + col1.width / 2 - 1 - col1.offset.x;
+                    dynamicCollider.velocity.x = 0;
                 }
 
                 // Top
-                if (collide.top && collider1.velocity.y < 0) {
-                    collider1.position.y = collider2.position.y + col2.height / 2 + col1.height / 2 - 1;
-                    collider1.velocity.y = 0;
+                if (collide.top && dynamicCollider.velocity.y < 0) {
+                    dynamicCollider.position.y = solidCollider.position.y + col2.height / 2 + col1.height / 2 - 1;
+                    dynamicCollider.velocity.y = 0;
                 } 
                 // Bottom
-                if (collide.bottom && collider1.velocity.y > 0) {
-                    collider1.position.y = collider2.position.y - col2.height / 2 - col1.height / 2 + 1;
-                    collider1.velocity.y = 0;
+                if (collide.bottom && dynamicCollider.velocity.y > 0) {
+                    dynamicCollider.position.y = solidCollider.position.y - col2.height / 2 - col1.height / 2 + 1;
+                    dynamicCollider.velocity.y = 0;
                 }
 
                 // console.log(collider2.id);
                 if (collide.any) {
                     // if ((collider1.velocity.x != 0 || collider1.velocity.y != 0))
-                        collider1.collider.collidesWith = {...collide};
+                        dynamicCollider.collider.collidesWith = {...collide};
                         // collider1.collider.otherColliders = [collider2];
                 }
                 // else
                 //     collider1.collider.collidesWith = null;
                     // collider1.collider.otherColliders = [];
 
-            }
+            // }
     }
 }

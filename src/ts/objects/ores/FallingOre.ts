@@ -18,6 +18,7 @@ export class FallingOre extends Ore {
         this.allowFall = false;
         this.willFall = false;
         this.allowGravity = false;
+        this.customColliderType = "solid";
     }
 
     init() {
@@ -54,7 +55,8 @@ export class FallingOre extends Ore {
                         this.destroy();
                     }
                     
-                    this.collider.type = "dynamic";
+                    this.customColliderType = "dynamic";
+                    // this.collider.type = "dynamic";
                     this.collider.width =
                     this.collider.height = Config.SPRITE_SCALE * 6;
                     this.velocity.y ++;

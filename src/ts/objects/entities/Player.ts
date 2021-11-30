@@ -78,7 +78,7 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = 3;
+        this.toolLevel = 5;
 
         this.damageAnimatedOpacity = 0;
 

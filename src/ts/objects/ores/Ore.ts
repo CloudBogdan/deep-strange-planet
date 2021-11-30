@@ -1,5 +1,5 @@
-import { chance, lerp, random, randomInt, Vector2 } from "../../engine/utils/math";
-import { Game, Sprite } from "../../engine";
+import { asImage, chance, inChunkIdToPosition, inRange, lerp, random, randomInt, randomNoise, Vector2 } from "../../engine/utils/math";
+import { Game, ISpriteProps, Sprite } from "../../engine";
 import { Config, Color, OreSettings } from "../../config";
 import { Player, ToolLevel } from "../entities/Player";
 import { SpawnParticles } from "../../engine/components/Particles";
@@ -8,6 +8,7 @@ import { Raw } from "../raws/Raw";
 import { Sound } from "../../engine/components/Sound";
 import { Block } from "../Block";
 import { FetusVine } from "../plants/FetusVine";
+import { simplex2 } from "../../engine/utils/noise";
 
 export type OreType =
     "stone" | "stony-ground" | "deep-stone" | "destrony" | "manty" |
@@ -25,9 +26,14 @@ export class Ore extends Block {
     particlesColors: string[]
     hitAudioName: string
     breakAudioNames: string[]
+    allowDecorations: boolean
+    decorations: {
+        [name: string]: { range: [number, number], frames: number }
+    }
+    currentDecoration: { name: string, frame: number }
 
-    constructor(type: OreType, position: Vector2) {
-        super(`ore-${ type }`, type, position);
+    constructor(type: OreType, position: Vector2, props?: ISpriteProps) {
+        super(`ore-${ type }`, type, position, props);
         
         this.oreType = type;
         this.tilePosition = position
@@ -40,8 +46,64 @@ export class Ore extends Block {
         this.particlesColors = [Color.BLACK];
         this.hitAudioName = "stone-hit";
         this.breakAudioNames = ["stone-break-1", "stone-break-2", "stone-break-3"];
+        this.allowDecorations = false;
+        this.decorations = {
+            "stalactite": { range: [0, .1], frames: 1 },
+            "under-stone": { range: [.1, .5], frames: 4 },
+        };
+        this.currentDecoration = { name: "", frame: 1 };
     }
 
+    init() {
+        super.init();
+
+        if (!this.allowDecorations) return;
+        
+        Object.keys(this.decorations).map(name=> {
+            if (inRange(random(0, 1), this.decorations[name].range[0], this.decorations[name].range[1])) {
+                this.currentDecoration.name = name;
+                this.currentDecoration.frame = randomInt(0, this.decorations[name].frames);
+            }
+        });
+
+        if (this.checkBlockIn(new Vector2(0, 1))) {
+            this.allowDecorations = false;
+        }
+
+        // this.game.generator.onWorldChange(this.id, null, ()=> {
+        //     if (this.checkBlockIn(new Vector2(0, 1), "ore") && this.currentDecoration.name != "") {
+        //         this.allowDecorations = false;
+        //     }
+        // }, true);
+
+    }
+
+    update() {
+        super.update();
+
+        
+    }
+    render() {
+        super.render();
+
+        if (this.allowDecorations)
+            this.renderDecorations();
+    }
+
+    renderDecorations() {
+        if (!this.visible || !this.currentDecoration.name) return;
+        
+        this.game.renderer.drawSprite({
+            texture: asImage(this.game.getAssetByName(this.currentDecoration.name)),
+            clip: {
+                position: new Vector2(this.currentDecoration.frame * Config.SPRITE_PIXEL_SIZE, 0)
+            },
+            position: this.position.add(new Vector2(0, Config.SPRITE_SIZE)),
+            opacity: this.opacity
+        });
+
+    }
+    
     hit(damage: number, toolLevel: ToolLevel) {
         if (!this.unbreakable && toolLevel >= this.needToolLevel) {
 

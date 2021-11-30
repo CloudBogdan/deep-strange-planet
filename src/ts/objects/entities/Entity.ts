@@ -153,14 +153,16 @@ export class Entity extends Sprite {
                     color: color,
                     position: part.position,
                     opacity: part.opacity, 
+                    rotation: part.velocity.y / 20,
                     layer: "particles"
                 });
             },
             opacity: 5,
             count: 1,
-            gravity: 0,
-            velocity: ()=> new Vector2(0, -1.5),
+            gravity: .04,
+            velocity: ()=> new Vector2(0, -2),
             downOpacity: .08,
+            downSize: 0,
             box: ()=> new Vector2(random(-10, 10), random(-10, 10))
         });
     }

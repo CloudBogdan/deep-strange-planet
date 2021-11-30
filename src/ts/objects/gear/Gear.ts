@@ -9,7 +9,7 @@ import { GearNames } from "../../names";
 import { Player } from "../entities/Player";
 
 export type GearType = 
-    "gear-storage" | "gear-recycler" | "gear-upgrader";
+    "gear-storage" | "gear-recycler" | "gear-upgrader" | "gear-oxygen-generator";
 export type GearLevel = 1 | 2 | 3;
 export const MaxGearLevel = 3;
 

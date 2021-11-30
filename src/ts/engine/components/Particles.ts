@@ -40,7 +40,7 @@ export class Particle {
         const c = settings?.colors;
         this.color = c ? c[Math.floor(random(0, c.length))] : Color.BLACK;
         this.opacity = safeValue(settings?.opacity, 1);
-        this.downOpacity = settings?.downOpacity || 0;
+        this.downOpacity = safeValue(settings?.downOpacity, 0);
         
         this.position = new Vector2(position.x, position.y);
         this.rotation = random(0, Math.PI * 4);
@@ -52,8 +52,8 @@ export class Particle {
 
         const s = settings?.size;
         this.size = (s ? s : [.5, 1.2])[Math.floor(random(0, 2))];
-        this.gravity = settings?.gravity === undefined ? Config.PARTICLES_GRAVITY : settings?.gravity;
-        this.downSize = settings?.downSize || .01;
+        this.gravity = safeValue(settings?.gravity, Config.PARTICLES_GRAVITY);
+        this.downSize = safeValue(settings?.downSize, .01);
 
         this.render = settings?.render ? settings?.render : (renderer, part)=> {
             renderer.drawRect({

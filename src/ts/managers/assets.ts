@@ -47,14 +47,19 @@ import fetus_vine_3_img from "../../images/flora/fetus-vine/fetus-vine-3.png"; /
 import fetus_vine_img from "../../images/flora/fetus-vine/fetus-vine.png"; // @ts-ignore
 // import fetus_vine_4_img from "../../images/flora/fetus-vine/fetus-vine-4.png"; // @ts-ignore
 
+// > Environment
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
+import under_stone_img from "../../images/environment/under-stone.png"; // @ts-ignore
+import stalactite_img from "../../images/environment/stalactite.png"; // @ts-ignore
 
 // > Gear
 import gear_storage_1_img from "../../images/gear/gear-storage-1.png"; // @ts-ignore
 import gear_recycler_1_img from "../../images/gear/gear-recycler-1.png"; // @ts-ignore
+import gear_oxygen_generator_1_img from "../../images/gear/gear-oxygen-generator-1.png"; // @ts-ignore
 import gear_storage_1_outline_img from "../../images/gear/gear-storage-1-outline.png"; // @ts-ignore
 import gear_recycler_1_outline_img from "../../images/gear/gear-recycler-1-outline.png"; // @ts-ignore
+import gear_oxygen_generator_1_outline_img from "../../images/gear/gear-oxygen-generator-1-outline.png"; // @ts-ignore
 
 // > UI
 import interact_img from "../../images/ui/interact.png"; // @ts-ignore
@@ -142,14 +147,19 @@ export function initAssets(game: Game) {
     game.loadAsset("fetus-vine", [fetus_vine_img]);
     // game.loadAsset("fetus-vine-4", [fetus_vine_4_img]);
     
+    // > Environment
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])
+    game.loadAsset("under-stone", [under_stone_img])
+    game.loadAsset("stalactite", [stalactite_img])
 
     // > Gear
     game.loadAsset("gear-storage-1", [gear_storage_1_img])
     game.loadAsset("gear-recycler-1", [gear_recycler_1_img])
+    game.loadAsset("gear-oxygen-generator-1", [gear_oxygen_generator_1_img])
     game.loadAsset("gear-storage-1-outline", [gear_storage_1_outline_img])
     game.loadAsset("gear-recycler-1-outline", [gear_recycler_1_outline_img])
+    game.loadAsset("gear-oxygen-generator-1-outline", [gear_oxygen_generator_1_outline_img])
 
     // > UI
     game.loadAsset("interact", [interact_img])

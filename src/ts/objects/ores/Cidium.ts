@@ -10,6 +10,7 @@ export class Cidium extends Ore {
 
         // this.hp = 20;
         this.particlesColors = [Color.BLACK, Color.YELLOW];
+        this.allowDecorations = true;
     }
 
     onBreak() {

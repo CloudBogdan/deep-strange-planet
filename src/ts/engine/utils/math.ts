@@ -1,6 +1,7 @@
 import { Config } from "../../config";
 import { Axes, Direction } from "../../types";
 import { Asset, AssetType } from "../Asset";
+import { simplex2 } from "./noise";
 
 export class Vector2 {
     x: number
@@ -148,10 +149,13 @@ export function lerp(from: number, to: number, time: number): number {
     return from + (to - from) * time;
 }
 export function random(from: number, to: number): number {
-    return Math.random() * (to - from) + from;    
+    return Math.random() * (to - from) + from;
 }
 export function randomInt(from: number, to: number): number {
     return Math.floor(Math.random() * ((to + 1) - from) + from);
+}
+export function randomNoise(depends: number, from: number, to: number): number {
+    return ((simplex2(depends/4, depends/4) + 1) / 2) * (to - from) + from;
 }
 export function chance(percent: number): boolean {
     return randomInt(0, 100) <= percent;

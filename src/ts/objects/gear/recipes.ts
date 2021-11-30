@@ -19,19 +19,20 @@ const recipes = (recycler: Recycler)=> ({
             recycler.storage.upgrade(1);
         },
         // Render icon
-        icon: (game, pos)=> {
+        icon: (game, pos, opacity)=> {
             game.renderer.drawSprite({
                 texture: asImage(game.getAssetByName("gear-storage-1")),
                 position: pos,
                 width: 2,
                 height: 2,
                 scale: Vector2.all(.7),
-                layer: "ui"
+                layer: "ui",
+                opacity
             });
             game.renderer.drawText({
                 text: `${ recycler.storage.level + 1 }ур.`,
                 position: pos.add(Vector2.all(Config.SPRITE_SIZE * .3)),
-                layer: "ui"
+                layer: "ui",
             });
         },
         isRemoved: ()=> recycler.storage.level >= MaxGearLevel
@@ -42,25 +43,26 @@ const recipes = (recycler: Recycler)=> ({
         recipe: ()=> [
             { "raw-cidium": 4  }, // Level 2
             { "raw-cidium": 14, "raw-osmy": 4, "raw-grade-cidium": 1 }, // Level 3
-            { "raw-cidium": 2, "raw-osmy": 8, "raw-grade-cidium": 4, "raw-antin": 3 }, // Level 4
+            { "raw-cidium": 12, "raw-osmy": 8, "raw-antin": 3 }, // Level 4
         ][recycler.player ? recycler.player?.toolLevel - 1 : 0] as any,
         onCraft: ()=> {
             if (!recycler.player) return;
 
             recycler.player.upgradeTool(1);
         },
-        icon: (game, pos)=> {
+        icon: (game, pos, opacity)=> {
             if (!recycler.player) return;
 
             game.renderer.drawSprite({
                 texture: asImage(game.getAssetByName("tools")),
                 position: pos,
-                layer: "ui"
+                layer: "ui",
+                opacity
             });
             game.renderer.drawText({
                 text: `${ recycler.player.toolLevel + 1 }ур.`,
                 position: pos.add(Vector2.all(Config.SPRITE_SIZE * .3)),
-                layer: "ui"
+                layer: "ui",
             });
         },
         isRemoved: ()=> recycler.player ? recycler.player.toolLevel >= MaxToolLevel : false
@@ -74,13 +76,14 @@ const recipes = (recycler: Recycler)=> ({
 
             recycler.player.hasBottle = true;
         },
-        icon: (game, pos)=> {
+        icon: (game, pos, opacity)=> {
             game.renderer.drawSprite({
                 texture: asImage(game.getAssetByName("bottle")),
                 position: pos,
                 width: .8,
                 height: .8,
-                layer: "ui"
+                layer: "ui",
+                opacity
             });
         },
         isRemoved: ()=> recycler.player ? recycler.player.hasBottle : false
@@ -94,11 +97,12 @@ const recipes = (recycler: Recycler)=> ({
             game.add(new RobotItem(recycler.position))
             game.initChildren();
         },
-        icon: (game, pos)=> {
+        icon: (game, pos, opacity)=> {
             game.renderer.drawSprite({
                 texture: asImage(game.getAssetByName("robot-stay")),
                 position: pos,
-                layer: "ui"
+                layer: "ui",
+                opacity
             });
         },
         isRemoved: ()=> recycler.player ? recycler.player.hasBottle : false

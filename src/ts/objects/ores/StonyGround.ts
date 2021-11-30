@@ -5,5 +5,6 @@ export class StonyGround extends Ore {
     constructor(position: Vector2) {
         super("stony-ground", position);
         
+        this.allowDecorations = true;
     }
 }

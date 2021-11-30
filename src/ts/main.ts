@@ -125,8 +125,8 @@ game.addInit(()=> {
         // Cidium
         {
             value: [.95, 1],
-            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
-            height: [12, GeneratorConfig.BASALT_LAYER_HEIGHT/2],
+            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
+            // height: [12, GeneratorConfig.BASALT_LAYER_HEIGHT/2],
             divider: 5,
             block: Cidium
         },
@@ -134,8 +134,8 @@ game.addInit(()=> {
         // Osmy - deep stone layer
         {
             value: [0, .7],
-            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
-            height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            // height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             divider: 4,
             block: Osmy,
             rules(noiseX, noiseY, getValue) {
@@ -145,9 +145,9 @@ game.addInit(()=> {
         },
         {
             value: [.9, 1],
-            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
-            height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
-            divider: 5,
+            height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            // height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            divider: 3,
             block: Nerius
         },
         

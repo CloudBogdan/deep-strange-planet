@@ -1,6 +1,6 @@
 import { Game } from "./Game"
 import { Ore } from "../objects/ores/Ore"
-import { inChunkIdToPosition, inRange, Vector2 } from "./utils/math"
+import { clamp, inChunkIdToPosition, inRange, Vector2 } from "./utils/math"
 import { Point } from "./components/Point";
 import { Config } from "../config";
 import { perlin2, seed } from "./utils/noise";
@@ -34,7 +34,7 @@ export class Generator {
     settings: GeneratorSettings[]
     range: Vector2[]
 
-    onWorldChangeListeners: { id: string, pos: Vector2, callback: ()=> void}[]
+    onWorldChangeListeners: { id: string, pos: Vector2 | null, callback: ()=> void, listenChunks?: boolean }[]
     
     constructor(game: Game) {
         this.game = game;
@@ -62,19 +62,25 @@ export class Generator {
     }
 
     generateChunksAt(position: Vector2) {
-        const pos = position.div(Config.SPRITE_SIZE * Config.CHUNK_SIZE).apply(Math.floor);
+        const mul = 1;
+        const pos = this.game.camera.position.div(Config.SPRITE_SIZE * (Config.CHUNK_SIZE * mul)).apply(Math.floor);
+        const checkPos = pos.add(new Vector2(.5, .5)).mul(Config.SPRITE_SIZE * Config.CHUNK_SIZE * mul);
         
         // Create chunks
-        if (pos.add(new Vector2(.5, .5)).mul(Config.SPRITE_SIZE * 5).distance(position) > 100) {
+        if (checkPos.distance(this.game.camera.position) > 100) {
 
             this.range.map(p=> {
 
-                if (!this.chunks.find(c=> Vector2.compare(c.pos, pos.add(p)))) {
-                    const chunk = this.createChunk(pos.add(p));
+                if (!this.chunks.find(c=> Vector2.compare(c.pos, pos.mul(mul).add(p)))) {
+                    const chunk = this.createChunk(pos.mul(mul).add(p));
                     if (chunk)
                         this.chunks.push(chunk);
                 }
                 
+            });
+
+            this.onWorldChangeListeners.filter(listener=> listener.listenChunks).map(listener=> {
+                listener.callback();
             });
             
         }
@@ -82,7 +88,7 @@ export class Generator {
         // Remove chunks
         this.chunks.map((chunk, index)=> {
 
-            if (position.distance(chunk.pos.mul(Config.SPRITE_SIZE * Config.CHUNK_SIZE)) > 900) {
+            if (this.game.camera.position.distance(chunk.pos.mul(Config.SPRITE_SIZE * Config.CHUNK_SIZE)) > 800) {
                 this.game.removeChildrenByGroupName(chunk.group);
                 this.chunks.splice(index, 1);
             }
@@ -151,7 +157,7 @@ export class Generator {
         this.destroyedOres.push(inChunkId);
 
         this.onWorldChangeListeners.map(listener=> {
-            if (listener.pos.distance(inChunkIdToPosition(inChunkId)) < 200)
+            if ((listener.pos != null && listener.pos.distance(inChunkIdToPosition(inChunkId)) < 200) || !listener.pos)
                 listener.callback()
         });
         
@@ -159,8 +165,8 @@ export class Generator {
     modifyOre(inChunkId: Point["id"], data: Generator["modifiedOres"][0]["data"]) {
         this.modifiedOres[inChunkId] = data;
     }
-    onWorldChange(id: string, pos: Vector2, callback: Generator["onWorldChangeListeners"][0]["callback"]) {
-        this.onWorldChangeListeners.push({ id, pos, callback });
+    onWorldChange(id: string, pos: Vector2 | null, callback: Generator["onWorldChangeListeners"][0]["callback"], listenChunks?: boolean) {
+        this.onWorldChangeListeners.push({ id, pos, callback, listenChunks });
     }
     removeListenerById(id: string) {
         this.onWorldChangeListeners = this.onWorldChangeListeners.filter(listener=> listener.id != id);
