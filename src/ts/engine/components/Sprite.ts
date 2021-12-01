@@ -9,6 +9,7 @@ export type ISpriteProps = {
 
     flip?: { x: boolean, y: boolean }
     repeat?: Vector2
+    frame: Vector2
 } & IPointProps;
 
 export class Sprite extends Point {
@@ -18,13 +19,12 @@ export class Sprite extends Point {
     offset: Vector2
     flip: { x: boolean, y: boolean }
     repeat: Vector2
+    frame: Vector2
 
     assetName: string
     texture: HTMLImageElement | null | undefined;
     visible: boolean
     opacity: number
-    
-    frame: number
     
     constructor(name: string, assetName: string, props?: ISpriteProps) {
         super(name, props);
@@ -37,13 +37,11 @@ export class Sprite extends Point {
         this.flip = props?.flip || { x: false, y: false };
         this.repeat = props?.repeat || Vector2.all();
         this.opacity = 1;
+        this.frame = props?.frame || Vector2.zero();
 
         this.assetName = assetName;
         this.texture = null;
         this.visible = true;
-
-        this.frame = 0;
-        
     }
     
     init() {
@@ -67,11 +65,12 @@ export class Sprite extends Point {
     render() {
         super.render();
 
-        if (this.texture && this.visible)
-            this.game.renderer.drawSprite({
-                ...this,
-                texture: this.texture
-            });
+        if (!this.texture || !this.visible) return;
+
+        this.game.renderer.drawSprite({
+            ...this,
+            texture: this.texture
+        });
     }
 
     blink() {
@@ -80,19 +79,19 @@ export class Sprite extends Point {
     }
 
     playAnimation(assetName: string, speed?: number) {
-        const asset = this.game.getAssetByName(assetName);
-        if (!assetIsValid(asset, "image")) {
-            console.error(messages.err.animationLoadError(assetName));
-            return;
-        }
+        // const asset = this.game.getAssetByName(assetName);
+        // if (!assetIsValid(asset, "image")) {
+        //     console.error(messages.err.animationLoadError(assetName));
+        //     return;
+        // }
 
-        const el = asset!.element as HTMLImageElement[];
+        // const el = asset!.element as HTMLImageElement[];
         
-        if (this.game.clock.elapsed % (speed || Config.DEFAULT_ANIMATION_SPEED) == 0) {
-            this.texture = el.length == 1 ? el[0] : el[this.frame];
-            this.frame ++;
-        }
-        if (this.frame > el.length - 1 || el.length == 1)
-            this.frame = 0;
+        // if (this.game.clock.elapsed % (speed || Config.DEFAULT_ANIMATION_SPEED) == 0) {
+        //     this.texture = el.length == 1 ? el[0] : el[this.frame.x];
+        //     this.frame.x ++;
+        // }
+        // if (this.frame.x > el.length - 1 || el.length == 1)
+        //     this.frame.x = 0;
     }
 }

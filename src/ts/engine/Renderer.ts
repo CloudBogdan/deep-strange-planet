@@ -38,11 +38,6 @@ export type DrawTextProps = {
     opacity?: number
     layer?: string
 };
-export type ClipRect = {
-    width?: number
-    height?: number
-    position: Vector2
-}
 
 export class Renderer {
     game: Game
@@ -106,7 +101,7 @@ export class Renderer {
             document.body.style.background = Color.STONE_LAYER_COLOR;
     }
     // > Render particles
-    renderParticles(game: Game) {
+    renderParticles() {
         this.particles.map(part=> {
             
             part.update(this.game);
@@ -242,7 +237,7 @@ export class Renderer {
         position?: Vector2, rotation?: number, offset?: Vector2,
         layer?: string,
         scale?: Vector2, flip?: { x: boolean, y: boolean },
-        opacity?: number, repeat?: Vector2, clip?: ClipRect
+        opacity?: number, repeat?: Vector2, frame?: Vector2, framed?: boolean
     }) {
         try {
             if (!props.texture) return;
@@ -251,7 +246,9 @@ export class Renderer {
 
             const w = safeValue(props.width, 1) * size;
             const h = safeValue(props.height, 1) * size;
-            const clipPos = safeValue(props.clip?.position, Vector2.zero());
+            const frameW = safeValue(props.width, 1) * Config.SPRITE_PIXEL_SIZE;
+            const frameH = safeValue(props.height, 1) * Config.SPRITE_PIXEL_SIZE;
+            const framePos = safeValue(props.frame, Vector2.zero());
             
             const p = safeValue(props.position, Vector2.zero());
             const o = safeValue(props.offset, Vector2.zero());
@@ -269,16 +266,22 @@ export class Renderer {
                 new Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)),
                 props.opacity
             );
+
+            // this.drawText({
+            //     text: `${ framePos.x }, ${ framePos.y }`,
+            //     position: p,
+            //     layer: "particles"
+            // })
             
             // Draw sprite without repeat
-            if (!props.repeat) {
+            if (!props.repeat || Vector2.compare(props.repeat || Vector2.all(), Vector2.all())) {
 
-                if (props.clip)
+                if (safeValue(props.framed, true))
                     context.drawImage(
                         props.texture,
                         // Clip rect
-                        clipPos.x, clipPos.y,
-                        w / Config.SPRITE_SCALE, h / Config.SPRITE_SCALE,
+                        framePos.x * frameW, framePos.y * frameH,
+                        frameW, frameH,
                         
                         // Transform
                         -w / 2, -h / 2,
@@ -292,7 +295,8 @@ export class Renderer {
                         w, h
                     );
                 
-            } else
+            }
+            else if (props.repeat)
                 // And... With repeat?
                 for (let repeatY = 0; repeatY < props.repeat.y; repeatY ++)
                     for (let repeatX = 0; repeatX < props.repeat.x; repeatX ++)

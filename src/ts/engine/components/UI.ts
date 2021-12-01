@@ -4,6 +4,16 @@ import { Renderer, StrokeSettings } from "../Renderer";
 import { asImage, assetIsValid, lerp, random, safeValue, Vector2, wrapText } from "../utils/math";
 import { SpawnParticles } from "./Particles";
 
+type IProgressBarProps = {
+    progress: number
+    color?: string
+    strokeColor?: string
+    width: number
+    height: number
+    position: Vector2
+    layer?: string
+}
+
 export class Button {
     width: number
     height: number
@@ -55,10 +65,6 @@ export class UI {
         slot: number
     }
     template: number[]
-    // slotFocused: number
-    // slotsCount: number
-    // slotsRawFocused: number
-    // slotsRawsCount: number
     
     constructor() {
         this.game = null;
@@ -67,10 +73,6 @@ export class UI {
         this.allowSelectSlots = true;
         this.focused = { row: 0, slot: 0 };
         this.template = [1];
-        // this.slotFocused = 0;
-        // this.slotsCount = 1;
-        // this.slotsRawFocused = 0;
-        // this.slotsRawsCount = 1;
     }
 
     init(game: Game) {
@@ -195,6 +197,34 @@ export class UI {
             layer: "ui"
         });
 
+    }
+    renderProgressBar(props: IProgressBarProps) {
+        if (!this.game) return;
+
+        const width = props.width;
+        const height = props.height;
+        const progress = height * props.progress;
+        const pos = props.position.apply(Math.floor);
+
+        this.game.renderer.drawRect({
+            width: (width + 10) / Config.SPRITE_SIZE,
+            height: (height + 10) / Config.SPRITE_SIZE,
+            position: pos.add(Vector2.all(.5)),
+            color: Color.STONE_LAYER_COLOR,
+            stroke: {
+                color: props.strokeColor || Color.ORANGE,
+                width: 4
+            },
+            layer: props.layer || "ui"
+        })
+        this.game.renderer.drawRect({
+            width: width / Config.SPRITE_SIZE,
+            height: progress / Config.SPRITE_SIZE,
+            position: pos.add(new Vector2(0, (height - height * props.progress) / 2)).add(Vector2.all(.5)),
+            color: props.color || Color.YELLOW,
+            layer: props.layer || "ui"
+        })
+        
     }
 
     spawnMessageText(text: string) {

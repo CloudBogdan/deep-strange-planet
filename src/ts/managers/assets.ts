@@ -18,6 +18,7 @@ import burnt_basalt_img from "../../images/ores/burnt-basalt.png"; // @ts-ignore
 import destrony_img from "../../images/ores/destrony.png"; // @ts-ignore
 import manty_img from "../../images/ores/manty.png"; // @ts-ignore
 import fetus_stone_img from "../../images/ores/fetus-stone.png"; // @ts-ignore
+import mushroom_stone_img from "../../images/ores/mushroom-stone.png"; // @ts-ignore
 // import stone_1_img from "../../images/ores/stone-1.png"; // @ts-ignore
 // import stone_2_img from "../../images/ores/stone-2.png"; // @ts-ignore
 // import stone_3_img from "../../images/ores/stone-3.png"; // @ts-ignore
@@ -41,17 +42,15 @@ import raw_nerius_img from "../../images/raw/raw-nerius.png"; // @ts-ignore
 import raw_manty_img from "../../images/raw/raw-manty.png"; // @ts-ignore
 
 // > Plants
-import fetus_vine_1_img from "../../images/flora/fetus-vine/fetus-vine-1.png"; // @ts-ignore
-import fetus_vine_2_img from "../../images/flora/fetus-vine/fetus-vine-2.png"; // @ts-ignore
-import fetus_vine_3_img from "../../images/flora/fetus-vine/fetus-vine-3.png"; // @ts-ignore
-import fetus_vine_img from "../../images/flora/fetus-vine/fetus-vine.png"; // @ts-ignore
-// import fetus_vine_4_img from "../../images/flora/fetus-vine/fetus-vine-4.png"; // @ts-ignore
+import fetus_vine_img from "../../images/flora/fetus-vine.png"; // @ts-ignore
+import mushroom_img from "../../images/flora/mushroom.png"; // @ts-ignore
 
 // > Environment
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
 import under_stone_img from "../../images/environment/under-stone.png"; // @ts-ignore
 import stalactite_img from "../../images/environment/stalactite.png"; // @ts-ignore
+import disputes_img from "../../images/environment/disputes.png"; // @ts-ignore
 
 // > Gear
 import gear_storage_1_img from "../../images/gear/gear-storage-1.png"; // @ts-ignore
@@ -72,6 +71,7 @@ import level_up_img from "../../images/ui/level-up.png"; // @ts-ignore
 import storage_ui_img from "../../images/ui/storage-ui.png"; // @ts-ignore
 import recycler_ui_img from "../../images/ui/recycler-ui.png"; // @ts-ignore
 import description_ui_img from "../../images/ui/description-ui.png"; // @ts-ignore
+import oxygen_generator_ui_img from "../../images/ui/oxygen-generator-ui.png"; // @ts-ignore
 
 // > Audio
 import stone_hit_mp from "../../audio/stone-hit.mp3"; // @ts-ignore
@@ -118,6 +118,7 @@ export function initAssets(game: Game) {
     game.loadAsset("destrony", [destrony_img]);
     game.loadAsset("manty", [manty_img]);
     game.loadAsset("fetus-stone", [fetus_stone_img]);
+    game.loadAsset("mushroom-stone", [mushroom_stone_img]);
     // game.loadAsset("stone-1", [stone_1_img]);
     // game.loadAsset("stone-2", [stone_2_img]);
     // game.loadAsset("stone-3", [stone_3_img]);
@@ -141,17 +142,15 @@ export function initAssets(game: Game) {
     game.loadAsset("raw-manty", [raw_manty_img]);
 
     // > Plants
-    game.loadAsset("fetus-vine-1", [fetus_vine_1_img]);
-    game.loadAsset("fetus-vine-2", [fetus_vine_2_img]);
-    game.loadAsset("fetus-vine-3", [fetus_vine_3_img]);
     game.loadAsset("fetus-vine", [fetus_vine_img]);
-    // game.loadAsset("fetus-vine-4", [fetus_vine_4_img]);
+    game.loadAsset("mushroom", [mushroom_img]);
     
     // > Environment
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])
     game.loadAsset("under-stone", [under_stone_img])
     game.loadAsset("stalactite", [stalactite_img])
+    game.loadAsset("disputes", [disputes_img])
 
     // > Gear
     game.loadAsset("gear-storage-1", [gear_storage_1_img])
@@ -172,6 +171,7 @@ export function initAssets(game: Game) {
     game.loadAsset("level-up", [level_up_img])
     game.loadAsset("recycler-ui", [recycler_ui_img])
     game.loadAsset("description-ui", [description_ui_img])
+    game.loadAsset("oxygen-generator-ui", [oxygen_generator_ui_img])
 
     // > Audio
     game.loadAsset("stone-hit", stone_hit_mp, "audio")

@@ -30,7 +30,6 @@ export class FetusStone extends Ore {
         }
 
         this.checkEmptySpace();
-        this.game.generator.onWorldChange(this.id, this.position, ()=> this.checkEmptySpace());
     }
     update() {
         super.update();
@@ -42,11 +41,6 @@ export class FetusStone extends Ore {
 
     render() {
         super.render();
-
-        // this.game.renderer.drawText({
-        //     text: this.maxLength.toString(),
-        //     position: this.position
-        // });
         
         if (this.allowGrow)
             this.renderVine();
@@ -94,12 +88,7 @@ export class FetusStone extends Ore {
                 this.game.renderer.drawSprite({
                     texture: asImage(this.game.getAssetByName(`fetus-vine`)),
                     position: pos.add(new Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / Config.SPRITE_SIZE) * i * 1.5)),
-                    width: 1,
-                    height: 1,
-
-                    clip: {
-                        position: new Vector2(0, spriteIndex * Config.SPRITE_PIXEL_SIZE)
-                    },
+                    frame: new Vector2(0, spriteIndex),
                     flip: { x: i % 2 == 0 || i % 3 == 0, y: false },
                     opacity: Config.ALLOW_DARK ? 1 - darkenFactor : 1
                 });
@@ -131,11 +120,11 @@ export class FetusStone extends Ore {
 
         for (let i = 1; i < 8; i ++) {
             height ++;
-            if (this.checkBlockIn(new Vector2(0, i), "ore"))
+            if (this.checkBlockIn(new Vector2(0, i)))
                 break;
         }
 
-        if (this.checkBlockIn(new Vector2(0, needLength), "ore"))
+        if (this.checkBlockIn(new Vector2(0, needLength)))
             needLength --;
 
         this.length = clamp(needLength, 0, height);
@@ -150,7 +139,7 @@ export class FetusStone extends Ore {
         });
     }
     checkEmptySpace() {
-        if (this.checkBlockIn(new Vector2(0, 1), "ore") && this.allowGrow)
+        if (this.checkBlockIn(new Vector2(0, 1)) && this.allowGrow)
             this.allowGrow = false;
     }
 }

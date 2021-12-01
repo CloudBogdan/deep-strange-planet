@@ -13,7 +13,7 @@ import { simplex2 } from "../../engine/utils/noise";
 export type OreType =
     "stone" | "stony-ground" | "deep-stone" | "destrony" | "manty" |
     "cracked-stone" | "basalt" | "burnt-basalt" |
-    "cidium" | "osmy" | "antin" | "rady" | "nerius" | "fetus-stone";
+    "cidium" | "osmy" | "antin" | "rady" | "nerius" | "fetus-stone" | "mushroom-stone";
 
 export class Ore extends Block {
     oreType: OreType
@@ -95,9 +95,7 @@ export class Ore extends Block {
         
         this.game.renderer.drawSprite({
             texture: asImage(this.game.getAssetByName(this.currentDecoration.name)),
-            clip: {
-                position: new Vector2(this.currentDecoration.frame * Config.SPRITE_PIXEL_SIZE, 0)
-            },
+            frame: new Vector2(this.currentDecoration.frame, 0),
             position: this.position.add(new Vector2(0, Config.SPRITE_SIZE)),
             opacity: this.opacity
         });

@@ -28,7 +28,7 @@ export class FallingOre extends Ore {
 
         this.game.generator.onWorldChange(this.id, this.position, ()=> {
 
-            if (!this.checkBlockIn(new Vector2(0, 1), "ore")) {
+            if (!this.checkBlockIn(new Vector2(0, 1), false)) {
                 this.allowGravity = true;
                 this.animateScaleTo = .7;
                 this.crumble();
@@ -52,7 +52,7 @@ export class FallingOre extends Ore {
 
                 if (this.allowFall) {
                     if (this.collider.collidesWith?.bottom) {
-                        this.destroy();
+                        this.fallDestroy();
                     }
                     
                     this.customColliderType = "dynamic";
@@ -74,13 +74,13 @@ export class FallingOre extends Ore {
             if (!this.allowFall)
                 this.elapsedBeforeFall = this.game.clock.elapsed;
             else
-                this.destroy();
+                this.fallDestroy();
         }
 
         this.collider.collidesWith = null;
 
     }
-    destroy() {
+    fallDestroy() {
 
         SpawnParticles(this.game, this.position);
         

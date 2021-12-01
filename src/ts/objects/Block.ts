@@ -81,13 +81,13 @@ export class Block extends Sprite {
         // })
 
     }
-    checkBlockIn(offset: Vector2, findName?: string): boolean {
+    checkBlockIn(offset: Vector2, checkChunkBorders?: boolean, findName?: string): boolean {
 
         const size = Config.SPRITE_SIZE;
         const blocks = this.game.getChildrenByName<Block>(findName || "ore");
         const thisPos = this.position.div(size).apply(Math.floor);
         
-        return (+this.inChunkId.split("-")[1]) >= 3 || blocks.filter(block=> block.name.indexOf("plant") < 0).findIndex(block=> {
+        return ((+this.inChunkId.split("-")[1]) >= 3 && safeValue(checkChunkBorders, true)) || blocks.filter(block=> block.name.indexOf("plant") < 0).findIndex(block=> {
             const orePos = block.position.div(size).apply(Math.floor);
             
             return Vector2.compare(orePos, thisPos.add(offset));

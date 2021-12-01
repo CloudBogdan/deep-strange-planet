@@ -33,7 +33,7 @@ export class Storage extends Gear {
         this.contains = { totalCount: 0, slots: {} };
         this.interactType = "view";
         this.maxTotalCount = MaxStorageTotalCount[`${ level }-level`];
-        this.headerOffset = new Vector2(0, -Config.SPRITE_SIZE);
+        this.headerOffset.set(0, -Config.SPRITE_SIZE);
         this.maxRowItemsCount = 5;
         this.selectedSlotIndex = 0;
     }
@@ -56,8 +56,6 @@ export class Storage extends Gear {
 
     onInteract() {
         super.onInteract();
-
-        console.log(this.level);
 
         if (this.ui.enabled && this.ui.focused.row == 0 && this.ui.focused.slot == 0) {
             const slotName = this.filterRaws(this.contains.slots)[this.selectedSlotIndex];

@@ -56,6 +56,10 @@ export const GearNames: { [key: string]: NameType } = {
         name: "Улучшатель",
         desc: ""
     },
+    "gear-oxygen-generator": {
+        name: "Генератор кислорода",
+        desc: ""
+    },
 }
 export const RecipeNames: { [key: string]: NameType } = {
     "storage-level-up": {

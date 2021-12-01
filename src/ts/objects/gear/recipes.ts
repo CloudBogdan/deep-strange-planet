@@ -11,7 +11,7 @@ const recipes = (recycler: Recycler)=> ({
     "storage-level-up": new Recipe({
         recipe: ()=> [
             { "raw-cidium": 1, "raw-osmy": 1 }, // Level 2
-            // { "raw-cidium": 6, "raw-osmy": 2 }, // Level 2
+            // { "raw-cidium": 8, "raw-osmy": 2 }, // Level 2
             { "raw-cidium": 12, "raw-osmy": 6, "raw-grade-cidium": 2 }, // Level 3
         ][recycler.storage.level - 1] as any,
         // On craft
@@ -41,7 +41,7 @@ const recipes = (recycler: Recycler)=> ({
     // Tool up
     "tool-level-up": new Recipe({
         recipe: ()=> [
-            { "raw-cidium": 4  }, // Level 2
+            { "raw-cidium": 14  }, // Level 2
             { "raw-cidium": 14, "raw-osmy": 4, "raw-grade-cidium": 1 }, // Level 3
             { "raw-cidium": 12, "raw-osmy": 8, "raw-antin": 3 }, // Level 4
         ][recycler.player ? recycler.player?.toolLevel - 1 : 0] as any,
@@ -83,6 +83,7 @@ const recipes = (recycler: Recycler)=> ({
                 width: .8,
                 height: .8,
                 layer: "ui",
+                framed: false,
                 opacity
             });
         },
@@ -91,8 +92,8 @@ const recipes = (recycler: Recycler)=> ({
 
     // Craft robot
     "robot": new Recipe({
+        recipe: ()=> ({ "raw-cidium": 1 } as any),
         // recipe: ()=> ({ "raw-osmy": 6, "raw-cidium": 12, "raw-nerius": 5 } as any),
-        recipe: ()=> ({ "raw-osmy": 1, "raw-cidium": 1, "raw-nerius": 1 } as any),
         onCraft: (game)=> {
             game.add(new RobotItem(recycler.position))
             game.initChildren();

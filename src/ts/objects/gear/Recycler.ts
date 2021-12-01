@@ -199,6 +199,7 @@ export class Recipe {
 
         for (let i = 0; i < recipes.length; i ++) {
             storage.contains.slots[recipes[i]] -= this.recipe()[recipes[i]];
+            storage.contains.totalCount -= this.recipe()[recipes[i]];
         }
 
         this._onCraft(game);

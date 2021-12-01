@@ -26,7 +26,14 @@ export class Container {
             return this.children.find(child=> child.id.indexOf(id) >= 0) as T | undefined;
     }
     removeChildById(id: Point["id"]) {
-        this.children = this.children.filter(child=> !compareNames(child.id, id));
+        this.children = this.children.filter(child=> {
+            if (!compareNames(child.id, id))
+                return true;
+            else {
+                child.destroy();
+                return false;
+            }
+        });
     }
     removeChildrenByGroupName(group: string) {
         this.children.map(child=> {

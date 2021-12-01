@@ -110,6 +110,11 @@ export class Robot extends Entity {
             this.smoke();
 
     }
+    destroy() {
+        super.destroy();
+
+        this.sound.stop();
+    }
 
     _move() {
         this.velocity.copy(this.velocity.add(this.movement.mul(.2)));

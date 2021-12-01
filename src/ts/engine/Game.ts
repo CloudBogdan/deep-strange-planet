@@ -148,7 +148,7 @@ export class Game extends Container {
             this.callChildren("render");
             this.renderListeners.map(listener=> listener(this.renderer));
 
-            this.renderer.renderParticles(this);
+            this.renderer.renderParticles();
             
         }
         loop();

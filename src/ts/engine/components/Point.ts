@@ -63,4 +63,6 @@ export class Point {
     }
     render() {
     }
+    destroy() {
+    }
 }

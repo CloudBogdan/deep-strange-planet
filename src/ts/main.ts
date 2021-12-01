@@ -22,6 +22,7 @@ import { Destrony } from "./objects/ores/Destrony";
 import { Manty } from "./objects/ores/Manty";
 import { FetusVine } from "./objects/plants/FetusVine";
 import { FetusStone } from "./objects/ores/FetusStone";
+import { MushroomStone } from "./objects/ores/MushroomStone";
 
 const game = new Game();
 
@@ -107,6 +108,7 @@ game.addInit(()=> {
         },
 
         // > Other
+        // Fetus stone
         {
             value: [0, 1],
             height: [30, GeneratorConfig.BASALT_LAYER_HEIGHT-20],
@@ -116,6 +118,21 @@ game.addInit(()=> {
                 return (
                     inRange(getValue(noiseX, noiseY+1, 10), 0, .5) &&
                     inRange(getValue(noiseX, noiseY, 8), 0, .8) 
+                    // inRange(getValue(noiseX, noiseY, 2), 0, .3)
+                );
+            }
+        },
+        // Mushroom stone
+        {
+            value: [0, 1],
+            height: [0, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT-15],
+            // height: [GeneratorConfig.BASALT_LAYER_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT-15],
+            divider: 2,
+            block: MushroomStone,
+            rules(noiseX, noiseY, getValue) {
+                return (
+                    inRange(getValue(noiseX, noiseY-1, 10), 0, .5) &&
+                    inRange(getValue(noiseX, noiseY, 8), 0, .6) 
                     // inRange(getValue(noiseX, noiseY, 2), 0, .3)
                 );
             }

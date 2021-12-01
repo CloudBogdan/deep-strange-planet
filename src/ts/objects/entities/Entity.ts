@@ -121,27 +121,7 @@ export class Entity extends Sprite {
         this.hp -= damage;
         this.damaged = true;
 
-        SpawnParticles(this.game, this.position.add(new Vector2(0, -30)), {
-            render(renderer, part) {
-                renderer.drawText({
-                    text: damage.toString(),
-                    font: "22px Pixel",
-                    color: Color.RED,
-                    position: part.position,
-                    opacity: part.opacity,
-                    layer: "particles"
-                })
-            },
-            count: 1,
-            velocity: ()=> new Vector2(0, random(-3, -5)),
-            downSize: 0,
-            gravity: .1,
-            opacity: 5,
-            downOpacity: .1,
-            box: ()=> new Vector2(random(-10, 10), random(-10, 10))
-        });
-
-        console.log(this.hp);
+        this.spawnText(damage.toString(), undefined, Color.RED);
     }
 
     spawnText(text: string, offset?: Vector2, color?: string) {

@@ -1,5 +1,5 @@
 import { Game } from "../Game";
-import { random, safeValue, Vector2 } from "../utils/math";
+import { asImage, random, safeValue, Vector2 } from "../utils/math";
 import { Color, Config } from "../../config";
 import { Point } from "./Point";
 import { Renderer } from "../Renderer";
@@ -88,4 +88,26 @@ export function SpawnParticles(game: Game, position: Vector2, settings?: Particl
     for (let i = settings?.count || 10; i --;)
         game.renderer.particles.push(new Particle(position.expand().add(box ? box() : Vector2.zero()), settings));
 
+}
+
+export function SpawnDisputesParticles(game: Game, position: Vector2, intensity?: number) {
+    SpawnParticles(game, position, {
+        render: (renderer, part)=> {
+            renderer.drawSprite({
+                texture: asImage(game.getAssetByName("disputes")),
+                position: part.position,
+                rotation: part.rotation,
+                opacity: part.opacity,
+                scale: Vector2.all(part.size)
+            })  
+        },
+        count: 6,
+        gravity: -.01,
+        size: [1.4 * safeValue(intensity, 1), 1.4 * safeValue(intensity, 1)],
+        rotationVelocity: ()=> random(-.01, -.01),
+        velocity: ()=> new Vector2(random(-1, 1), random(-1, 1)).mul(2 * safeValue(intensity, 1)),
+        opacity: 3 * safeValue(intensity, 1),
+        downSize: .002,
+        downOpacity: .01
+    });
 }

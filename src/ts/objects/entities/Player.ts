@@ -61,6 +61,7 @@ export class Player extends Entity {
     }
     toolLevel: ToolLevel
     hasBottle: boolean
+    allowPlaceRobot: boolean
 
     damageAnimatedOpacity: number
     
@@ -78,7 +79,8 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = 5;
+        this.toolLevel = 6;
+        this.allowPlaceRobot = false;
 
         this.damageAnimatedOpacity = 0;
 
@@ -99,7 +101,7 @@ export class Player extends Entity {
 
         // Set robot
         this.game.gamepad.onKeyDown(this.id, "enter", ()=> {
-            if (this.checkItemInInventory("item-robot"))
+            if (this.checkItemInInventory("item-robot") && this.allowPlaceRobot)
                 this.placeRobot();
         });
     }
@@ -144,8 +146,10 @@ export class Player extends Entity {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
 
+        this.allowPlaceRobot = this.position.y > 20;
+        
         // Place robot text
-        if (this.checkItemInInventory("item-robot"))
+        if (this.checkItemInInventory("item-robot") && this.allowPlaceRobot)
             this.game.renderer.drawText({
                 text: "[OK] - установить",
                 position: new Vector2(0, 150).add(windowCenter),
@@ -256,6 +260,12 @@ export class Player extends Entity {
         this.damageAnimatedOpacity = 1.5;
         this.game.camera.shake();
         this.sound.play(this.game, "bonk");
+
+        if (this.hp <= 0) {
+            this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
+            this.hp = 10;
+            this.wire.copy(this.position);
+        }
     }
     upgradeTool(levelUp: number) {
         if (this.toolLevel < MaxToolLevel)
