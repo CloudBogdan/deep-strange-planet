@@ -18,6 +18,7 @@ export class FetusStone extends Ore {
         this.allowGrow = true;
 
         this.breakAudioNames = ["plant-break"];
+        this.hitAudioName = "plant-hit";
     }
 
     init() {

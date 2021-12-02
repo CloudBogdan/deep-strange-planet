@@ -1,11 +1,10 @@
 import { Config } from "../../config";
-import { Game, ISpriteProps, Sprite } from "../../engine";
+import { ISpriteProps, Sprite } from "../../engine";
 import { Sound } from "../../engine/components/Sound";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { UI, Button } from "../../engine/components/UI";
-import { Renderer } from "../../engine/Renderer";
-import { asImage, assetIsValid, lerp, Vector2 } from "../../engine/utils/math";
-import { GearNames } from "../../names";
+import { asImage, Vector2 } from "../../engine/utils/math";
+import { ObjectNames } from "../../names";
 import { Player } from "../entities/Player";
 
 export type GearType = 
@@ -120,18 +119,19 @@ export class Gear extends Sprite {
                 layer: "ui"
             });
             // Preview
-            this.game.renderer.drawSprite({
-                texture: asImage(this.game.getAssetByName([this.gearType, 1].join("-"))),
-                position: new Vector2(-size * 2, -size - 15).add(windowCenter).add(this.headerOffset),
-                width: 2,
-                height: 2,
-                layer: "ui"
-            });
+            // this.game.renderer.drawSprite({
+            //     texture: asImage(this.game.getAssetByName([this.gearType, 1].join("-"))),
+            //     position: new Vector2(-size * 2, -size - 15).add(windowCenter).add(this.headerOffset),
+            //     width: 2,
+            //     height: 2,
+            //     layer: "ui"
+            // });
             // Title
             this.game.renderer.drawText({
-                text: `${ GearNames[this.name].name } ${ this.level }ур.`,
-                position: new Vector2(-size * 1.2, -size - 15).add(windowCenter).add(this.headerOffset),
-                centered: false,
+                text: `${ ObjectNames[this.name].name } ${ this.level }ур.`,
+                position: new Vector2(-size*2.25, -size - 15).add(windowCenter).add(this.headerOffset),
+                // position: new Vector2(-size*2 - size/4, -size*2 + 10).add(windowCenter).add(this.headerOffset),
+                align: "left",
                 layer: "ui"
             });
             // Close
@@ -139,7 +139,7 @@ export class Gear extends Sprite {
                 text: `[OK] - ${ this.closeText }`,
                 position: new Vector2(-size * 3 + 20, -size * 2 - 40).add(windowCenter).add(this.headerOffset),
                 layer: "ui",
-                centered: false
+                align: "left"
             })
 
         }

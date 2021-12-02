@@ -7,12 +7,14 @@ import { Renderer } from "./Renderer";
 import { random, Vector2 } from "./utils/math";
 import { Generator } from "./Generator";
 import { Sound } from "./components/Sound";
+import messages from "../messages";
 
 export type Clock = {
     elapsed: number
 };
 type Camera = {
     position: Vector2
+    rotation: number
     offset: Vector2
     startShakeElapsed: number
     shaking: boolean
@@ -43,6 +45,7 @@ export class Game extends Container {
         this.gamepad = new Gamepad();
         this.camera = {
             position: Vector2.zero(),
+            rotation: 0,
             offset: Vector2.zero(),
             startShakeElapsed: 0,
             shaking: false,
@@ -81,7 +84,12 @@ export class Game extends Container {
         this.assets.push(new Asset(name, src, type));
     }
     getAssetByName(name: string): Asset | null | undefined {
-        return this.assets.find(asset=> asset.name == name);
+        const asset = this.assets.find(asset=> asset.name == name);
+        
+        if (asset)
+            return asset;
+        else
+            console.error(messages.err.assetLoadError(name));
     }
     
     removeChildById(id: Point["id"], listenerId?: string) {
@@ -111,10 +119,6 @@ export class Game extends Container {
         const sound = new Sound();
 
         sound.play(this, assetName, volume);
-        if (sound.audio)
-            sound.audio.onended = ()=> {
-                console.log(true);
-            }
         
         this.sounds.push(sound);
     }

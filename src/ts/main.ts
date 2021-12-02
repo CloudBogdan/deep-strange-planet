@@ -171,8 +171,8 @@ game.addInit(()=> {
         // Antin - basalt layer
         {
             value: [0, .6],
-            // height: [0, Config.WORLD_HEIGHT - 40],
-            height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
+            height: [0, Config.WORLD_HEIGHT - 40],
+            // height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
             divider: 3,
             block: Antin,
             rules(noiseX, noiseY, getValue) {
@@ -182,16 +182,16 @@ game.addInit(()=> {
         // Rady - basalt layer
         {
             value: [0, .3],
-            // height: [0, Config.WORLD_HEIGHT - 5],
-            height: [200, Config.WORLD_HEIGHT - 5],
+            height: [0, Config.WORLD_HEIGHT - 5],
+            // height: [200, Config.WORLD_HEIGHT - 5],
             divider: 2,
             block: Rady
         },
         // > Manty layer
         {
             value: [0, .3],
-            // height: [0, Config.WORLD_HEIGHT - 1],
-            height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
+            height: [0, Config.WORLD_HEIGHT - 1],
+            // height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
             divider: 2,
             block: Manty
         },
@@ -264,7 +264,9 @@ window.addEventListener("keydown", e=> {
     if (e.code == "KeyG")
         console.log(game);
     if (e.code == "KeyP")
-        SpawnParticles(game, game.camera.position);
+        console.log(player);
+    if (e.code == "KeyI")
+        console.log(player.inventory);
     if (e.code == "KeyM")
         console.log(player);
 

@@ -1,4 +1,5 @@
 import { Config } from "../../config";
+import { Storage } from "../../objects/gear/Storage";
 import { Axes, Direction } from "../../types";
 import { Asset, AssetType } from "../Asset";
 import { simplex2 } from "./noise";
@@ -86,6 +87,9 @@ export function assetIsValid(asset: Asset | undefined | null, type: AssetType): 
 }
 export function safeValue<T>(value: T | undefined, safe: T): T {
     return value === undefined ? safe : value;
+}
+export function safeSlot(slot: Storage["contains"]["slots"][0] | undefined): Storage["contains"]["slots"][0] {
+    return safeValue(slot, { count: 0 });
 }
 export function asImage(asset: Asset | undefined | null): HTMLImageElement | undefined {
     if (!asset) return;

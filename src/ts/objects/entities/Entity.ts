@@ -15,9 +15,12 @@ export type IEntityProps = {
 export class Entity extends Sprite {
     sound: Sound
     hp: number
+    initialMoveSpeed: number
     moveSpeed: number
     damaged: boolean
     damagedElapsed: number
+    stayAnimation: string
+    walkAnimation: string
 
     movement: Vector2
     allowMove: boolean
@@ -30,9 +33,12 @@ export class Entity extends Sprite {
         
         this.sound = new Sound();
         this.hp = props?.hp || 10;
+        this.initialMoveSpeed = props?.moveSpeed || 5;
         this.moveSpeed = props?.moveSpeed || 5;
         this.damaged = false;
         this.damagedElapsed = 0;
+        this.stayAnimation = `${ name }-stay`;
+        this.walkAnimation = `${ name }-walk`;
         
         this.movement = new Vector2();
         this.allowMove = true;
@@ -110,9 +116,9 @@ export class Entity extends Sprite {
         if (!this.allowAnimate) return;
         
         if (this.velocity.x != 0 || this.velocity.y != 0)
-            this.playAnimation(this.name + "-walk");
+            this.playAnimation(this.walkAnimation, 4);
         else
-            this.playAnimation(this.name + "-stay");
+            this.playAnimation(this.stayAnimation, 1);
     }
 
     hit(damage: number) {

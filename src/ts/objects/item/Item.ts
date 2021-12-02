@@ -8,6 +8,7 @@ export class Item extends Sprite {
     allowPickup: boolean
     liveStartElapsed: number
     nearOnInit: boolean
+    foldToPosition: Vector2
     
     constructor(name: string, assetName: string, position: Vector2, props?: ISpriteProps) {
         super(name, assetName, {
@@ -20,6 +21,7 @@ export class Item extends Sprite {
         this.picked = false;
         this.liveStartElapsed = 0;
         this.nearOnInit = false;
+        this.foldToPosition = Vector2.zero();
 
         this.collider.width = 6 * Config.SPRITE_SCALE;
         this.collider.height = 6 * Config.SPRITE_SCALE;
@@ -49,6 +51,10 @@ export class Item extends Sprite {
         if (this.allowPickup) {
             this.followPlayer(this.game.getChildById<Player>("player"));
             this.collideWidthOtherItems([...this.game.getChildrenByName("raw"), ...this.game.getChildrenByName("item")]);
+        } else {
+            this.moveTo(this.foldToPosition);
+            if (this.foldToPosition.distance(this.position) < 30)
+                this.game.removeChildById(this.id);
         }
     }
 

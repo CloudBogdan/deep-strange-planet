@@ -1,11 +1,8 @@
 import { Color, Config, ItemSettings, OreSettings } from "../../config";
-import { Game, ISpriteProps } from "../../engine";
-import { Renderer } from "../../engine/Renderer";
-import { asImage, Vector2 } from "../../engine/utils/math";
-import { RawNames } from "../../names";
-import { Raws } from "../../objects";
-import { Player } from "../entities/Player";
-import { Raw } from "../raws/Raw";
+import { ISpriteProps } from "../../engine";
+import { asImage, safeValue, Vector2 } from "../../engine/utils/math";
+import { ObjectNames } from "../../names";
+import { Items } from "../../objects";
 import { Gear, GearLevel } from "./Gear";
 
 type InteractType = "store" | "view";
@@ -19,7 +16,7 @@ export class Storage extends Gear {
     contains: {
         totalCount: number
         slots: {
-            [key: string]: number
+            [key: string]: { count: number }
         }
     }
     interactType: InteractType
@@ -28,9 +25,11 @@ export class Storage extends Gear {
     selectedSlotIndex: number
     
     constructor(level: GearLevel, props?: ISpriteProps) {
-        super("gear-storage", level, props);
+        super("gear-storage", 3, props);
         
-        this.contains = { totalCount: 0, slots: {} };
+        this.contains = { totalCount: 1, slots: {
+            "raw-cidium": { count: 2 }
+        } };
         this.interactType = "view";
         this.maxTotalCount = MaxStorageTotalCount[`${ level }-level`];
         this.headerOffset.set(0, -Config.SPRITE_SIZE);
@@ -42,11 +41,12 @@ export class Storage extends Gear {
         super.update();
         
         if (!this.player) return;
+        if (!this.playerIsNear) return;
         
         this.interactType = (
             this.player.inventory.totalCount == 0 ||
             this.contains.totalCount >= this.maxTotalCount ||
-            this.filterRaws(this.player.inventory.slots).length == this.filterRaws(this.player.inventory.slots).filter(name=> ItemSettings[name].storage > this.level).length
+            this.filterRaws(this.player.inventory.slots).length == this.filterRaws(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage > this.level).length
         ) ? "view" : "store";
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
         this.ui.allowSelectSlots = this.ui.enabled;
@@ -88,15 +88,15 @@ export class Storage extends Gear {
         
         let storedCount = 0;
         let totalStoredCount = 0;
-        const slotNames = this.filterRaws(this.player.inventory.slots).filter(name=> ItemSettings[name].storage <= this.level);
+        const slotNames = this.filterRaws(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage <= this.level);
         // Storage level less then need
-        if (this.filterRaws(this.player.inventory.slots).filter(name=> ItemSettings[name].storage > this.level).length > 0)
+        if (this.filterRaws(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage > this.level).length > 0)
             this.player.spawnText("Низкий уровень\nхранилища", new Vector2(0, -90));
         
         slotNames.map(slot=> {
             if (!this.player) return;
             
-            this.contains.slots[slot] = this.contains.slots[slot] || 0
+            this.contains.slots[slot] = this.contains.slots[slot] || { count: 0 };
             
             // Add items
             if (this.contains.totalCount >= this.maxTotalCount) {
@@ -104,22 +104,28 @@ export class Storage extends Gear {
                 return;
             }
 
-            const rawInstances = this.player.inventory.slots[slot].instances;
+            const slotInstances = this.player.inventory.slots[slot].instances;
             
-            for (let i = 0; i < rawInstances.length; i ++) {
-                if (rawInstances[i] && rawInstances[i].picked) {
-                    rawInstances[i].allowPickup = false;
-                    rawInstances[i].picked = false;
-                    rawInstances[i].name.indexOf("raw") >= 0 ? (rawInstances[i] as any).foldToPosition = this.position : 0;
+            for (let i = 0; i < slotInstances.length; i ++) {
+                if (slotInstances[i] && slotInstances[i].picked) {
+                    slotInstances[i].allowPickup = false;
+                    slotInstances[i].picked = false;
+                    slotInstances[i].foldToPosition = this.position;
+                }
+            }
+            for (let i = 0; i < slotInstances.length; i ++) {
+                if (slotInstances[i] && !slotInstances[i].picked) {
+                    this.player.inventory.slots[slot].instances.splice(i, 1);
                 }
             }
 
             storedCount = this.player.inventory.slots[slot].count + this.contains.totalCount <= this.maxTotalCount ? this.player.inventory.slots[slot].count : (this.maxTotalCount - this.contains.totalCount);
-            this.contains.slots[slot] += storedCount;
-            this.contains.totalCount += storedCount;
+            this.contains.slots[slot].count += storedCount;
             totalStoredCount += storedCount;
-            this.player.inventory.totalCount -= storedCount;
             this.player.inventory.slots[slot].count -= storedCount;
+
+            this.calculateTotalCount();
+            this.player.calculateTotalCount();
         });
         
         if (slotNames.length <= 0) return;
@@ -131,12 +137,20 @@ export class Storage extends Gear {
     drop(slotName: string, count: number) {
         if (!this.contains.slots[slotName]) return
         
-        this.contains.slots[slotName] -= count;
-        this.contains.totalCount -= count;
+        this.contains.slots[slotName].count -= count;
 
-        this.game.add(new Raws[slotName](this.position));
+        this.game.add(new Items[slotName](this.position));
         this.game.initChildren();
         this.sound.play(this.game, "store", 1, false, false);
+
+        this.calculateTotalCount();
+    }
+    calculateTotalCount() {
+        this.contains.totalCount = 0;
+
+        Object.keys(this.contains.slots).map(slotName=> {
+            this.contains.totalCount += this.contains.slots[slotName].count;
+        });
     }
 
     renderUI() {
@@ -159,23 +173,23 @@ export class Storage extends Gear {
         this.renderInventoryUI(slots);
 
         const name = slots[this.selectedSlotIndex]
-        const raw = RawNames[name];
-        if (!raw) return;
+        const item = ObjectNames[name];
+        if (!item) return;
         
         const oreSettings = OreSettings[name.replace("raw-", "")];
         const special = [
             oreSettings ? `> Нужен инструмент ${ oreSettings.tool || 1 }ур. и выше` : "> Можно найти",
-            raw.special || ""
+            item.special || ""
         ].filter(t=> t != "");
 
         // Render description
         this.ui.renderDescriptionUI({
-            title: raw.name,
+            title: item.name,
             specials: special,
-            description: raw.desc, 
+            description: item.desc, 
             renderIcon: (pos)=> {
                 this.game.renderer.drawSprite({
-                    texture: asImage(this.game.getAssetByName(name)),
+                    texture: asImage(this.game.getAssetByName(name.replace("item-", ""))),
                     position: pos,
                     layer: "ui"
                 });
@@ -193,7 +207,6 @@ export class Storage extends Gear {
             this.ui.renderSlot(closePosition, 0, 0, ()=> {
 
                 this.game.renderer.drawSprite({
-                    // texture: asImage(game.getAssetByName("close")),
                     texture: asImage(this.game.getAssetByName("button")),
                     position: closePosition,
                     width: 2,
@@ -211,35 +224,37 @@ export class Storage extends Gear {
         // Draw count text
         this.game.renderer.drawText({
             text: `${ this.contains.totalCount }/${ this.maxTotalCount }`,
-            position: new Vector2(-size * 1.2, -size * 2 + 10).add(windowCenter),
+            position: new Vector2(-size*2.25, -size * 2 + 10).add(windowCenter),
             color: this.contains.totalCount >= this.maxTotalCount ? Color.RED : "#fff",
-            centered: false,
+            align: "left",
             layer: "ui"
         });
 
         slots.map((slot, index)=> {
-            const isOverflow = index > this.maxRowItemsCount-1;
+            // const isOverflow = index > this.maxRowItemsCount-1;
 
             const pos = new Vector2(
-                (index * size) - size * Math.floor(this.maxRowItemsCount / 2) + (isOverflow ? -size * this.maxRowItemsCount : 0),
-                isOverflow ? size : 0
+                ((index % this.maxRowItemsCount) * size) - size * Math.floor(this.maxRowItemsCount / 2),
+                Math.floor(index / this.maxRowItemsCount) * size
             ).add(windowCenter).add(new Vector2(0, -size));
 
             this.ui.renderSlot(pos, 1, index, ()=> {
+                const count = this.contains.slots[slot].count;
 
                 // Draw item sprite
                 this.game.renderer.drawSprite({
-                    texture: asImage(this.game.getAssetByName(slot)),
+                    texture: asImage(this.game.getAssetByName(slot.replace("item-", ""))),
                     position: pos,
                     layer: "ui"
                 });
 
                 // Draw item count text
-                this.game.renderer.drawText({
-                    text: this.contains.slots[slot].toString(),
-                    position: pos.add(Vector2.all(Config.SPRITE_SIZE * .3)),
-                    layer: "ui"
-                });
+                if (count > 1)
+                    this.game.renderer.drawText({
+                        text: count.toString(),
+                        position: pos.add(Vector2.all(Config.SPRITE_SIZE * .3)),
+                        layer: "ui"
+                    });
                 
             }, 1, 1, this.selectedSlotIndex == index);
 
@@ -247,7 +262,8 @@ export class Storage extends Gear {
         
     }
 
-    filterRaws(slots: Player["inventory"]["slots"] | Storage["contains"]["slots"]) {
-        return Object.keys(slots).filter(name=> name.indexOf("raw") >= 0 && ((slots[name] as any).count ? (slots[name] as any).count > 0 : slots[name] > 0));
+    filterRaws(slots: Storage["contains"]["slots"]) {
+        return Object.keys(slots).filter(name=> slots[name].count > 0);
+        // return Object.keys(slots).filter(name=> name.indexOf("raw") >= 0 && ((slots[name] as any).count ? (slots[name] as any).count > 0 : slots[name] > 0));
     }
 }

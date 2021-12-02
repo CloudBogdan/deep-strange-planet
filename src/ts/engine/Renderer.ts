@@ -31,7 +31,7 @@ export type DrawTextProps = {
     text?: string
     color?: string
     font?: string
-    centered?: boolean
+    align?: CanvasTextAlign
     position?: Vector2
     rotation?: number
     scale?: Vector2
@@ -144,10 +144,14 @@ export class Renderer {
         const p = pos || Vector2.zero();
         
         l.context.save();
+
+        l.context.translate(innerWidth / 2 * l.cameraFactor, innerHeight / 2 * l.cameraFactor)
+        l.context.rotate(this.game.camera.rotation * l.cameraFactor);
+
         l.context.transform(
             scale?.x || 1, 0, 0, scale?.y || 1,
-            p.x - this.getCameraPosition(layer).x + window.innerWidth / 2 * l.cameraFactor,
-            p.y - this.getCameraPosition(layer).y + window.innerHeight / 2 * l.cameraFactor
+            p.x - this.getCameraPosition(layer).x,
+            p.y - this.getCameraPosition(layer).y
         );
         l.context.rotate(rotation || 0);
 
@@ -215,9 +219,12 @@ export class Renderer {
         
         context.fillStyle = props.color || "#fff";
         context.font = props.font || "18px Pixel";
-        if (safeValue(props.centered, true))
-            context.textAlign = "center";
+        context.textAlign = props.align || "center";
         context.textBaseline = "middle"
+
+        if ((props as any).centered != undefined) {
+            console.warn("Text centered!");
+        }
 
         const text = props.text || "";
         if (text.indexOf("\n") >= 0) {
@@ -266,12 +273,6 @@ export class Renderer {
                 new Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)),
                 props.opacity
             );
-
-            // this.drawText({
-            //     text: `${ framePos.x }, ${ framePos.y }`,
-            //     position: p,
-            //     layer: "particles"
-            // })
             
             // Draw sprite without repeat
             if (!props.repeat || Vector2.compare(props.repeat || Vector2.all(), Vector2.all())) {

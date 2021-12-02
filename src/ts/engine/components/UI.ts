@@ -177,7 +177,7 @@ export class UI {
             text: title.text,
             font: "20px Pixel",
             position: new Vector2(-size * 1.3, size + 70 - size / 2 + 15).add(windowCenter),
-            centered: false,
+            align: "left",
             color: props.titleColor || "#fff",
             layer: "ui"
         });
@@ -186,14 +186,14 @@ export class UI {
             text: props.specials.join("\n"),
             color: Color.ORANGE,
             position: new Vector2(-size * 1.3, size + 70 + margin + (title.wrapCount >= 1 ? lineHeight : 0)).add(windowCenter),
-            centered: false,
+            align: "left",
             layer: "ui"
         });
         // Description
         this.game.renderer.drawText({
             text: wrapText(props.description, 31).text,
             position: new Vector2(-size * 1.3, size + 70 + lineHeight + margin * 2 + lineHeight * title.wrapCount + lineHeight * (props.specials.length - 1)).add(windowCenter),
-            centered: false,
+            align: "left",
             layer: "ui"
         });
 
@@ -239,7 +239,7 @@ export class UI {
                     position: part.position,
                     opacity: part.size, 
                     layer: "ui",
-                    centered: false
+                    align: "left"
                 });
             },
             size: [5, 5],

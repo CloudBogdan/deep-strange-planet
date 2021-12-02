@@ -1,17 +1,15 @@
 import { Color, Config } from "../../config";
 import { Game, ISpriteProps } from "../../engine";
-import { Button } from "../../engine/components/UI";
-import { Renderer } from "../../engine/Renderer";
-import { asImage, Vector2 } from "../../engine/utils/math";
-import { GearNames, RawNames, RecipeNames } from "../../names";
-import { MaxToolLevel, Player } from "../entities/Player";
-import { Gear, GearLevel, MaxGearLevel } from "./Gear";
+import { asImage, safeSlot, safeValue, Vector2 } from "../../engine/utils/math";
+import { ObjectNames } from "../../names";
+import { Gear, GearLevel } from "./Gear";
 import recipes from "./recipes";
 import { Storage } from "./Storage";
 
 export class Recycler extends Gear {
     storage: Storage
     recipes: { [key: string]: Recipe }
+    maxRowItemsCount: number
     
     constructor(level: GearLevel, storage: Storage, props?: ISpriteProps) {
         super("gear-recycler", level, props);
@@ -19,8 +17,10 @@ export class Recycler extends Gear {
         this.ui.focused.slot = 1;
         this.ui.focused.row = 10;
 
+        this.maxRowItemsCount = 5;
         this.storage = storage;
         this.recipes = recipes(this);
+        this.headerOffset.set(0, -Config.SPRITE_SIZE);
     }
     
     onInteract() {
@@ -53,6 +53,8 @@ export class Recycler extends Gear {
                 recipe.onCraft(this.game, this.storage);
                 this.ui.enabled = false;
                 this.sound.play(this.game, "craft");
+                this.ui.focused.slot = 1;
+                this.ui.focused.row = 10;
             } else {
                 // Can't craft
                 this.sound.play(this.game, "error");
@@ -66,6 +68,8 @@ export class Recycler extends Gear {
         super.renderUI();
 
         const recipesKeys = this.getRecipesKeys();
+        const size = Config.SPRITE_SIZE;
+        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
 
         this.closeText = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "закрыть" : "изготовить";
 
@@ -82,28 +86,53 @@ export class Recycler extends Gear {
         
         // Get recipe by focused slot
         const currentRecipe = this.recipes[recipesKeys[this.ui.focused.slot]];
-        const recipeDescription = RecipeNames[recipesKeys[this.ui.focused.slot]];
+        const recipeDescription = ObjectNames[recipesKeys[this.ui.focused.slot]];
 
         if (!recipeDescription) return;
 
         const selectedRecipe = this.recipes[recipesKeys[this.ui.focused.slot]].recipe();
-        const isInStockCount = (slotName: string)=> this.storage.contains.slots[slotName];
+        const isInStockCount = (slotName: string): number => safeValue(this.storage.contains.slots[slotName], { count: 0 }).count;
         
         this.ui.renderDescriptionUI({
             title: recipeDescription.name,
             titleColor: currentRecipe.canCraft(this.storage) ? "#fff" : Color.RED,
-            specials: [
-                "Ресурсы:",
-                ...Object.keys(selectedRecipe).map(slotName=> {
-                    const count = isInStockCount(slotName);
-                    const recipeItem = RawNames[slotName];
-                    return `> ${ recipeItem?.name || "ERROR" } ${ count || 0 } из ${ selectedRecipe[slotName] }`
-                })
-            ],
+            specials: ["", ""],
             description: recipeDescription.desc,
             renderIcon: (pos)=> {
                 currentRecipe.icon(this.game, pos, 1);   
             }
+        });
+
+        //
+        const selectedRecipeKeys = Object.keys(selectedRecipe);
+        selectedRecipeKeys.map((slotName, index)=> {
+            const pos = new Vector2(index * Config.SPRITE_SIZE - size, size*2 + 5).add(windowCenter);
+            const count = isInStockCount(slotName);
+            const needCount = selectedRecipe[slotName].count;
+            
+            // Sprite
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName(slotName)),
+                position: pos,
+                layer: "ui"
+            });
+            // Count
+            this.game.renderer.drawText({
+                text: `${ count }/${ needCount }`,
+                color: count >= needCount ? "#fff" : Color.RED, 
+                position: pos.add(Vector2.all(Config.SPRITE_SIZE * .2)),
+                layer: "ui"
+            })
+
+            // Plus
+            if (index < selectedRecipeKeys.length - 1)
+                this.game.renderer.drawText({
+                    text: "+",
+                    font: "22px Pixel",
+                    position: pos.add(new Vector2(size / 2)),
+                    layer: "ui"
+                })
+            
         });
     }
 
@@ -112,11 +141,10 @@ export class Recycler extends Gear {
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
         const context = this.game.renderer.getContext("ui");
         
-        const closePosition = new Vector2(size * 1.5 + 20, -size - 20).add(windowCenter);
+        const closePosition = new Vector2(size * 1.5 + 20, -size - 20).add(windowCenter).add(this.headerOffset);
         this.ui.renderSlot(closePosition, 0, 0, ()=> {
 
             this.game.renderer.drawSprite({
-                // texture: asImage(game.getAssetByName("close")),
                 texture: asImage(this.game.getAssetByName("button")),
                 position: closePosition,
                 width: 2,
@@ -133,7 +161,7 @@ export class Recycler extends Gear {
         recipes.map((recipeName, index)=> {
 
             // Render recipe
-            const pos = new Vector2(index * size - size * 2, 0).add(windowCenter);
+            const pos = new Vector2(((index % this.maxRowItemsCount) * size) - size * 2, -size + Math.floor(index / this.maxRowItemsCount)).add(windowCenter);
             this.ui.renderSlot(pos, 1, index, ()=> {
                 
                 // Background
@@ -187,7 +215,7 @@ export class Recipe {
         let hasCount = 0;
 
         for (let i = 0; i < recipes.length; i ++) {
-            if (storage.contains.slots[recipes[i]] >= this.recipe()[recipes[i]])
+            if (safeSlot(storage.contains.slots[recipes[i]]).count >= safeSlot(this.recipe()[recipes[i]]).count)
                 hasCount ++;
         }
         
@@ -198,10 +226,10 @@ export class Recipe {
         const recipes = Object.keys(this.recipe());
 
         for (let i = 0; i < recipes.length; i ++) {
-            storage.contains.slots[recipes[i]] -= this.recipe()[recipes[i]];
-            storage.contains.totalCount -= this.recipe()[recipes[i]];
+            storage.contains.slots[recipes[i]].count -= this.recipe()[recipes[i]].count;
         }
 
+        storage.calculateTotalCount()
         this._onCraft(game);
     }
 }

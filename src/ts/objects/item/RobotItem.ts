@@ -3,7 +3,7 @@ import { Item } from "./Item";
 
 export class RobotItem extends Item {
     constructor(position: Vector2) {
-        super("item-robot", "robot-stay", position, {
+        super("item-robot", "robot", position, {
             scale: new Vector2(.9, .8)
         });
     }

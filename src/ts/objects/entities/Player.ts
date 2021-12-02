@@ -49,6 +49,9 @@ export class Player extends Entity {
     // ambientSound: Sound | null
     // ambientIsPlaying: boolean
     
+    oxygenHungry: boolean
+    oxygenHungryStartElapsed: number
+    
     wire: Vector2
     inventory: {
         totalCount: number
@@ -64,6 +67,7 @@ export class Player extends Entity {
     allowPlaceRobot: boolean
 
     damageAnimatedOpacity: number
+    animatedCameraRotation: number
     
     constructor() {
         super("player", "player-stay", {
@@ -72,6 +76,8 @@ export class Player extends Entity {
         
         // this.ambientSound = null;
         // this.ambientIsPlaying = false;
+        this.oxygenHungry = false;
+        this.oxygenHungryStartElapsed = 0;
 
         this.wire = this.position.expand();
         this.inventory = {
@@ -79,10 +85,11 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = 6;
+        this.toolLevel = 5;
         this.allowPlaceRobot = false;
 
         this.damageAnimatedOpacity = 0;
+        this.animatedCameraRotation = 0;
 
         window.addEventListener("keydown", e=> {
             if (e.code == "KeyT") {
@@ -121,8 +128,16 @@ export class Player extends Entity {
         this.footsStep();
         // this.ambient();
 
+        this.animatedCameraRotation = lerp(this.animatedCameraRotation, this.velocity.x / 50, .2);
+
         // Slow
+        if (this.oxygenHungry) {
+            this.moveSpeed = this.initialMoveSpeed / 2 + 1;
+        } else
+            this.moveSpeed = this.initialMoveSpeed;
         // this.moveSpeed = this.checkItemInInventory("raw-nerius") ? 2 : 5;
+        if (!this.oxygenHungry)
+            this.oxygenHungryStartElapsed = this.game.clock.elapsed;
         
         // Dig
         const tool = tools[this.toolLevel.toString()];
@@ -146,6 +161,10 @@ export class Player extends Entity {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
 
+        if (this.oxygenHungry)
+            this.renderOxygenHungryUI();
+        
+        //
         this.allowPlaceRobot = this.position.y > 20;
         
         // Place robot text
@@ -184,8 +203,36 @@ export class Player extends Entity {
             height: innerHeight / Config.SPRITE_SIZE,
             position: new Vector2(innerWidth / 2, innerHeight / 2),
             layer: "ui",
+            framed: false,
             opacity: this.damageAnimatedOpacity
         });
+    }
+
+    renderOxygenHungryUI() {
+        const size = Config.SPRITE_SIZE;
+        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
+
+        const loseConsciousnessIn = Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed);
+        
+        // this.game.renderer.drawText({
+        //     text: "Кислородное голодание!",
+        //     position: new Vector2(innerWidth/2, 100),
+        //     font: "24px Pixel",
+        //     scale: Vector2.all(1 - (Math.sin(this.game.clock.elapsed / 10) + 1) / 2 / 10),
+        //     layer: "ui"
+        // });
+        this.game.renderer.drawText({
+            text: `Кислородное голодание!\nВы потеряйте сознание через:`,
+            position: new Vector2(innerWidth/2, 130),
+            layer: "ui"
+        });
+        this.game.renderer.drawText({
+            text: `0:${ Math.floor(loseConsciousnessIn / 60) }`,
+            position: new Vector2(innerWidth/2, 180),
+            font: "30px Pixel",
+            layer: "ui"
+        });
+        
     }
 
     bounds() {
@@ -238,14 +285,23 @@ export class Player extends Entity {
     // }
     
     pickup(item: Item, type: string, count: number) {
-        this.inventory.totalCount += count;
-
         this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
         this.inventory.slots[type].count += count;
         const instances = this.inventory.slots[type].instances;
         this.inventory.slots[type].instances.push(item);
             
         this.inventory.slots[type].instances = instances.filter((i, index)=> instances.indexOf(i) == index);
+
+        this.calculateTotalCount()
+    }
+    calculateTotalCount() {
+        this.inventory.totalCount = 0;
+
+        Object.keys(this.inventory.slots).map(slotName=> {
+
+            this.inventory.totalCount += this.inventory.slots[slotName].count;
+
+        });
     }
     pullWire() {
         
@@ -267,6 +323,9 @@ export class Player extends Entity {
             this.wire.copy(this.position);
         }
     }
+    die() {
+
+    }
     upgradeTool(levelUp: number) {
         if (this.toolLevel < MaxToolLevel)
             this.toolLevel += levelUp;
@@ -283,6 +342,7 @@ export class Player extends Entity {
             // Remove robot inventory instance
             this.game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
             this.inventory.slots["item-robot"].instances.splice(0, 1);
+            this.calculateTotalCount()
 
         }
         

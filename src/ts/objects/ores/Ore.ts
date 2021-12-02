@@ -27,10 +27,8 @@ export class Ore extends Block {
     hitAudioName: string
     breakAudioNames: string[]
     allowDecorations: boolean
-    decorations: {
-        [name: string]: { range: [number, number], frames: number }
-    }
-    currentDecoration: { name: string, frame: number }
+    decorationsCount: number
+    currentDecorationFrame: number | null
 
     constructor(type: OreType, position: Vector2, props?: ISpriteProps) {
         super(`ore-${ type }`, type, position, props);
@@ -47,11 +45,8 @@ export class Ore extends Block {
         this.hitAudioName = "stone-hit";
         this.breakAudioNames = ["stone-break-1", "stone-break-2", "stone-break-3"];
         this.allowDecorations = false;
-        this.decorations = {
-            "stalactite": { range: [0, .1], frames: 1 },
-            "under-stone": { range: [.1, .5], frames: 4 },
-        };
-        this.currentDecoration = { name: "", frame: 1 };
+        this.decorationsCount = 10;
+        this.currentDecorationFrame = null;
     }
 
     init() {
@@ -59,22 +54,15 @@ export class Ore extends Block {
 
         if (!this.allowDecorations) return;
         
-        Object.keys(this.decorations).map(name=> {
-            if (inRange(random(0, 1), this.decorations[name].range[0], this.decorations[name].range[1])) {
-                this.currentDecoration.name = name;
-                this.currentDecoration.frame = randomInt(0, this.decorations[name].frames);
-            }
-        });
+        if (chance(50)) {
+            this.currentDecorationFrame = randomInt(0, this.decorationsCount);
+        } else {
+            this.currentDecorationFrame = null;
+        }
 
         if (this.checkBlockIn(new Vector2(0, 1))) {
             this.allowDecorations = false;
         }
-
-        // this.game.generator.onWorldChange(this.id, null, ()=> {
-        //     if (this.checkBlockIn(new Vector2(0, 1), "ore") && this.currentDecoration.name != "") {
-        //         this.allowDecorations = false;
-        //     }
-        // }, true);
 
     }
 
@@ -91,13 +79,14 @@ export class Ore extends Block {
     }
 
     renderDecorations() {
-        if (!this.visible || !this.currentDecoration.name) return;
+        if (!this.visible || !this.currentDecorationFrame) return;
         
         this.game.renderer.drawSprite({
-            texture: asImage(this.game.getAssetByName(this.currentDecoration.name)),
-            frame: new Vector2(this.currentDecoration.frame, 0),
-            position: this.position.add(new Vector2(0, Config.SPRITE_SIZE)),
-            opacity: this.opacity
+            texture: asImage(this.game.getAssetByName("under-stone")),
+            frame: new Vector2(this.currentDecorationFrame, 0),
+            position: this.position.add(new Vector2(0, Config.SPRITE_SIZE - (1-this.scale.y) * Config.SPRITE_SIZE)),
+            opacity: this.opacity,
+            scale: this.scale
         });
 
     }

@@ -17,7 +17,7 @@ export class Robot extends Entity {
     allowPickup: boolean
     
     constructor(position: Vector2) {
-        super("robot", "robot-stay", {
+        super("robot", "robot", {
             position: position.expand(),
             scale: Vector2.zero()
         });
@@ -28,6 +28,7 @@ export class Robot extends Entity {
         this.movement = new Vector2(0, 1);
         this.allowAnimate = false;
         this.acceleration.set(.95, .95);
+        this.stayAnimation = "robot";
 
         this.breaked = false;
 

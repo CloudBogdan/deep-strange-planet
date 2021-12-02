@@ -28,6 +28,7 @@ export enum Config {
     GEAR_INTERACT_DISTANCE = 85,
     DOME_DIAMETER = SPRITE_SIZE * 6,
     GROUND_HEIGHT = SPRITE_SIZE * 2,
+    OXYGEN_HUNGRY_TIME = 3550,
     
     ALLOW_DARK = 1,
     RAW_LIVE_TIME = 400,
@@ -72,6 +73,7 @@ export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = 
     "nerius": { hp: 32, tool: 2 },
     "rady": { hp: 58, tool: 4 },
     "root-stone": { hp: 14 },
+    "mushroom-stone": { hp: 32, tool: 3 },
 }
 export const ItemSettings: { [key: string]: { lineColor: Color, storage: GearLevel } } = {
     "raw-cidium": {

@@ -10,9 +10,9 @@ const recipes = (recycler: Recycler)=> ({
     // Storage up
     "storage-level-up": new Recipe({
         recipe: ()=> [
-            { "raw-cidium": 1, "raw-osmy": 1 }, // Level 2
-            // { "raw-cidium": 8, "raw-osmy": 2 }, // Level 2
-            { "raw-cidium": 12, "raw-osmy": 6, "raw-grade-cidium": 2 }, // Level 3
+            { "raw-cidium": { count: 1 }, "raw-osmy": { count: 1 } }, // Level 2
+            // { "raw-cidium": { count: 8 }, "raw-osmy": { count: 2 } }, // Level 2
+            { "raw-cidium": { count: 12 }, "raw-osmy": { count: 6 }, "raw-grade-cidium": { count: 2 } }, // Level 3
         ][recycler.storage.level - 1] as any,
         // On craft
         onCraft: (game: Game)=> {
@@ -41,9 +41,9 @@ const recipes = (recycler: Recycler)=> ({
     // Tool up
     "tool-level-up": new Recipe({
         recipe: ()=> [
-            { "raw-cidium": 14  }, // Level 2
-            { "raw-cidium": 14, "raw-osmy": 4, "raw-grade-cidium": 1 }, // Level 3
-            { "raw-cidium": 12, "raw-osmy": 8, "raw-antin": 3 }, // Level 4
+            { "raw-cidium": { count: 14 }  }, // Level 2
+            { "raw-cidium": { count: 14 }, "raw-osmy": { count: 4 }, "raw-grade-cidium": { count: 1 } }, // Level 3
+            { "raw-cidium": { count: 12 }, "raw-osmy": { count: 8 }, "raw-antin": { count: 3 } }, // Level 4
         ][recycler.player ? recycler.player?.toolLevel - 1 : 0] as any,
         onCraft: ()=> {
             if (!recycler.player) return;
@@ -70,7 +70,7 @@ const recipes = (recycler: Recycler)=> ({
 
     // Craft bottle
     "bottle": new Recipe({
-        recipe: ()=> ({ "raw-osmy": 8, "raw-antin": 4, "raw-nerius": 3 } as any),
+        recipe: ()=> ({ "raw-osmy": { count: 8 }, "raw-antin": { count: 4 }, "raw-nerius": { count: 3 } } as any),
         onCraft: ()=> {
             if (!recycler.player) return
 
@@ -91,16 +91,16 @@ const recipes = (recycler: Recycler)=> ({
     }),
 
     // Craft robot
-    "robot": new Recipe({
-        recipe: ()=> ({ "raw-cidium": 1 } as any),
-        // recipe: ()=> ({ "raw-osmy": 6, "raw-cidium": 12, "raw-nerius": 5 } as any),
+    "item-robot": new Recipe({
+        recipe: ()=> ({ "raw-cidium": { count: 1 } } as any),
+        // recipe: ()=> ({ "raw-osmy": { count: 6 }, "raw-cidium": { count: 12 }, "raw-nerius": { count: 5 } } as any),
         onCraft: (game)=> {
             game.add(new RobotItem(recycler.position))
             game.initChildren();
         },
         icon: (game, pos, opacity)=> {
             game.renderer.drawSprite({
-                texture: asImage(game.getAssetByName("robot-stay")),
+                texture: asImage(game.getAssetByName("robot")),
                 position: pos,
                 layer: "ui",
                 opacity

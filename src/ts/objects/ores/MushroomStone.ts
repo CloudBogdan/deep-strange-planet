@@ -43,7 +43,7 @@ export class MushroomStone extends Ore {
         SpawnDisputesParticles(this.game, this.position, 1);
 
         const player = this.game.getChildById<Player>("player");
-        if (player && this.position.distance(player.position) < 100 && player.position.y < this.position.y + Config.SPRITE_SIZE/2)
+        if (player && this.position.distance(player.position) < 200 && player.position.y < this.position.y + Config.SPRITE_SIZE/2)
             player.hit(randomInt(4, 6));
     }
 

@@ -2,12 +2,10 @@ import { Game } from "../engine"; // @ts-ignore
 // I can't setup declare module :(
 // > Player
 import player_stay_img from "../../images/player/stay.png"; // @ts-ignore
-import player_walk_0_img from "../../images/player/walk/0.png"; // @ts-ignore
-import player_walk_1_img from "../../images/player/walk/1.png"; // @ts-ignore
-import player_walk_2_img from "../../images/player/walk/2.png"; // @ts-ignore
+import player_walk_img from "../../images/player/walk.png"; // @ts-ignore
 
 // > Entities
-import robot_stay_img from "../../images/entities/robot/robot-stay.png"; // @ts-ignore
+import robot_img from "../../images/entities/robot.png"; // @ts-ignore
 
 // > Stones
 import stone_img from "../../images/ores/stone.png"; // @ts-ignore
@@ -19,10 +17,6 @@ import destrony_img from "../../images/ores/destrony.png"; // @ts-ignore
 import manty_img from "../../images/ores/manty.png"; // @ts-ignore
 import fetus_stone_img from "../../images/ores/fetus-stone.png"; // @ts-ignore
 import mushroom_stone_img from "../../images/ores/mushroom-stone.png"; // @ts-ignore
-// import stone_1_img from "../../images/ores/stone-1.png"; // @ts-ignore
-// import stone_2_img from "../../images/ores/stone-2.png"; // @ts-ignore
-// import stone_3_img from "../../images/ores/stone-3.png"; // @ts-ignore
-// import stone_4_img from "../../images/ores/stone-4.png"; // @ts-ignore
 import cracked_stone_img from "../../images/ores/cracked-stone.png"; // @ts-ignore
 
 // > Ores
@@ -41,6 +35,9 @@ import raw_rady_img from "../../images/raw/raw-rady.png"; // @ts-ignore
 import raw_nerius_img from "../../images/raw/raw-nerius.png"; // @ts-ignore
 import raw_manty_img from "../../images/raw/raw-manty.png"; // @ts-ignore
 
+// > Ready
+import ready_cidium from "../../images/ready/ready-cidium.png"; // @ts-ignore
+
 // > Plants
 import fetus_vine_img from "../../images/flora/fetus-vine.png"; // @ts-ignore
 import mushroom_img from "../../images/flora/mushroom.png"; // @ts-ignore
@@ -49,7 +46,6 @@ import mushroom_img from "../../images/flora/mushroom.png"; // @ts-ignore
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
 import dome_img from "../../images/environment/dome.png"; // @ts-ignore
 import under_stone_img from "../../images/environment/under-stone.png"; // @ts-ignore
-import stalactite_img from "../../images/environment/stalactite.png"; // @ts-ignore
 import disputes_img from "../../images/environment/disputes.png"; // @ts-ignore
 
 // > Gear
@@ -80,6 +76,7 @@ import stone_break2_mp from "../../audio/stone-break/stone-break-2.mp3"; // @ts-
 import stone_break3_mp from "../../audio/stone-break/stone-break-3.mp3"; // @ts-ignore
 import fall_stone_break_mp from "../../audio/stone-break/fall-stone-break.mp3"; // @ts-ignore
 import plant_break_mp from "../../audio/plants/plant-break.mp3"; // @ts-ignore
+import plant_hit_mp from "../../audio/plants/plant-hit.mp3"; // @ts-ignore
 import wave_mp from "../../audio/plants/wave.mp3"; // @ts-ignore
 import bonk_mp from "../../audio/bonk.mp3"; // @ts-ignore
 
@@ -99,15 +96,16 @@ export function initAssets(game: Game) {
     
     // > Player
     game.loadAsset("player-stay", [player_stay_img]);
-    game.loadAsset("player-walk", [
-        player_walk_0_img,
-        player_walk_1_img,
-        player_walk_2_img,
-        player_stay_img,
-    ]);
+    game.loadAsset("player-walk", [player_walk_img]);
+    // game.loadAsset("player-walk", [
+    //     player_walk_0_img,
+    //     player_walk_1_img,
+    //     player_walk_2_img,
+    //     player_stay_img,
+    // ]);
 
     // > Entities
-    game.loadAsset("robot-stay", [robot_stay_img]);
+    game.loadAsset("robot", [robot_img]);
 
     // > Stones
     game.loadAsset("stone", [stone_img]);
@@ -119,10 +117,6 @@ export function initAssets(game: Game) {
     game.loadAsset("manty", [manty_img]);
     game.loadAsset("fetus-stone", [fetus_stone_img]);
     game.loadAsset("mushroom-stone", [mushroom_stone_img]);
-    // game.loadAsset("stone-1", [stone_1_img]);
-    // game.loadAsset("stone-2", [stone_2_img]);
-    // game.loadAsset("stone-3", [stone_3_img]);
-    // game.loadAsset("stone-4", [stone_4_img]);
     game.loadAsset("cracked-stone", [cracked_stone_img]);
 
     // > Ores
@@ -141,6 +135,9 @@ export function initAssets(game: Game) {
     game.loadAsset("raw-nerius", [raw_nerius_img]);
     game.loadAsset("raw-manty", [raw_manty_img]);
 
+    // > Ready
+    game.loadAsset("ready-cidium", [ready_cidium]);
+
     // > Plants
     game.loadAsset("fetus-vine", [fetus_vine_img]);
     game.loadAsset("mushroom", [mushroom_img]);
@@ -148,8 +145,7 @@ export function initAssets(game: Game) {
     // > Environment
     game.loadAsset("ground", [ground_img])
     game.loadAsset("dome", [dome_img])
-    game.loadAsset("under-stone", [under_stone_img])
-    game.loadAsset("stalactite", [stalactite_img])
+    game.loadAsset("under-stone", [under_stone_img]);
     game.loadAsset("disputes", [disputes_img])
 
     // > Gear
@@ -180,6 +176,7 @@ export function initAssets(game: Game) {
     game.loadAsset("stone-break-3", stone_break3_mp, "audio")
     game.loadAsset("fall-stone-break", fall_stone_break_mp, "audio")
     game.loadAsset("plant-break", plant_break_mp, "audio")
+    game.loadAsset("plant-hit", plant_hit_mp, "audio")
     game.loadAsset("wave", wave_mp, "audio")
     game.loadAsset("bonk", bonk_mp, "audio")
 

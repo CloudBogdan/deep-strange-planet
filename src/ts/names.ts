@@ -1,16 +1,19 @@
 import { buildName } from "./engine/utils/math";
 
-type NameType = {
-    name: string
-    desc: string
-    special?: string 
+type NamesType = {
+    [name: string]: {
+        name: string
+        desc: string
+        special?: string 
+    }
 }
 
 const prefixes = {
     raw: "Необработанный"
 }
 
-export const RawNames: { [key: string]: NameType } = {
+export const ObjectNames: NamesType = {
+    // Raw
     "raw-cidium": {
         name: buildName(prefixes.raw, "цидиум"),
         desc: "Жёлтая руда, которая непонятным образом выделяет энергию, если её правильно обработать. При этом её очень легко найти",
@@ -42,8 +45,28 @@ export const RawNames: { [key: string]: NameType } = {
         desc: "Мантий... Это то, для чего ты здесь. Но будь осторожен, он очень горячий, до 1200 С°",
         special: "> Требуется специальная колба для сбора!"
     },
-}
-export const GearNames: { [key: string]: NameType } = {
+
+    // Recipes
+    "storage-level-up": {
+        name: "Улучшить хранилище",
+        desc: "Улучшите своё хранилище для того, чтобы можно было хранить больше ресурсов и их типов."
+    },
+    "tool-level-up": {
+        name: "Улучшить инструмент",
+        desc: "Для того чтобы быстрее ломать руду прокачайте свой инструмент. Более новые уровни инструмента позволяют добывать больше типов руд"
+    },
+
+    // Items
+    "bottle": {
+        name: "\"Специальная колба\"",
+        desc: "Колба для сбора особо опасных руд. На пример таких, как радий"
+    },
+    "item-robot": {
+        name: "Робот",
+        desc: "Ваш лисный робот-компаньон. Копает небольшой тунель вниз. Безсилен против базальта"
+    },
+
+    // Gear
     "gear-storage": {
         name: "Хранилище",
         desc: ""
@@ -61,21 +84,3 @@ export const GearNames: { [key: string]: NameType } = {
         desc: ""
     },
 }
-export const RecipeNames: { [key: string]: NameType } = {
-    "storage-level-up": {
-        name: "Улучшить хранилище",
-        desc: "Улучшите своё хранилище для того, чтобы можно было хранить больше ресурсов и их типов."
-    },
-    "tool-level-up": {
-        name: "Улучшить инструмент",
-        desc: "Для того чтобы быстрее ломать руду прокачайте свой инструмент. Более новые уровни инструмента позволяют добывать больше типов руд"
-    },
-    "bottle": {
-        name: "\"Специальная колба\"",
-        desc: "Колба для сбора особо опасных руд. На пример таких, как радий"
-    },
-    "robot": {
-        name: "Робот",
-        desc: "Ваш лисный робот-компаньон. Копает небольшой тунель вниз. Безсилен против базальта"
-    },
-};
