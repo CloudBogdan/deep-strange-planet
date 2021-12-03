@@ -21,6 +21,7 @@ export class Entity extends Sprite {
     damagedElapsed: number
     stayAnimation: string
     walkAnimation: string
+    moveSpeedDown: number
 
     movement: Vector2
     allowMove: boolean
@@ -39,6 +40,7 @@ export class Entity extends Sprite {
         this.damagedElapsed = 0;
         this.stayAnimation = `${ name }-stay`;
         this.walkAnimation = `${ name }-walk`;
+        this.moveSpeedDown = 0;
         
         this.movement = new Vector2();
         this.allowMove = true;
@@ -109,8 +111,8 @@ export class Entity extends Sprite {
         if (this.movement.x != 0)
             this.flip.x = this.movement.x < 0;
         
-        this.velocity.x = this.movement.normalize().x * this.moveSpeed;
-        this.velocity.y = this.movement.normalize().y * this.moveSpeed;
+        this.velocity.x = this.movement.normalize().x * (this.moveSpeed - this.moveSpeedDown);
+        this.velocity.y = this.movement.normalize().y * (this.moveSpeed - this.moveSpeedDown);
     }
     animate() {
         if (!this.allowAnimate) return;

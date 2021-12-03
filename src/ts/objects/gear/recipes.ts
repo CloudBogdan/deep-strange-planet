@@ -7,6 +7,22 @@ import { MaxGearLevel } from "./Gear";
 import { Recipe, Recycler } from "./Recycler";
 
 const recipes = (recycler: Recycler)=> ({
+
+    // Craft ready cidium
+    "ready-cidium": new Recipe({
+        recipe: ()=> ({
+            "raw-cidium": { count: 4 },
+        }),
+    }),
+
+    // Craft battery
+    "battery": new Recipe({
+        recipe: ()=> ({
+            "ready-cidium": { count: 1 },
+            "raw-cidium": { count: 2 },
+        }),
+    }),
+    
     // Storage up
     "storage-level-up": new Recipe({
         recipe: ()=> [
@@ -41,9 +57,9 @@ const recipes = (recycler: Recycler)=> ({
     // Tool up
     "tool-level-up": new Recipe({
         recipe: ()=> [
-            { "raw-cidium": { count: 14 }  }, // Level 2
-            { "raw-cidium": { count: 14 }, "raw-osmy": { count: 4 }, "raw-grade-cidium": { count: 1 } }, // Level 3
-            { "raw-cidium": { count: 12 }, "raw-osmy": { count: 8 }, "raw-antin": { count: 3 } }, // Level 4
+            { "ready-cidium": { count: 3 }  }, // Level 2
+            { "ready-cidium": { count: 2 }, "raw-osmy": { count: 2 }, "raw-grade-cidium": { count: 1 } }, // Level 3
+            { "ready-cidium": { count: 3 }, "raw-osmy": { count: 4 }, "raw-antin": { count: 3 } }, // Level 4
         ][recycler.player ? recycler.player?.toolLevel - 1 : 0] as any,
         onCraft: ()=> {
             if (!recycler.player) return;
@@ -70,42 +86,23 @@ const recipes = (recycler: Recycler)=> ({
 
     // Craft bottle
     "bottle": new Recipe({
-        recipe: ()=> ({ "raw-osmy": { count: 8 }, "raw-antin": { count: 4 }, "raw-nerius": { count: 3 } } as any),
+        recipe: ()=> ({
+            "ready-cidium": { count: 1 },
+            "raw-osmy": { count: 8 },
+            "raw-antin": { count: 4 },
+            "raw-nerius": { count: 3 }
+        } as any),
         onCraft: ()=> {
             if (!recycler.player) return
-
             recycler.player.hasBottle = true;
-        },
-        icon: (game, pos, opacity)=> {
-            game.renderer.drawSprite({
-                texture: asImage(game.getAssetByName("bottle")),
-                position: pos,
-                width: .8,
-                height: .8,
-                layer: "ui",
-                framed: false,
-                opacity
-            });
         },
         isRemoved: ()=> recycler.player ? recycler.player.hasBottle : false
     }),
 
     // Craft robot
     "item-robot": new Recipe({
-        recipe: ()=> ({ "raw-cidium": { count: 1 } } as any),
-        // recipe: ()=> ({ "raw-osmy": { count: 6 }, "raw-cidium": { count: 12 }, "raw-nerius": { count: 5 } } as any),
-        onCraft: (game)=> {
-            game.add(new RobotItem(recycler.position))
-            game.initChildren();
-        },
-        icon: (game, pos, opacity)=> {
-            game.renderer.drawSprite({
-                texture: asImage(game.getAssetByName("robot")),
-                position: pos,
-                layer: "ui",
-                opacity
-            });
-        },
+        // recipe: ()=> ({ "raw-cidium": { count: 1 } } as any),
+        recipe: ()=> ({ "battery": { count: 1 }, "raw-osmy": { count: 6 }, "raw-nerius": { count: 5 } } as any),
         isRemoved: ()=> recycler.player ? recycler.player.hasBottle : false
     }),
     

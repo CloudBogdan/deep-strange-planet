@@ -22,19 +22,20 @@ export class Storage extends Gear {
     interactType: InteractType
     maxTotalCount: number
     maxRowItemsCount: number
-    selectedSlotIndex: number
+    actionType: "drop" | "close"
     
     constructor(level: GearLevel, props?: ISpriteProps) {
         super("gear-storage", 3, props);
         
-        this.contains = { totalCount: 1, slots: {
-            "raw-cidium": { count: 2 }
+        this.contains = { totalCount: 6, slots: {
+            "raw-cidium": { count: 4 },
+            "raw-osmy": { count: 2 }
         } };
         this.interactType = "view";
         this.maxTotalCount = MaxStorageTotalCount[`${ level }-level`];
         this.headerOffset.set(0, -Config.SPRITE_SIZE);
         this.maxRowItemsCount = 5;
-        this.selectedSlotIndex = 0;
+        this.actionType = "close";
     }
 
     update() {
@@ -43,23 +44,28 @@ export class Storage extends Gear {
         if (!this.player) return;
         if (!this.playerIsNear) return;
         
+        // Change interact type
         this.interactType = (
             this.player.inventory.totalCount == 0 ||
             this.contains.totalCount >= this.maxTotalCount ||
-            this.filterRaws(this.player.inventory.slots).length == this.filterRaws(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage > this.level).length
+            this.filterItems(this.player.inventory.slots).length == this.filterItems(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage > this.level).length
         ) ? "view" : "store";
+        this.actionType = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "close" : "drop";
+
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
-        this.ui.allowSelectSlots = this.ui.enabled;
-        if (this.ui.focused.row == 1)
-            this.selectedSlotIndex = this.ui.focused.slot;
+        this.tipText = this.actionType == "close" ? "закрыть" : "выбросить";
     }
 
     onInteract() {
         super.onInteract();
 
         if (this.ui.enabled && this.ui.focused.row == 0 && this.ui.focused.slot == 0) {
-            const slotName = this.filterRaws(this.contains.slots)[this.selectedSlotIndex];
-            this.drop(slotName, 1)
+            this.ui.enabled = false;
+            return;
+        }
+        if (this.ui.enabled && this.ui.focused.row == 1) {
+            const slotName = this.filterItems(this.contains.slots)[this.ui.ghostFocused.slot];
+            this.drop(slotName, 1);
             return;
         }
         
@@ -68,10 +74,10 @@ export class Storage extends Gear {
             this.store();
         } else if (this.interactType == "view") {
             if (!this.ui.enabled) {
-                this.ui.focused.row = 1;
+                this.ui.focused.row = 0;
                 this.ui.focused.slot = 0;
             }
-            this.ui.enabled = !this.ui.enabled;
+            this.ui.enabled = true;
             if (this.ui.enabled)
                 this.sound.play(this.game, "storage");
         }        
@@ -88,9 +94,9 @@ export class Storage extends Gear {
         
         let storedCount = 0;
         let totalStoredCount = 0;
-        const slotNames = this.filterRaws(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage <= this.level);
+        const slotNames = this.filterItems(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage <= this.level);
         // Storage level less then need
-        if (this.filterRaws(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage > this.level).length > 0)
+        if (this.filterItems(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage > this.level).length > 0)
             this.player.spawnText("Низкий уровень\nхранилища", new Vector2(0, -90));
         
         slotNames.map(slot=> {
@@ -141,7 +147,7 @@ export class Storage extends Gear {
 
         this.game.add(new Items[slotName](this.position));
         this.game.initChildren();
-        this.sound.play(this.game, "store", 1, false, false);
+        this.sound.play(this.game, "store");
 
         this.calculateTotalCount();
     }
@@ -158,7 +164,7 @@ export class Storage extends Gear {
 
         if (!this.ui.enabled) return;
 
-        const slots = this.filterRaws(this.contains.slots);
+        const slots = this.filterItems(this.contains.slots);
         this.ui.updateTemplate([
             slots.length > 0 ? 1 : 0,
             slots.length
@@ -167,12 +173,10 @@ export class Storage extends Gear {
             this.ui.focused.row = 1;
             this.ui.focused.slot = 0;
         }
-
-        this.closeText = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "выбросить" : "закрыть";
             
         this.renderInventoryUI(slots);
 
-        const name = slots[this.selectedSlotIndex]
+        const name = slots[this.ui.ghostFocused.slot]
         const item = ObjectNames[name];
         if (!item) return;
         
@@ -202,24 +206,22 @@ export class Storage extends Gear {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
 
-        if (slots.length != 0) {
-            const closePosition = new Vector2(size * 1.5 + 20, -size * 2 - 20).add(windowCenter);
-            this.ui.renderSlot(closePosition, 0, 0, ()=> {
-
-                this.game.renderer.drawSprite({
-                    texture: asImage(this.game.getAssetByName("button")),
-                    position: closePosition,
-                    width: 2,
-                    layer: "ui"
-                });
-                this.game.renderer.drawText({
-                    text: "Выбросить x1",
-                    position: closePosition,
-                    layer: "ui"
-                });
-
-            }, 1.75);
+        // Close button
+        if (slots.length == 0) {
+            this.ui.focused.row = 0;
+            this.ui.focused.slot = 0;
         }
+        
+        const pos = new Vector2(size*2, -size * 2 - 20).add(windowCenter);
+        this.ui.renderSlot(pos.add(new Vector2(-2, 2)), 0, 0, ()=> {
+
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName(this.actionType)),
+                position: pos,
+                layer: "ui"
+            });
+
+        }, 14 / Config.SPRITE_PIXEL_SIZE);
 
         // Draw count text
         this.game.renderer.drawText({
@@ -231,8 +233,7 @@ export class Storage extends Gear {
         });
 
         slots.map((slot, index)=> {
-            // const isOverflow = index > this.maxRowItemsCount-1;
-
+            
             const pos = new Vector2(
                 ((index % this.maxRowItemsCount) * size) - size * Math.floor(this.maxRowItemsCount / 2),
                 Math.floor(index / this.maxRowItemsCount) * size
@@ -256,13 +257,13 @@ export class Storage extends Gear {
                         layer: "ui"
                     });
                 
-            }, 1, 1, this.selectedSlotIndex == index);
+            }, 1, 1, true);
 
         });
         
     }
 
-    filterRaws(slots: Storage["contains"]["slots"]) {
+    filterItems(slots: Storage["contains"]["slots"]) {
         return Object.keys(slots).filter(name=> slots[name].count > 0);
         // return Object.keys(slots).filter(name=> name.indexOf("raw") >= 0 && ((slots[name] as any).count ? (slots[name] as any).count > 0 : slots[name] > 0));
     }

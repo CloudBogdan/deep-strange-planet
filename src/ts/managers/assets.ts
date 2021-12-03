@@ -36,7 +36,10 @@ import raw_nerius_img from "../../images/raw/raw-nerius.png"; // @ts-ignore
 import raw_manty_img from "../../images/raw/raw-manty.png"; // @ts-ignore
 
 // > Ready
-import ready_cidium from "../../images/ready/ready-cidium.png"; // @ts-ignore
+import ready_cidium_img from "../../images/ready/ready-cidium.png"; // @ts-ignore
+
+// > Items
+import battery_img from "../../images/items/battery.png"; // @ts-ignore
 
 // > Plants
 import fetus_vine_img from "../../images/flora/fetus-vine.png"; // @ts-ignore
@@ -59,6 +62,8 @@ import gear_oxygen_generator_1_outline_img from "../../images/gear/gear-oxygen-g
 // > UI
 import interact_img from "../../images/ui/interact.png"; // @ts-ignore
 import close_img from "../../images/ui/close.png"; // @ts-ignore
+import drop_img from "../../images/ui/drop.png"; // @ts-ignore
+import craft_img from "../../images/ui/craft.png"; // @ts-ignore
 import button_img from "../../images/ui/button.png"; // @ts-ignore
 import tools_img from "../../images/ui/tools.png"; // @ts-ignore
 import bottle_img from "../../images/ui/bottle.png"; // @ts-ignore
@@ -136,7 +141,10 @@ export function initAssets(game: Game) {
     game.loadAsset("raw-manty", [raw_manty_img]);
 
     // > Ready
-    game.loadAsset("ready-cidium", [ready_cidium]);
+    game.loadAsset("ready-cidium", [ready_cidium_img]);
+
+    // > Items
+    game.loadAsset("battery", [battery_img]);
 
     // > Plants
     game.loadAsset("fetus-vine", [fetus_vine_img]);
@@ -159,6 +167,8 @@ export function initAssets(game: Game) {
     // > UI
     game.loadAsset("interact", [interact_img])
     game.loadAsset("close", [close_img])
+    game.loadAsset("drop", [drop_img])
+    game.loadAsset("craft", [craft_img])
     game.loadAsset("button", [button_img])
     game.loadAsset("tools", [tools_img])
     game.loadAsset("bottle", [bottle_img])

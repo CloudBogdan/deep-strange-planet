@@ -6,7 +6,7 @@ import { Entity } from "./Entity";
 import { Ore } from "../ores/Ore";
 import { Raw, RawType } from "../raws/Raw";
 import { Renderer } from "../../engine/Renderer";
-import { Item } from "../item/Item";
+import { ItemParent } from "../item/ItemParent";
 import { Robot } from "./Robot";
 import { Sound } from "../../engine/components/Sound";
 
@@ -58,7 +58,7 @@ export class Player extends Entity {
         slots: {
             [key: string]: {
                 count: number
-                instances: Item[]
+                instances: ItemParent[]
             }
         }
     }
@@ -133,9 +133,13 @@ export class Player extends Entity {
         // Slow
         if (this.oxygenHungry) {
             this.moveSpeed = this.initialMoveSpeed / 2 + 1;
-        } else
+        } else {
             this.moveSpeed = this.initialMoveSpeed;
-        // this.moveSpeed = this.checkItemInInventory("raw-nerius") ? 2 : 5;
+
+            this.moveSpeedDown =
+                (this.checkItemInInventory("raw-nerius") ? 3 : 0) +
+                (this.checkItemInInventory("ready-cidium") ? -2 : 0);
+        }
         if (!this.oxygenHungry)
             this.oxygenHungryStartElapsed = this.game.clock.elapsed;
         
@@ -284,7 +288,7 @@ export class Player extends Entity {
 
     // }
     
-    pickup(item: Item, type: string, count: number) {
+    pickup(item: ItemParent, type: string, count: number) {
         this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
         this.inventory.slots[type].count += count;
         const instances = this.inventory.slots[type].instances;
@@ -306,7 +310,7 @@ export class Player extends Entity {
     pullWire() {
         
         if (this.position.distance(this.wire) > Config.WIRE_LENGTH) {
-            this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed)));
+            this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown)));
         }
 
     }

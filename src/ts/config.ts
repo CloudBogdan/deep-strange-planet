@@ -31,7 +31,7 @@ export enum Config {
     OXYGEN_HUNGRY_TIME = 3550,
     
     ALLOW_DARK = 1,
-    RAW_LIVE_TIME = 400,
+    ITEMS_LIVE_TIME = 800,
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,
 }

@@ -64,6 +64,9 @@ export class UI {
         row: number
         slot: number
     }
+    ghostFocused: UI["focused"]
+    // Length - is rows
+    // [num, num, ...] - is slots
     template: number[]
     
     constructor() {
@@ -72,6 +75,7 @@ export class UI {
 
         this.allowSelectSlots = true;
         this.focused = { row: 0, slot: 0 };
+        this.ghostFocused = { row: 0, slot: 0 };
         this.template = [1];
     }
 
@@ -91,10 +95,14 @@ export class UI {
                     this.bounds();
                     break;
                 case "up":
+                    if (this.ghostFocused.row == Math.abs((this.focused.row % this.template.length) - 1))
+                        this.focused.slot = this.ghostFocused.slot;
                     this.focused.row --;
                     this.bounds();
                     break;
                 case "down":
+                    if (this.ghostFocused.row == (this.focused.row % this.template.length) + 1)
+                        this.focused.slot = this.ghostFocused.slot;
                     this.focused.row ++;
                     this.bounds();
                     break;
@@ -117,7 +125,6 @@ export class UI {
     }
     render() {
         if (!this.game || !this.enabled) return;
-        
     }
     updateTemplate(template: UI["template"]) {
         this.template = template.filter(t=> t > 0)
@@ -126,18 +133,22 @@ export class UI {
     renderSlot(pos: Vector2, row: number, slot: number, render: ()=> void, width?: number, height?: number, ghost?: boolean) {
         if (!this.game || !this.enabled) return;
 
-        const focused = this.focused.row == row && this.focused.slot == slot;
-
+        
+        const isFocused = this.focused.row == row && this.focused.slot == slot;
+        const isGhostFocused = this.ghostFocused.row == row && this.ghostFocused.slot == slot;
+        
+        if (ghost && isFocused)
+            this.ghostFocused = { row, slot };
         render();
         
-        if (focused || ghost) {
+        if (isFocused || (isGhostFocused && ghost)) {
             this.game.renderer.drawRect({
                 color: "rgba(0, 0, 0, 0)",
                 width: safeValue(width, 1),
                 height: safeValue(height, 1),
                 position: pos.apply(Math.floor),
                 stroke: { width: 4, color: Color.ORANGE },
-                opacity: (ghost && !focused) ? .2 : 1,
+                opacity: (isGhostFocused && !isFocused) ? .2 : 1,
                 layer: "ui"
             });
         }

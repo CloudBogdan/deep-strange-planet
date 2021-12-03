@@ -9,7 +9,8 @@ type NamesType = {
 }
 
 const prefixes = {
-    raw: "Необработанный"
+    raw: "Необработанный",
+    ready: "Обработанный",
 }
 
 export const ObjectNames: NamesType = {
@@ -46,6 +47,12 @@ export const ObjectNames: NamesType = {
         special: "> Требуется специальная колба для сбора!"
     },
 
+    // Ready
+    "ready-cidium": {
+        name: buildName(prefixes.ready, "цидиум"),
+        desc: "Обработанный цидиум, способен генерировать энегрию. Используется в создании батареи и других крафтов"
+    },
+
     // Recipes
     "storage-level-up": {
         name: "Улучшить хранилище",
@@ -60,6 +67,10 @@ export const ObjectNames: NamesType = {
     "bottle": {
         name: "\"Специальная колба\"",
         desc: "Колба для сбора особо опасных руд. На пример таких, как радий"
+    },
+    "battery": {
+        name: "Батарея",
+        desc: "Да будет свет!"
     },
     "item-robot": {
         name: "Робот",

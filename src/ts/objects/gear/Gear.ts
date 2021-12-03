@@ -25,7 +25,7 @@ export class Gear extends Sprite {
 
     headerOffset: Vector2
     interactText: string
-    closeText: string
+    tipText: string
     
     constructor(type: GearType, level: GearLevel, props?: ISpriteProps) {
         super(type, [type, 1].join("-"), props);
@@ -46,7 +46,7 @@ export class Gear extends Sprite {
 
         this.headerOffset = new Vector2();
         this.interactText = "";
-        this.closeText = "закрыть";
+        this.tipText = "закрыть";
     }
 
     init() {
@@ -66,6 +66,8 @@ export class Gear extends Sprite {
 
     update() {
         super.update();
+        
+        this.ui.allowSelectSlots = true;
         
         this.checkInteract();
     }
@@ -136,7 +138,7 @@ export class Gear extends Sprite {
             });
             // Close
             this.game.renderer.drawText({
-                text: `[OK] - ${ this.closeText }`,
+                text: `[OK] - ${ this.tipText }`,
                 position: new Vector2(-size * 3 + 20, -size * 2 - 40).add(windowCenter).add(this.headerOffset),
                 layer: "ui",
                 align: "left"

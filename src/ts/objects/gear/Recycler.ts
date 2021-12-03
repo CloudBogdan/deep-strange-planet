@@ -2,6 +2,7 @@ import { Color, Config } from "../../config";
 import { Game, ISpriteProps } from "../../engine";
 import { asImage, safeSlot, safeValue, Vector2 } from "../../engine/utils/math";
 import { ObjectNames } from "../../names";
+import { Items } from "../../objects";
 import { Gear, GearLevel } from "./Gear";
 import recipes from "./recipes";
 import { Storage } from "./Storage";
@@ -10,6 +11,7 @@ export class Recycler extends Gear {
     storage: Storage
     recipes: { [key: string]: Recipe }
     maxRowItemsCount: number
+    actionType: "craft" | "close"
     
     constructor(level: GearLevel, storage: Storage, props?: ISpriteProps) {
         super("gear-recycler", level, props);
@@ -21,6 +23,7 @@ export class Recycler extends Gear {
         this.storage = storage;
         this.recipes = recipes(this);
         this.headerOffset.set(0, -Config.SPRITE_SIZE);
+        this.actionType = "close";
     }
     
     onInteract() {
@@ -50,7 +53,7 @@ export class Recycler extends Gear {
             
             // Craft
             if (recipe.canCraft(this.storage)) {
-                recipe.onCraft(this.game, this.storage);
+                recipe.onCraft(this.game, this.storage, this.position, recipesKeys[this.ui.focused.slot]);
                 this.ui.enabled = false;
                 this.sound.play(this.game, "craft");
                 this.ui.focused.slot = 1;
@@ -71,9 +74,9 @@ export class Recycler extends Gear {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
 
-        this.closeText = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "закрыть" : "изготовить";
+        this.actionType = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "close" : "craft";
+        this.tipText = this.actionType == "close" ? "закрыть" : "изготовить";
 
-        this.ui.allowSelectSlots = true;
         this.ui.updateTemplate([
             1,
             recipesKeys.length,
@@ -82,15 +85,15 @@ export class Recycler extends Gear {
 
         this.renderRecipesUI(recipesKeys);
 
-        if (this.ui.focused.row != 1) return;
+        // if (this.ui.g.row != 1) return;
         
         // Get recipe by focused slot
-        const currentRecipe = this.recipes[recipesKeys[this.ui.focused.slot]];
-        const recipeDescription = ObjectNames[recipesKeys[this.ui.focused.slot]];
+        const currentRecipe = this.recipes[recipesKeys[this.ui.ghostFocused.slot]];
+        const recipeDescription = ObjectNames[recipesKeys[this.ui.ghostFocused.slot]];
 
         if (!recipeDescription) return;
 
-        const selectedRecipe = this.recipes[recipesKeys[this.ui.focused.slot]].recipe();
+        const selectedRecipe = this.recipes[recipesKeys[this.ui.ghostFocused.slot]].recipe();
         const isInStockCount = (slotName: string): number => safeValue(this.storage.contains.slots[slotName], { count: 0 }).count;
         
         this.ui.renderDescriptionUI({
@@ -99,7 +102,15 @@ export class Recycler extends Gear {
             specials: ["", ""],
             description: recipeDescription.desc,
             renderIcon: (pos)=> {
-                currentRecipe.icon(this.game, pos, 1);   
+                const renderIcon = currentRecipe.icon
+                if (renderIcon)
+                    renderIcon(this.game, pos, 1);   
+                else
+                    this.game.renderer.drawSprite({
+                        texture: asImage(this.game.getAssetByName(recipesKeys[this.ui.focused.slot].replace("item-", ""))),
+                        position: pos,
+                        layer: "ui"
+                    })
             }
         });
 
@@ -139,24 +150,18 @@ export class Recycler extends Gear {
     renderRecipesUI(recipes: string[]) {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
-        const context = this.game.renderer.getContext("ui");
         
-        const closePosition = new Vector2(size * 1.5 + 20, -size - 20).add(windowCenter).add(this.headerOffset);
-        this.ui.renderSlot(closePosition, 0, 0, ()=> {
+        // Close button
+        const pos = new Vector2(size*2, -size - 20).add(windowCenter).add(this.headerOffset);
+        this.ui.renderSlot(pos.add(new Vector2(-2, 2)), 0, 0, ()=> {
 
             this.game.renderer.drawSprite({
-                texture: asImage(this.game.getAssetByName("button")),
-                position: closePosition,
-                width: 2,
-                layer: "ui"
-            });
-            this.game.renderer.drawText({
-                text: "Закрыть",
-                position: closePosition,
+                texture: asImage(this.game.getAssetByName(this.actionType)),
+                position: pos,
                 layer: "ui"
             });
 
-        }, 1.75);
+        }, 14 / Config.SPRITE_PIXEL_SIZE);
         
         recipes.map((recipeName, index)=> {
 
@@ -174,13 +179,22 @@ export class Recycler extends Gear {
                 });
                 
                 // Render recipe icon
-                this.recipes[recipeName].icon(
-                    this.game,
-                    pos,
-                    this.recipes[recipeName].canCraft(this.storage) ? 1 : .5
-                );
+                const renderIcon = this.recipes[recipeName].icon;
+                if (renderIcon)
+                    renderIcon(
+                        this.game,
+                        pos,
+                        this.recipes[recipeName].canCraft(this.storage) ? 1 : .5
+                    );
+                else
+                    this.game.renderer.drawSprite({
+                        texture: asImage(this.game.getAssetByName(recipeName.replace("item-", ""))),
+                        position: pos,
+                        opacity: this.recipes[recipeName].canCraft(this.storage) ? 1 : .5,
+                        layer: "ui"
+                    })
 
-            });
+            }, 1, 1, true);
 
         });
 
@@ -193,14 +207,14 @@ export class Recycler extends Gear {
 
 export class Recipe {
     recipe: ()=> Storage["contains"]["slots"]
-    _onCraft: (game: Game)=> void
+    _onCraft: ((game: Game)=> void) | undefined
     isRemoved: ()=> boolean
-    icon: (game: Game, pos: Vector2, opacity: number)=> void
+    icon: ((game: Game, pos: Vector2, opacity: number)=> void) | undefined
     
     constructor(props: {
         recipe: Recipe["recipe"]
-        onCraft: Recipe["_onCraft"]
-        icon: Recipe["icon"]
+        onCraft?: Recipe["_onCraft"]
+        icon?: Recipe["icon"]
         isRemoved?: Recipe["isRemoved"]
     }) {
         this.recipe = props.recipe;
@@ -222,7 +236,7 @@ export class Recipe {
         return hasCount >= recipes.length;
         // return can;
     }
-    onCraft(game: Game, storage: Storage) {
+    onCraft(game: Game, storage: Storage, position: Vector2, name: string) {
         const recipes = Object.keys(this.recipe());
 
         for (let i = 0; i < recipes.length; i ++) {
@@ -230,6 +244,11 @@ export class Recipe {
         }
 
         storage.calculateTotalCount()
-        this._onCraft(game);
+        if (this._onCraft)
+            this._onCraft(game);
+        else {
+            game.add(new Items[name](position));
+            game.initChildren();
+        }
     }
 }

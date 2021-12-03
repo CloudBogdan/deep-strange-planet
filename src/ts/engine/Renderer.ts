@@ -164,8 +164,8 @@ export class Renderer {
     
     // Draw primitives
     drawRect(props: DrawRectProps) {
-        const w = safeValue(props.width, 1) * Config.SPRITE_SIZE;
-        const h = safeValue(props.height, 1) * Config.SPRITE_SIZE;
+        const w = Math.floor(safeValue(props.width, 1) * Config.SPRITE_SIZE);
+        const h = Math.floor(safeValue(props.height, 1) * Config.SPRITE_SIZE);
 
         if (!this.inCameraViewport(safeValue(props.position, Vector2.zero()), w, h) && this.layers[props.layer || "game"].cameraFactor == 1) return;
 
