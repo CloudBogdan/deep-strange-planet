@@ -142,7 +142,7 @@ module.exports = "./fetus-stone.c0ad3ca7.png";
 },{}],"k7Mm":[function(require,module,exports) {
 module.exports = "./mushroom-stone.9f6e5e77.png";
 },{}],"y0PF":[function(require,module,exports) {
-module.exports = ."/cracked-stone.bdc7e15a.png";
+module.exports = "./cracked-stone.bdc7e15a.png";
 },{}],"FU7E":[function(require,module,exports) {
 module.exports = "./cidium.8f5094f6.png";
 },{}],"Zvcg":[function(require,module,exports) {
