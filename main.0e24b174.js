@@ -118,149 +118,149 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"images/player/stay.png":[function(require,module,exports) {
-module.exports = "/stay.39efbb46.png";
+module.exports = "./stay.39efbb46.png";
 },{}],"images/player/walk.png":[function(require,module,exports) {
-module.exports = "/walk.c1c7bbea.png";
+module.exports = "./walk.c1c7bbea.png";
 },{}],"images/entities/robot.png":[function(require,module,exports) {
-module.exports = "/robot.89fb746a.png";
+module.exports = "./robot.89fb746a.png";
 },{}],"images/ores/stone.png":[function(require,module,exports) {
-module.exports = "/stone.699540e4.png";
+module.exports = "./stone.699540e4.png";
 },{}],"images/ores/stony-ground.png":[function(require,module,exports) {
-module.exports = "/stony-ground.aee45ace.png";
+module.exports = "./stony-ground.aee45ace.png";
 },{}],"images/ores/basalt.png":[function(require,module,exports) {
-module.exports = "/basalt.e51f77ac.png";
+module.exports = "./basalt.e51f77ac.png";
 },{}],"images/ores/deep-stone.png":[function(require,module,exports) {
-module.exports = "/deep-stone.05fd66d6.png";
+module.exports = "./deep-stone.05fd66d6.png";
 },{}],"images/ores/burnt-basalt.png":[function(require,module,exports) {
-module.exports = "/burnt-basalt.6f379b0a.png";
+module.exports = "./burnt-basalt.6f379b0a.png";
 },{}],"images/ores/destrony.png":[function(require,module,exports) {
-module.exports = "/destrony.7c3453f2.png";
+module.exports = "./destrony.7c3453f2.png";
 },{}],"images/ores/manty.png":[function(require,module,exports) {
-module.exports = "/manty.3a63cc82.png";
+module.exports = "./manty.3a63cc82.png";
 },{}],"images/ores/fetus-stone.png":[function(require,module,exports) {
-module.exports = "/fetus-stone.e314f0d2.png";
+module.exports = "./fetus-stone.e314f0d2.png";
 },{}],"images/ores/mushroom-stone.png":[function(require,module,exports) {
-module.exports = "/mushroom-stone.4a9571f2.png";
+module.exports = "./mushroom-stone.4a9571f2.png";
 },{}],"images/ores/cracked-stone.png":[function(require,module,exports) {
-module.exports = "/cracked-stone.5598ad76.png";
+module.exports = "./cracked-stone.5598ad76.png";
 },{}],"images/ores/cidium.png":[function(require,module,exports) {
-module.exports = "/cidium.3c514440.png";
+module.exports = "./cidium.3c514440.png";
 },{}],"images/ores/osmy.png":[function(require,module,exports) {
-module.exports = "/osmy.145b8e50.png";
+module.exports = "./osmy.145b8e50.png";
 },{}],"images/ores/antin.png":[function(require,module,exports) {
-module.exports = "/antin.9171e922.png";
+module.exports = "./antin.9171e922.png";
 },{}],"images/ores/rady.png":[function(require,module,exports) {
-module.exports = "/rady.bccf7d2b.png";
+module.exports = "./rady.bccf7d2b.png";
 },{}],"images/ores/nerius.png":[function(require,module,exports) {
-module.exports = "/nerius.809bdc0a.png";
+module.exports = "./nerius.809bdc0a.png";
 },{}],"images/raw/raw-cidium.png":[function(require,module,exports) {
-module.exports = "/raw-cidium.46dee7ea.png";
+module.exports = "./raw-cidium.46dee7ea.png";
 },{}],"images/raw/raw-grade-cidium.png":[function(require,module,exports) {
-module.exports = "/raw-grade-cidium.3db1e106.png";
+module.exports = "./raw-grade-cidium.3db1e106.png";
 },{}],"images/raw/raw-osmy.png":[function(require,module,exports) {
-module.exports = "/raw-osmy.26781543.png";
+module.exports = "./raw-osmy.26781543.png";
 },{}],"images/raw/raw-antin.png":[function(require,module,exports) {
-module.exports = "/raw-antin.55b69ac9.png";
+module.exports = "./raw-antin.55b69ac9.png";
 },{}],"images/raw/raw-rady.png":[function(require,module,exports) {
-module.exports = "/raw-rady.b7c5537f.png";
+module.exports = "./raw-rady.b7c5537f.png";
 },{}],"images/raw/raw-nerius.png":[function(require,module,exports) {
-module.exports = "/raw-nerius.c4d29839.png";
+module.exports = "./raw-nerius.c4d29839.png";
 },{}],"images/raw/raw-manty.png":[function(require,module,exports) {
-module.exports = "/raw-manty.628d6f23.png";
+module.exports = "./raw-manty.628d6f23.png";
 },{}],"images/ready/ready-cidium.png":[function(require,module,exports) {
-module.exports = "/ready-cidium.9e9a8632.png";
+module.exports = "./ready-cidium.9e9a8632.png";
 },{}],"images/items/battery.png":[function(require,module,exports) {
-module.exports = "/battery.a5eb3452.png";
+module.exports = "./battery.a5eb3452.png";
 },{}],"images/items/drill.png":[function(require,module,exports) {
-module.exports = "/drill.45144ddf.png";
+module.exports = "./drill.45144ddf.png";
 },{}],"images/flora/fetus-vine.png":[function(require,module,exports) {
-module.exports = "/fetus-vine.bacb2638.png";
+module.exports = "./fetus-vine.bacb2638.png";
 },{}],"images/flora/mushroom.png":[function(require,module,exports) {
-module.exports = "/mushroom.ad368f59.png";
+module.exports = "./mushroom.ad368f59.png";
 },{}],"images/food/food-fetus.png":[function(require,module,exports) {
-module.exports = "/food-fetus.7257c57b.png";
+module.exports = "./food-fetus.7257c57b.png";
 },{}],"images/environment/ground.png":[function(require,module,exports) {
-module.exports = "/ground.60b82a27.png";
+module.exports = "./ground.60b82a27.png";
 },{}],"images/environment/dome.png":[function(require,module,exports) {
-module.exports = "/dome.de3e7132.png";
+module.exports = "./dome.de3e7132.png";
 },{}],"images/environment/under-stone.png":[function(require,module,exports) {
-module.exports = "/under-stone.25b0e43a.png";
+module.exports = "./under-stone.25b0e43a.png";
 },{}],"images/environment/disputes.png":[function(require,module,exports) {
-module.exports = "/disputes.69e06412.png";
+module.exports = "./disputes.69e06412.png";
 },{}],"images/gear/gear-storage-1.png":[function(require,module,exports) {
-module.exports = "/gear-storage-1.3a898236.png";
+module.exports = "./gear-storage-1.3a898236.png";
 },{}],"images/gear/gear-recycler-1.png":[function(require,module,exports) {
-module.exports = "/gear-recycler-1.24df4e8a.png";
+module.exports = "./gear-recycler-1.24df4e8a.png";
 },{}],"images/gear/gear-oxygen-generator-1.png":[function(require,module,exports) {
-module.exports = "/gear-oxygen-generator-1.51e8bdb6.png";
+module.exports = "./gear-oxygen-generator-1.51e8bdb6.png";
 },{}],"images/gear/gear-storage-1-outline.png":[function(require,module,exports) {
-module.exports = "/gear-storage-1-outline.5c7aa5f9.png";
+module.exports = "./gear-storage-1-outline.5c7aa5f9.png";
 },{}],"images/gear/gear-recycler-1-outline.png":[function(require,module,exports) {
-module.exports = "/gear-recycler-1-outline.896cc421.png";
+module.exports = "./gear-recycler-1-outline.896cc421.png";
 },{}],"images/gear/gear-oxygen-generator-1-outline.png":[function(require,module,exports) {
-module.exports = "/gear-oxygen-generator-1-outline.ad0371d5.png";
+module.exports = "./gear-oxygen-generator-1-outline.ad0371d5.png";
 },{}],"images/ui/interact.png":[function(require,module,exports) {
-module.exports = "/interact.cf2130fe.png";
+module.exports = "./interact.cf2130fe.png";
 },{}],"images/ui/close.png":[function(require,module,exports) {
-module.exports = "/close.47e7c90a.png";
+module.exports = "./close.47e7c90a.png";
 },{}],"images/ui/drop.png":[function(require,module,exports) {
-module.exports = "/drop.df95270c.png";
+module.exports = "./drop.df95270c.png";
 },{}],"images/ui/craft.png":[function(require,module,exports) {
-module.exports = "/craft.95f37d3a.png";
+module.exports = "./craft.95f37d3a.png";
 },{}],"images/ui/button.png":[function(require,module,exports) {
-module.exports = "/button.f2d71914.png";
+module.exports = "./button.f2d71914.png";
 },{}],"images/ui/tools.png":[function(require,module,exports) {
-module.exports = "/tools.bd80d9fc.png";
+module.exports = "./tools.bd80d9fc.png";
 },{}],"images/ui/bottle.png":[function(require,module,exports) {
-module.exports = "/bottle.15b8d6d6.png";
+module.exports = "./bottle.15b8d6d6.png";
 },{}],"images/ui/damage.png":[function(require,module,exports) {
-module.exports = "/damage.cc267781.png";
+module.exports = "./damage.cc267781.png";
 },{}],"images/ui/level-up.png":[function(require,module,exports) {
-module.exports = "/level-up.b72a7aa3.png";
+module.exports = "./level-up.b72a7aa3.png";
 },{}],"images/ui/storage-ui.png":[function(require,module,exports) {
-module.exports = "/storage-ui.cb448bd7.png";
+module.exports = "./storage-ui.cb448bd7.png";
 },{}],"images/ui/recycler-ui.png":[function(require,module,exports) {
-module.exports = "/recycler-ui.89aac496.png";
+module.exports = "./recycler-ui.89aac496.png";
 },{}],"images/ui/description-ui.png":[function(require,module,exports) {
-module.exports = "/description-ui.4519db9d.png";
+module.exports = "./description-ui.4519db9d.png";
 },{}],"images/ui/oxygen-generator-ui.png":[function(require,module,exports) {
-module.exports = "/oxygen-generator-ui.391b5aef.png";
+module.exports = "./oxygen-generator-ui.391b5aef.png";
 },{}],"audio/stone-hit.mp3":[function(require,module,exports) {
-module.exports = "/stone-hit.51a04405.mp3";
+module.exports = "./stone-hit.51a04405.mp3";
 },{}],"audio/stone-break/stone-break-1.mp3":[function(require,module,exports) {
-module.exports = "/stone-break-1.19747488.mp3";
+module.exports = "./stone-break-1.19747488.mp3";
 },{}],"audio/stone-break/stone-break-2.mp3":[function(require,module,exports) {
-module.exports = "/stone-break-2.59f41769.mp3";
+module.exports = "./stone-break-2.59f41769.mp3";
 },{}],"audio/stone-break/stone-break-3.mp3":[function(require,module,exports) {
-module.exports = "/stone-break-3.b9a5f24c.mp3";
+module.exports = "./stone-break-3.b9a5f24c.mp3";
 },{}],"audio/stone-break/fall-stone-break.mp3":[function(require,module,exports) {
-module.exports = "/fall-stone-break.a79c9812.mp3";
+module.exports = "./fall-stone-break.a79c9812.mp3";
 },{}],"audio/plants/plant-break.mp3":[function(require,module,exports) {
-module.exports = "/plant-break.64be894f.mp3";
+module.exports = "./plant-break.64be894f.mp3";
 },{}],"audio/plants/plant-hit.mp3":[function(require,module,exports) {
-module.exports = "/plant-hit.6087f6b0.mp3";
+module.exports = "./plant-hit.6087f6b0.mp3";
 },{}],"audio/plants/wave.mp3":[function(require,module,exports) {
-module.exports = "/wave.9c7d0575.mp3";
+module.exports = "./wave.9c7d0575.mp3";
 },{}],"audio/bonk.mp3":[function(require,module,exports) {
-module.exports = "/bonk.ecc7f323.mp3";
+module.exports = "./bonk.ecc7f323.mp3";
 },{}],"audio/steps/1.mp3":[function(require,module,exports) {
-module.exports = "/1.bb72bcbd.mp3";
+module.exports = "./1.bb72bcbd.mp3";
 },{}],"audio/steps/2.mp3":[function(require,module,exports) {
-module.exports = "/2.e9b2ba92.mp3";
+module.exports = "./2.e9b2ba92.mp3";
 },{}],"audio/steps/3.mp3":[function(require,module,exports) {
-module.exports = "/3.a1d2e232.mp3";
+module.exports = "./3.a1d2e232.mp3";
 },{}],"audio/gear/storage.mp3":[function(require,module,exports) {
-module.exports = "/storage.3dbcac5b.mp3";
+module.exports = "./storage.3dbcac5b.mp3";
 },{}],"audio/gear/store.mp3":[function(require,module,exports) {
-module.exports = "/store.191bbd6f.mp3";
+module.exports = "./store.191bbd6f.mp3";
 },{}],"audio/gear/craft.mp3":[function(require,module,exports) {
-module.exports = "/craft.4224af63.mp3";
+module.exports = "./craft.4224af63.mp3";
 },{}],"audio/gear/error.mp3":[function(require,module,exports) {
-module.exports = "/error.72d638f7.mp3";
+module.exports = "./error.72d638f7.mp3";
 },{}],"audio/robot/motor.mp3":[function(require,module,exports) {
-module.exports = "/motor.b26faf6a.mp3";
+module.exports = "./motor.b26faf6a.mp3";
 },{}],"audio/robot/motor-start.mp3":[function(require,module,exports) {
-module.exports = "/motor-start.931605d0.mp3";
+module.exports = "./motor-start.931605d0.mp3";
 },{}],"ts/managers/assets.ts":[function(require,module,exports) {
 "use strict";
 
