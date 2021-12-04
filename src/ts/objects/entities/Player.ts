@@ -1,6 +1,6 @@
-import { Config } from "../../config";
+import { Color, Config } from "../../config";
 import { Game } from "../../engine";
-import { asAudio, asImage, assetIsValid, compareNames, lerp, random, Vector2 } from "../../engine/utils/math";
+import { asAudio, asImage, assetIsValid, clamp, compareNames, lerp, random, safeValue, Vector2 } from "../../engine/utils/math";
 import { Direction } from "../../types";
 import { Entity } from "./Entity";
 import { Ore } from "../ores/Ore";
@@ -9,6 +9,8 @@ import { Renderer } from "../../engine/Renderer";
 import { ItemParent } from "../item/ItemParent";
 import { Robot } from "./Robot";
 import { Sound } from "../../engine/components/Sound";
+import { Food } from "../food/Food";
+import { FetusStone } from "../ores/FetusStone";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -46,11 +48,9 @@ const tools: { [key: string]: Tool }  = {
 }
 
 export class Player extends Entity {
-    // ambientSound: Sound | null
-    // ambientIsPlaying: boolean
-    
     oxygenHungry: boolean
     oxygenHungryStartElapsed: number
+    oxygenHungryElapsed: number
     
     wire: Vector2
     inventory: {
@@ -65,6 +65,10 @@ export class Player extends Entity {
     toolLevel: ToolLevel
     hasBottle: boolean
     allowPlaceRobot: boolean
+    allowEatFood: boolean
+    actionText: { [name: string]: string }
+    actionType: "grab" | "place" | "eat" | null
+    nearFetusStone: FetusStone | undefined;
 
     damageAnimatedOpacity: number
     animatedCameraRotation: number
@@ -73,11 +77,10 @@ export class Player extends Entity {
         super("player", "player-stay", {
             position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE)
         });
-        
-        // this.ambientSound = null;
-        // this.ambientIsPlaying = false;
+    
         this.oxygenHungry = false;
         this.oxygenHungryStartElapsed = 0;
+        this.oxygenHungryElapsed = 0;
 
         this.wire = this.position.expand();
         this.inventory = {
@@ -85,18 +88,25 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = 5;
+        this.toolLevel = Config.IS_DEV ? 5 : 1;
         this.allowPlaceRobot = false;
+        this.allowEatFood = false;
+        this.actionType = null;
+        this.actionText = {
+            "grab": "cобрать",
+            "place": "установить",
+            "eat": "съесть"
+        }
+        this.nearFetusStone = undefined;
 
         this.damageAnimatedOpacity = 0;
         this.animatedCameraRotation = 0;
 
-        window.addEventListener("keydown", e=> {
-            if (e.code == "KeyT") {
-                this.moveSpeed = this.moveSpeed == 5 ? 90 : 5;
-                this.collider.collidable = !this.collider.collidable;
-            }
-        })
+        if (Config.IS_DEV)
+            window.addEventListener("keydown", e=> {
+                if (e.code == "KeyT")
+                    this.collider.collidable = !this.collider.collidable;
+            })
     }
     
     init() {
@@ -110,6 +120,12 @@ export class Player extends Entity {
         this.game.gamepad.onKeyDown(this.id, "enter", ()=> {
             if (this.checkItemInInventory("item-robot") && this.allowPlaceRobot)
                 this.placeRobot();
+
+            this.useFood();
+            
+            if (!this.nearFetusStone) return;
+            this.nearFetusStone.grab();
+            
         });
     }
 
@@ -124,22 +140,32 @@ export class Player extends Entity {
         this.move();
         this.pullWire();
 
+        this.grabFetus();
+
+        this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 8;
+        this.allowPlaceRobot = this.position.y > 20;
+        
+        // Fetus grab
+        if (this.checkItemInInventory("item-robot") && this.allowPlaceRobot)
+            this.actionType = "place";
+        else if (this.allowEatFood)
+            this.actionType = "eat"
+        else if (this.nearFetusStone != undefined)
+            this.actionType = "grab";
+        else
+            this.actionType = null;
+
+        if (Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) <= 0)
+            this.die();
+
         // Sounds
         this.footsStep();
-        // this.ambient();
-
-        this.animatedCameraRotation = lerp(this.animatedCameraRotation, this.velocity.x / 50, .2);
 
         // Slow
-        if (this.oxygenHungry) {
-            this.moveSpeed = this.initialMoveSpeed / 2 + 1;
-        } else {
-            this.moveSpeed = this.initialMoveSpeed;
+        this.moveSpeedDown =
+            (this.checkItemInInventory("raw-nerius") ? 2 : 0) +
+            (this.checkItemInInventory("ready-cidium") ? -2 : 0);
 
-            this.moveSpeedDown =
-                (this.checkItemInInventory("raw-nerius") ? 3 : 0) +
-                (this.checkItemInInventory("ready-cidium") ? -2 : 0);
-        }
         if (!this.oxygenHungry)
             this.oxygenHungryStartElapsed = this.game.clock.elapsed;
         
@@ -168,13 +194,10 @@ export class Player extends Entity {
         if (this.oxygenHungry)
             this.renderOxygenHungryUI();
         
-        //
-        this.allowPlaceRobot = this.position.y > 20;
-        
-        // Place robot text
-        if (this.checkItemInInventory("item-robot") && this.allowPlaceRobot)
+        // Tip text
+        if(this.actionType)
             this.game.renderer.drawText({
-                text: "[OK] - установить",
+                text: `[OK] - ${ this.actionText[this.actionType] }`,
                 position: new Vector2(0, 150).add(windowCenter),
                 layer: "ui"
             });
@@ -218,15 +241,15 @@ export class Player extends Entity {
 
         const loseConsciousnessIn = Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed);
         
-        // this.game.renderer.drawText({
-        //     text: "Кислородное голодание!",
-        //     position: new Vector2(innerWidth/2, 100),
-        //     font: "24px Pixel",
-        //     scale: Vector2.all(1 - (Math.sin(this.game.clock.elapsed / 10) + 1) / 2 / 10),
-        //     layer: "ui"
-        // });
         this.game.renderer.drawText({
-            text: `Кислородное голодание!\nВы потеряйте сознание через:`,
+            text: "Кислородное голодание!",
+            position: new Vector2(innerWidth/2, 100),
+            font: "24px Pixel",
+            scale: Vector2.all(1 - (Math.sin(this.game.clock.elapsed / 10) + 1) / 2 / 10),
+            layer: "ui"
+        });
+        this.game.renderer.drawText({
+            text: `Вы потеряйте сознание через:`,
             position: new Vector2(innerWidth/2, 130),
             layer: "ui"
         });
@@ -271,22 +294,26 @@ export class Player extends Entity {
                 this.position.y = -Config.SPRITE_SIZE / 2;
         }
     }
+    
+    grabFetus() {
+        this.nearFetusStone = this.game.getChildrenByName<FetusStone>("fetus-stone").find(ore=> {
 
-    // ambient() {
-    //     if (!this.game.tick(100)) return;
+            const vineHeight = (ore.length || 0) * Config.SPRITE_SIZE;
+            
+            return (ore.length || 0) > 0 && (ore.grabbedCount || 0) < (ore.length || 0) && (this.game.physics.collideWithRect({
+                id: this.id,
+                position: this.position,
+                width: this.collider.width,
+                height: this.collider.height,
+            }, {
+                id: ore.id,
+                position: ore.position.add(new Vector2(0, vineHeight / 2)),
+                width: ore.collider.width / 2,
+                height: ore.collider.height + vineHeight,
+            }).any)
 
-    //     this.game.getChildrenByName<Ore>("ore").filter(ore=> ore.oreType == "fetus-stone").map(ore=> {
-    //         if (this.position.distance(ore.position) < 300 && !this.ambientSound) {
-    //             this.ambientSound = new Sound();
-    //             this.ambientSound.play(this.game, "wave", 1, true);
-    //             this.ambientIsPlaying = true;
-    //         }
-    //         if (this.position.distance(ore.position) > 300 && this.ambientIsPlaying) {
-    //             this.ambientSound
-    //         }
-    //     });
-
-    // }
+        })
+    }
     
     pickup(item: ItemParent, type: string, count: number) {
         this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
@@ -301,7 +328,7 @@ export class Player extends Entity {
     calculateTotalCount() {
         this.inventory.totalCount = 0;
 
-        Object.keys(this.inventory.slots).map(slotName=> {
+        this.getInventorySlotNames().map(slotName=> {
 
             this.inventory.totalCount += this.inventory.slots[slotName].count;
 
@@ -321,21 +348,24 @@ export class Player extends Entity {
         this.game.camera.shake();
         this.sound.play(this.game, "bonk");
 
-        if (this.hp <= 0) {
-            this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
-            this.hp = 10;
-            this.wire.copy(this.position);
-        }
+        if (this.hp <= 0)
+            this.die();
     }
     die() {
-
+        this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
+        this.hp = 10;
+        this.wire.copy(this.position);
+    }
+    heal(heal: number) {
+        if (this.hp > 8) return
+        
+        this.hp += heal;
+        this.hp = clamp(this.hp, 0, 10);
+        this.spawnText(`+${ heal }`, undefined, Color.GREEN);
     }
     upgradeTool(levelUp: number) {
         if (this.toolLevel < MaxToolLevel)
             this.toolLevel += levelUp;
-    }
-    checkItemInInventory(name: string) {
-        return this.inventory.slots[name] && this.inventory.slots[name].count > 0
     }
     placeRobot() {
         if (this.checkItemInInventory("item-robot")) {
@@ -354,6 +384,40 @@ export class Player extends Entity {
         this.game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
         this.game.initChildren();
     }
+    foldSlotItemsTo(slotName: string, count: number, position: Vector2) {
+
+        const slotInstances = this.inventory.slots[slotName].instances.filter(item=> this.game.children.indexOf(item) >= 0 && item.picked);
+            
+        for (let i = 0; i < count; i ++) {
+            if (slotInstances[i] && slotInstances[i].picked) {
+                slotInstances[i].allowPickup = false;
+                slotInstances[i].picked = false;
+                slotInstances[i].foldToPosition = position;
+            }
+        }
+        this.inventory.slots[slotName].instances.splice(0, count);        
+        // for (let i = 0; i < count; i ++) {
+        //     if (slotInstances[i] && !slotInstances[i].picked && !slotInstances[i].allowPickup) {
+        //         this.inventory.slots[slotName].instances.splice(i, 1);
+        //     }
+        // }
+
+        this.inventory.slots[slotName].count -= count;
+        this.calculateTotalCount();
+
+    }
+    useFood() {
+        if (this.allowEatFood) {
+
+            const foodSlotNames = this.getInventorySlotNames().filter(slotName=> slotName.indexOf("food") >= 0);
+            (this.inventory.slots[foodSlotNames[0]].instances[0] as Food).onEat(this);
+            this.game.removeChildById(this.inventory.slots[foodSlotNames[0]].instances[0].id);
+            this.inventory.slots[foodSlotNames[0]].count --;
+            this.inventory.slots[foodSlotNames[0]].instances.splice(0, 1);
+
+        }
+    }
+
     footsStep() {
 
         const allow = 
@@ -365,5 +429,12 @@ export class Player extends Entity {
         if (this.game.clock.elapsed % 20 == 0 && allow)
             this.sound.play(this.game, `step-${ Math.floor(random(1, 4)) }`, .3)
 
+    }
+
+    getInventorySlotNames(): string[] {
+        return Object.keys(this.inventory.slots);
+    }
+    checkItemInInventory(name: string) {
+        return this.inventory.slots[name] && this.inventory.slots[name].count > 0;
     }
 }

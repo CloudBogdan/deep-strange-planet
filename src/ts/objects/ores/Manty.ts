@@ -13,6 +13,6 @@ export class Manty extends DangerOre {
     onBreak() {
         super.onBreak();
 
-        this.dropRawOre(RawManty);
+        this.dropItem(RawManty);
     }
 }

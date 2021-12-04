@@ -17,7 +17,7 @@ export class Nerius extends Ore {
     onBreak() {
         super.onBreak();
 
-        this.dropRawOre(RawNerius);
+        this.dropItem(RawNerius);
         // this.dropRawOre(game, RawGradeCidium, 100);
     }
 }

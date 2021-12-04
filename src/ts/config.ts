@@ -2,6 +2,9 @@ import { ToolLevel } from "./objects/entities/Player";
 import { GearLevel } from "./objects/gear/Gear";
 
 export enum Config {
+    ALLOW_DARK = 1,
+    IS_DEV = 1, // ! IS DEV!!!!
+    
     // World size and chunks size in blocks
     WORLD_WIDTH = 82,
     WORLD_HEIGHT = 225,
@@ -13,8 +16,8 @@ export enum Config {
     PARTICLES_GRAVITY = .4,
     WORLD_X_CENTER = WORLD_WIDTH * SPRITE_SIZE / 2, // In pixels
 
-    VINE_GROW_TICK = 60,
-    VINE_GROW_CHANCE = 50,
+    VINE_GROW_TICK = 180,
+    VINE_GROW_CHANCE = 20,
     VINE_MIN_LENGTH = 4,
     VINE_MAX_LENGTH = 8,
     
@@ -30,7 +33,6 @@ export enum Config {
     GROUND_HEIGHT = SPRITE_SIZE * 2,
     OXYGEN_HUNGRY_TIME = 3550,
     
-    ALLOW_DARK = 1,
     ITEMS_LIVE_TIME = 800,
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,

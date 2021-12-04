@@ -11,6 +11,8 @@ import messages from "../messages";
 
 export type Clock = {
     elapsed: number
+    fps: number
+    delta: number
 };
 type Camera = {
     position: Vector2
@@ -68,7 +70,9 @@ export class Game extends Container {
         this.sounds = [];
         
         this.clock = {
-            elapsed: 0
+            elapsed: 0,
+            fps: 0,
+            delta: 0
         };
         this.initListeners = [];
         this.updateListeners = [];
@@ -128,6 +132,8 @@ export class Game extends Container {
         // Init
         this.initListeners.map(listener=> listener());
         this.initChildren();
+
+        let lastLoop = 0;
         
         const loop = ()=> {
             requestAnimationFrame(loop);
@@ -143,6 +149,14 @@ export class Game extends Container {
                     this.camera.shaking = false;
                 this.camera.offset.copy(this.camera.offset.add(new Vector2(random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude), random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude))));
             }
+
+            // Update clock
+            const thisLoop = Date.now();
+            this.clock.delta = (thisLoop - lastLoop) / 1000;
+            if (this.tick(30)) {
+                this.clock.fps = +(1000 / (thisLoop - lastLoop)).toFixed(1);
+            }
+            lastLoop = thisLoop;
             
             // Update
             this.physics.update();

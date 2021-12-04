@@ -1,14 +1,9 @@
-import { asImage, chance, inChunkIdToPosition, inRange, lerp, random, randomInt, randomNoise, Vector2 } from "../../engine/utils/math";
-import { Game, ISpriteProps, Sprite } from "../../engine";
+import { asImage, chance, random, randomInt, Vector2 } from "../../engine/utils/math";
+import { ISpriteProps } from "../../engine";
 import { Config, Color, OreSettings } from "../../config";
-import { Player, ToolLevel } from "../entities/Player";
+import { ToolLevel } from "../entities/Player";
 import { SpawnParticles } from "../../engine/components/Particles";
-import { Renderer } from "../../engine/Renderer";
-import { Raw } from "../raws/Raw";
-import { Sound } from "../../engine/components/Sound";
 import { Block } from "../Block";
-import { FetusVine } from "../plants/FetusVine";
-import { simplex2 } from "../../engine/utils/noise";
 
 export type OreType =
     "stone" | "stony-ground" | "deep-stone" | "destrony" | "manty" |
@@ -124,15 +119,5 @@ export class Ore extends Block {
         this.game.removeChildById(this.id);
         this.game.generator.destroyOre(this.inChunkId);
 
-    }
-    dropRawOre(rawOre: typeof Raw | any, chancePercent?: number) {
-        let drop = true;
-        
-        if (chancePercent)
-            drop = chance(chancePercent);
-            
-        if (!drop) return;
-        this.game.add<typeof rawOre>(new (rawOre as any)(this.position.add(new Vector2(random(-10, 10), random(-10, 10)))));
-        this.game.initChildren();
     }
 }

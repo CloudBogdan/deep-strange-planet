@@ -1,7 +1,7 @@
 import { Color, Config } from "../../config";
 import { Game } from "../Game";
 import { Renderer, StrokeSettings } from "../Renderer";
-import { asImage, assetIsValid, lerp, random, safeValue, Vector2, wrapText } from "../utils/math";
+import { asImage, assetIsValid, clamp, lerp, random, safeValue, Vector2, wrapText } from "../utils/math";
 import { SpawnParticles } from "./Particles";
 
 type IProgressBarProps = {
@@ -118,10 +118,13 @@ export class UI {
         else if (this.focused.row > this.template.length-1)
             this.focused.row = 0;
         
+        this.focused.row = clamp(this.focused.row, 0, this.template.length-1);
         if (this.focused.slot > this.template[this.focused.row]-1)
             this.focused.slot = 0;
         else if (this.focused.slot < 0)
             this.focused.slot = this.template[this.focused.row]-1;
+
+        this.focused.slot = clamp(this.focused.slot, 0, this.template[this.focused.row]-1);
     }
     render() {
         if (!this.game || !this.enabled) return;
@@ -133,7 +136,6 @@ export class UI {
     renderSlot(pos: Vector2, row: number, slot: number, render: ()=> void, width?: number, height?: number, ghost?: boolean) {
         if (!this.game || !this.enabled) return;
 
-        
         const isFocused = this.focused.row == row && this.focused.slot == slot;
         const isGhostFocused = this.ghostFocused.row == row && this.ghostFocused.slot == slot;
         

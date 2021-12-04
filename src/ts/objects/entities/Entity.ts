@@ -34,8 +34,8 @@ export class Entity extends Sprite {
         
         this.sound = new Sound();
         this.hp = props?.hp || 10;
-        this.initialMoveSpeed = props?.moveSpeed || 5;
         this.moveSpeed = props?.moveSpeed || 5;
+        this.initialMoveSpeed = this.moveSpeed;
         this.damaged = false;
         this.damagedElapsed = 0;
         this.stayAnimation = `${ name }-stay`;
@@ -129,7 +129,7 @@ export class Entity extends Sprite {
         this.hp -= damage;
         this.damaged = true;
 
-        this.spawnText(damage.toString(), undefined, Color.RED);
+        this.spawnText(`-${ damage }`, undefined, Color.RED);
     }
 
     spawnText(text: string, offset?: Vector2, color?: string) {

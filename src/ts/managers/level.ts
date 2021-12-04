@@ -13,9 +13,9 @@ export function initLevel(game: Game) {
         layer: "bg"
     }));
 
-    function update(player: Player) {
+    function update() {
 
-        const op = (1 - player.position.y / 240) * .3;
+        const op = (1 - game.camera.position.y / 240) * .3;
         ground.opacity = op > 0 ? op : 0;
 
     }

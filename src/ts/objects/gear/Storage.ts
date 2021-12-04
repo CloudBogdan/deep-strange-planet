@@ -1,6 +1,6 @@
 import { Color, Config, ItemSettings, OreSettings } from "../../config";
 import { ISpriteProps } from "../../engine";
-import { asImage, safeValue, Vector2 } from "../../engine/utils/math";
+import { asImage, clamp, safeValue, Vector2 } from "../../engine/utils/math";
 import { ObjectNames } from "../../names";
 import { Items } from "../../objects";
 import { Gear, GearLevel } from "./Gear";
@@ -24,18 +24,28 @@ export class Storage extends Gear {
     maxRowItemsCount: number
     actionType: "drop" | "close"
     
-    constructor(level: GearLevel, props?: ISpriteProps) {
-        super("gear-storage", 3, props);
+    constructor(props?: ISpriteProps) {
+        super("gear-storage", 1, props);
         
-        this.contains = { totalCount: 6, slots: {
-            "raw-cidium": { count: 4 },
-            "raw-osmy": { count: 2 }
+        this.contains = { totalCount: 0, slots: {
+            "raw-cidium": { count: 1 },
+            "raw-osmy": { count: 1 },
+            "ready-cidium": { count: 1 },
+            "item-robot": { count: 1 },
+            "food-fetus": { count: 2 },
+            "raw-manty": { count: 1 },
         } };
         this.interactType = "view";
-        this.maxTotalCount = MaxStorageTotalCount[`${ level }-level`];
+        this.maxTotalCount = MaxStorageTotalCount[`${ this.level }-level`];
         this.headerOffset.set(0, -Config.SPRITE_SIZE);
         this.maxRowItemsCount = 5;
         this.actionType = "close";
+    }
+
+    init() {
+        super.init();
+
+        this.calculateTotalCount();
     }
 
     update() {
@@ -53,7 +63,7 @@ export class Storage extends Gear {
         this.actionType = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "close" : "drop";
 
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
-        this.tipText = this.actionType == "close" ? "закрыть" : "выбросить";
+        this.tipText = this.actionType == "close" ? "закрыть" : "выбросить x1";
     }
 
     onInteract() {
@@ -99,10 +109,10 @@ export class Storage extends Gear {
         if (this.filterItems(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage > this.level).length > 0)
             this.player.spawnText("Низкий уровень\nхранилища", new Vector2(0, -90));
         
-        slotNames.map(slot=> {
+        slotNames.map(slotName=> {
             if (!this.player) return;
             
-            this.contains.slots[slot] = this.contains.slots[slot] || { count: 0 };
+            this.contains.slots[slotName] = this.contains.slots[slotName] || { count: 0 };
             
             // Add items
             if (this.contains.totalCount >= this.maxTotalCount) {
@@ -110,25 +120,11 @@ export class Storage extends Gear {
                 return;
             }
 
-            const slotInstances = this.player.inventory.slots[slot].instances;
-            
-            for (let i = 0; i < slotInstances.length; i ++) {
-                if (slotInstances[i] && slotInstances[i].picked) {
-                    slotInstances[i].allowPickup = false;
-                    slotInstances[i].picked = false;
-                    slotInstances[i].foldToPosition = this.position;
-                }
-            }
-            for (let i = 0; i < slotInstances.length; i ++) {
-                if (slotInstances[i] && !slotInstances[i].picked) {
-                    this.player.inventory.slots[slot].instances.splice(i, 1);
-                }
-            }
-
-            storedCount = this.player.inventory.slots[slot].count + this.contains.totalCount <= this.maxTotalCount ? this.player.inventory.slots[slot].count : (this.maxTotalCount - this.contains.totalCount);
-            this.contains.slots[slot].count += storedCount;
+            storedCount = this.player.inventory.slots[slotName].count + this.contains.totalCount <= this.maxTotalCount ? this.player.inventory.slots[slotName].count : (this.maxTotalCount - this.contains.totalCount);
+            this.contains.slots[slotName].count += storedCount;
             totalStoredCount += storedCount;
-            this.player.inventory.slots[slot].count -= storedCount;
+            
+            this.player.foldSlotItemsTo(slotName, storedCount, this.position);
 
             this.calculateTotalCount();
             this.player.calculateTotalCount();
@@ -164,19 +160,20 @@ export class Storage extends Gear {
 
         if (!this.ui.enabled) return;
 
-        const slots = this.filterItems(this.contains.slots);
+        const slotNames = this.filterItems(this.contains.slots);
         this.ui.updateTemplate([
-            slots.length > 0 ? 1 : 0,
-            slots.length
+            slotNames.length > 0 ? 1 : 0,
+            clamp(slotNames.length, 0, this.maxRowItemsCount),
+            slotNames.length > this.maxRowItemsCount ? slotNames.length - this.maxRowItemsCount : 0,
         ]);
         if (!this.ui.template[0]) {
             this.ui.focused.row = 1;
             this.ui.focused.slot = 0;
         }
             
-        this.renderInventoryUI(slots);
+        this.renderInventoryUI(slotNames);
 
-        const name = slots[this.ui.ghostFocused.slot]
+        const name = slotNames[this.ui.ghostFocused.slot]
         const item = ObjectNames[name];
         if (!item) return;
         
@@ -239,7 +236,11 @@ export class Storage extends Gear {
                 Math.floor(index / this.maxRowItemsCount) * size
             ).add(windowCenter).add(new Vector2(0, -size));
 
-            this.ui.renderSlot(pos, 1, index, ()=> {
+            this.ui.renderSlot(
+                pos,
+                Math.floor(index / this.maxRowItemsCount) + 1,
+                index % this.maxRowItemsCount,
+                ()=> {
                 const count = this.contains.slots[slot].count;
 
                 // Draw item sprite

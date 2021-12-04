@@ -14,6 +14,6 @@ export class Rady extends DangerOre {
     onBreak() {
         super.onBreak();
 
-        this.dropRawOre(RawRady);
+        this.dropItem(RawRady);
     }
 }

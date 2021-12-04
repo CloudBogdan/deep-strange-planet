@@ -16,6 +16,6 @@ export class Cidium extends Ore {
     onBreak() {
         super.onBreak();
 
-        this.dropRawOre(RawCidium);
+        this.dropItem(RawCidium);
     }
 }

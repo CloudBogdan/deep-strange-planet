@@ -11,6 +11,12 @@ export type Collide = {
     bottom: boolean
     any: boolean
 }
+export type CollideRect = {
+    id: string
+    width: number
+    height: number
+    position: Vector2
+}
 export type ColliderType = "solid" | "dynamic" | "none";
 export class Collider {
     type: ColliderType
@@ -44,25 +50,18 @@ export class Physics {
         this.game = game;
     }
 
-    collide(point1: Point, point2: Point): Collide {
+    collideWithRect(rect1: CollideRect, rect2: CollideRect): Collide {
 
-        // if (this.game.camera.distance(point1.position) < 300 && this.game.camera.distance(point2.position) < 300)
-        //     return {
-        //         id: null, any: false,
-        //         right: false, left: false,
-        //         top: false, bottom: false
-        //     }
-        
         const
-            pos1 = Vector2.add(point1.position, point1.collider.offset).add(point1.velocity),
-            pos2 = Vector2.add(point2.position, point2.collider.offset).add(point2.velocity);
+            pos1 = rect1.position,
+            pos2 = rect2.position;
         const
-            w1 = point1.collider.width / 2,
-            w2 = point2.collider.width / 2;
+            w1 = rect1.width / 2,
+            w2 = rect2.width / 2;
         const
-            h1 = point1.collider.height / 2,
-            h2 = point2.collider.height / 2;
-        const valid = point1.id != point2.id;
+            h1 = rect1.height / 2,
+            h2 = rect2.height / 2;
+        const valid = rect1.id != rect2.id;
         const horizontal = (
             ((pos1.x + w1) > (pos2.x - w2)) && // Right
             ((pos1.x - w1) < (pos2.x + w2)) // Left
@@ -96,10 +95,89 @@ export class Physics {
         let any = right || left || top || bottom;
         
         return {
-            id: point2?.id || null, any,
+            id: rect2?.id || null, any,
             right, left,
             top, bottom
         };
+
+    }
+    collide(point1: Point, point2: Point): Collide {
+
+        // if (this.game.camera.distance(point1.position) < 300 && this.game.camera.distance(point2.position) < 300)
+        //     return {
+        //         id: null, any: false,
+        //         right: false, left: false,
+        //         top: false, bottom: false
+        //     }
+        
+        const
+            pos1 = Vector2.add(point1.position, point1.collider.offset).add(point1.velocity),
+            pos2 = Vector2.add(point2.position, point2.collider.offset).add(point2.velocity);
+        const
+            w1 = point1.collider.width,
+            w2 = point2.collider.width;
+        const
+            h1 = point1.collider.height,
+            h2 = point2.collider.height;
+
+        return this.collideWithRect({
+            id: point1.id,
+            position: pos1,
+            width: w1,
+            height: h1
+        }, {
+            id: point2.id,
+            position: pos2,
+            width: w2,
+            height: h2
+        });
+        // const
+        //     pos1 = Vector2.add(point1.position, point1.collider.offset).add(point1.velocity),
+        //     pos2 = Vector2.add(point2.position, point2.collider.offset).add(point2.velocity);
+        // const
+        //     w1 = point1.collider.width / 2,
+        //     w2 = point2.collider.width / 2;
+        // const
+        //     h1 = point1.collider.height / 2,
+        //     h2 = point2.collider.height / 2;
+        // const valid = point1.id != point2.id;
+        // const horizontal = (
+        //     ((pos1.x + w1) > (pos2.x - w2)) && // Right
+        //     ((pos1.x - w1) < (pos2.x + w2)) // Left
+        // )
+        // const vertical = (
+        //     ((pos1.y + h1) > (pos2.y - h2)) && // Bottom
+        //     ((pos1.y - h2) < (pos2.y + h2)) // Top
+        // ) && valid;
+
+        // const locationX = Math.abs(Math.sqrt((pos1.x - pos2.x) ** 2));
+        // const locationY = Math.abs(Math.sqrt((pos1.y - pos2.y) ** 2));
+
+        // // Right
+        // let right = (
+        //     ((pos1.x + w1) > (pos2.x - w2)) && pos2.x > pos1.x
+        // ) && vertical && (locationX > locationY);
+        // // Left
+        // let left = (
+        //     ((pos1.x - w1) < (pos2.x + w2)) && pos1.x > pos2.x
+        // ) && vertical && (locationX > locationY);
+        
+        // // Top
+        // let top = (
+        //     ((pos1.y - h1) < (pos2.y + h2)) && pos1.y > pos2.y
+        // ) && horizontal && (locationY > locationX);
+        // // Bottom
+        // let bottom = (
+        //     ((pos1.y + h1) > (pos2.y - h2)) && pos2.y > pos1.y
+        // ) && horizontal && (locationY > locationX);
+
+        // let any = right || left || top || bottom;
+        
+        // return {
+        //     id: point2?.id || null, any,
+        //     right, left,
+        //     top, bottom
+        // };
     }
     
     update() {

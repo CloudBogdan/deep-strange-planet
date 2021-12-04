@@ -4,6 +4,7 @@ import { compareNames, random, Vector2 } from "../../engine/utils/math"
 import { Player } from "../entities/Player"
 
 export class ItemParent extends Sprite {
+    radius: number
     picked: boolean
     allowPickup: boolean
     liveStartElapsed: number
@@ -17,6 +18,8 @@ export class ItemParent extends Sprite {
             position: position.expand()
         });
 
+        this.radius = 4;
+        this.group = "items";
         this.allowPickup = true;
         this.picked = false;
         this.liveStartElapsed = 0;
@@ -50,12 +53,15 @@ export class ItemParent extends Sprite {
         
         if (this.allowPickup) {
             this.followPlayer(this.game.getChildById<Player>("player"));
-            this.collideWidthOtherItems([...this.game.getChildrenByName("raw"), ...this.game.getChildrenByName("item")]);
+            this.collideWidthOtherItems((this.game.children as ItemParent[]).filter(child=> child.group == "items" && child.allowPickup && child.picked));
         } else {
             this.moveTo(this.foldToPosition);
             if (this.foldToPosition.distance(this.position) < 30)
                 this.game.removeChildById(this.id);
         }
+
+        // Change collider type
+        this.collider.type = this.picked ? "dynamic" : "none";
     }
 
     pickup(player: Player, count: number) {
@@ -81,7 +87,7 @@ export class ItemParent extends Sprite {
         
         if (!this.picked) return;
 
-        this.moveTo(player.wire, -player.moveSpeedDown * .01);
+        this.moveTo(player.wire);
         this.game.renderer.drawLine({
             color: ItemSettings[this.name] ? ItemSettings[this.name].lineColor : "#fff",
             width: 2,
@@ -95,18 +101,18 @@ export class ItemParent extends Sprite {
             return player.position.distance(this.position) < (distance || Config.PICKUP_DISTANCE);
     }
 
-    collideWidthOtherItems(items: any[]) {
+    collideWidthOtherItems(items: ItemParent[]) {
         if (!this.picked) return;
         
-        [...items].filter(item=> item.picked && !compareNames(item.id, this.id)).map((item, index)=> {
+        items.map((item, index)=> {
         
-            if (item.position.distance(this.position) < 8 * Config.SPRITE_SCALE) {
+            if (item.position.distance(this.position) < (this.radius + item.radius) * Config.SPRITE_SCALE) {
                 item.position.copy(item.position.add(item.position.sub(this.position).normalize()));
             }
 
         });
     }
-    moveTo(position: Vector2, speed?: number) {
-        this.velocity.copy(this.velocity.add(position.sub(this.position).mul(.04 + (speed || 0))));
+    moveTo(position: Vector2) {
+        this.velocity.copy(this.velocity.add(position.sub(this.position).mul(.04)));
     }
 }

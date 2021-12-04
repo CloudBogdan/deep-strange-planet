@@ -17,6 +17,6 @@ export class Antin extends Ore {
     onBreak() {
         super.onBreak();
 
-        this.dropRawOre(RawAntin);
+        this.dropItem(RawAntin);
     }
 }

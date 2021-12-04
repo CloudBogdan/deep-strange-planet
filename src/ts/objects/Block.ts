@@ -2,7 +2,8 @@ import { Config } from "../config"
 import { ISpriteProps, Sprite } from "../engine"
 import { Sound } from "../engine/components/Sound"
 import { ColliderType } from "../engine/Physics"
-import { lerp, random, safeValue, Vector2 } from "../engine/utils/math"
+import { chance, lerp, random, safeValue, Vector2 } from "../engine/utils/math"
+import { ItemParent } from "./item/ItemParent"
 
 export class Block extends Sprite {
     inChunkId: string
@@ -61,6 +62,11 @@ export class Block extends Sprite {
 
         this.animatedScale = lerp(this.animatedScale, this.animateScaleTo, .2);
         this.scale.set(this.animatedScale, this.animatedScale);
+
+        if (this.game.children.find(child=> child.collider.type == "dynamic" && child.position.distance(this.position) < 300))
+            this.collider.type = safeValue(this.customColliderType, "solid");
+        else
+            this.collider.type = "none";
     }
 
     darken() {
@@ -72,14 +78,6 @@ export class Block extends Sprite {
         if (this.darkenFactor < 1) 
             this.opacity = 1 - this.darkenFactor;
         this.visible = this.darkenFactor < 1;
-        this.collider.type = this.darkenFactor < .8 ? safeValue(this.customColliderType, "solid") : "none";
-
-        // this.game.renderer.drawText({
-        //     text: JSON.stringify(+this.inChunkId.split("-")[1] < 3),
-        //     position: this.position,
-        //     layer: "particles"
-        // })
-
     }
     checkBlockIn(offset: Vector2, checkChunkBorders?: boolean, findName?: string): boolean {
 
@@ -93,19 +91,14 @@ export class Block extends Sprite {
             return Vector2.compare(orePos, thisPos.add(offset));
         }) >= 0;
     }
-    // checkBlockInByInChunkId(offset: Vector2, findName?: string): boolean {
-
-    //     const blocks = this.game.getChildrenByName<Block>(findName || "ore");
+    dropItem(item: typeof ItemParent | any, chancePercent?: number, offset?: Vector2) {
+        let drop = true;
         
-    //     const thisInChunkPos = this.inChunkId.split("-");
-    //     return parseInt(thisInChunkPos[1]) < 3 && blocks.filter(block=> block.name.indexOf("plant") < 0).findIndex(block=> {
-    //         const oreInChunkPos = block.inChunkId.split("-");
+        if (chancePercent)
+            drop = chance(chancePercent);
             
-    //         return (
-    //             +oreInChunkPos[0] == +thisInChunkPos[0] + offset.x &&
-    //             +oreInChunkPos[1] == +thisInChunkPos[1] + offset.y
-    //         )
-            
-    //     }) >= 0;
-    // }
+        if (!drop) return;
+        this.game.add<typeof item>(new (item as any)(this.position.add(offset || Vector2.zero()).add(new Vector2(random(-10, 10), random(-10, 10)))));
+        this.game.initChildren();
+    }
 }

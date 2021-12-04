@@ -55,8 +55,6 @@ export class Robot extends Entity {
 
         // Play motor start sound
         this.sound.play(this.game, "motor-start", .5);
-        // Play motor sound
-        this.sound.play(this.game, "motor", 1, true);
     }
     update() {
         super.update();
@@ -110,11 +108,6 @@ export class Robot extends Entity {
         if (this.breaked)
             this.smoke();
 
-    }
-    destroy() {
-        super.destroy();
-
-        this.sound.stop();
     }
 
     _move() {

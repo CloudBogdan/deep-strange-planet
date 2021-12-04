@@ -28,7 +28,10 @@ export class Gear extends Sprite {
     tipText: string
     
     constructor(type: GearType, level: GearLevel, props?: ISpriteProps) {
-        super(type, [type, 1].join("-"), props);
+        super(type, [type, 1].join("-"), {
+            colliderType: "none",
+            ...props
+        });
 
         this.width = 
         this.height = 2;

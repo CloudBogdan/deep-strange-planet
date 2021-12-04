@@ -11,7 +11,7 @@ const recipes = (recycler: Recycler)=> ({
     // Craft ready cidium
     "ready-cidium": new Recipe({
         recipe: ()=> ({
-            "raw-cidium": { count: 4 },
+            "raw-cidium": { count: 2 },
         }),
     }),
 
@@ -22,16 +22,25 @@ const recipes = (recycler: Recycler)=> ({
             "raw-cidium": { count: 2 },
         }),
     }),
+
+    // Craft battery
+    "drill": new Recipe({
+        recipe: ()=> ({
+            // "ready-cidium": { count: 1 },
+            "ready-cidium": { count: 2 },
+            "raw-nerius": { count: 2 },
+        }),
+    }),
     
     // Storage up
     "storage-level-up": new Recipe({
         recipe: ()=> [
-            { "raw-cidium": { count: 1 }, "raw-osmy": { count: 1 } }, // Level 2
-            // { "raw-cidium": { count: 8 }, "raw-osmy": { count: 2 } }, // Level 2
-            { "raw-cidium": { count: 12 }, "raw-osmy": { count: 6 }, "raw-grade-cidium": { count: 2 } }, // Level 3
+            // { "raw-cidium": { count: 1 }, "raw-osmy": { count: 1 } }, // Level 2
+            { "ready-cidium": { count: 2 }, "raw-osmy": { count: 3 } }, // Level 2
+            { "ready-cidium": { count: 4 }, "raw-osmy": { count: 6 }, "raw-grade-cidium": { count: 2 } }, // Level 3
         ][recycler.storage.level - 1] as any,
         // On craft
-        onCraft: (game: Game)=> {
+        onCraft: ()=> {
             recycler.storage.upgrade(1);
         },
         // Render icon
@@ -102,7 +111,7 @@ const recipes = (recycler: Recycler)=> ({
     // Craft robot
     "item-robot": new Recipe({
         // recipe: ()=> ({ "raw-cidium": { count: 1 } } as any),
-        recipe: ()=> ({ "battery": { count: 1 }, "raw-osmy": { count: 6 }, "raw-nerius": { count: 5 } } as any),
+        recipe: ()=> ({ "battery": { count: 1 }, "drill": { count: 1 }, "raw-nerius": { count: 5 } } as any),
         isRemoved: ()=> recycler.player ? recycler.player.hasBottle : false
     }),
     

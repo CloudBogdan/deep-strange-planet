@@ -40,10 +40,14 @@ import ready_cidium_img from "../../images/ready/ready-cidium.png"; // @ts-ignor
 
 // > Items
 import battery_img from "../../images/items/battery.png"; // @ts-ignore
+import drill_img from "../../images/items/drill.png"; // @ts-ignore
 
 // > Plants
 import fetus_vine_img from "../../images/flora/fetus-vine.png"; // @ts-ignore
 import mushroom_img from "../../images/flora/mushroom.png"; // @ts-ignore
+
+// > Food
+import food_fetus_img from "../../images/food/food-fetus.png"; // @ts-ignore
 
 // > Environment
 import ground_img from "../../images/environment/ground.png"; // @ts-ignore
@@ -91,7 +95,7 @@ import step3_mp from "../../audio/steps/3.mp3"; // @ts-ignore
 
 import storage_mp from "../../audio/gear/storage.mp3"; // @ts-ignore
 import store_mp from "../../audio/gear/store.mp3"; // @ts-ignore
-import craft_mp from "../../audio/gear/craft.mp3"; // @ts-ignore
+import crafting_mp from "../../audio/gear/craft.mp3"; // @ts-ignore
 import error_mp from "../../audio/gear/error.mp3"; // @ts-ignore
 
 import motor_mp from "../../audio/robot/motor.mp3"; // @ts-ignore
@@ -145,10 +149,14 @@ export function initAssets(game: Game) {
 
     // > Items
     game.loadAsset("battery", [battery_img]);
+    game.loadAsset("drill", [drill_img]);
 
     // > Plants
     game.loadAsset("fetus-vine", [fetus_vine_img]);
     game.loadAsset("mushroom", [mushroom_img]);
+
+    // > Food
+    game.loadAsset("food-fetus", [food_fetus_img]);
     
     // > Environment
     game.loadAsset("ground", [ground_img])
@@ -197,7 +205,7 @@ export function initAssets(game: Game) {
     game.loadAsset("error", error_mp, "audio")
     
     game.loadAsset("store", store_mp, "audio")
-    game.loadAsset("craft", craft_mp, "audio")
+    game.loadAsset("crafting", crafting_mp, "audio")
 
     game.loadAsset("motor", motor_mp, "audio")
     game.loadAsset("motor-start", motor_start_mp, "audio")

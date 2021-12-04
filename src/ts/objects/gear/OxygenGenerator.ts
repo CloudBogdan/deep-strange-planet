@@ -10,6 +10,7 @@ export class OxygenGenerator extends Gear {
     batteryLevel: number
     animatedOxygenLevel: number
     animatedBatteryLevel: number
+    playerWithBattery: boolean
     
     constructor(props?: ISpriteProps) {
         super("gear-oxygen-generator", 1, props);
@@ -20,8 +21,9 @@ export class OxygenGenerator extends Gear {
         this.batteryLevel = 100;
         this.animatedOxygenLevel = 100;
         this.animatedBatteryLevel = 100;
+        this.playerWithBattery = false;
 
-        this.headerOffset.set(0, -Config.SPRITE_SIZE - 20);
+        this.headerOffset.set(0, -Config.SPRITE_SIZE / 2 - 15);
 
     }
 
@@ -29,9 +31,16 @@ export class OxygenGenerator extends Gear {
         super.update();
 
         this.work();        
+        this.checkBattery();
 
         if (this.player) {
             this.player.oxygenHungry = this.oxygenLevel <= 0;
+        }
+
+        if (this.oxygenLevel <= 40 || (this.batteryLevel <= 0 && this.oxygenLevel < 50)) {
+            this.position.copy(this.startPosition.add(new Vector2(random(-1, 1), random(-1, 1))))
+        } else {
+            this.position.lerp(this.startPosition, .3);
         }
 
         this.animatedOxygenLevel = lerp(this.animatedOxygenLevel, this.oxygenLevel, .2);
@@ -40,12 +49,8 @@ export class OxygenGenerator extends Gear {
 
     render() {
         super.render();
-
-        if (this.oxygenLevel <= 10 || (this.batteryLevel <= 0 && this.oxygenLevel < 50)) {
-            this.position.copy(this.startPosition.add(new Vector2(random(-1, 1), random(-1, 1))))
-        } else {
-            this.position.lerp(this.startPosition, .3);
-        }
+        
+        this.frame = new Vector2(4 - clamp(Math.floor((this.batteryLevel + 20) / 25), 0, 4));
         
         if (this.playerIsNear)
             this.renderBars();
@@ -54,38 +59,42 @@ export class OxygenGenerator extends Gear {
     onInteract() {
         super.onInteract();
 
-        this.ui.enabled = !this.ui.enabled;
-        // this.oxygenLevel += 5;
-        // if (this.oxygenLevel > 100) 
-        //     this.oxygenLevel = 100;
+        if (!this.playerWithBattery)
+            this.ui.enabled = !this.ui.enabled;
+        else {
+            if (!this.player) return;
+
+            this.player.foldSlotItemsTo("battery", 1, this.position);
+            this.updateBatteryLevel(randomInt(50, 65));
+        }
     }
 
     work() {
         // Remove oxygen
         if (this.batteryLevel < 90) {
-            if (this.game.tick(this.batteryLevel > 20 ? 220 : (this.batteryLevel <= 0 ? 20 : 60)) && this.oxygenLevel > 0) {
-                this.oxygenLevel -= randomInt(1, 3);
-                this.oxygenLevel = clamp(this.oxygenLevel, 0, 100);
-            }
+            if (this.game.tick(this.batteryLevel > 20 ? 220 : (this.batteryLevel <= 0 ? 20 : 60)) && this.oxygenLevel > 0)
+                this.updateOxygenLevel(-randomInt(1, 3));
         } else {
-            if (this.game.tick(30)) {
-                this.oxygenLevel += randomInt(1, 3);
-                this.oxygenLevel = clamp(this.oxygenLevel, 0, 100);
-            }
+            if (this.game.tick(30))
+                this.updateOxygenLevel(randomInt(1, 3));
         }
         
         // Remove battery
         if (this.game.tick(300) && this.batteryLevel > 0) {
-            this.batteryLevel -= clamp(randomInt(-2, 4), 1, 4);
-            this.batteryLevel = clamp(this.batteryLevel, 0, 100);
+            this.updateBatteryLevel(-clamp(randomInt(-2, 4), 1, 4));
 
             // Add oxygen
-            if (this.batteryLevel > 20) {
-                this.oxygenLevel += randomInt(0, 2);
-                this.oxygenLevel = clamp(this.oxygenLevel, 0, 100);
-            }
+            if (this.batteryLevel > 20)
+                this.updateOxygenLevel(randomInt(0, 8));
         }
-        this.frame = new Vector2(4 - clamp(Math.floor((this.oxygenLevel + 20) / 25), 0, 4));
+    }
+    updateBatteryLevel(value: number) {
+        this.batteryLevel += value;
+        this.batteryLevel = clamp(this.batteryLevel, 0, 100);
+    }
+    updateOxygenLevel(value: number) {
+        this.oxygenLevel += value;
+        this.oxygenLevel = clamp(this.oxygenLevel, 0, 100);
     }
     
     renderUI() {
@@ -181,5 +190,17 @@ export class OxygenGenerator extends Gear {
             layer: "particles"
         });
         
+    }
+
+    checkBattery() {
+        if (!this.playerIsNear || !this.player || !this.player.checkItemInInventory("battery")) {
+            this.interactText = "";
+            this.playerWithBattery = false;
+            return;
+        }
+        
+        this.playerWithBattery = true;
+        this.interactText = "Зарядить";
+
     }
 }

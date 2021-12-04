@@ -8,7 +8,7 @@ import { Storage } from "../objects/gear/Storage";
 export function initDome(game: Game) {
     const domePosition = new Vector2(Math.round(Config.WORLD_X_CENTER), -Config.SPRITE_SIZE * 1.5);
 
-    const storage = game.add<Storage>(new Storage(1, {
+    const storage = game.add<Storage>(new Storage({
         position: domePosition.add(new Vector2(-150, 0))
     }));
 
@@ -16,7 +16,7 @@ export function initDome(game: Game) {
     game.add<Sprite>(new OxygenGenerator({
         position: domePosition.add(new Vector2(0, -100))
     }));
-    game.add<Sprite>(new Recycler(3, storage, {
+    game.add<Sprite>(new Recycler(storage, {
         flip: { x: true, y: false },
         position: domePosition.add(new Vector2(140, 0))
     }));
@@ -26,7 +26,8 @@ export function initDome(game: Game) {
         width: 8,
         height: 8,
         position: domePosition,
-        layer: "particles"
+        layer: "particles",
+        colliderType: "none"
     }));
 
 }

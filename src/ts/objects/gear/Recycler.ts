@@ -1,6 +1,6 @@
 import { Color, Config } from "../../config";
 import { Game, ISpriteProps } from "../../engine";
-import { asImage, safeSlot, safeValue, Vector2 } from "../../engine/utils/math";
+import { asImage, clamp, safeSlot, safeValue, Vector2 } from "../../engine/utils/math";
 import { ObjectNames } from "../../names";
 import { Items } from "../../objects";
 import { Gear, GearLevel } from "./Gear";
@@ -13,8 +13,8 @@ export class Recycler extends Gear {
     maxRowItemsCount: number
     actionType: "craft" | "close"
     
-    constructor(level: GearLevel, storage: Storage, props?: ISpriteProps) {
-        super("gear-recycler", level, props);
+    constructor(storage: Storage, props?: ISpriteProps) {
+        super("gear-recycler", 1, props);
 
         this.ui.focused.slot = 1;
         this.ui.focused.row = 10;
@@ -39,6 +39,7 @@ export class Recycler extends Gear {
             this.ui.focused.slot = 1;
             this.ui.focused.row = 10;
 
+            return;
         }
 
         if (this.ui.enabled && this.ui.focused.slot == 1 && this.ui.focused.row == 10) {
@@ -46,16 +47,19 @@ export class Recycler extends Gear {
             this.ui.focused.row = 0;
         }
 
-        if (this.ui.focused.row == 1) {
+        if (this.ui.focused.row != 0) {
             
+            const focused = this.ui.focused.slot + (this.ui.focused.row - 1) * this.maxRowItemsCount;
             const recipesKeys = this.getRecipesKeys();
-            const recipe = this.recipes[recipesKeys[this.ui.focused.slot]];
+            const recipe = this.recipes[recipesKeys[focused]];
+
+            console.log(recipesKeys[focused]);
             
             // Craft
             if (recipe.canCraft(this.storage)) {
-                recipe.onCraft(this.game, this.storage, this.position, recipesKeys[this.ui.focused.slot]);
+                recipe.onCraft(this.game, this.storage, this.position, recipesKeys[focused]);
                 this.ui.enabled = false;
-                this.sound.play(this.game, "craft");
+                this.sound.play(this.game, "crafting");
                 this.ui.focused.slot = 1;
                 this.ui.focused.row = 10;
             } else {
@@ -71,30 +75,95 @@ export class Recycler extends Gear {
         super.renderUI();
 
         const recipesKeys = this.getRecipesKeys();
-        const size = Config.SPRITE_SIZE;
-        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
 
         this.actionType = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "close" : "craft";
         this.tipText = this.actionType == "close" ? "закрыть" : "изготовить";
 
         this.ui.updateTemplate([
             1,
-            recipesKeys.length,
+            clamp(recipesKeys.length, 0, this.maxRowItemsCount),
+            recipesKeys.length > this.maxRowItemsCount ? recipesKeys.length - this.maxRowItemsCount : 0,
         ]);
         if (!this.ui.enabled) return;
 
         this.renderRecipesUI(recipesKeys);
+        this.renderDescriptionUI(recipesKeys);
+    }
 
-        // if (this.ui.g.row != 1) return;
+    renderRecipesUI(recipes: string[]) {
+        const size = Config.SPRITE_SIZE;
+        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
         
+        // Close button
+        const pos = new Vector2(size*2, -size - 20).add(windowCenter).add(this.headerOffset);
+        this.ui.renderSlot(pos.add(new Vector2(-2, 2)), 0, 0, ()=> {
+
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName(this.actionType)),
+                position: pos,
+                layer: "ui"
+            });
+
+        }, 14 / Config.SPRITE_PIXEL_SIZE);
+        
+        recipes.map((recipeName, index)=> {
+
+            // Render recipe
+            const pos = new Vector2(
+                (index % this.maxRowItemsCount) * size - size * 2,
+                -size + Math.floor(index / this.maxRowItemsCount) * size
+            ).add(windowCenter);
+
+            this.ui.renderSlot(
+                pos,
+                // Row
+                Math.floor(index / this.maxRowItemsCount) + 1,
+                // Slot
+                index % this.maxRowItemsCount,
+                ()=> {
+                
+                // Background
+                this.game.renderer.drawRect({
+                    position: pos,
+                    color: Color.STONE_LAYER_COLOR,
+                    layer: "ui",
+                    width: .5,
+                    height: .5,
+                });
+                
+                // Render recipe icon
+                const renderIcon = this.recipes[recipeName].icon;
+                if (renderIcon)
+                    renderIcon(
+                        this.game,
+                        pos,
+                        this.recipes[recipeName].canCraft(this.storage) ? 1 : .5
+                    );
+                else
+                    this.game.renderer.drawSprite({
+                        texture: asImage(this.game.getAssetByName(recipeName.replace("item-", ""))),
+                        position: pos,
+                        opacity: this.recipes[recipeName].canCraft(this.storage) ? 1 : .5,
+                        layer: "ui"
+                    })
+
+            }, 1, 1, true);
+
+        });
+
+    }
+    renderDescriptionUI(recipesKeys: string[]) {
+        const size = Config.SPRITE_SIZE;
+        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
+
         // Get recipe by focused slot
-        const currentRecipe = this.recipes[recipesKeys[this.ui.ghostFocused.slot]];
-        const recipeDescription = ObjectNames[recipesKeys[this.ui.ghostFocused.slot]];
+        const selectedSlot = this.ui.ghostFocused.slot + (this.ui.ghostFocused.row - 1) * this.maxRowItemsCount;
+        const currentRecipe = this.recipes[recipesKeys[selectedSlot]];
+        const recipeDescription = ObjectNames[recipesKeys[selectedSlot]];
 
         if (!recipeDescription) return;
 
-        const selectedRecipe = this.recipes[recipesKeys[this.ui.ghostFocused.slot]].recipe();
-        const isInStockCount = (slotName: string): number => safeValue(this.storage.contains.slots[slotName], { count: 0 }).count;
+        const isInStockCount = (slotName: string): number => safeSlot(this.storage.contains.slots[slotName]).count;
         
         this.ui.renderDescriptionUI({
             title: recipeDescription.name,
@@ -107,7 +176,7 @@ export class Recycler extends Gear {
                     renderIcon(this.game, pos, 1);   
                 else
                     this.game.renderer.drawSprite({
-                        texture: asImage(this.game.getAssetByName(recipesKeys[this.ui.focused.slot].replace("item-", ""))),
+                        texture: asImage(this.game.getAssetByName(recipesKeys[selectedSlot].replace("item-", ""))),
                         position: pos,
                         layer: "ui"
                     })
@@ -115,11 +184,11 @@ export class Recycler extends Gear {
         });
 
         //
-        const selectedRecipeKeys = Object.keys(selectedRecipe);
+        const selectedRecipeKeys = Object.keys(currentRecipe.recipe());
         selectedRecipeKeys.map((slotName, index)=> {
             const pos = new Vector2(index * Config.SPRITE_SIZE - size, size*2 + 5).add(windowCenter);
             const count = isInStockCount(slotName);
-            const needCount = selectedRecipe[slotName].count;
+            const needCount = currentRecipe.recipe()[slotName].count;
             
             // Sprite
             this.game.renderer.drawSprite({
@@ -144,58 +213,6 @@ export class Recycler extends Gear {
                     layer: "ui"
                 })
             
-        });
-    }
-
-    renderRecipesUI(recipes: string[]) {
-        const size = Config.SPRITE_SIZE;
-        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
-        
-        // Close button
-        const pos = new Vector2(size*2, -size - 20).add(windowCenter).add(this.headerOffset);
-        this.ui.renderSlot(pos.add(new Vector2(-2, 2)), 0, 0, ()=> {
-
-            this.game.renderer.drawSprite({
-                texture: asImage(this.game.getAssetByName(this.actionType)),
-                position: pos,
-                layer: "ui"
-            });
-
-        }, 14 / Config.SPRITE_PIXEL_SIZE);
-        
-        recipes.map((recipeName, index)=> {
-
-            // Render recipe
-            const pos = new Vector2(((index % this.maxRowItemsCount) * size) - size * 2, -size + Math.floor(index / this.maxRowItemsCount)).add(windowCenter);
-            this.ui.renderSlot(pos, 1, index, ()=> {
-                
-                // Background
-                this.game.renderer.drawRect({
-                    position: pos,
-                    color: Color.STONE_LAYER_COLOR,
-                    layer: "ui",
-                    width: .95,
-                    height: .95,
-                });
-                
-                // Render recipe icon
-                const renderIcon = this.recipes[recipeName].icon;
-                if (renderIcon)
-                    renderIcon(
-                        this.game,
-                        pos,
-                        this.recipes[recipeName].canCraft(this.storage) ? 1 : .5
-                    );
-                else
-                    this.game.renderer.drawSprite({
-                        texture: asImage(this.game.getAssetByName(recipeName.replace("item-", ""))),
-                        position: pos,
-                        opacity: this.recipes[recipeName].canCraft(this.storage) ? 1 : .5,
-                        layer: "ui"
-                    })
-
-            }, 1, 1, true);
-
         });
 
     }

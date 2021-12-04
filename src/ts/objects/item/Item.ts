@@ -3,7 +3,7 @@ import { Vector2 } from "../../engine/utils/math";
 import { ItemParent } from "./ItemParent";
 
 export type ItemType = 
-    "item-robot" | "battery";
+    "item-robot" | "battery" | "drill";
 
 export class Item extends ItemParent {
     itemType: ItemType

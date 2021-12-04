@@ -1,21 +1,27 @@
 import { Color, Config } from "../../config";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { asImage, chance, clamp, random, randomInt, Vector2 } from "../../engine/utils/math";
+import { Player } from "../entities/Player";
+import { HealingFetus } from "../food/HealingFetus";
 import { Ore } from "./Ore";
 
 export class FetusStone extends Ore {
     length: number | null
     maxLength: number
     allowGrow: boolean
+    playerIsNear: boolean
+    grabbedCount: number | null
     
-    constructor(position: Vector2, data?: { length?: number, maxLength?: number }) {
+    constructor(position: Vector2, data?: { length?: number, maxLength?: number, grabbedCount?: number }) {
         super("fetus-stone", position);
     
         this.randomRotate = false;
 
+        this.playerIsNear = false;
         this.length = data ? (data?.length || null) : null;
         this.maxLength = data ? (data?.maxLength || 1) : 1;
         this.allowGrow = true;
+        this.grabbedCount = data ? (data?.grabbedCount || null) : null;
 
         this.breakAudioNames = ["plant-break"];
         this.hitAudioName = "plant-hit";
@@ -25,19 +31,30 @@ export class FetusStone extends Ore {
         super.init();
 
         if (this.length === null) {
-            this.maxLength = clamp(randomInt(-1, Config.VINE_MAX_LENGTH), Config.VINE_MIN_LENGTH, Config.VINE_MAX_LENGTH);
-            this.length = clamp(randomInt(0, 4), 0, this.maxLength);
+            this.maxLength = randomInt(Config.VINE_MIN_LENGTH, Config.VINE_MAX_LENGTH);
+            this.length = clamp(randomInt(1, 4), 0, this.maxLength);
             this.saveData();
         }
-
+        if (this.grabbedCount == null) {
+            this.grabbedCount = clamp(randomInt(-2, 4), 0, 4);
+            this.saveData()
+        }
+            
         this.checkEmptySpace();
     }
     update() {
         super.update();
 
+        // this.grabbing();
+        
         if (this.game.tick(Config.VINE_GROW_TICK))
             if (chance(Config.VINE_GROW_CHANCE))
                 this.grow();
+        if (this.game.tick(Config.VINE_GROW_TICK * 2))
+            if (chance(Config.VINE_GROW_CHANCE * .3) && this.grabbedCount != null) {
+                this.grabbedCount --;
+                this.grabbedCount = clamp(this.grabbedCount, 0, this.length || 0)
+            }
     }
 
     render() {
@@ -45,6 +62,15 @@ export class FetusStone extends Ore {
         
         if (this.allowGrow)
             this.renderVine();
+    }
+
+    grab() {
+        if (this.grabbedCount == null || this.grabbedCount >= (this.length || 0)) return;
+        
+        this.grabbedCount ++;
+        this.grabbedCount = clamp(this.grabbedCount, 0, this.length || 0)
+
+        this.dropItem(HealingFetus, 100, new Vector2(0, Config.SPRITE_SIZE * this.grabbedCount));
     }
 
     onBreak() {
@@ -89,7 +115,10 @@ export class FetusStone extends Ore {
                 this.game.renderer.drawSprite({
                     texture: asImage(this.game.getAssetByName(`fetus-vine`)),
                     position: pos.add(new Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / Config.SPRITE_SIZE) * i * 1.5)),
-                    frame: new Vector2(0, spriteIndex),
+                    frame: new Vector2(
+                        +(i < (this.grabbedCount || 0)),
+                        spriteIndex
+                    ),
                     flip: { x: i % 2 == 0 || i % 3 == 0, y: false },
                     opacity: Config.ALLOW_DARK ? 1 - darkenFactor : 1
                 });
@@ -136,6 +165,7 @@ export class FetusStone extends Ore {
     saveData() {
         this.game.generator.modifyOre(this.inChunkId, {
             length: this.length,
+            grabbedCount: this.grabbedCount,
             maxLength: this.maxLength
         });
     }

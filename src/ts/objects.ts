@@ -1,4 +1,6 @@
+import { HealingFetus } from "./objects/food/HealingFetus";
 import { Battery } from "./objects/item/Battery";
+import { Drill } from "./objects/item/Drill";
 import { RobotItem } from "./objects/item/RobotItem";
 import { RawAntin } from "./objects/raws/RawAntin";
 import { RawCidium } from "./objects/raws/RawCidium";
@@ -21,4 +23,7 @@ export const Items: { [key: string]: any }  = {
     // Items
     "item-robot": RobotItem,
     "battery": Battery,
+    "drill": Drill,
+    // Food
+    "food-fetus": HealingFetus
 };

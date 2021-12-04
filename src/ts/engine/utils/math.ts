@@ -85,8 +85,8 @@ export class Vector2 {
 export function assetIsValid(asset: Asset | undefined | null, type: AssetType): boolean {
     return asset != null && asset.type != null && asset.type == type;
 }
-export function safeValue<T>(value: T | undefined, safe: T): T {
-    return value === undefined ? safe : value;
+export function safeValue<T>(value: T | undefined | null, safe: T): T {
+    return (value === undefined || value === null) ? safe : value;
 }
 export function safeSlot(slot: Storage["contains"]["slots"][0] | undefined): Storage["contains"]["slots"][0] {
     return safeValue(slot, { count: 0 });
