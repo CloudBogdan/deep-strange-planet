@@ -28,6 +28,7 @@ export class ItemParent extends Sprite {
 
         this.collider.width = 6 * Config.SPRITE_SCALE;
         this.collider.height = 6 * Config.SPRITE_SCALE;
+        this.acceleration.set(.8, .8);
     }
 
     init() {
@@ -36,7 +37,6 @@ export class ItemParent extends Sprite {
         this.liveStartElapsed = this.game.clock.elapsed;
         this.layer = "particles";
         this.velocity.set(random(-8, 8), random(-8, 8));
-        this.acceleration.copy(Vector2.all(.8));
 
         if (this.checkDistanceToPlayer(this.game.getChildById("player"), Config.PICKUP_DISTANCE * 2))
             this.nearOnInit = true;

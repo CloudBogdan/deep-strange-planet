@@ -1,7 +1,7 @@
 import { Vector2 } from "../../engine/utils/math";
-import { Ore } from "./Ore";
+import { InfectedOre } from "./InfectedOre";
 
-export class Stone extends Ore {
+export class Stone extends InfectedOre {
     constructor(position: Vector2) {
         super("stone", position);
         

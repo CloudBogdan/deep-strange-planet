@@ -63,6 +63,16 @@ export class Vector2 {
         
         return this;
     }
+    angle(): number {
+
+        if (this.x > 0 && this.y > 0) return Math.PI / 2 - Math.atan(this.x / this.y);
+        if (this.x < 0 && this.y > 0) return Math.PI / 2 - Math.atan(this.x / this.y);
+        if (this.x < 0 && this.y < 0) return Math.PI + Math.atan(this.y / this.x);
+        if (this.x > 0 && this.y < 0) return Math.PI * 3 / 2 + Math.abs(Math.atan(this.x / this.y));
+
+        return 0;
+
+    }
 
     static add(vec1: Vector2, vec2: Vector2): Vector2 {
         return new Vector2(vec1.x + vec2.x, vec1.y + vec2.y);

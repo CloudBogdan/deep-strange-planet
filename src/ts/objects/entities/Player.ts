@@ -1,6 +1,6 @@
 import { Color, Config } from "../../config";
 import { Game } from "../../engine";
-import { asAudio, asImage, assetIsValid, clamp, compareNames, lerp, random, safeValue, Vector2 } from "../../engine/utils/math";
+import { asAudio, asImage, assetIsValid, chance, clamp, compareNames, lerp, random, safeValue, Vector2 } from "../../engine/utils/math";
 import { Direction } from "../../types";
 import { Entity } from "./Entity";
 import { Ore } from "../ores/Ore";
@@ -88,7 +88,7 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = Config.IS_DEV ? 5 : 1;
+        this.toolLevel = Config.IS_DEV ? 1 : 1;
         this.allowPlaceRobot = false;
         this.allowEatFood = false;
         this.actionType = null;
@@ -346,12 +346,14 @@ export class Player extends Entity {
 
         this.damageAnimatedOpacity = 1.5;
         this.game.camera.shake();
-        this.sound.play(this.game, "bonk");
+        this.sound.play(this.game, chance(1) ? "bonk" : "hit");
 
         if (this.hp <= 0)
             this.die();
     }
     die() {
+        this.oxygenHungryStartElapsed = this.game.clock.elapsed;
+        
         this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
         this.hp = 10;
         this.wire.copy(this.position);
@@ -425,7 +427,7 @@ export class Player extends Entity {
             (this.velocity.x < 0 && !this.collider.collidesWith?.left) ||
             (this.velocity.y < 0 && !this.collider.collidesWith?.top) ||
             (this.velocity.y > 0 && !this.collider.collidesWith?.bottom)
-        
+
         if (this.game.clock.elapsed % 20 == 0 && allow)
             this.sound.play(this.game, `step-${ Math.floor(random(1, 4)) }`, .3)
 

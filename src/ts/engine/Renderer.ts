@@ -52,6 +52,7 @@ export class Renderer {
         this.layers = {
             "bg": this.createLayer("bg"),
             "game": this.createLayer("game"),
+            "plants": this.createLayer("plants"),
             "particles": this.createLayer("particles"),
             "ui": this.createLayer("ui", true, 0),
             "debug": this.createLayer("debug", false),
@@ -138,10 +139,11 @@ export class Renderer {
     getContext(layer?: string): Renderer["layers"][0]["context"] {
         return this.layers[layer || "game"].context;
     }
-    startTransform(layer?: string, pos?: Vector2, rotation?: number, scale?: Vector2, opacity?: number) {
+    startTransform(layer?: string, pos?: Vector2, rotation?: number, scale?: Vector2, opacity?: number,origin?: Vector2) {
         const l = this.layers[layer || "game"];
 
         const p = pos || Vector2.zero();
+        const o = origin || Vector2.zero();
         
         l.context.save();
 
@@ -150,8 +152,8 @@ export class Renderer {
 
         l.context.transform(
             scale?.x || 1, 0, 0, scale?.y || 1,
-            p.x - this.getCameraPosition(layer).x,
-            p.y - this.getCameraPosition(layer).y
+            p.x - this.getCameraPosition(layer).x + o.x,
+            p.y - this.getCameraPosition(layer).y + o.y
         );
         l.context.rotate(rotation || 0);
 
@@ -241,7 +243,7 @@ export class Renderer {
     drawSprite(props: {
         texture: HTMLImageElement | undefined,
         width?: number, height?: number,
-        position?: Vector2, rotation?: number, offset?: Vector2,
+        position?: Vector2, rotation?: number, offset?: Vector2, origin?: Vector2
         layer?: string,
         scale?: Vector2, flip?: { x: boolean, y: boolean },
         opacity?: number, repeat?: Vector2, frame?: Vector2, framed?: boolean
@@ -255,15 +257,16 @@ export class Renderer {
             const h = safeValue(props.height, 1) * size;
             const frameW = safeValue(props.width, 1) * Config.SPRITE_PIXEL_SIZE;
             const frameH = safeValue(props.height, 1) * Config.SPRITE_PIXEL_SIZE;
-            const framePos = safeValue(props.frame, Vector2.zero());
+            const framePos = props.frame || Vector2.zero();
             
-            const p = safeValue(props.position, Vector2.zero());
-            const o = safeValue(props.offset, Vector2.zero());
+            const p = props.position || Vector2.zero();
+            const o = props.offset || Vector2.zero();
+            const or = props.origin || Vector2.zero();
             
             if ((!this.inCameraViewport(p, w*safeValue(props.repeat?.x, 1), h*safeValue(props.repeat?.y, 1))) && this.layers[props.layer || "game"].cameraFactor == 1) return;
             
             const f = safeValue(props.flip, { x: false, y: false });
-            const s = safeValue(props.scale, Vector2.all());
+            const s = props.scale || Vector2.all();
             const context = this.getContext(props.layer);
             
             this.startTransform(
@@ -271,7 +274,8 @@ export class Renderer {
                 p.add(o),
                 props.rotation,
                 new Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)),
-                props.opacity
+                props.opacity,
+                or
             );
             
             // Draw sprite without repeat
@@ -285,14 +289,14 @@ export class Renderer {
                         frameW, frameH,
                         
                         // Transform
-                        -w / 2, -h / 2,
+                        -w / 2 - or.x, -h / 2 - or.y,
                         w, h
                     );
                 else
                     context.drawImage(
                         props.texture,
                         // Transform
-                        -w / 2, -h / 2,
+                        -w / 2 - or.x, -h / 2 - or.y,
                         w, h
                     );
                 

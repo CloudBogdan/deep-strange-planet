@@ -45,6 +45,9 @@ import drill_img from "../../images/items/drill.png"; // @ts-ignore
 // > Plants
 import fetus_vine_img from "../../images/flora/fetus-vine.png"; // @ts-ignore
 import mushroom_img from "../../images/flora/mushroom.png"; // @ts-ignore
+import infection_img from "../../images/flora/infection.png"; // @ts-ignore
+import datura_img from  "../../images/flora/datura.png"; // @ts-ignore
+import datura_tongue_img from  "../../images/flora/datura-tongue.png"; // @ts-ignore
 
 // > Food
 import food_fetus_img from "../../images/food/food-fetus.png"; // @ts-ignore
@@ -88,6 +91,7 @@ import plant_break_mp from "../../audio/plants/plant-break.mp3"; // @ts-ignore
 import plant_hit_mp from "../../audio/plants/plant-hit.mp3"; // @ts-ignore
 import wave_mp from "../../audio/plants/wave.mp3"; // @ts-ignore
 import bonk_mp from "../../audio/bonk.mp3"; // @ts-ignore
+import hit_mp from "../../audio/hit/hit.mp3"; // @ts-ignore
 
 import step1_mp from "../../audio/steps/1.mp3"; // @ts-ignore
 import step2_mp from "../../audio/steps/2.mp3"; // @ts-ignore
@@ -106,12 +110,6 @@ export function initAssets(game: Game) {
     // > Player
     game.loadAsset("player-stay", [player_stay_img]);
     game.loadAsset("player-walk", [player_walk_img]);
-    // game.loadAsset("player-walk", [
-    //     player_walk_0_img,
-    //     player_walk_1_img,
-    //     player_walk_2_img,
-    //     player_stay_img,
-    // ]);
 
     // > Entities
     game.loadAsset("robot", [robot_img]);
@@ -154,6 +152,9 @@ export function initAssets(game: Game) {
     // > Plants
     game.loadAsset("fetus-vine", [fetus_vine_img]);
     game.loadAsset("mushroom", [mushroom_img]);
+    game.loadAsset("datura", [datura_img]);
+    game.loadAsset("datura-tongue", [datura_tongue_img]);
+    game.loadAsset("infection", [infection_img]);
 
     // > Food
     game.loadAsset("food-fetus", [food_fetus_img]);
@@ -197,6 +198,7 @@ export function initAssets(game: Game) {
     game.loadAsset("plant-hit", plant_hit_mp, "audio")
     game.loadAsset("wave", wave_mp, "audio")
     game.loadAsset("bonk", bonk_mp, "audio")
+    game.loadAsset("hit", hit_mp, "audio")
 
     game.loadAsset("step-1", step1_mp, "audio")
     game.loadAsset("step-2", step2_mp, "audio")

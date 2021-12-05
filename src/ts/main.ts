@@ -56,7 +56,7 @@ function renderDebug(renderer: Renderer) {
         layer: "ui"
     });
     
-    renderChunks(renderer);
+    // renderChunks(renderer);
 }
 function renderChunks(renderer: Renderer) {
     for (let y = 0; y < Config.WORLD_HEIGHT / Config.CHUNK_SIZE; y ++)

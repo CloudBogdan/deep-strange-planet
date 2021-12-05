@@ -33,7 +33,7 @@ export class Block extends Sprite {
         this.darkenFactor = 1;
         this.randomRotate = true;
         this.randomFlipX = true;
-        this.customColliderType = undefined;
+        this.customColliderType = "solid";
         
     }
 
