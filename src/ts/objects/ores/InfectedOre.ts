@@ -40,8 +40,8 @@ export class InfectedOre extends Ore {
         this.checkEmptySpace();
 
         this.daturaPosition = this.position.add(new Vector2(0, Config.SPRITE_SIZE - 10));
-        this.tonguePosition.copy(this.position);
-        this.startTonguePosition = this.position.add(new Vector2(6, Config.SPRITE_SIZE + 100));
+        this.tonguePosition.copy(this.daturaPosition.add(new Vector2(0, 20)));
+        this.startTonguePosition = this.position.add(new Vector2(0, Config.SPRITE_SIZE + 100));
 
         this.infect()
     }
@@ -56,9 +56,21 @@ export class InfectedOre extends Ore {
 
         this.isEating = !!this.target && this.target.position.distance(this.daturaPosition) < 120;
 
-        if (this.isEating && this.target && (this.target as any).hit)
-            if (this.game.tick(60))
-                (this.target as any).hit(clamp(randomInt(-1, 2), 1, 2));
+        const tar = (this.target as any);
+        if (this.target) {
+            // If player - hit
+            if (tar.hit) {
+                if (this.game.tick(60) && this.isEating)
+                    tar.hit(clamp(randomInt(-1, 2), 1, 2));
+            } else {
+                // If item - eat :D
+                if (tar.position.distance(this.daturaPosition) < 80) {
+                    tar.picked =
+                    tar.allowPickup = false;
+                    tar.foldToPosition = this.daturaPosition;
+                }
+            }
+        }
 
         this.growInfection();
         this.sticking();
@@ -67,13 +79,7 @@ export class InfectedOre extends Ore {
     render() {
         super.render();
 
-        if (this.allowInfect)
-            this.game.renderer.drawText({
-                text: `Inf ${ this.infectionStage }`,
-                position: this.position,
-                layer: "particles"
-            })
-        else return;
+        if (!this.allowInfect) return;
         
         this.daturaRotation = lerp(
             this.daturaRotation,
@@ -119,7 +125,7 @@ export class InfectedOre extends Ore {
         this.target = body;
         
         if (!this.target) {
-            this.tongueTo(this.startTonguePosition)
+            this.tongueTo(this.startTonguePosition.add(new Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / 10) * 5)))
             this.tongueVelocity.copy(this.tongueVelocity.mul(.97))
         }
         else {
@@ -151,7 +157,7 @@ export class InfectedOre extends Ore {
             this.game.renderer.drawLine({
                 color: "#fbc67e",
                 width: 4 + sin * 4,
-                points: [this.position.add(new Vector2(4, Config.SPRITE_SIZE - 22)), this.tonguePosition.add(new Vector2(-2))],
+                points: [this.position.add(new Vector2(4, Config.SPRITE_SIZE - 22)), this.tonguePosition.add(new Vector2(4))],
                 opacity: this.opacity,
                 layer: "plants",
             });
@@ -159,7 +165,7 @@ export class InfectedOre extends Ore {
         this.game.renderer.drawSprite({
             texture: asImage(this.game.getAssetByName("datura-tongue")),
             scale: Vector2.all(1 + sin / 4),
-            position: this.tonguePosition,
+            position: this.tonguePosition.add(new Vector2(6)),
             layer: "plants",
         })
     }
@@ -172,7 +178,7 @@ export class InfectedOre extends Ore {
     infect() {
         if (simplex2(this.position.x, this.position.y) > (!this.blockBelow ? .25 : .9)) {
             this.allowInfect = true; 
-            this.allowDecorations = false;
+            this.allowTopDecorations = false;
         }
     }
     growInfection() {

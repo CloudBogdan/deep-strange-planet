@@ -29,6 +29,7 @@ export class Gear extends Sprite {
     
     constructor(type: GearType, level: GearLevel, props?: ISpriteProps) {
         super(type, [type, 1].join("-"), {
+            layer: "game",
             colliderType: "none",
             ...props
         });
@@ -45,7 +46,6 @@ export class Gear extends Sprite {
         this.level = level;
         this.playerIsNear = false;
         this.allowInteract = true;
-        this.layer = "bg";
 
         this.headerOffset = new Vector2();
         this.interactText = "";

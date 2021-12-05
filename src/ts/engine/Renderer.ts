@@ -246,7 +246,8 @@ export class Renderer {
         position?: Vector2, rotation?: number, offset?: Vector2, origin?: Vector2
         layer?: string,
         scale?: Vector2, flip?: { x: boolean, y: boolean },
-        opacity?: number, repeat?: Vector2, frame?: Vector2, framed?: boolean
+        opacity?: number, repeat?: Vector2,
+        frame?: Vector2, framed?: boolean
     }) {
         try {
             if (!props.texture) return;

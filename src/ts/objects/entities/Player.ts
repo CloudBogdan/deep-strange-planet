@@ -72,12 +72,14 @@ export class Player extends Entity {
 
     damageAnimatedOpacity: number
     animatedCameraRotation: number
+    animatedTimerScale: number
     
     constructor() {
         super("player", "player-stay", {
             position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE)
         });
     
+        this.hp = 12;
         this.oxygenHungry = false;
         this.oxygenHungryStartElapsed = 0;
         this.oxygenHungryElapsed = 0;
@@ -88,7 +90,7 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = Config.IS_DEV ? 1 : 1;
+        this.toolLevel = Config.IS_DEV ? 3 : 1;
         this.allowPlaceRobot = false;
         this.allowEatFood = false;
         this.actionType = null;
@@ -101,11 +103,14 @@ export class Player extends Entity {
 
         this.damageAnimatedOpacity = 0;
         this.animatedCameraRotation = 0;
+        this.animatedTimerScale = 1;
 
         if (Config.IS_DEV)
             window.addEventListener("keydown", e=> {
-                if (e.code == "KeyT")
+                if (e.code == "KeyT") {
                     this.collider.collidable = !this.collider.collidable;
+                    this.moveSpeed = !this.collider.collidable ? 50 : this.initialMoveSpeed;
+                }
             })
     }
     
@@ -123,7 +128,7 @@ export class Player extends Entity {
 
             this.useFood();
             
-            if (!this.nearFetusStone) return;
+            if (!this.nearFetusStone || this.allowEatFood) return;
             this.nearFetusStone.grab();
             
         });
@@ -142,7 +147,7 @@ export class Player extends Entity {
 
         this.grabFetus();
 
-        this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 8;
+        this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 11;
         this.allowPlaceRobot = this.position.y > 20;
         
         // Fetus grab
@@ -179,6 +184,7 @@ export class Player extends Entity {
 
         //
         this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .05);
+        this.animatedTimerScale = lerp(this.animatedTimerScale, 1, .2);
 
         this.bounds();
     }
@@ -191,8 +197,8 @@ export class Player extends Entity {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
 
-        if (this.oxygenHungry)
-            this.renderOxygenHungryUI();
+        if (this.oxygenHungry) this.renderOxygenHungryUI();
+        this.renderHealthUI();
         
         // Tip text
         if(this.actionType)
@@ -235,17 +241,53 @@ export class Player extends Entity {
         });
     }
 
-    renderOxygenHungryUI() {
+    renderHealthUI() {
         const size = Config.SPRITE_SIZE;
-        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
+        
+        for (let i = 0; i < 4; i ++) {
+            let frame = 0;
+            const sine = this.hp <= 6 ? Math.sin(this.game.clock.elapsed / 10 + i) * 4 : 0;
 
+            if (
+                (i == 0 && this.hp <= 11) ||
+                (i == 1 && this.hp <= 8) ||
+                (i == 2 && this.hp <= 5) ||
+                (i == 3 && this.hp <= 2)
+            )
+                frame = 1;
+            if (
+                (i == 0 && this.hp <= 9) ||
+                (i == 1 && this.hp <= 6) ||
+                (i == 2 && this.hp <= 3) ||
+                (i == 3 && this.hp <= 0)
+            )
+                frame = 2;
+            
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName("health")),
+                frame: new Vector2(frame),
+                position: new Vector2(innerWidth - size - i * size * .8, innerHeight - size + sine),
+                layer: "ui"
+            });
+        }
+
+        this.game.renderer.drawText({
+            text: this.hp.toString(),
+            position: new Vector2(100, 100),
+            layer: "ui"
+        })
+
+    }
+    renderOxygenHungryUI() {
         const loseConsciousnessIn = Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed);
+
+        if (loseConsciousnessIn % 60 == 0)
+            this.animatedTimerScale = loseConsciousnessIn / 60 < 20 ? 1.5 : 1.2
         
         this.game.renderer.drawText({
             text: "Кислородное голодание!",
             position: new Vector2(innerWidth/2, 100),
             font: "24px Pixel",
-            scale: Vector2.all(1 - (Math.sin(this.game.clock.elapsed / 10) + 1) / 2 / 10),
             layer: "ui"
         });
         this.game.renderer.drawText({
@@ -256,6 +298,7 @@ export class Player extends Entity {
         this.game.renderer.drawText({
             text: `0:${ Math.floor(loseConsciousnessIn / 60) }`,
             position: new Vector2(innerWidth/2, 180),
+            scale: Vector2.all(this.animatedTimerScale),
             font: "30px Pixel",
             layer: "ui"
         });
@@ -355,11 +398,11 @@ export class Player extends Entity {
         this.oxygenHungryStartElapsed = this.game.clock.elapsed;
         
         this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
-        this.hp = 10;
+        this.hp = 12;
         this.wire.copy(this.position);
     }
     heal(heal: number) {
-        if (this.hp > 8) return
+        if (this.hp >= 12) return
         
         this.hp += heal;
         this.hp = clamp(this.hp, 0, 10);
@@ -386,7 +429,7 @@ export class Player extends Entity {
         this.game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
         this.game.initChildren();
     }
-    foldSlotItemsTo(slotName: string, count: number, position: Vector2) {
+    foldItemsTo(slotName: string, count: number, position: Vector2) {
 
         const slotInstances = this.inventory.slots[slotName].instances.filter(item=> this.game.children.indexOf(item) >= 0 && item.picked);
             
@@ -397,12 +440,7 @@ export class Player extends Entity {
                 slotInstances[i].foldToPosition = position;
             }
         }
-        this.inventory.slots[slotName].instances.splice(0, count);        
-        // for (let i = 0; i < count; i ++) {
-        //     if (slotInstances[i] && !slotInstances[i].picked && !slotInstances[i].allowPickup) {
-        //         this.inventory.slots[slotName].instances.splice(i, 1);
-        //     }
-        // }
+        this.inventory.slots[slotName].instances.splice(0, count);
 
         this.inventory.slots[slotName].count -= count;
         this.calculateTotalCount();

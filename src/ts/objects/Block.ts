@@ -84,8 +84,12 @@ export class Block extends Sprite {
         const size = Config.SPRITE_SIZE;
         const blocks = this.game.getChildrenByName<Block>(findName || "ore");
         const thisPos = this.position.div(size).apply(Math.floor);
+
+        const top = +this.inChunkId.split("-")[1] <= 0 && offset.y < 0;
+        const bottom = +this.inChunkId.split("-")[1] >= 3 && offset.y > 0;
+        const vertical = bottom || top;
         
-        return ((+this.inChunkId.split("-")[1]) >= 3 && safeValue(checkChunkBorders, true)) || blocks.filter(block=> block.name.indexOf("plant") < 0).findIndex(block=> {
+        return (vertical && safeValue(checkChunkBorders, true)) || blocks.filter(block=> block.name.indexOf("plant") < 0).findIndex(block=> {
             const orePos = block.position.div(size).apply(Math.floor);
             
             return Vector2.compare(orePos, thisPos.add(offset));

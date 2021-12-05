@@ -75,20 +75,16 @@ export class Entity extends Sprite {
         this.offset.lerp(Vector2.zero(), this.digOffsetFactor);
         this.animate();
     }
-    dig(damage: number, speed: number, level: ToolLevel, direction: Direction): boolean {
-
-        let successOreHit = false;
+    dig(damage: number, speed: number, level: ToolLevel, direction: Direction) {
         
-        if (this.collider.collidesWith != null && this.collider.collidesWith.any) {
+        if (this.collider.collidesWith != null && this.collider.collidesWith.any && this.collider.collidesWith.id!.indexOf("ore-") >= 0) {
             const ore = this.game.getChildById<Ore>(this.collider.collidesWith.id, true);
             // const tool = tools[this.toolLevel.toString()];
 
-            if (ore == undefined) return false;
+            if (ore == undefined) return;
 
             if (this.collider.collidesWith[direction] && this.position.distance(ore.position) < Config.SPRITE_SIZE * 2 && this.game.clock.elapsed % speed == 0) {
                 ore.hit(damage, level);
-
-                successOreHit = level >= ore.needToolLevel;
 
                 if (direction == "right")
                     this.offset = new Vector2(10, 0);
@@ -102,8 +98,6 @@ export class Entity extends Sprite {
 
         }
         this.collider.collidesWith = null;
-
-        return successOreHit;
 
     }
 

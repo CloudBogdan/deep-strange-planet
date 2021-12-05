@@ -21,9 +21,16 @@ export class Ore extends Block {
     particlesColors: string[]
     hitAudioName: string
     breakAudioNames: string[]
+
     allowDecorations: boolean
-    decorationsCount: number
-    currentDecorationFrame: number | null
+    
+    allowBottomDecorations: boolean
+    bottomDecorationsCount: number
+    currentBottomDecorationFrame: number | null
+
+    allowTopDecorations: boolean
+    topDecorationsCount: number
+    currentTopDecorationFrame: number | null
 
     constructor(type: OreType, position: Vector2, props?: ISpriteProps) {
         super(`ore-${ type }`, type, position, props);
@@ -39,50 +46,72 @@ export class Ore extends Block {
         this.particlesColors = [Color.BLACK];
         this.hitAudioName = "stone-hit";
         this.breakAudioNames = ["stone-break-1", "stone-break-2", "stone-break-3"];
+
         this.allowDecorations = false;
-        this.decorationsCount = 10;
-        this.currentDecorationFrame = null;
+        
+        this.allowBottomDecorations = false;
+        this.bottomDecorationsCount = 8;
+        this.currentBottomDecorationFrame = null;
+        
+        this.allowTopDecorations = false;
+        this.topDecorationsCount = 10;
+        this.currentTopDecorationFrame = null;
     }
 
     init() {
         super.init();
 
-        if (!this.allowDecorations) return;
+        // Top
+        if (!this.checkBlockIn(new Vector2(0, -1)))
+            this.allowTopDecorations = true;
+        // Bottom
+        if (!this.checkBlockIn(new Vector2(0, 1)))
+            this.allowBottomDecorations = true;
         
-        if (chance(50)) {
-            this.currentDecorationFrame = randomInt(0, this.decorationsCount);
-        } else {
-            this.currentDecorationFrame = null;
+            
+        if (this.allowTopDecorations) {
+            if (chance(50))
+                this.currentTopDecorationFrame = randomInt(0, this.topDecorationsCount);
+            else
+                this.currentTopDecorationFrame = null;
         }
-
-        if (this.checkBlockIn(new Vector2(0, 1))) {
-            this.allowDecorations = false;
+        if (this.allowBottomDecorations) {
+            if (chance(50))
+                this.currentBottomDecorationFrame = randomInt(0, this.bottomDecorationsCount);
+            else
+                this.currentBottomDecorationFrame = null;
         }
 
     }
 
-    update() {
-        super.update();
-
-        
-    }
     render() {
         super.render();
 
-        if (this.allowDecorations)
-            this.renderDecorations();
+        this.renderDecorations();
     }
 
     renderDecorations() {
-        if (!this.visible || !this.currentDecorationFrame) return;
-        
-        this.game.renderer.drawSprite({
-            texture: asImage(this.game.getAssetByName("under-stone")),
-            frame: new Vector2(this.currentDecorationFrame, 0),
-            position: this.position.add(new Vector2(0, Config.SPRITE_SIZE - (1-this.scale.y) * Config.SPRITE_SIZE)),
-            opacity: this.opacity,
-            scale: this.scale
-        });
+        if (!this.visible) return;
+
+        if (this.currentTopDecorationFrame)
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName("plants")),
+                flip: this.flip,
+                frame: new Vector2(this.currentTopDecorationFrame, 0),
+                position: this.position.add(new Vector2(0, -Config.SPRITE_SIZE + (1-this.scale.y) * Config.SPRITE_SIZE)),
+                opacity: this.opacity,
+                scale: this.scale
+            });
+
+        if (this.currentBottomDecorationFrame)
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName("under-stone")),
+                flip: this.flip,
+                frame: new Vector2(this.currentBottomDecorationFrame, 0),
+                position: this.position.add(new Vector2(0, Config.SPRITE_SIZE - (1-this.scale.y) * Config.SPRITE_SIZE)),
+                opacity: this.opacity,
+                scale: this.scale
+            });
 
     }
     

@@ -27,14 +27,17 @@ export class Storage extends Gear {
     constructor(props?: ISpriteProps) {
         super("gear-storage", 1, props);
         
-        this.contains = { totalCount: 0, slots: {
-            "raw-cidium": { count: 1 },
-            "raw-osmy": { count: 1 },
-            "ready-cidium": { count: 1 },
-            "item-robot": { count: 1 },
-            "food-fetus": { count: 2 },
-            "raw-manty": { count: 1 },
-        } };
+        if (Config.IS_DEV)
+            this.contains = { totalCount: 0, slots: {
+                "raw-cidium": { count: 1 },
+                "raw-osmy": { count: 1 },
+                "ready-cidium": { count: 1 },
+                "item-robot": { count: 1 },
+                "food-fetus": { count: 2 },
+                "raw-manty": { count: 1 },
+            } };
+        else
+            this.contains = { totalCount: 0, slots: {} };
         this.interactType = "view";
         this.maxTotalCount = MaxStorageTotalCount[`${ this.level }-level`];
         this.headerOffset.set(0, -Config.SPRITE_SIZE);
@@ -124,7 +127,7 @@ export class Storage extends Gear {
             this.contains.slots[slotName].count += storedCount;
             totalStoredCount += storedCount;
             
-            this.player.foldSlotItemsTo(slotName, storedCount, this.position);
+            this.player.foldItemsTo(slotName, storedCount, this.position);
 
             this.calculateTotalCount();
             this.player.calculateTotalCount();

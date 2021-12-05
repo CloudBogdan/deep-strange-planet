@@ -39,8 +39,7 @@ export class Generator {
     constructor(game: Game) {
         this.game = game;
 
-        // this.seed = Date.now();
-        this.seed = 1636721068016;
+        this.seed = Config.IS_DEV ? 1636721068016 : Date.now();
         console.log(this.seed);
         seed(this.seed);
 

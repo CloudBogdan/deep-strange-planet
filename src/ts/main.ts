@@ -23,18 +23,13 @@ game.addInit(()=> {
     
 });
 game.addUpdate(()=> {
-    // const thisLoop = Date.now();
-    // if (game.clock.elapsed % 30 == 0)
-    //     fps = +(1000 / (thisLoop - lastLoop)).toFixed(1);
-    // lastLoop = thisLoop;
-
-    level.update();
-    
     game.camera.follow(player.position, .1);
     game.generator.generateChunksAt(game.camera.position);
 });
 game.addRender(renderer=> {
 
+    level.render();
+    
     if (Config.IS_DEV)
         renderDebug(renderer);
 

@@ -1,25 +1,26 @@
 import { Config } from "../config";
-import { Game, Sprite } from "../engine";
-import { Vector2 } from "../engine/utils/math";
-import { Player } from "../objects/entities/Player";
+import { Game } from "../engine";
+import { asImage, clamp, Vector2 } from "../engine/utils/math";
 
 export function initLevel(game: Game) {
 
-    const ground = game.add<Sprite>(new Sprite("ground", "ground", {
-        width: 4,
-        height: 4,
-        position: new Vector2(-Config.SPRITE_SIZE * 10, -Config.SPRITE_SIZE * .5 * 3),
-        repeat: new Vector2(Math.round(Config.WORLD_WIDTH) + 2, 1),
-        layer: "bg"
-    }));
-
-    function update() {
+    function render() {
 
         const op = (1 - game.camera.position.y / 240) * .3;
-        ground.opacity = op > 0 ? op : 0;
+        
+        for (let i = 0; i < Config.WORLD_WIDTH; i ++)
+            game.renderer.drawSprite({
+                width: 4,
+                height: 4,
+                frame: new Vector2(i % 2, 0),
+                texture: asImage(game.getAssetByName("ground")),
+                position: new Vector2(-Config.SPRITE_SIZE * 10 + (i * Config.SPRITE_SIZE * 4), -Config.SPRITE_SIZE * .5 * 3),
+                opacity: clamp(op, 0, 1),
+                layer: "bg"
+            })
 
     }
 
-    return { update };
+    return { render };
 
 }

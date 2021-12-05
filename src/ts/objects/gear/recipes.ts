@@ -35,9 +35,8 @@ const recipes = (recycler: Recycler)=> ({
     // Storage up
     "storage-level-up": new Recipe({
         recipe: ()=> [
-            // { "raw-cidium": { count: 1 }, "raw-osmy": { count: 1 } }, // Level 2
             { "ready-cidium": { count: 2 }, "raw-osmy": { count: 3 } }, // Level 2
-            { "ready-cidium": { count: 4 }, "raw-osmy": { count: 6 }, "raw-grade-cidium": { count: 2 } }, // Level 3
+            { "ready-cidium": { count: 4 }, "raw-osmy": { count: 3 }, "raw-grade-cidium": { count: 2 } }, // Level 3
         ][recycler.storage.level - 1] as any,
         // On craft
         onCraft: ()=> {
@@ -68,7 +67,7 @@ const recipes = (recycler: Recycler)=> ({
         recipe: ()=> [
             { "ready-cidium": { count: 3 }  }, // Level 2
             { "ready-cidium": { count: 2 }, "raw-osmy": { count: 2 }, "raw-grade-cidium": { count: 1 } }, // Level 3
-            { "ready-cidium": { count: 3 }, "raw-osmy": { count: 4 }, "raw-antin": { count: 3 } }, // Level 4
+            { "ready-cidium": { count: 3 }, "raw-osmy": { count: 4 }, "drill": { count: 1 }, "raw-antin": { count: 3 } }, // Level 4
         ][recycler.player ? recycler.player?.toolLevel - 1 : 0] as any,
         onCraft: ()=> {
             if (!recycler.player) return;

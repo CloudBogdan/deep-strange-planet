@@ -47,6 +47,7 @@ import fetus_vine_img from "../../images/flora/fetus-vine.png"; // @ts-ignore
 import mushroom_img from "../../images/flora/mushroom.png"; // @ts-ignore
 import infection_img from "../../images/flora/infection.png"; // @ts-ignore
 import datura_img from  "../../images/flora/datura.png"; // @ts-ignore
+import plants_img from  "../../images/flora/plants.png"; // @ts-ignore
 import datura_tongue_img from  "../../images/flora/datura-tongue.png"; // @ts-ignore
 
 // > Food
@@ -80,6 +81,9 @@ import storage_ui_img from "../../images/ui/storage-ui.png"; // @ts-ignore
 import recycler_ui_img from "../../images/ui/recycler-ui.png"; // @ts-ignore
 import description_ui_img from "../../images/ui/description-ui.png"; // @ts-ignore
 import oxygen_generator_ui_img from "../../images/ui/oxygen-generator-ui.png"; // @ts-ignore
+import health_bar_plate_img from "../../images/ui/health-bar-plate.png"; // @ts-ignore
+import health_bar_img from "../../images/ui/health-bar.png"; // @ts-ignore
+import health_img from "../../images/ui/health.png"; // @ts-ignore
 
 // > Audio
 import stone_hit_mp from "../../audio/stone-hit.mp3"; // @ts-ignore
@@ -153,6 +157,7 @@ export function initAssets(game: Game) {
     game.loadAsset("fetus-vine", [fetus_vine_img]);
     game.loadAsset("mushroom", [mushroom_img]);
     game.loadAsset("datura", [datura_img]);
+    game.loadAsset("plants", [plants_img]);
     game.loadAsset("datura-tongue", [datura_tongue_img]);
     game.loadAsset("infection", [infection_img]);
 
@@ -187,6 +192,9 @@ export function initAssets(game: Game) {
     game.loadAsset("recycler-ui", [recycler_ui_img])
     game.loadAsset("description-ui", [description_ui_img])
     game.loadAsset("oxygen-generator-ui", [oxygen_generator_ui_img])
+    game.loadAsset("health-bar-plate", [health_bar_plate_img])
+    game.loadAsset("health-bar", [health_bar_img])
+    game.loadAsset("health", [health_img])
 
     // > Audio
     game.loadAsset("stone-hit", stone_hit_mp, "audio")
