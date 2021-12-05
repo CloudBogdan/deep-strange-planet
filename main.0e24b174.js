@@ -118,149 +118,157 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"images/player/stay.png":[function(require,module,exports) {
-module.exports = "./stay.39efbb46.png";
+module.exports = "/stay.39efbb46.png";
 },{}],"images/player/walk.png":[function(require,module,exports) {
-module.exports = "./walk.c1c7bbea.png";
+module.exports = "/walk.c1c7bbea.png";
 },{}],"images/entities/robot.png":[function(require,module,exports) {
-module.exports = "./robot.89fb746a.png";
+module.exports = "/robot.89fb746a.png";
 },{}],"images/ores/stone.png":[function(require,module,exports) {
-module.exports = "./stone.699540e4.png";
+module.exports = "/stone.699540e4.png";
 },{}],"images/ores/stony-ground.png":[function(require,module,exports) {
-module.exports = "./stony-ground.aee45ace.png";
+module.exports = "/stony-ground.aee45ace.png";
 },{}],"images/ores/basalt.png":[function(require,module,exports) {
-module.exports = "./basalt.e51f77ac.png";
+module.exports = "/basalt.e51f77ac.png";
 },{}],"images/ores/deep-stone.png":[function(require,module,exports) {
-module.exports = "./deep-stone.05fd66d6.png";
+module.exports = "/deep-stone.05fd66d6.png";
 },{}],"images/ores/burnt-basalt.png":[function(require,module,exports) {
-module.exports = "./burnt-basalt.6f379b0a.png";
+module.exports = "/burnt-basalt.6f379b0a.png";
 },{}],"images/ores/destrony.png":[function(require,module,exports) {
-module.exports = "./destrony.7c3453f2.png";
+module.exports = "/destrony.7c3453f2.png";
 },{}],"images/ores/manty.png":[function(require,module,exports) {
-module.exports = "./manty.3a63cc82.png";
+module.exports = "/manty.3a63cc82.png";
 },{}],"images/ores/fetus-stone.png":[function(require,module,exports) {
-module.exports = "./fetus-stone.e314f0d2.png";
+module.exports = "/fetus-stone.e314f0d2.png";
 },{}],"images/ores/mushroom-stone.png":[function(require,module,exports) {
-module.exports = "./mushroom-stone.4a9571f2.png";
+module.exports = "/mushroom-stone.4a9571f2.png";
 },{}],"images/ores/cracked-stone.png":[function(require,module,exports) {
-module.exports = "./cracked-stone.5598ad76.png";
+module.exports = "/cracked-stone.5598ad76.png";
 },{}],"images/ores/cidium.png":[function(require,module,exports) {
-module.exports = "./cidium.3c514440.png";
+module.exports = "/cidium.3c514440.png";
 },{}],"images/ores/osmy.png":[function(require,module,exports) {
-module.exports = "./osmy.145b8e50.png";
+module.exports = "/osmy.145b8e50.png";
 },{}],"images/ores/antin.png":[function(require,module,exports) {
-module.exports = "./antin.9171e922.png";
+module.exports = "/antin.9171e922.png";
 },{}],"images/ores/rady.png":[function(require,module,exports) {
-module.exports = "./rady.bccf7d2b.png";
+module.exports = "/rady.bccf7d2b.png";
 },{}],"images/ores/nerius.png":[function(require,module,exports) {
-module.exports = "./nerius.809bdc0a.png";
+module.exports = "/nerius.809bdc0a.png";
 },{}],"images/raw/raw-cidium.png":[function(require,module,exports) {
-module.exports = "./raw-cidium.46dee7ea.png";
+module.exports = "/raw-cidium.46dee7ea.png";
 },{}],"images/raw/raw-grade-cidium.png":[function(require,module,exports) {
-module.exports = "./raw-grade-cidium.3db1e106.png";
+module.exports = "/raw-grade-cidium.3db1e106.png";
 },{}],"images/raw/raw-osmy.png":[function(require,module,exports) {
-module.exports = "./raw-osmy.26781543.png";
+module.exports = "/raw-osmy.26781543.png";
 },{}],"images/raw/raw-antin.png":[function(require,module,exports) {
-module.exports = "./raw-antin.55b69ac9.png";
+module.exports = "/raw-antin.55b69ac9.png";
 },{}],"images/raw/raw-rady.png":[function(require,module,exports) {
-module.exports = "./raw-rady.b7c5537f.png";
+module.exports = "/raw-rady.b7c5537f.png";
 },{}],"images/raw/raw-nerius.png":[function(require,module,exports) {
-module.exports = "./raw-nerius.c4d29839.png";
+module.exports = "/raw-nerius.c4d29839.png";
 },{}],"images/raw/raw-manty.png":[function(require,module,exports) {
-module.exports = "./raw-manty.628d6f23.png";
+module.exports = "/raw-manty.628d6f23.png";
 },{}],"images/ready/ready-cidium.png":[function(require,module,exports) {
-module.exports = "./ready-cidium.9e9a8632.png";
+module.exports = "/ready-cidium.9e9a8632.png";
 },{}],"images/items/battery.png":[function(require,module,exports) {
-module.exports = "./battery.a5eb3452.png";
+module.exports = "/battery.a5eb3452.png";
 },{}],"images/items/drill.png":[function(require,module,exports) {
-module.exports = "./drill.45144ddf.png";
+module.exports = "/drill.45144ddf.png";
 },{}],"images/flora/fetus-vine.png":[function(require,module,exports) {
-module.exports = "./fetus-vine.bacb2638.png";
+module.exports = "/fetus-vine.bacb2638.png";
 },{}],"images/flora/mushroom.png":[function(require,module,exports) {
-module.exports = "./mushroom.ad368f59.png";
+module.exports = "/mushroom.ad368f59.png";
+},{}],"images/flora/infection.png":[function(require,module,exports) {
+module.exports = "/infection.989b76c3.png";
+},{}],"images/flora/datura.png":[function(require,module,exports) {
+module.exports = "/datura.5c3c7efa.png";
+},{}],"images/flora/datura-tongue.png":[function(require,module,exports) {
+module.exports = "/datura-tongue.c1383e98.png";
 },{}],"images/food/food-fetus.png":[function(require,module,exports) {
-module.exports = "./food-fetus.7257c57b.png";
+module.exports = "/food-fetus.7257c57b.png";
 },{}],"images/environment/ground.png":[function(require,module,exports) {
-module.exports = "./ground.60b82a27.png";
+module.exports = "/ground.60b82a27.png";
 },{}],"images/environment/dome.png":[function(require,module,exports) {
-module.exports = "./dome.de3e7132.png";
+module.exports = "/dome.de3e7132.png";
 },{}],"images/environment/under-stone.png":[function(require,module,exports) {
-module.exports = "./under-stone.25b0e43a.png";
+module.exports = "/under-stone.25b0e43a.png";
 },{}],"images/environment/disputes.png":[function(require,module,exports) {
-module.exports = "./disputes.69e06412.png";
+module.exports = "/disputes.69e06412.png";
 },{}],"images/gear/gear-storage-1.png":[function(require,module,exports) {
-module.exports = "./gear-storage-1.3a898236.png";
+module.exports = "/gear-storage-1.3a898236.png";
 },{}],"images/gear/gear-recycler-1.png":[function(require,module,exports) {
-module.exports = "./gear-recycler-1.24df4e8a.png";
+module.exports = "/gear-recycler-1.24df4e8a.png";
 },{}],"images/gear/gear-oxygen-generator-1.png":[function(require,module,exports) {
-module.exports = "./gear-oxygen-generator-1.51e8bdb6.png";
+module.exports = "/gear-oxygen-generator-1.51e8bdb6.png";
 },{}],"images/gear/gear-storage-1-outline.png":[function(require,module,exports) {
-module.exports = "./gear-storage-1-outline.5c7aa5f9.png";
+module.exports = "/gear-storage-1-outline.5c7aa5f9.png";
 },{}],"images/gear/gear-recycler-1-outline.png":[function(require,module,exports) {
-module.exports = "./gear-recycler-1-outline.896cc421.png";
+module.exports = "/gear-recycler-1-outline.896cc421.png";
 },{}],"images/gear/gear-oxygen-generator-1-outline.png":[function(require,module,exports) {
-module.exports = "./gear-oxygen-generator-1-outline.ad0371d5.png";
+module.exports = "/gear-oxygen-generator-1-outline.ad0371d5.png";
 },{}],"images/ui/interact.png":[function(require,module,exports) {
-module.exports = "./interact.cf2130fe.png";
+module.exports = "/interact.cf2130fe.png";
 },{}],"images/ui/close.png":[function(require,module,exports) {
-module.exports = "./close.47e7c90a.png";
+module.exports = "/close.47e7c90a.png";
 },{}],"images/ui/drop.png":[function(require,module,exports) {
-module.exports = "./drop.df95270c.png";
+module.exports = "/drop.df95270c.png";
 },{}],"images/ui/craft.png":[function(require,module,exports) {
-module.exports = "./craft.95f37d3a.png";
+module.exports = "/craft.95f37d3a.png";
 },{}],"images/ui/button.png":[function(require,module,exports) {
-module.exports = "./button.f2d71914.png";
+module.exports = "/button.f2d71914.png";
 },{}],"images/ui/tools.png":[function(require,module,exports) {
-module.exports = "./tools.bd80d9fc.png";
+module.exports = "/tools.bd80d9fc.png";
 },{}],"images/ui/bottle.png":[function(require,module,exports) {
-module.exports = "./bottle.15b8d6d6.png";
+module.exports = "/bottle.15b8d6d6.png";
 },{}],"images/ui/damage.png":[function(require,module,exports) {
-module.exports = "./damage.cc267781.png";
+module.exports = "/damage.cc267781.png";
 },{}],"images/ui/level-up.png":[function(require,module,exports) {
-module.exports = "./level-up.b72a7aa3.png";
+module.exports = "/level-up.b72a7aa3.png";
 },{}],"images/ui/storage-ui.png":[function(require,module,exports) {
-module.exports = "./storage-ui.cb448bd7.png";
+module.exports = "/storage-ui.cb448bd7.png";
 },{}],"images/ui/recycler-ui.png":[function(require,module,exports) {
-module.exports = "./recycler-ui.89aac496.png";
+module.exports = "/recycler-ui.89aac496.png";
 },{}],"images/ui/description-ui.png":[function(require,module,exports) {
-module.exports = "./description-ui.4519db9d.png";
+module.exports = "/description-ui.4519db9d.png";
 },{}],"images/ui/oxygen-generator-ui.png":[function(require,module,exports) {
-module.exports = "./oxygen-generator-ui.391b5aef.png";
+module.exports = "/oxygen-generator-ui.391b5aef.png";
 },{}],"audio/stone-hit.mp3":[function(require,module,exports) {
-module.exports = "./stone-hit.51a04405.mp3";
+module.exports = "/stone-hit.51a04405.mp3";
 },{}],"audio/stone-break/stone-break-1.mp3":[function(require,module,exports) {
-module.exports = "./stone-break-1.19747488.mp3";
+module.exports = "/stone-break-1.19747488.mp3";
 },{}],"audio/stone-break/stone-break-2.mp3":[function(require,module,exports) {
-module.exports = "./stone-break-2.59f41769.mp3";
+module.exports = "/stone-break-2.59f41769.mp3";
 },{}],"audio/stone-break/stone-break-3.mp3":[function(require,module,exports) {
-module.exports = "./stone-break-3.b9a5f24c.mp3";
+module.exports = "/stone-break-3.b9a5f24c.mp3";
 },{}],"audio/stone-break/fall-stone-break.mp3":[function(require,module,exports) {
-module.exports = "./fall-stone-break.a79c9812.mp3";
+module.exports = "/fall-stone-break.a79c9812.mp3";
 },{}],"audio/plants/plant-break.mp3":[function(require,module,exports) {
-module.exports = "./plant-break.64be894f.mp3";
+module.exports = "/plant-break.64be894f.mp3";
 },{}],"audio/plants/plant-hit.mp3":[function(require,module,exports) {
-module.exports = "./plant-hit.6087f6b0.mp3";
+module.exports = "/plant-hit.6087f6b0.mp3";
 },{}],"audio/plants/wave.mp3":[function(require,module,exports) {
-module.exports = "./wave.9c7d0575.mp3";
+module.exports = "/wave.9c7d0575.mp3";
 },{}],"audio/bonk.mp3":[function(require,module,exports) {
-module.exports = "./bonk.ecc7f323.mp3";
+module.exports = "/bonk.ecc7f323.mp3";
+},{}],"audio/hit/hit.mp3":[function(require,module,exports) {
+module.exports = "/hit.aa38f70c.mp3";
 },{}],"audio/steps/1.mp3":[function(require,module,exports) {
-module.exports = "./1.bb72bcbd.mp3";
+module.exports = "/1.bb72bcbd.mp3";
 },{}],"audio/steps/2.mp3":[function(require,module,exports) {
-module.exports = "./2.e9b2ba92.mp3";
+module.exports = "/2.e9b2ba92.mp3";
 },{}],"audio/steps/3.mp3":[function(require,module,exports) {
-module.exports = "./3.a1d2e232.mp3";
+module.exports = "/3.a1d2e232.mp3";
 },{}],"audio/gear/storage.mp3":[function(require,module,exports) {
-module.exports = "./storage.3dbcac5b.mp3";
+module.exports = "/storage.3dbcac5b.mp3";
 },{}],"audio/gear/store.mp3":[function(require,module,exports) {
-module.exports = "./store.191bbd6f.mp3";
+module.exports = "/store.191bbd6f.mp3";
 },{}],"audio/gear/craft.mp3":[function(require,module,exports) {
-module.exports = "./craft.4224af63.mp3";
+module.exports = "/craft.4224af63.mp3";
 },{}],"audio/gear/error.mp3":[function(require,module,exports) {
-module.exports = "./error.72d638f7.mp3";
+module.exports = "/error.72d638f7.mp3";
 },{}],"audio/robot/motor.mp3":[function(require,module,exports) {
-module.exports = "./motor.b26faf6a.mp3";
+module.exports = "/motor.b26faf6a.mp3";
 },{}],"audio/robot/motor-start.mp3":[function(require,module,exports) {
-module.exports = "./motor-start.931605d0.mp3";
+module.exports = "/motor-start.931605d0.mp3";
 },{}],"ts/managers/assets.ts":[function(require,module,exports) {
 "use strict";
 
@@ -329,6 +337,12 @@ var _fetusVine = _interopRequireDefault(require("../../images/flora/fetus-vine.p
 
 var _mushroom = _interopRequireDefault(require("../../images/flora/mushroom.png"));
 
+var _infection = _interopRequireDefault(require("../../images/flora/infection.png"));
+
+var _datura = _interopRequireDefault(require("../../images/flora/datura.png"));
+
+var _daturaTongue = _interopRequireDefault(require("../../images/flora/datura-tongue.png"));
+
 var _foodFetus = _interopRequireDefault(require("../../images/food/food-fetus.png"));
 
 var _ground = _interopRequireDefault(require("../../images/environment/ground.png"));
@@ -395,6 +409,8 @@ var _wave = _interopRequireDefault(require("../../audio/plants/wave.mp3"));
 
 var _bonk = _interopRequireDefault(require("../../audio/bonk.mp3"));
 
+var _hit = _interopRequireDefault(require("../../audio/hit/hit.mp3"));
+
 var _ = _interopRequireDefault(require("../../audio/steps/1.mp3"));
 
 var _2 = _interopRequireDefault(require("../../audio/steps/2.mp3"));
@@ -454,6 +470,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // > Plants
 // @ts-ignore
 // @ts-ignore
+// @ts-ignore
+// @ts-ignore
+// @ts-ignore
 // > Food
 // @ts-ignore
 // > Environment
@@ -501,16 +520,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // @ts-ignore
 // @ts-ignore
 // @ts-ignore
+// @ts-ignore
 function initAssets(game) {
   // > Player
   game.loadAsset("player-stay", [_stay.default]);
-  game.loadAsset("player-walk", [_walk.default]); // game.loadAsset("player-walk", [
-  //     player_walk_0_img,
-  //     player_walk_1_img,
-  //     player_walk_2_img,
-  //     player_stay_img,
-  // ]);
-  // > Entities
+  game.loadAsset("player-walk", [_walk.default]); // > Entities
 
   game.loadAsset("robot", [_robot.default]); // > Stones
 
@@ -545,7 +559,10 @@ function initAssets(game) {
   game.loadAsset("drill", [_drill.default]); // > Plants
 
   game.loadAsset("fetus-vine", [_fetusVine.default]);
-  game.loadAsset("mushroom", [_mushroom.default]); // > Food
+  game.loadAsset("mushroom", [_mushroom.default]);
+  game.loadAsset("datura", [_datura.default]);
+  game.loadAsset("datura-tongue", [_daturaTongue.default]);
+  game.loadAsset("infection", [_infection.default]); // > Food
 
   game.loadAsset("food-fetus", [_foodFetus.default]); // > Environment
 
@@ -584,6 +601,7 @@ function initAssets(game) {
   game.loadAsset("plant-hit", _plantHit.default, "audio");
   game.loadAsset("wave", _wave.default, "audio");
   game.loadAsset("bonk", _bonk.default, "audio");
+  game.loadAsset("hit", _hit.default, "audio");
   game.loadAsset("step-1", _.default, "audio");
   game.loadAsset("step-2", _2.default, "audio");
   game.loadAsset("step-3", _3.default, "audio");
@@ -594,7 +612,7 @@ function initAssets(game) {
   game.loadAsset("motor", _motor.default, "audio");
   game.loadAsset("motor-start", _motorStart.default, "audio");
 }
-},{"../../images/player/stay.png":"images/player/stay.png","../../images/player/walk.png":"images/player/walk.png","../../images/entities/robot.png":"images/entities/robot.png","../../images/ores/stone.png":"images/ores/stone.png","../../images/ores/stony-ground.png":"images/ores/stony-ground.png","../../images/ores/basalt.png":"images/ores/basalt.png","../../images/ores/deep-stone.png":"images/ores/deep-stone.png","../../images/ores/burnt-basalt.png":"images/ores/burnt-basalt.png","../../images/ores/destrony.png":"images/ores/destrony.png","../../images/ores/manty.png":"images/ores/manty.png","../../images/ores/fetus-stone.png":"images/ores/fetus-stone.png","../../images/ores/mushroom-stone.png":"images/ores/mushroom-stone.png","../../images/ores/cracked-stone.png":"images/ores/cracked-stone.png","../../images/ores/cidium.png":"images/ores/cidium.png","../../images/ores/osmy.png":"images/ores/osmy.png","../../images/ores/antin.png":"images/ores/antin.png","../../images/ores/rady.png":"images/ores/rady.png","../../images/ores/nerius.png":"images/ores/nerius.png","../../images/raw/raw-cidium.png":"images/raw/raw-cidium.png","../../images/raw/raw-grade-cidium.png":"images/raw/raw-grade-cidium.png","../../images/raw/raw-osmy.png":"images/raw/raw-osmy.png","../../images/raw/raw-antin.png":"images/raw/raw-antin.png","../../images/raw/raw-rady.png":"images/raw/raw-rady.png","../../images/raw/raw-nerius.png":"images/raw/raw-nerius.png","../../images/raw/raw-manty.png":"images/raw/raw-manty.png","../../images/ready/ready-cidium.png":"images/ready/ready-cidium.png","../../images/items/battery.png":"images/items/battery.png","../../images/items/drill.png":"images/items/drill.png","../../images/flora/fetus-vine.png":"images/flora/fetus-vine.png","../../images/flora/mushroom.png":"images/flora/mushroom.png","../../images/food/food-fetus.png":"images/food/food-fetus.png","../../images/environment/ground.png":"images/environment/ground.png","../../images/environment/dome.png":"images/environment/dome.png","../../images/environment/under-stone.png":"images/environment/under-stone.png","../../images/environment/disputes.png":"images/environment/disputes.png","../../images/gear/gear-storage-1.png":"images/gear/gear-storage-1.png","../../images/gear/gear-recycler-1.png":"images/gear/gear-recycler-1.png","../../images/gear/gear-oxygen-generator-1.png":"images/gear/gear-oxygen-generator-1.png","../../images/gear/gear-storage-1-outline.png":"images/gear/gear-storage-1-outline.png","../../images/gear/gear-recycler-1-outline.png":"images/gear/gear-recycler-1-outline.png","../../images/gear/gear-oxygen-generator-1-outline.png":"images/gear/gear-oxygen-generator-1-outline.png","../../images/ui/interact.png":"images/ui/interact.png","../../images/ui/close.png":"images/ui/close.png","../../images/ui/drop.png":"images/ui/drop.png","../../images/ui/craft.png":"images/ui/craft.png","../../images/ui/button.png":"images/ui/button.png","../../images/ui/tools.png":"images/ui/tools.png","../../images/ui/bottle.png":"images/ui/bottle.png","../../images/ui/damage.png":"images/ui/damage.png","../../images/ui/level-up.png":"images/ui/level-up.png","../../images/ui/storage-ui.png":"images/ui/storage-ui.png","../../images/ui/recycler-ui.png":"images/ui/recycler-ui.png","../../images/ui/description-ui.png":"images/ui/description-ui.png","../../images/ui/oxygen-generator-ui.png":"images/ui/oxygen-generator-ui.png","../../audio/stone-hit.mp3":"audio/stone-hit.mp3","../../audio/stone-break/stone-break-1.mp3":"audio/stone-break/stone-break-1.mp3","../../audio/stone-break/stone-break-2.mp3":"audio/stone-break/stone-break-2.mp3","../../audio/stone-break/stone-break-3.mp3":"audio/stone-break/stone-break-3.mp3","../../audio/stone-break/fall-stone-break.mp3":"audio/stone-break/fall-stone-break.mp3","../../audio/plants/plant-break.mp3":"audio/plants/plant-break.mp3","../../audio/plants/plant-hit.mp3":"audio/plants/plant-hit.mp3","../../audio/plants/wave.mp3":"audio/plants/wave.mp3","../../audio/bonk.mp3":"audio/bonk.mp3","../../audio/steps/1.mp3":"audio/steps/1.mp3","../../audio/steps/2.mp3":"audio/steps/2.mp3","../../audio/steps/3.mp3":"audio/steps/3.mp3","../../audio/gear/storage.mp3":"audio/gear/storage.mp3","../../audio/gear/store.mp3":"audio/gear/store.mp3","../../audio/gear/craft.mp3":"audio/gear/craft.mp3","../../audio/gear/error.mp3":"audio/gear/error.mp3","../../audio/robot/motor.mp3":"audio/robot/motor.mp3","../../audio/robot/motor-start.mp3":"audio/robot/motor-start.mp3"}],"ts/config.ts":[function(require,module,exports) {
+},{"../../images/player/stay.png":"images/player/stay.png","../../images/player/walk.png":"images/player/walk.png","../../images/entities/robot.png":"images/entities/robot.png","../../images/ores/stone.png":"images/ores/stone.png","../../images/ores/stony-ground.png":"images/ores/stony-ground.png","../../images/ores/basalt.png":"images/ores/basalt.png","../../images/ores/deep-stone.png":"images/ores/deep-stone.png","../../images/ores/burnt-basalt.png":"images/ores/burnt-basalt.png","../../images/ores/destrony.png":"images/ores/destrony.png","../../images/ores/manty.png":"images/ores/manty.png","../../images/ores/fetus-stone.png":"images/ores/fetus-stone.png","../../images/ores/mushroom-stone.png":"images/ores/mushroom-stone.png","../../images/ores/cracked-stone.png":"images/ores/cracked-stone.png","../../images/ores/cidium.png":"images/ores/cidium.png","../../images/ores/osmy.png":"images/ores/osmy.png","../../images/ores/antin.png":"images/ores/antin.png","../../images/ores/rady.png":"images/ores/rady.png","../../images/ores/nerius.png":"images/ores/nerius.png","../../images/raw/raw-cidium.png":"images/raw/raw-cidium.png","../../images/raw/raw-grade-cidium.png":"images/raw/raw-grade-cidium.png","../../images/raw/raw-osmy.png":"images/raw/raw-osmy.png","../../images/raw/raw-antin.png":"images/raw/raw-antin.png","../../images/raw/raw-rady.png":"images/raw/raw-rady.png","../../images/raw/raw-nerius.png":"images/raw/raw-nerius.png","../../images/raw/raw-manty.png":"images/raw/raw-manty.png","../../images/ready/ready-cidium.png":"images/ready/ready-cidium.png","../../images/items/battery.png":"images/items/battery.png","../../images/items/drill.png":"images/items/drill.png","../../images/flora/fetus-vine.png":"images/flora/fetus-vine.png","../../images/flora/mushroom.png":"images/flora/mushroom.png","../../images/flora/infection.png":"images/flora/infection.png","../../images/flora/datura.png":"images/flora/datura.png","../../images/flora/datura-tongue.png":"images/flora/datura-tongue.png","../../images/food/food-fetus.png":"images/food/food-fetus.png","../../images/environment/ground.png":"images/environment/ground.png","../../images/environment/dome.png":"images/environment/dome.png","../../images/environment/under-stone.png":"images/environment/under-stone.png","../../images/environment/disputes.png":"images/environment/disputes.png","../../images/gear/gear-storage-1.png":"images/gear/gear-storage-1.png","../../images/gear/gear-recycler-1.png":"images/gear/gear-recycler-1.png","../../images/gear/gear-oxygen-generator-1.png":"images/gear/gear-oxygen-generator-1.png","../../images/gear/gear-storage-1-outline.png":"images/gear/gear-storage-1-outline.png","../../images/gear/gear-recycler-1-outline.png":"images/gear/gear-recycler-1-outline.png","../../images/gear/gear-oxygen-generator-1-outline.png":"images/gear/gear-oxygen-generator-1-outline.png","../../images/ui/interact.png":"images/ui/interact.png","../../images/ui/close.png":"images/ui/close.png","../../images/ui/drop.png":"images/ui/drop.png","../../images/ui/craft.png":"images/ui/craft.png","../../images/ui/button.png":"images/ui/button.png","../../images/ui/tools.png":"images/ui/tools.png","../../images/ui/bottle.png":"images/ui/bottle.png","../../images/ui/damage.png":"images/ui/damage.png","../../images/ui/level-up.png":"images/ui/level-up.png","../../images/ui/storage-ui.png":"images/ui/storage-ui.png","../../images/ui/recycler-ui.png":"images/ui/recycler-ui.png","../../images/ui/description-ui.png":"images/ui/description-ui.png","../../images/ui/oxygen-generator-ui.png":"images/ui/oxygen-generator-ui.png","../../audio/stone-hit.mp3":"audio/stone-hit.mp3","../../audio/stone-break/stone-break-1.mp3":"audio/stone-break/stone-break-1.mp3","../../audio/stone-break/stone-break-2.mp3":"audio/stone-break/stone-break-2.mp3","../../audio/stone-break/stone-break-3.mp3":"audio/stone-break/stone-break-3.mp3","../../audio/stone-break/fall-stone-break.mp3":"audio/stone-break/fall-stone-break.mp3","../../audio/plants/plant-break.mp3":"audio/plants/plant-break.mp3","../../audio/plants/plant-hit.mp3":"audio/plants/plant-hit.mp3","../../audio/plants/wave.mp3":"audio/plants/wave.mp3","../../audio/bonk.mp3":"audio/bonk.mp3","../../audio/hit/hit.mp3":"audio/hit/hit.mp3","../../audio/steps/1.mp3":"audio/steps/1.mp3","../../audio/steps/2.mp3":"audio/steps/2.mp3","../../audio/steps/3.mp3":"audio/steps/3.mp3","../../audio/gear/storage.mp3":"audio/gear/storage.mp3","../../audio/gear/store.mp3":"audio/gear/store.mp3","../../audio/gear/craft.mp3":"audio/gear/craft.mp3","../../audio/gear/error.mp3":"audio/gear/error.mp3","../../audio/robot/motor.mp3":"audio/robot/motor.mp3","../../audio/robot/motor-start.mp3":"audio/robot/motor-start.mp3"}],"ts/config.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -605,7 +623,9 @@ var Config;
 exports.Config = Config;
 
 (function (Config) {
-  // World size and chunks size in blocks
+  Config[Config["ALLOW_DARK"] = 1] = "ALLOW_DARK";
+  Config[Config["IS_DEV"] = 0] = "IS_DEV"; // World size and chunks size in blocks
+
   Config[Config["WORLD_WIDTH"] = 82] = "WORLD_WIDTH";
   Config[Config["WORLD_HEIGHT"] = 225] = "WORLD_HEIGHT";
   Config[Config["CHUNK_SIZE"] = 4] = "CHUNK_SIZE";
@@ -614,10 +634,12 @@ exports.Config = Config;
   Config[Config["SPRITE_SIZE"] = 80] = "SPRITE_SIZE";
   Config[Config["PARTICLES_GRAVITY"] = 0.4] = "PARTICLES_GRAVITY";
   Config[Config["WORLD_X_CENTER"] = 3280] = "WORLD_X_CENTER";
-  Config[Config["VINE_GROW_TICK"] = 60] = "VINE_GROW_TICK";
-  Config[Config["VINE_GROW_CHANCE"] = 50] = "VINE_GROW_CHANCE";
+  Config[Config["VINE_GROW_TICK"] = 200] = "VINE_GROW_TICK";
+  Config[Config["VINE_GROW_CHANCE"] = 16] = "VINE_GROW_CHANCE";
   Config[Config["VINE_MIN_LENGTH"] = 4] = "VINE_MIN_LENGTH";
   Config[Config["VINE_MAX_LENGTH"] = 8] = "VINE_MAX_LENGTH";
+  Config[Config["INFECTION_GROW_TICK"] = 200] = "INFECTION_GROW_TICK";
+  Config[Config["INFECTION_GROW_CHANCE"] = 10] = "INFECTION_GROW_CHANCE";
   Config[Config["ROBOT_PICKUP_DISTANCE"] = 80] = "ROBOT_PICKUP_DISTANCE";
   Config[Config["ROBOT_DAMAGE"] = 4] = "ROBOT_DAMAGE";
   Config[Config["ROBOT_HIT_SPEED"] = 10] = "ROBOT_HIT_SPEED";
@@ -628,7 +650,6 @@ exports.Config = Config;
   Config[Config["DOME_DIAMETER"] = 480] = "DOME_DIAMETER";
   Config[Config["GROUND_HEIGHT"] = 160] = "GROUND_HEIGHT";
   Config[Config["OXYGEN_HUNGRY_TIME"] = 3550] = "OXYGEN_HUNGRY_TIME";
-  Config[Config["ALLOW_DARK"] = 1] = "ALLOW_DARK";
   Config[Config["ITEMS_LIVE_TIME"] = 800] = "ITEMS_LIVE_TIME";
   Config[Config["ORE_FALL_DELAY"] = 30] = "ORE_FALL_DELAY";
   Config[Config["DEFAULT_ANIMATION_SPEED"] = 8] = "DEFAULT_ANIMATION_SPEED";
@@ -1248,6 +1269,15 @@ var Vector2 = /*#__PURE__*/function () {
       this.x = this.x + (to.x - this.x) * time;
       this.y = this.y + (to.y - this.y) * time;
       return this;
+    }
+  }, {
+    key: "angle",
+    value: function angle() {
+      if (this.x > 0 && this.y > 0) return Math.PI / 2 - Math.atan(this.x / this.y);
+      if (this.x < 0 && this.y > 0) return Math.PI / 2 - Math.atan(this.x / this.y);
+      if (this.x < 0 && this.y < 0) return Math.PI + Math.atan(this.y / this.x);
+      if (this.x > 0 && this.y < 0) return Math.PI * 3 / 2 + Math.abs(Math.atan(this.x / this.y));
+      return 0;
     }
   }], [{
     key: "add",
@@ -2064,6 +2094,7 @@ var Renderer = /*#__PURE__*/function () {
     this.layers = {
       "bg": this.createLayer("bg"),
       "game": this.createLayer("game"),
+      "plants": this.createLayer("plants"),
       "particles": this.createLayer("particles"),
       "ui": this.createLayer("ui", true, 0),
       "debug": this.createLayer("debug", false)
@@ -2151,15 +2182,17 @@ var Renderer = /*#__PURE__*/function () {
     }
   }, {
     key: "startTransform",
-    value: function startTransform(layer, pos, rotation, scale, opacity) {
+    value: function startTransform(layer, pos, rotation, scale, opacity, origin) {
       var l = this.layers[layer || "game"];
 
       var p = pos || _math.Vector2.zero();
 
+      var o = origin || _math.Vector2.zero();
+
       l.context.save();
       l.context.translate(innerWidth / 2 * l.cameraFactor, innerHeight / 2 * l.cameraFactor);
       l.context.rotate(this.game.camera.rotation * l.cameraFactor);
-      l.context.transform((scale === null || scale === void 0 ? void 0 : scale.x) || 1, 0, 0, (scale === null || scale === void 0 ? void 0 : scale.y) || 1, p.x - this.getCameraPosition(layer).x, p.y - this.getCameraPosition(layer).y);
+      l.context.transform((scale === null || scale === void 0 ? void 0 : scale.x) || 1, 0, 0, (scale === null || scale === void 0 ? void 0 : scale.y) || 1, p.x - this.getCameraPosition(layer).x + o.x, p.y - this.getCameraPosition(layer).y + o.y);
       l.context.rotate(rotation || 0);
       var op = (0, _math.safeValue)(opacity, 1);
       l.context.globalAlpha = op > 0 ? op : 0;
@@ -2255,23 +2288,30 @@ var Renderer = /*#__PURE__*/function () {
 
         var frameH = (0, _math.safeValue)(props.height, 1) * _config.Config.SPRITE_PIXEL_SIZE;
 
-        var framePos = (0, _math.safeValue)(props.frame, _math.Vector2.zero());
-        var p = (0, _math.safeValue)(props.position, _math.Vector2.zero());
-        var o = (0, _math.safeValue)(props.offset, _math.Vector2.zero());
+        var framePos = props.frame || _math.Vector2.zero();
+
+        var p = props.position || _math.Vector2.zero();
+
+        var o = props.offset || _math.Vector2.zero();
+
+        var or = props.origin || _math.Vector2.zero();
+
         if (!this.inCameraViewport(p, w * (0, _math.safeValue)((_a = props.repeat) === null || _a === void 0 ? void 0 : _a.x, 1), h * (0, _math.safeValue)((_b = props.repeat) === null || _b === void 0 ? void 0 : _b.y, 1)) && this.layers[props.layer || "game"].cameraFactor == 1) return;
         var f = (0, _math.safeValue)(props.flip, {
           x: false,
           y: false
         });
-        var s = (0, _math.safeValue)(props.scale, _math.Vector2.all());
+
+        var s = props.scale || _math.Vector2.all();
+
         var context = this.getContext(props.layer);
-        this.startTransform(props.layer, p.add(o), props.rotation, new _math.Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)), props.opacity); // Draw sprite without repeat
+        this.startTransform(props.layer, p.add(o), props.rotation, new _math.Vector2(s.x * (f.x ? -1 : 1), s.y * (f.y ? -1 : 1)), props.opacity, or); // Draw sprite without repeat
 
         if (!props.repeat || _math.Vector2.compare(props.repeat || _math.Vector2.all(), _math.Vector2.all())) {
           if ((0, _math.safeValue)(props.framed, true)) context.drawImage(props.texture, // Clip rect
           framePos.x * frameW, framePos.y * frameH, frameW, frameH, // Transform
-          -w / 2, -h / 2, w, h);else context.drawImage(props.texture, // Transform
-          -w / 2, -h / 2, w, h);
+          -w / 2 - or.x, -h / 2 - or.y, w, h);else context.drawImage(props.texture, // Transform
+          -w / 2 - or.x, -h / 2 - or.y, w, h);
         } else if (props.repeat) // And... With repeat?
           for (var repeatY = 0; repeatY < props.repeat.y; repeatY++) {
             for (var repeatX = 0; repeatX < props.repeat.x; repeatX++) {
@@ -2651,7 +2691,9 @@ var Game = /*#__PURE__*/function (_Container) {
     _this.assets = [];
     _this.sounds = [];
     _this.clock = {
-      elapsed: 0
+      elapsed: 0,
+      fps: 0,
+      delta: 0
     };
     _this.initListeners = [];
     _this.updateListeners = [];
@@ -2725,6 +2767,7 @@ var Game = /*#__PURE__*/function (_Container) {
         return listener();
       });
       this.initChildren();
+      var lastLoop = 0;
 
       var loop = function loop() {
         requestAnimationFrame(loop);
@@ -2741,8 +2784,17 @@ var Game = /*#__PURE__*/function (_Container) {
           if ((_this2.clock.elapsed - _this2.camera.startShakeElapsed) % 10 == 0) _this2.camera.shaking = false;
 
           _this2.camera.offset.copy(_this2.camera.offset.add(new _math.Vector2((0, _math.random)(-_this2.camera.shakeAmplitude, _this2.camera.shakeAmplitude), (0, _math.random)(-_this2.camera.shakeAmplitude, _this2.camera.shakeAmplitude))));
-        } // Update
+        } // Update clock
 
+
+        var thisLoop = Date.now();
+        _this2.clock.delta = (thisLoop - lastLoop) / 1000;
+
+        if (_this2.tick(30)) {
+          _this2.clock.fps = +(1000 / (thisLoop - lastLoop)).toFixed(1);
+        }
+
+        lastLoop = thisLoop; // Update
 
         _this2.physics.update();
 
@@ -3149,8 +3201,8 @@ var Entity = /*#__PURE__*/function (_Sprite) {
     _this = _super.call(this, name, assetName, props);
     _this.sound = new _Sound.Sound();
     _this.hp = (props === null || props === void 0 ? void 0 : props.hp) || 10;
-    _this.initialMoveSpeed = (props === null || props === void 0 ? void 0 : props.moveSpeed) || 5;
     _this.moveSpeed = (props === null || props === void 0 ? void 0 : props.moveSpeed) || 5;
+    _this.initialMoveSpeed = _this.moveSpeed;
     _this.damaged = false;
     _this.damagedElapsed = 0;
     _this.stayAnimation = "".concat(name, "-stay");
@@ -3194,22 +3246,18 @@ var Entity = /*#__PURE__*/function (_Sprite) {
   }, {
     key: "dig",
     value: function dig(damage, speed, level, direction) {
-      var successOreHit = false;
-
-      if (this.collider.collidesWith != null && this.collider.collidesWith.any) {
+      if (this.collider.collidesWith != null && this.collider.collidesWith.any && this.collider.collidesWith.id.indexOf("ore-") >= 0) {
         var ore = this.game.getChildById(this.collider.collidesWith.id, true); // const tool = tools[this.toolLevel.toString()];
 
-        if (ore == undefined) return false;
+        if (ore == undefined) return;
 
         if (this.collider.collidesWith[direction] && this.position.distance(ore.position) < _config.Config.SPRITE_SIZE * 2 && this.game.clock.elapsed % speed == 0) {
           ore.hit(damage, level);
-          successOreHit = level >= ore.needToolLevel;
           if (direction == "right") this.offset = new _math.Vector2(10, 0);else if (direction == "left") this.offset = new _math.Vector2(-10, 0);else if (direction == "top") this.offset = new _math.Vector2(0, -10);else if (direction == "bottom") this.offset = new _math.Vector2(0, 10);
         }
       }
 
       this.collider.collidesWith = null;
-      return successOreHit;
     }
   }, {
     key: "move",
@@ -3598,6 +3646,9 @@ var ItemParent = /*#__PURE__*/function (_Sprite) {
     _this.foldToPosition = _math.Vector2.zero();
     _this.collider.width = 6 * _config.Config.SPRITE_SCALE;
     _this.collider.height = 6 * _config.Config.SPRITE_SCALE;
+
+    _this.acceleration.set(.8, .8);
+
     return _this;
   }
 
@@ -3609,7 +3660,6 @@ var ItemParent = /*#__PURE__*/function (_Sprite) {
       this.liveStartElapsed = this.game.clock.elapsed;
       this.layer = "particles";
       this.velocity.set((0, _math.random)(-8, 8), (0, _math.random)(-8, 8));
-      this.acceleration.copy(_math.Vector2.all(.8));
       if (this.checkDistanceToPlayer(this.game.getChildById("player"), _config.Config.PICKUP_DISTANCE * 2)) this.nearOnInit = true;
     }
   }, {
@@ -3631,7 +3681,10 @@ var ItemParent = /*#__PURE__*/function (_Sprite) {
       } else {
         this.moveTo(this.foldToPosition);
         if (this.foldToPosition.distance(this.position) < 30) this.game.removeChildById(this.id);
-      }
+      } // Change collider type
+
+
+      this.collider.type = this.picked ? "dynamic" : "none";
     }
   }, {
     key: "pickup",
@@ -3878,9 +3931,7 @@ var Robot = /*#__PURE__*/function (_Entity) {
         console.log(true);
       }); // Play motor start sound
 
-      this.sound.play(this.game, "motor-start", .5); // Play motor sound
-
-      this.sound.play(this.game, "motor", 1, true);
+      this.sound.play(this.game, "motor-start", .5);
     }
   }, {
     key: "update",
@@ -3927,13 +3978,6 @@ var Robot = /*#__PURE__*/function (_Entity) {
 
 
       if (this.breaked) this.smoke();
-    }
-  }, {
-    key: "destroy",
-    value: function destroy() {
-      _get(_getPrototypeOf(Robot.prototype), "destroy", this).call(this);
-
-      this.sound.stop();
     }
   }, {
     key: "_move",
@@ -4077,30 +4121,33 @@ var Player = /*#__PURE__*/function (_Entity) {
 
     _this = _super.call(this, "player", "player-stay", {
       position: new _math.Vector2(_config.Config.WORLD_WIDTH * _config.Config.SPRITE_SIZE / 2, -_config.Config.SPRITE_SIZE)
-    }); // this.ambientSound = null;
-    // this.ambientIsPlaying = false;
-
+    });
     _this.oxygenHungry = false;
     _this.oxygenHungryStartElapsed = 0;
+    _this.oxygenHungryElapsed = 0;
     _this.wire = _this.position.expand();
     _this.inventory = {
       totalCount: 0,
       slots: {}
     };
     _this.hasBottle = false;
-    _this.toolLevel = 5;
+    _this.toolLevel = _config.Config.IS_DEV ? 3 : 1;
     _this.allowPlaceRobot = false;
-    _this.allowUseFood = false;
-    _this.actionType = "grab";
-    _this.tipText = "";
+    _this.allowEatFood = false;
+    _this.actionType = null;
+    _this.actionText = {
+      "grab": "cобрать",
+      "place": "установить",
+      "eat": "съесть"
+    };
     _this.nearFetusStone = undefined;
     _this.damageAnimatedOpacity = 0;
     _this.animatedCameraRotation = 0;
-    window.addEventListener("keydown", function (e) {
+    _this.animatedTimerScale = 1;
+    if (_config.Config.IS_DEV) window.addEventListener("keydown", function (e) {
       if (e.code == "KeyT") {
-        _this.initialMoveSpeed = _this.initialMoveSpeed == 5 ? 90 : 5; // this.moveSpeed = this.moveSpeed == 5 ? 90 : 5;
-
         _this.collider.collidable = !_this.collider.collidable;
+        _this.moveSpeed = !_this.collider.collidable ? 50 : _this.initialMoveSpeed;
       }
     });
     return _this;
@@ -4130,49 +4177,29 @@ var Player = /*#__PURE__*/function (_Entity) {
   }, {
     key: "update",
     value: function update() {
-      var _this3 = this;
-
       _get(_getPrototypeOf(Player.prototype), "update", this).call(this);
 
       if (!this.allowMove) return;
       this.movement.set(+this.game.gamepad.keys.right - +this.game.gamepad.keys.left, +this.game.gamepad.keys.down - +this.game.gamepad.keys.up);
       this.move();
       this.pullWire();
-      this.nearFetusStone = this.game.getChildrenByName("fetus-stone").find(function (ore) {
-        var vineHeight = (ore.length || 0) * _config.Config.SPRITE_SIZE;
-        return _this3.game.physics.collideWithRect({
-          id: _this3.id,
-          position: _this3.position,
-          width: _this3.collider.width,
-          height: _this3.collider.height
-        }, {
-          id: ore.id,
-          position: ore.position.add(new _math.Vector2(0, vineHeight / 2)),
-          width: ore.collider.width / 2,
-          height: ore.collider.height + vineHeight
-        }).any;
-      }); // this.nearFetusStone = this.game.getChildrenByName<FetusStone>("fetus-stone").find(ore=> safeValue(ore.length, 0) > 0 && ore.position.distance(this.position) < 150);
-      // this.actionType = this.checkItemInInventory("item-robot") && this.allowPlaceRobot ? "place" : "";
+      this.grabFetus();
+      this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 8;
+      this.allowPlaceRobot = this.position.y > 20; // Fetus grab
 
-      this.actionType = !!this.nearFetusStone ? "grab" : ""; // Sounds
+      if (this.checkItemInInventory("item-robot") && this.allowPlaceRobot) this.actionType = "place";else if (this.allowEatFood) this.actionType = "eat";else if (this.nearFetusStone != undefined) this.actionType = "grab";else this.actionType = null;
+      if (_config.Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) <= 0) this.die(); // Sounds
 
-      this.footsStep(); // this.ambient();
+      this.footsStep(); // Slow
 
-      this.animatedCameraRotation = (0, _math.lerp)(this.animatedCameraRotation, this.velocity.x / 50, .2); // Slow
-
-      if (this.oxygenHungry) {
-        this.moveSpeed = this.initialMoveSpeed / 2 + 1;
-      } else {
-        this.moveSpeed = this.initialMoveSpeed;
-        this.moveSpeedDown = (this.checkItemInInventory("raw-nerius") ? 3 : 0) + (this.checkItemInInventory("ready-cidium") ? -2 : 0);
-      }
-
+      this.moveSpeedDown = (this.checkItemInInventory("raw-nerius") ? 2 : 0) + (this.checkItemInInventory("ready-cidium") ? -2 : 0);
       if (!this.oxygenHungry) this.oxygenHungryStartElapsed = this.game.clock.elapsed; // Dig
 
       var tool = tools[this.toolLevel.toString()];
       if (this.movement.x != 0) this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.x > 0 ? "right" : "left");else if (this.movement.y != 0) this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.y > 0 ? "bottom" : "top"); //
 
       this.damageAnimatedOpacity = (0, _math.lerp)(this.damageAnimatedOpacity, 0, .05);
+      this.animatedTimerScale = (0, _math.lerp)(this.animatedTimerScale, 1, .2);
       this.bounds();
     }
   }, {
@@ -4187,17 +4214,13 @@ var Player = /*#__PURE__*/function (_Entity) {
     value: function renderUI() {
       var size = _config.Config.SPRITE_SIZE;
       var windowCenter = new _math.Vector2(innerWidth / 2, innerHeight / 2);
-      if (this.oxygenHungry) this.renderOxygenHungryUI(); //
+      if (this.oxygenHungry) this.renderOxygenHungryUI(); // Tip text
 
-      this.allowPlaceRobot = this.position.y > 20; // Tip text
-
-      if (this.actionType == "grab") this.tipText = "[OK] - собрать";else if (this.actionType == "place") this.tipText = "[OK] - установить";
-      this.game.renderer.drawText({
-        text: this.tipText,
+      if (this.actionType) this.game.renderer.drawText({
+        text: "[OK] - ".concat(this.actionText[this.actionType]),
         position: new _math.Vector2(0, 150).add(windowCenter),
         layer: "ui"
-      });
-      this.allowUseFood = !this.checkItemInInventory("item-robot") && this.checkItemInInventory("food-fetus"); // Tool level
+      }); // Tool level
 
       this.game.renderer.drawSprite({
         texture: (0, _math.asImage)(this.game.getAssetByName("tools")),
@@ -4230,24 +4253,23 @@ var Player = /*#__PURE__*/function (_Entity) {
   }, {
     key: "renderOxygenHungryUI",
     value: function renderOxygenHungryUI() {
-      var size = _config.Config.SPRITE_SIZE;
-      var windowCenter = new _math.Vector2(innerWidth / 2, innerHeight / 2);
-      var loseConsciousnessIn = _config.Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed); // this.game.renderer.drawText({
-      //     text: "Кислородное голодание!",
-      //     position: new Vector2(innerWidth/2, 100),
-      //     font: "24px Pixel",
-      //     scale: Vector2.all(1 - (Math.sin(this.game.clock.elapsed / 10) + 1) / 2 / 10),
-      //     layer: "ui"
-      // });
-
+      var loseConsciousnessIn = _config.Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed);
+      if (loseConsciousnessIn % 60 == 0) this.animatedTimerScale = loseConsciousnessIn / 60 < 20 ? 1.5 : 1.2;
       this.game.renderer.drawText({
-        text: "\u041A\u0438\u0441\u043B\u043E\u0440\u043E\u0434\u043D\u043E\u0435 \u0433\u043E\u043B\u043E\u0434\u0430\u043D\u0438\u0435!\n\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u044F\u0439\u0442\u0435 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u0435 \u0447\u0435\u0440\u0435\u0437:",
+        text: "Кислородное голодание!",
+        position: new _math.Vector2(innerWidth / 2, 100),
+        font: "24px Pixel",
+        layer: "ui"
+      });
+      this.game.renderer.drawText({
+        text: "\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u044F\u0439\u0442\u0435 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u0435 \u0447\u0435\u0440\u0435\u0437:",
         position: new _math.Vector2(innerWidth / 2, 130),
         layer: "ui"
       });
       this.game.renderer.drawText({
         text: "0:".concat(Math.floor(loseConsciousnessIn / 60)),
         position: new _math.Vector2(innerWidth / 2, 180),
+        scale: _math.Vector2.all(this.animatedTimerScale),
         font: "30px Pixel",
         layer: "ui"
       });
@@ -4275,20 +4297,27 @@ var Player = /*#__PURE__*/function (_Entity) {
         // By height
         if (this.position.y < -_config.Config.SPRITE_SIZE / 2) this.position.y = -_config.Config.SPRITE_SIZE / 2;
       }
-    } // ambient() {
-    //     if (!this.game.tick(100)) return;
-    //     this.game.getChildrenByName<Ore>("ore").filter(ore=> ore.oreType == "fetus-stone").map(ore=> {
-    //         if (this.position.distance(ore.position) < 300 && !this.ambientSound) {
-    //             this.ambientSound = new Sound();
-    //             this.ambientSound.play(this.game, "wave", 1, true);
-    //             this.ambientIsPlaying = true;
-    //         }
-    //         if (this.position.distance(ore.position) > 300 && this.ambientIsPlaying) {
-    //             this.ambientSound
-    //         }
-    //     });
-    // }
+    }
+  }, {
+    key: "grabFetus",
+    value: function grabFetus() {
+      var _this3 = this;
 
+      this.nearFetusStone = this.game.getChildrenByName("fetus-stone").find(function (ore) {
+        var vineHeight = (ore.length || 0) * _config.Config.SPRITE_SIZE;
+        return (ore.length || 0) > 0 && (ore.grabbedCount || 0) < (ore.length || 0) && _this3.game.physics.collideWithRect({
+          id: _this3.id,
+          position: _this3.position,
+          width: _this3.collider.width,
+          height: _this3.collider.height
+        }, {
+          id: ore.id,
+          position: ore.position.add(new _math.Vector2(0, vineHeight / 2)),
+          width: ore.collider.width / 2,
+          height: ore.collider.height + vineHeight
+        }).any;
+      });
+    }
   }, {
     key: "pickup",
     value: function pickup(item, type, count) {
@@ -4328,20 +4357,21 @@ var Player = /*#__PURE__*/function (_Entity) {
 
       this.damageAnimatedOpacity = 1.5;
       this.game.camera.shake();
-      this.sound.play(this.game, "bonk");
-
-      if (this.hp <= 0) {
-        this.position = new _math.Vector2(_config.Config.WORLD_WIDTH * _config.Config.SPRITE_SIZE / 2, -_config.Config.SPRITE_SIZE);
-        this.hp = 10;
-        this.wire.copy(this.position);
-      }
+      this.sound.play(this.game, (0, _math.chance)(1) ? "bonk" : "hit");
+      if (this.hp <= 0) this.die();
     }
   }, {
     key: "die",
-    value: function die() {}
+    value: function die() {
+      this.oxygenHungryStartElapsed = this.game.clock.elapsed;
+      this.position = new _math.Vector2(_config.Config.WORLD_WIDTH * _config.Config.SPRITE_SIZE / 2, -_config.Config.SPRITE_SIZE);
+      this.hp = 10;
+      this.wire.copy(this.position);
+    }
   }, {
     key: "heal",
     value: function heal(_heal) {
+      if (this.hp > 8) return;
       this.hp += _heal;
       this.hp = (0, _math.clamp)(this.hp, 0, 10);
       this.spawnText("+".concat(_heal), undefined, _config.Color.GREEN);
@@ -4396,11 +4426,11 @@ var Player = /*#__PURE__*/function (_Entity) {
   }, {
     key: "useFood",
     value: function useFood() {
-      if (this.allowUseFood && this.hp < 8) {
+      if (this.allowEatFood) {
         var foodSlotNames = this.getInventorySlotNames().filter(function (slotName) {
           return slotName.indexOf("food") >= 0;
         });
-        this.inventory.slots[foodSlotNames[0]].instances[0].onUse(this);
+        this.inventory.slots[foodSlotNames[0]].instances[0].onEat(this);
         this.game.removeChildById(this.inventory.slots[foodSlotNames[0]].instances[0].id);
         this.inventory.slots[foodSlotNames[0]].count--;
         this.inventory.slots[foodSlotNames[0]].instances.splice(0, 1);
@@ -4440,757 +4470,30 @@ exports.initLevel = initLevel;
 
 var _config = require("../config");
 
-var _engine = require("../engine");
-
 var _math = require("../engine/utils/math");
 
 function initLevel(game) {
-  var ground = game.add(new _engine.Sprite("ground", "ground", {
-    width: 4,
-    height: 4,
-    position: new _math.Vector2(-_config.Config.SPRITE_SIZE * 10, -_config.Config.SPRITE_SIZE * .5 * 3),
-    repeat: new _math.Vector2(Math.round(_config.Config.WORLD_WIDTH) + 2, 1),
-    layer: "bg"
-  }));
+  function render() {
+    var op = (1 - game.camera.position.y / 240) * .3;
 
-  function update(player) {
-    var op = (1 - player.position.y / 240) * .3;
-    ground.opacity = op > 0 ? op : 0;
+    for (var i = 0; i < _config.Config.WORLD_WIDTH; i++) {
+      game.renderer.drawSprite({
+        width: 4,
+        height: 4,
+        frame: new _math.Vector2(i % 2, 0),
+        texture: (0, _math.asImage)(game.getAssetByName("ground")),
+        position: new _math.Vector2(-_config.Config.SPRITE_SIZE * 10 + i * _config.Config.SPRITE_SIZE * 4, -_config.Config.SPRITE_SIZE * .5 * 3),
+        opacity: (0, _math.clamp)(op, 0, 1),
+        layer: "bg"
+      });
+    }
   }
 
   return {
-    update: update
+    render: render
   };
 }
-},{"../config":"ts/config.ts","../engine":"ts/engine/index.ts","../engine/utils/math":"ts/engine/utils/math.ts"}],"ts/objects/Block.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Block = void 0;
-
-var _config = require("../config");
-
-var _engine = require("../engine");
-
-var _Sound = require("../engine/components/Sound");
-
-var _math = require("../engine/utils/math");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Block = /*#__PURE__*/function (_Sprite) {
-  _inherits(Block, _Sprite);
-
-  var _super = _createSuper(Block);
-
-  function Block(name, assetName, position, props) {
-    var _this;
-
-    _classCallCheck(this, Block);
-
-    _this = _super.call(this, name, assetName, Object.assign(Object.assign({
-      colliderType: "none"
-    }, props), {
-      position: position.add(new _math.Vector2(0, 0)).mul(_config.Config.SPRITE_PIXEL_SIZE * _config.Config.SPRITE_SCALE)
-    }));
-    _this.inChunkId = "";
-    _this.sound = new _Sound.Sound();
-    _this.animatedScale = 1;
-    _this.animateScaleTo = 1;
-    _this.darkenFactor = 1;
-    _this.randomRotate = true;
-    _this.randomFlipX = true;
-    _this.customColliderType = undefined;
-    return _this;
-  }
-
-  _createClass(Block, [{
-    key: "init",
-    value: function init() {
-      _get(_getPrototypeOf(Block.prototype), "init", this).call(this);
-
-      if (this.randomRotate) this.rotation = Math.floor((0, _math.random)(1, 5)) * Math.PI;
-      if (this.randomFlipX) this.flip.x = Boolean(Math.floor((0, _math.random)(0, 2)));
-      if (_config.Config.ALLOW_DARK) this.visible = false;
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      _get(_getPrototypeOf(Block.prototype), "render", this).call(this);
-
-      if (_config.Config.ALLOW_DARK) this.darken();
-    }
-  }, {
-    key: "update",
-    value: function update() {
-      _get(_getPrototypeOf(Block.prototype), "update", this).call(this); // this.sound.update3D(this.game, this.position);
-
-
-      this.animatedScale = (0, _math.lerp)(this.animatedScale, this.animateScaleTo, .2);
-      this.scale.set(this.animatedScale, this.animatedScale);
-    }
-  }, {
-    key: "darken",
-    value: function darken() {
-      var t = 1 - this.game.camera.position.y / 200;
-      var d = this.game.camera.position.distance(this.position) - 200;
-      this.darkenFactor = (d > 96 ? 1 : d / 96) + (t > 0 ? t : 0);
-      if (this.darkenFactor < 1) this.opacity = 1 - this.darkenFactor;
-      this.visible = this.darkenFactor < 1;
-      this.collider.type = this.darkenFactor < .8 ? (0, _math.safeValue)(this.customColliderType, "solid") : "none"; // this.game.renderer.drawText({
-      //     text: JSON.stringify(+this.inChunkId.split("-")[1] < 3),
-      //     position: this.position,
-      //     layer: "particles"
-      // })
-    }
-  }, {
-    key: "checkBlockIn",
-    value: function checkBlockIn(offset, checkChunkBorders, findName) {
-      var size = _config.Config.SPRITE_SIZE;
-      var blocks = this.game.getChildrenByName(findName || "ore");
-      var thisPos = this.position.div(size).apply(Math.floor);
-      return +this.inChunkId.split("-")[1] >= 3 && (0, _math.safeValue)(checkChunkBorders, true) || blocks.filter(function (block) {
-        return block.name.indexOf("plant") < 0;
-      }).findIndex(function (block) {
-        var orePos = block.position.div(size).apply(Math.floor);
-        return _math.Vector2.compare(orePos, thisPos.add(offset));
-      }) >= 0;
-    }
-  }]);
-
-  return Block;
-}(_engine.Sprite);
-
-exports.Block = Block;
-},{"../config":"ts/config.ts","../engine":"ts/engine/index.ts","../engine/components/Sound":"ts/engine/components/Sound.ts","../engine/utils/math":"ts/engine/utils/math.ts"}],"ts/objects/ores/Ore.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Ore = void 0;
-
-var _math = require("../../engine/utils/math");
-
-var _config = require("../../config");
-
-var _Particles = require("../../engine/components/Particles");
-
-var _Block2 = require("../Block");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Ore = /*#__PURE__*/function (_Block) {
-  _inherits(Ore, _Block);
-
-  var _super = _createSuper(Ore);
-
-  function Ore(type, position, props) {
-    var _this;
-
-    _classCallCheck(this, Ore);
-
-    var _a;
-
-    _this = _super.call(this, "ore-".concat(type), type, position, props);
-    _this.oreType = type;
-    _this.tilePosition = position;
-    var settings = _config.OreSettings[type];
-    _this.hp = settings ? settings.hp : _config.OreSettings["stone"].hp;
-    _this.needToolLevel = ((_a = _config.OreSettings[type]) === null || _a === void 0 ? void 0 : _a.tool) || 1;
-    _this.unbreakable = false;
-    _this.particlesColors = [_config.Color.BLACK];
-    _this.hitAudioName = "stone-hit";
-    _this.breakAudioNames = ["stone-break-1", "stone-break-2", "stone-break-3"];
-    _this.allowDecorations = false;
-    _this.decorationsCount = 10;
-    _this.currentDecorationFrame = null;
-    return _this;
-  }
-
-  _createClass(Ore, [{
-    key: "init",
-    value: function init() {
-      _get(_getPrototypeOf(Ore.prototype), "init", this).call(this);
-
-      if (!this.allowDecorations) return;
-
-      if ((0, _math.chance)(50)) {
-        this.currentDecorationFrame = (0, _math.randomInt)(0, this.decorationsCount);
-      } else {
-        this.currentDecorationFrame = null;
-      }
-
-      if (this.checkBlockIn(new _math.Vector2(0, 1))) {
-        this.allowDecorations = false;
-      }
-    }
-  }, {
-    key: "update",
-    value: function update() {
-      _get(_getPrototypeOf(Ore.prototype), "update", this).call(this);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      _get(_getPrototypeOf(Ore.prototype), "render", this).call(this);
-
-      if (this.allowDecorations) this.renderDecorations();
-    }
-  }, {
-    key: "renderDecorations",
-    value: function renderDecorations() {
-      if (!this.visible || !this.currentDecorationFrame) return;
-      this.game.renderer.drawSprite({
-        texture: (0, _math.asImage)(this.game.getAssetByName("under-stone")),
-        frame: new _math.Vector2(this.currentDecorationFrame, 0),
-        position: this.position.add(new _math.Vector2(0, _config.Config.SPRITE_SIZE - (1 - this.scale.y) * _config.Config.SPRITE_SIZE)),
-        opacity: this.opacity,
-        scale: this.scale
-      });
-    }
-  }, {
-    key: "hit",
-    value: function hit(damage, toolLevel) {
-      if (!this.unbreakable && toolLevel >= this.needToolLevel) {
-        this.hp -= damage;
-        this.animatedScale = .8;
-        (0, _Particles.SpawnParticles)(this.game, this.position, {
-          colors: this.particlesColors,
-          size: [.2, .5],
-          count: 6,
-          box: function box() {
-            return new _math.Vector2((0, _math.random)(-_config.Config.SPRITE_SIZE / 2, _config.Config.SPRITE_SIZE / 2), (0, _math.random)(-_config.Config.SPRITE_SIZE / 2, _config.Config.SPRITE_SIZE / 2));
-          }
-        });
-
-        if (this.hp <= 0) {
-          // Break audio
-          this.sound.play(this.game, this.breakAudioNames[(0, _math.randomInt)(0, this.breakAudioNames.length - 1)]);
-          this.onBreak();
-        }
-      } // Hit audio
-
-
-      if (this.hp > 0) this.sound.play(this.game, this.hitAudioName);
-    }
-  }, {
-    key: "onBreak",
-    value: function onBreak() {
-      (0, _Particles.SpawnParticles)(this.game, this.position, {
-        colors: this.particlesColors
-      });
-      this.game.removeChildById(this.id);
-      this.game.generator.destroyOre(this.inChunkId);
-    }
-  }, {
-    key: "dropRawOre",
-    value: function dropRawOre(rawOre, chancePercent) {
-      var drop = true;
-      if (chancePercent) drop = (0, _math.chance)(chancePercent);
-      if (!drop) return;
-      this.game.add(new rawOre(this.position.add(new _math.Vector2((0, _math.random)(-10, 10), (0, _math.random)(-10, 10)))));
-      this.game.initChildren();
-    }
-  }]);
-
-  return Ore;
-}(_Block2.Block);
-
-exports.Ore = Ore;
-},{"../../engine/utils/math":"ts/engine/utils/math.ts","../../config":"ts/config.ts","../../engine/components/Particles":"ts/engine/components/Particles.ts","../Block":"ts/objects/Block.ts"}],"ts/objects/ores/Stone.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Stone = void 0;
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Stone = /*#__PURE__*/function (_Ore) {
-  _inherits(Stone, _Ore);
-
-  var _super = _createSuper(Stone);
-
-  function Stone(position) {
-    var _this;
-
-    _classCallCheck(this, Stone);
-
-    _this = _super.call(this, "stone", position);
-    _this.allowDecorations = true;
-    return _this;
-  }
-
-  return Stone;
-}(_Ore2.Ore);
-
-exports.Stone = Stone;
-},{"./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/FallingORe.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.FallingOre = void 0;
-
-var _config = require("../../config");
-
-var _Particles = require("../../engine/components/Particles");
-
-var _math = require("../../engine/utils/math");
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var FallingOre = /*#__PURE__*/function (_Ore) {
-  _inherits(FallingOre, _Ore);
-
-  var _super = _createSuper(FallingOre);
-
-  function FallingOre(type, position) {
-    var _this;
-
-    _classCallCheck(this, FallingOre);
-
-    _this = _super.call(this, type, position);
-    _this.elapsedBeforeFall = 0;
-    _this.allowFall = false;
-    _this.willFall = false;
-    _this.allowGravity = false;
-    _this.customColliderType = "solid";
-    return _this;
-  }
-
-  _createClass(FallingOre, [{
-    key: "init",
-    value: function init() {
-      var _this2 = this;
-
-      _get(_getPrototypeOf(FallingOre.prototype), "init", this).call(this);
-
-      this.acceleration.y = .98;
-      this.game.generator.onWorldChange(this.id, this.position, function () {
-        if (!_this2.checkBlockIn(new _math.Vector2(0, 1), false)) {
-          _this2.allowGravity = true;
-          _this2.animateScaleTo = .7;
-
-          _this2.crumble();
-        }
-      });
-    }
-  }, {
-    key: "update",
-    value: function update() {
-      _get(_getPrototypeOf(FallingOre.prototype), "update", this).call(this);
-
-      this.gravity();
-    }
-  }, {
-    key: "gravity",
-    value: function gravity() {
-      var _a;
-
-      if (this.game.generator.checkIsInLoadedChunk(this.position)) {
-        if (this.allowGravity) {
-          if ((this.game.clock.elapsed - this.elapsedBeforeFall) % _config.Config.ORE_FALL_DELAY == 0 && !this.allowFall) this.allowFall = true;
-
-          if (this.allowFall) {
-            if ((_a = this.collider.collidesWith) === null || _a === void 0 ? void 0 : _a.bottom) {
-              this.fallDestroy();
-            }
-
-            this.customColliderType = "dynamic"; // this.collider.type = "dynamic";
-
-            this.collider.width = this.collider.height = _config.Config.SPRITE_SCALE * 6;
-            this.velocity.y++;
-            var player = this.game.getChildById("player");
-
-            if (player && this.game.physics.collide(player, this).any) {
-              player.hit((0, _math.clamp)((0, _math.randomInt)(0, 5), 2, 5));
-            }
-          }
-        }
-      } else {
-        // this.velocity.y = 0;
-        if (!this.allowFall) this.elapsedBeforeFall = this.game.clock.elapsed;else this.fallDestroy();
-      }
-
-      this.collider.collidesWith = null;
-    }
-  }, {
-    key: "fallDestroy",
-    value: function fallDestroy() {
-      (0, _Particles.SpawnParticles)(this.game, this.position);
-      this.sound.play(this.game, "fall-stone-break");
-      this.game.removeChildById(this.id);
-      this.game.generator.destroyOre(this.inChunkId);
-    }
-  }, {
-    key: "crumble",
-    value: function crumble() {
-      (0, _Particles.SpawnParticles)(this.game, this.position.add(new _math.Vector2(0, 40)), {
-        velocity: function velocity() {
-          return new _math.Vector2((0, _math.random)(-2, 2), 0);
-        },
-        box: function box() {
-          return new _math.Vector2((0, _math.random)(-40, 40), 0);
-        },
-        count: 5
-      });
-    }
-  }]);
-
-  return FallingOre;
-}(_Ore2.Ore);
-
-exports.FallingOre = FallingOre;
-},{"../../config":"ts/config.ts","../../engine/components/Particles":"ts/engine/components/Particles.ts","../../engine/utils/math":"ts/engine/utils/math.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/CrackedStone.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CrackedStone = void 0;
-
-var _FallingORe = require("./FallingORe");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var CrackedStone = /*#__PURE__*/function (_FallingOre) {
-  _inherits(CrackedStone, _FallingOre);
-
-  var _super = _createSuper(CrackedStone);
-
-  function CrackedStone(position) {
-    _classCallCheck(this, CrackedStone);
-
-    return _super.call(this, "cracked-stone", position); // this.hp = 6;
-  }
-
-  return CrackedStone;
-}(_FallingORe.FallingOre);
-
-exports.CrackedStone = CrackedStone;
-},{"./FallingORe":"ts/objects/ores/FallingORe.ts"}],"ts/objects/ores/DeepStone.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.DeepStone = void 0;
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var DeepStone = /*#__PURE__*/function (_Ore) {
-  _inherits(DeepStone, _Ore);
-
-  var _super = _createSuper(DeepStone);
-
-  function DeepStone(position) {
-    var _this;
-
-    _classCallCheck(this, DeepStone);
-
-    _this = _super.call(this, "deep-stone", position);
-    _this.randomRotate = false;
-    _this.allowDecorations = true;
-    return _this;
-  }
-
-  return DeepStone;
-}(_Ore2.Ore);
-
-exports.DeepStone = DeepStone;
-},{"./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/raws/Raw.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Raw = void 0;
-
-var _ItemParent2 = require("../item/ItemParent");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Raw = /*#__PURE__*/function (_ItemParent) {
-  _inherits(Raw, _ItemParent);
-
-  var _super = _createSuper(Raw);
-
-  function Raw(type, position) {
-    var _this;
-
-    _classCallCheck(this, Raw);
-
-    _this = _super.call(this, type, type, position);
-    _this.rawType = type;
-    return _this;
-  }
-
-  return Raw;
-}(_ItemParent2.ItemParent);
-
-exports.Raw = Raw;
-},{"../item/ItemParent":"ts/objects/item/ItemParent.ts"}],"ts/objects/raws/RawCidium.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.RawCidium = void 0;
-
-var _Raw2 = require("./Raw");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var RawCidium = /*#__PURE__*/function (_Raw) {
-  _inherits(RawCidium, _Raw);
-
-  var _super = _createSuper(RawCidium);
-
-  function RawCidium(position) {
-    _classCallCheck(this, RawCidium);
-
-    return _super.call(this, "raw-cidium", position);
-  }
-
-  return RawCidium;
-}(_Raw2.Raw);
-
-exports.RawCidium = RawCidium;
-},{"./Raw":"ts/objects/raws/Raw.ts"}],"ts/objects/ores/Cidium.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Cidium = void 0;
-
-var _config = require("../../config");
-
-var _RawCidium = require("../raws/RawCidium");
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Cidium = /*#__PURE__*/function (_Ore) {
-  _inherits(Cidium, _Ore);
-
-  var _super = _createSuper(Cidium);
-
-  function Cidium(position) {
-    var _this;
-
-    _classCallCheck(this, Cidium);
-
-    _this = _super.call(this, "cidium", position); // this.hp = 20;
-
-    _this.particlesColors = [_config.Color.BLACK, _config.Color.YELLOW];
-    _this.allowDecorations = true;
-    return _this;
-  }
-
-  _createClass(Cidium, [{
-    key: "onBreak",
-    value: function onBreak() {
-      _get(_getPrototypeOf(Cidium.prototype), "onBreak", this).call(this);
-
-      this.dropRawOre(_RawCidium.RawCidium);
-    }
-  }]);
-
-  return Cidium;
-}(_Ore2.Ore);
-
-exports.Cidium = Cidium;
-},{"../../config":"ts/config.ts","../raws/RawCidium":"ts/objects/raws/RawCidium.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/names.ts":[function(require,module,exports) {
+},{"../config":"ts/config.ts","../engine/utils/math":"ts/engine/utils/math.ts"}],"ts/names.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5267,6 +4570,11 @@ var ObjectNames = {
   "item-robot": {
     name: "Робот",
     desc: "Ваш лисный робот-компаньон. Копает небольшой тунель вниз. Безсилен против базальта"
+  },
+  // Food
+  "food-fetus": {
+    name: "Исцеляющий плод",
+    desc: "Сладкий плод цветущей лозы, востонавливает запас крови"
   },
   // Gear
   "gear-storage": {
@@ -5348,7 +4656,10 @@ var Gear = /*#__PURE__*/function (_Sprite) {
 
     _classCallCheck(this, Gear);
 
-    _this = _super.call(this, type, [type, 1].join("-"), props);
+    _this = _super.call(this, type, [type, 1].join("-"), Object.assign({
+      layer: "game",
+      colliderType: "solid"
+    }, props));
     _this.width = _this.height = 2;
     _this.sound = new _Sound.Sound();
     _this.ui = new _UI.UI();
@@ -5358,7 +4669,7 @@ var Gear = /*#__PURE__*/function (_Sprite) {
     _this.level = level;
     _this.playerIsNear = false;
     _this.allowInteract = true;
-    _this.layer = "bg";
+    _this.collider.width = _this.collider.height = _config.Config.SPRITE_SIZE - 20;
     _this.headerOffset = new _math.Vector2();
     _this.interactText = "";
     _this.tipText = "закрыть";
@@ -5565,7 +4876,7 @@ var OxygenGenerator = /*#__PURE__*/function (_Gear) {
     _this = _super.call(this, "gear-oxygen-generator", 1, props);
     _this.startPosition = _this.position.expand();
     _this.oxygenLevel = 100;
-    _this.batteryLevel = 15;
+    _this.batteryLevel = 100;
     _this.animatedOxygenLevel = 100;
     _this.animatedBatteryLevel = 100;
     _this.playerWithBattery = false;
@@ -5760,8 +5071,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Food = void 0;
 
-var _math = require("../../engine/utils/math");
-
 var _ItemParent2 = require("../item/ItemParent");
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -5803,29 +5112,37 @@ var Food = /*#__PURE__*/function (_ItemParent) {
   }
 
   _createClass(Food, [{
-    key: "onUse",
-    value: function onUse(player) {
-      player.heal((0, _math.randomInt)(1, 2));
-    }
+    key: "onEat",
+    value: function onEat(player) {}
   }]);
 
   return Food;
 }(_ItemParent2.ItemParent);
 
 exports.Food = Food;
-},{"../../engine/utils/math":"ts/engine/utils/math.ts","../item/ItemParent":"ts/objects/item/ItemParent.ts"}],"ts/objects/food/Fetus.ts":[function(require,module,exports) {
+},{"../item/ItemParent":"ts/objects/item/ItemParent.ts"}],"ts/objects/food/HealingFetus.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Fetus = void 0;
+exports.HealingFetus = void 0;
+
+var _math = require("../../engine/utils/math");
 
 var _Food2 = require("./Food");
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -5841,22 +5158,31 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var Fetus = /*#__PURE__*/function (_Food) {
-  _inherits(Fetus, _Food);
+var HealingFetus = /*#__PURE__*/function (_Food) {
+  _inherits(HealingFetus, _Food);
 
-  var _super = _createSuper(Fetus);
+  var _super = _createSuper(HealingFetus);
 
-  function Fetus(position) {
-    _classCallCheck(this, Fetus);
+  function HealingFetus(position) {
+    _classCallCheck(this, HealingFetus);
 
     return _super.call(this, "food-fetus", position);
   }
 
-  return Fetus;
+  _createClass(HealingFetus, [{
+    key: "onEat",
+    value: function onEat(player) {
+      _get(_getPrototypeOf(HealingFetus.prototype), "onEat", this).call(this, player);
+
+      player.heal((0, _math.randomInt)(1, 2));
+    }
+  }]);
+
+  return HealingFetus;
 }(_Food2.Food);
 
-exports.Fetus = Fetus;
-},{"./Food":"ts/objects/food/Food.ts"}],"ts/objects/item/Battery.ts":[function(require,module,exports) {
+exports.HealingFetus = HealingFetus;
+},{"../../engine/utils/math":"ts/engine/utils/math.ts","./Food":"ts/objects/food/Food.ts"}],"ts/objects/item/Battery.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5942,7 +5268,54 @@ var Drill = /*#__PURE__*/function (_Item) {
 }(_Item2.Item);
 
 exports.Drill = Drill;
-},{"./Item":"ts/objects/item/Item.ts"}],"ts/objects/raws/RawAntin.ts":[function(require,module,exports) {
+},{"./Item":"ts/objects/item/Item.ts"}],"ts/objects/raws/Raw.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Raw = void 0;
+
+var _ItemParent2 = require("../item/ItemParent");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Raw = /*#__PURE__*/function (_ItemParent) {
+  _inherits(Raw, _ItemParent);
+
+  var _super = _createSuper(Raw);
+
+  function Raw(type, position) {
+    var _this;
+
+    _classCallCheck(this, Raw);
+
+    _this = _super.call(this, type, type, position);
+    _this.rawType = type;
+    return _this;
+  }
+
+  return Raw;
+}(_ItemParent2.ItemParent);
+
+exports.Raw = Raw;
+},{"../item/ItemParent":"ts/objects/item/ItemParent.ts"}],"ts/objects/raws/RawAntin.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5985,6 +5358,49 @@ var RawAntin = /*#__PURE__*/function (_Raw) {
 }(_Raw2.Raw);
 
 exports.RawAntin = RawAntin;
+},{"./Raw":"ts/objects/raws/Raw.ts"}],"ts/objects/raws/RawCidium.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RawCidium = void 0;
+
+var _Raw2 = require("./Raw");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var RawCidium = /*#__PURE__*/function (_Raw) {
+  _inherits(RawCidium, _Raw);
+
+  var _super = _createSuper(RawCidium);
+
+  function RawCidium(position) {
+    _classCallCheck(this, RawCidium);
+
+    return _super.call(this, "raw-cidium", position);
+  }
+
+  return RawCidium;
+}(_Raw2.Raw);
+
+exports.RawCidium = RawCidium;
 },{"./Raw":"ts/objects/raws/Raw.ts"}],"ts/objects/raws/RawGradeCidium.ts":[function(require,module,exports) {
 "use strict";
 
@@ -6339,7 +5755,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Items = void 0;
 
-var _Fetus = require("./objects/food/Fetus");
+var _HealingFetus = require("./objects/food/HealingFetus");
 
 var _Battery = require("./objects/item/Battery");
 
@@ -6376,10 +5792,10 @@ var Items = {
   "battery": _Battery.Battery,
   "drill": _Drill.Drill,
   // Food
-  "food-fetus": _Fetus.Fetus
+  "food-fetus": _HealingFetus.HealingFetus
 };
 exports.Items = Items;
-},{"./objects/food/Fetus":"ts/objects/food/Fetus.ts","./objects/item/Battery":"ts/objects/item/Battery.ts","./objects/item/Drill":"ts/objects/item/Drill.ts","./objects/item/RobotItem":"ts/objects/item/RobotItem.ts","./objects/raws/RawAntin":"ts/objects/raws/RawAntin.ts","./objects/raws/RawCidium":"ts/objects/raws/RawCidium.ts","./objects/raws/RawGradeCidium":"ts/objects/raws/RawGradeCidium.ts","./objects/raws/RawNerius":"ts/objects/raws/RawNerius.ts","./objects/raws/RawOsmy":"ts/objects/raws/RawOsmy.ts","./objects/raws/RawRady":"ts/objects/raws/RawRady.ts","./objects/ready/ReadyCidium":"ts/objects/ready/ReadyCidium.ts"}],"ts/objects/gear/recipes.ts":[function(require,module,exports) {
+},{"./objects/food/HealingFetus":"ts/objects/food/HealingFetus.ts","./objects/item/Battery":"ts/objects/item/Battery.ts","./objects/item/Drill":"ts/objects/item/Drill.ts","./objects/item/RobotItem":"ts/objects/item/RobotItem.ts","./objects/raws/RawAntin":"ts/objects/raws/RawAntin.ts","./objects/raws/RawCidium":"ts/objects/raws/RawCidium.ts","./objects/raws/RawGradeCidium":"ts/objects/raws/RawGradeCidium.ts","./objects/raws/RawNerius":"ts/objects/raws/RawNerius.ts","./objects/raws/RawOsmy":"ts/objects/raws/RawOsmy.ts","./objects/raws/RawRady":"ts/objects/raws/RawRady.ts","./objects/ready/ReadyCidium":"ts/objects/ready/ReadyCidium.ts"}],"ts/objects/gear/recipes.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6426,20 +5842,20 @@ var recipes = function recipes(recycler) {
     "drill": new _Recycler.Recipe({
       recipe: function recipe() {
         return {
+          // "ready-cidium": { count: 1 },
           "ready-cidium": {
-            count: 1
-          } // "ready-cidium": { count: 3 },
-          // "raw-osmy": { count: 2 },
-          // "raw-nerius": { count: 2 },
-
+            count: 2
+          },
+          "raw-nerius": {
+            count: 2
+          }
         };
       }
     }),
     // Storage up
     "storage-level-up": new _Recycler.Recipe({
       recipe: function recipe() {
-        return [// { "raw-cidium": { count: 1 }, "raw-osmy": { count: 1 } }, // Level 2
-        {
+        return [{
           "ready-cidium": {
             count: 2
           },
@@ -6451,7 +5867,7 @@ var recipes = function recipes(recycler) {
             count: 4
           },
           "raw-osmy": {
-            count: 6
+            count: 3
           },
           "raw-grade-cidium": {
             count: 2
@@ -6509,6 +5925,9 @@ var recipes = function recipes(recycler) {
           },
           "raw-osmy": {
             count: 4
+          },
+          "drill": {
+            count: 1
           },
           "raw-antin": {
             count: 3
@@ -6672,6 +6091,7 @@ var Recycler = /*#__PURE__*/function (_Gear) {
         this.ui.enabled = false;
         this.ui.focused.slot = 1;
         this.ui.focused.row = 10;
+        return;
       }
 
       if (this.ui.enabled && this.ui.focused.slot == 1 && this.ui.focused.row == 10) {
@@ -6679,12 +6099,14 @@ var Recycler = /*#__PURE__*/function (_Gear) {
         this.ui.focused.row = 0;
       }
 
-      if (this.ui.focused.row == 1) {
+      if (this.ui.focused.row != 0) {
+        var focused = this.ui.focused.slot + (this.ui.focused.row - 1) * this.maxRowItemsCount;
         var recipesKeys = this.getRecipesKeys();
-        var recipe = this.recipes[recipesKeys[this.ui.focused.slot]]; // Craft
+        var recipe = this.recipes[recipesKeys[focused]];
+        console.log(recipesKeys[focused]); // Craft
 
         if (recipe.canCraft(this.storage)) {
-          recipe.onCraft(this.game, this.storage, this.position, recipesKeys[this.ui.focused.slot]);
+          recipe.onCraft(this.game, this.storage, this.position, recipesKeys[focused]);
           this.ui.enabled = false;
           this.sound.play(this.game, "crafting");
           this.ui.focused.slot = 1;
@@ -6704,7 +6126,7 @@ var Recycler = /*#__PURE__*/function (_Gear) {
       var recipesKeys = this.getRecipesKeys();
       this.actionType = this.ui.focused.row == 0 && this.ui.focused.slot == 0 ? "close" : "craft";
       this.tipText = this.actionType == "close" ? "закрыть" : "изготовить";
-      this.ui.updateTemplate([1, (0, _math.clamp)(recipesKeys.length, 0, this.maxRowItemsCount), (0, _math.clamp)(recipesKeys.length > this.maxRowItemsCount ? recipesKeys.length - this.maxRowItemsCount : 0, 0, this.maxRowItemsCount)]);
+      this.ui.updateTemplate([1, (0, _math.clamp)(recipesKeys.length, 0, this.maxRowItemsCount), recipesKeys.length > this.maxRowItemsCount ? recipesKeys.length - this.maxRowItemsCount : 0]);
       if (!this.ui.enabled) return;
       this.renderRecipesUI(recipesKeys);
       this.renderDescriptionUI(recipesKeys);
@@ -6939,19 +6361,31 @@ var Storage = /*#__PURE__*/function (_Gear) {
     _classCallCheck(this, Storage);
 
     _this = _super.call(this, "gear-storage", 1, props);
-    _this.contains = {
-      totalCount: 8,
+    if (_config.Config.IS_DEV) _this.contains = {
+      totalCount: 0,
       slots: {
         "raw-cidium": {
-          count: 6
+          count: 1
         },
         "raw-osmy": {
-          count: 2
+          count: 1
+        },
+        "ready-cidium": {
+          count: 1
+        },
+        "item-robot": {
+          count: 1
         },
         "food-fetus": {
-          count: 4
+          count: 2
+        },
+        "raw-manty": {
+          count: 1
         }
       }
+    };else _this.contains = {
+      totalCount: 0,
+      slots: {}
     };
     _this.interactType = "view";
     _this.maxTotalCount = MaxStorageTotalCount["".concat(_this.level, "-level")];
@@ -6964,6 +6398,13 @@ var Storage = /*#__PURE__*/function (_Gear) {
   }
 
   _createClass(Storage, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(Storage.prototype), "init", this).call(this);
+
+      this.calculateTotalCount();
+    }
+  }, {
     key: "update",
     value: function update() {
       var _this2 = this;
@@ -7095,16 +6536,16 @@ var Storage = /*#__PURE__*/function (_Gear) {
       _get(_getPrototypeOf(Storage.prototype), "renderUI", this).call(this);
 
       if (!this.ui.enabled) return;
-      var slots = this.filterItems(this.contains.slots);
-      this.ui.updateTemplate([slots.length > 0 ? 1 : 0, slots.length]);
+      var slotNames = this.filterItems(this.contains.slots);
+      this.ui.updateTemplate([slotNames.length > 0 ? 1 : 0, (0, _math.clamp)(slotNames.length, 0, this.maxRowItemsCount), slotNames.length > this.maxRowItemsCount ? slotNames.length - this.maxRowItemsCount : 0]);
 
       if (!this.ui.template[0]) {
         this.ui.focused.row = 1;
         this.ui.focused.slot = 0;
       }
 
-      this.renderInventoryUI(slots);
-      var name = slots[this.ui.ghostFocused.slot];
+      this.renderInventoryUI(slotNames);
+      var name = slotNames[this.ui.ghostFocused.slot];
       var item = _names.ObjectNames[name];
       if (!item) return;
 
@@ -7159,7 +6600,7 @@ var Storage = /*#__PURE__*/function (_Gear) {
       slots.map(function (slot, index) {
         var pos = new _math.Vector2(index % _this6.maxRowItemsCount * size - size * Math.floor(_this6.maxRowItemsCount / 2), Math.floor(index / _this6.maxRowItemsCount) * size).add(windowCenter).add(new _math.Vector2(0, -size));
 
-        _this6.ui.renderSlot(pos, 1, index, function () {
+        _this6.ui.renderSlot(pos, Math.floor(index / _this6.maxRowItemsCount) + 1, index % _this6.maxRowItemsCount, function () {
           var count = _this6.contains.slots[slot].count; // Draw item sprite
 
           _this6.game.renderer.drawSprite({
@@ -7230,24 +6671,25 @@ function initDome(game) {
     width: 8,
     height: 8,
     position: domePosition,
-    layer: "particles"
+    layer: "particles",
+    colliderType: "none"
   }));
 }
-},{"../config":"ts/config.ts","../engine":"ts/engine/index.ts","../engine/utils/math":"ts/engine/utils/math.ts","../objects/gear/OxygenGenerator":"ts/objects/gear/OxygenGenerator.ts","../objects/gear/Recycler":"ts/objects/gear/Recycler.ts","../objects/gear/Storage":"ts/objects/gear/Storage.ts"}],"ts/objects/ores/Osmy.ts":[function(require,module,exports) {
+},{"../config":"ts/config.ts","../engine":"ts/engine/index.ts","../engine/utils/math":"ts/engine/utils/math.ts","../objects/gear/OxygenGenerator":"ts/objects/gear/OxygenGenerator.ts","../objects/gear/Recycler":"ts/objects/gear/Recycler.ts","../objects/gear/Storage":"ts/objects/gear/Storage.ts"}],"ts/objects/Block.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Osmy = void 0;
+exports.Block = void 0;
 
-var _config = require("../../config");
+var _config = require("../config");
 
-var _RawGradeCidium = require("../raws/RawGradeCidium");
+var _engine = require("../engine");
 
-var _RawOsmy = require("../raws/RawOsmy");
+var _Sound = require("../engine/components/Sound");
 
-var _Ore2 = require("./Ore");
+var _math = require("../engine/utils/math");
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -7275,52 +6717,126 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var Osmy = /*#__PURE__*/function (_Ore) {
-  _inherits(Osmy, _Ore);
+var Block = /*#__PURE__*/function (_Sprite) {
+  _inherits(Block, _Sprite);
 
-  var _super = _createSuper(Osmy);
+  var _super = _createSuper(Block);
 
-  function Osmy(position) {
+  function Block(name, assetName, position, props) {
     var _this;
 
-    _classCallCheck(this, Osmy);
+    _classCallCheck(this, Block);
 
-    _this = _super.call(this, "osmy", position);
-    _this.randomRotate = false;
-    _this.particlesColors = [_config.Color.BLACK, _config.Color.BLUE];
-    _this.allowDecorations = true;
+    _this = _super.call(this, name, assetName, Object.assign(Object.assign({
+      colliderType: "none"
+    }, props), {
+      position: position.add(new _math.Vector2(0, 0)).mul(_config.Config.SPRITE_PIXEL_SIZE * _config.Config.SPRITE_SCALE)
+    }));
+    _this.inChunkId = "";
+    _this.sound = new _Sound.Sound();
+    _this.animatedScale = 1;
+    _this.animateScaleTo = 1;
+    _this.darkenFactor = 1;
+    _this.randomRotate = true;
+    _this.randomFlipX = true;
+    _this.customColliderType = "solid";
     return _this;
   }
 
-  _createClass(Osmy, [{
-    key: "onBreak",
-    value: function onBreak() {
-      _get(_getPrototypeOf(Osmy.prototype), "onBreak", this).call(this);
+  _createClass(Block, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(Block.prototype), "init", this).call(this);
 
-      this.dropRawOre(_RawOsmy.RawOsmy);
-      this.dropRawOre(_RawGradeCidium.RawGradeCidium, 100);
+      if (this.randomRotate) this.rotation = Math.floor((0, _math.random)(1, 5)) * Math.PI;
+      if (this.randomFlipX) this.flip.x = Boolean(Math.floor((0, _math.random)(0, 2)));
+      if (_config.Config.ALLOW_DARK) this.visible = false;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      _get(_getPrototypeOf(Block.prototype), "render", this).call(this);
+
+      if (_config.Config.ALLOW_DARK) this.darken();
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      var _this2 = this;
+
+      _get(_getPrototypeOf(Block.prototype), "update", this).call(this); // this.sound.update3D(this.game, this.position);
+
+
+      this.animatedScale = (0, _math.lerp)(this.animatedScale, this.animateScaleTo, .2);
+      this.scale.set(this.animatedScale, this.animatedScale);
+      if (this.game.children.find(function (child) {
+        return child.collider.type == "dynamic" && child.position.distance(_this2.position) < 300;
+      })) this.collider.type = (0, _math.safeValue)(this.customColliderType, "solid");else this.collider.type = "none";
+    }
+  }, {
+    key: "darken",
+    value: function darken() {
+      var t = 1 - this.game.camera.position.y / 200;
+      var d = this.game.camera.position.distance(this.position) - 200;
+      this.darkenFactor = (d > 96 ? 1 : d / 96) + (t > 0 ? t : 0);
+      if (this.darkenFactor < 1) this.opacity = 1 - this.darkenFactor;
+      this.visible = this.darkenFactor < 1;
+    }
+  }, {
+    key: "checkBlockIn",
+    value: function checkBlockIn(offset, checkChunkBorders, findName) {
+      var size = _config.Config.SPRITE_SIZE;
+      var blocks = this.game.getChildrenByName(findName || "ore");
+      var thisPos = this.position.div(size).apply(Math.floor);
+      return +this.inChunkId.split("-")[1] >= 3 && (0, _math.safeValue)(checkChunkBorders, true) || blocks.filter(function (block) {
+        return block.name.indexOf("plant") < 0;
+      }).findIndex(function (block) {
+        var orePos = block.position.div(size).apply(Math.floor);
+        return _math.Vector2.compare(orePos, thisPos.add(offset));
+      }) >= 0;
+    }
+  }, {
+    key: "dropItem",
+    value: function dropItem(item, chancePercent, offset) {
+      var drop = true;
+      if (chancePercent) drop = (0, _math.chance)(chancePercent);
+      if (!drop) return;
+      this.game.add(new item(this.position.add(offset || _math.Vector2.zero()).add(new _math.Vector2((0, _math.random)(-10, 10), (0, _math.random)(-10, 10)))));
+      this.game.initChildren();
     }
   }]);
 
-  return Osmy;
-}(_Ore2.Ore);
+  return Block;
+}(_engine.Sprite);
 
-exports.Osmy = Osmy;
-},{"../../config":"ts/config.ts","../raws/RawGradeCidium":"ts/objects/raws/RawGradeCidium.ts","../raws/RawOsmy":"ts/objects/raws/RawOsmy.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Basalt.ts":[function(require,module,exports) {
+exports.Block = Block;
+},{"../config":"ts/config.ts","../engine":"ts/engine/index.ts","../engine/components/Sound":"ts/engine/components/Sound.ts","../engine/utils/math":"ts/engine/utils/math.ts"}],"ts/objects/ores/Ore.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Basalt = void 0;
+exports.Ore = void 0;
+
+var _math = require("../../engine/utils/math");
 
 var _config = require("../../config");
 
-var _Ore2 = require("./Ore");
+var _Particles = require("../../engine/components/Particles");
+
+var _Block2 = require("../Block");
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -7336,28 +6852,116 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var Basalt = /*#__PURE__*/function (_Ore) {
-  _inherits(Basalt, _Ore);
+var Ore = /*#__PURE__*/function (_Block) {
+  _inherits(Ore, _Block);
 
-  var _super = _createSuper(Basalt);
+  var _super = _createSuper(Ore);
 
-  function Basalt(position) {
+  function Ore(type, position, props) {
     var _this;
 
-    _classCallCheck(this, Basalt);
+    _classCallCheck(this, Ore);
 
-    _this = _super.call(this, "basalt", position); // this.needToolLevel = 3;
-    // this.hp = 40;
+    var _a;
 
-    _this.particlesColors = [_config.Color.GREY];
+    _this = _super.call(this, "ore-".concat(type), type, position, props);
+    _this.oreType = type;
+    _this.tilePosition = position;
+    var settings = _config.OreSettings[type];
+    _this.hp = settings ? settings.hp : _config.OreSettings["stone"].hp;
+    _this.needToolLevel = ((_a = _config.OreSettings[type]) === null || _a === void 0 ? void 0 : _a.tool) || 1;
+    _this.unbreakable = false;
+    _this.particlesColors = [_config.Color.BLACK];
+    _this.hitAudioName = "stone-hit";
+    _this.breakAudioNames = ["stone-break-1", "stone-break-2", "stone-break-3"];
+    _this.allowDecorations = false;
+    _this.decorationsCount = 10;
+    _this.currentDecorationFrame = null;
     return _this;
   }
 
-  return Basalt;
-}(_Ore2.Ore);
+  _createClass(Ore, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(Ore.prototype), "init", this).call(this);
 
-exports.Basalt = Basalt;
-},{"../../config":"ts/config.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Antin.ts":[function(require,module,exports) {
+      if (!this.allowDecorations) return;
+
+      if ((0, _math.chance)(50)) {
+        this.currentDecorationFrame = (0, _math.randomInt)(0, this.decorationsCount);
+      } else {
+        this.currentDecorationFrame = null;
+      }
+
+      if (this.checkBlockIn(new _math.Vector2(0, 1))) {
+        this.allowDecorations = false;
+      }
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      _get(_getPrototypeOf(Ore.prototype), "update", this).call(this);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      _get(_getPrototypeOf(Ore.prototype), "render", this).call(this);
+
+      if (this.allowDecorations) this.renderDecorations();
+    }
+  }, {
+    key: "renderDecorations",
+    value: function renderDecorations() {
+      if (!this.visible || !this.currentDecorationFrame) return;
+      this.game.renderer.drawSprite({
+        texture: (0, _math.asImage)(this.game.getAssetByName("under-stone")),
+        frame: new _math.Vector2(this.currentDecorationFrame, 0),
+        position: this.position.add(new _math.Vector2(0, _config.Config.SPRITE_SIZE - (1 - this.scale.y) * _config.Config.SPRITE_SIZE)),
+        opacity: this.opacity,
+        scale: this.scale
+      });
+    }
+  }, {
+    key: "hit",
+    value: function hit(damage, toolLevel) {
+      if (!this.unbreakable && toolLevel >= this.needToolLevel) {
+        this.hp -= damage;
+        this.animatedScale = .8;
+        (0, _Particles.SpawnParticles)(this.game, this.position, {
+          colors: this.particlesColors,
+          size: [.2, .5],
+          count: 6,
+          box: function box() {
+            return new _math.Vector2((0, _math.random)(-_config.Config.SPRITE_SIZE / 2, _config.Config.SPRITE_SIZE / 2), (0, _math.random)(-_config.Config.SPRITE_SIZE / 2, _config.Config.SPRITE_SIZE / 2));
+          }
+        });
+
+        if (this.hp <= 0) {
+          // Break audio
+          this.sound.play(this.game, this.breakAudioNames[(0, _math.randomInt)(0, this.breakAudioNames.length - 1)]);
+          this.onBreak();
+        }
+      } // Hit audio
+
+
+      if (this.hp > 0) this.sound.play(this.game, this.hitAudioName);
+    }
+  }, {
+    key: "onBreak",
+    value: function onBreak() {
+      (0, _Particles.SpawnParticles)(this.game, this.position, {
+        colors: this.particlesColors
+      });
+      this.game.removeChildById(this.id);
+      this.game.generator.destroyOre(this.inChunkId);
+    }
+  }]);
+
+  return Ore;
+}(_Block2.Block);
+
+exports.Ore = Ore;
+},{"../../engine/utils/math":"ts/engine/utils/math.ts","../../config":"ts/config.ts","../../engine/components/Particles":"ts/engine/components/Particles.ts","../Block":"ts/objects/Block.ts"}],"ts/objects/ores/Antin.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7419,7 +7023,7 @@ var Antin = /*#__PURE__*/function (_Ore) {
     value: function onBreak() {
       _get(_getPrototypeOf(Antin.prototype), "onBreak", this).call(this);
 
-      this.dropRawOre(_RawAntin.RawAntin);
+      this.dropItem(_RawAntin.RawAntin);
     }
   }]);
 
@@ -7427,7 +7031,946 @@ var Antin = /*#__PURE__*/function (_Ore) {
 }(_Ore2.Ore);
 
 exports.Antin = Antin;
-},{"../../config":"ts/config.ts","../raws/RawAntin":"ts/objects/raws/RawAntin.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/DangerOre.ts":[function(require,module,exports) {
+},{"../../config":"ts/config.ts","../raws/RawAntin":"ts/objects/raws/RawAntin.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/InfectedOre.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.InfectedOre = void 0;
+
+var _config = require("../../config");
+
+var _math = require("../../engine/utils/math");
+
+var _noise = require("../../engine/utils/noise");
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var InfectedOre = /*#__PURE__*/function (_Ore) {
+  _inherits(InfectedOre, _Ore);
+
+  var _super = _createSuper(InfectedOre);
+
+  function InfectedOre(type, position, data, props) {
+    var _this;
+
+    _classCallCheck(this, InfectedOre);
+
+    _this = _super.call(this, type, position, props);
+    _this.allowInfect = false;
+    _this.blockBelow = false;
+    _this.infectionStage = data ? data.infectionStage || 0 : 0;
+    _this.target = undefined;
+    _this.isEating = false;
+    _this.daturaPosition = _math.Vector2.zero();
+    _this.daturaRotation = 0;
+    _this.tonguePosition = _math.Vector2.zero();
+    _this.tongueVelocity = _math.Vector2.zero();
+    _this.startTonguePosition = _math.Vector2.zero();
+    return _this;
+  }
+
+  _createClass(InfectedOre, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(InfectedOre.prototype), "init", this).call(this);
+
+      this.checkEmptySpace();
+      this.daturaPosition = this.position.add(new _math.Vector2(0, _config.Config.SPRITE_SIZE - 10));
+      this.tonguePosition.copy(this.daturaPosition.add(new _math.Vector2(0, 20)));
+      this.startTonguePosition = this.position.add(new _math.Vector2(0, _config.Config.SPRITE_SIZE + 100));
+      this.infect();
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      _get(_getPrototypeOf(InfectedOre.prototype), "update", this).call(this);
+
+      this.tonguePosition.x += this.tongueVelocity.x;
+      this.tonguePosition.y += this.tongueVelocity.y;
+      this.tongueVelocity.x *= .9;
+      this.tongueVelocity.y *= .9;
+      this.isEating = !!this.target && this.target.position.distance(this.daturaPosition) < 120;
+      if (this.isEating && this.target && this.target.hit) if (this.game.tick(60)) this.target.hit((0, _math.clamp)((0, _math.randomInt)(-1, 2), 1, 2));
+      this.growInfection();
+      this.sticking();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      _get(_getPrototypeOf(InfectedOre.prototype), "render", this).call(this);
+
+      if (!this.allowInfect) return;
+      this.daturaRotation = (0, _math.lerp)(this.daturaRotation, (0, _math.clamp)(new _math.Vector2().copy(this.position.sub(this.tonguePosition.add(new _math.Vector2(-4)))).angle() - Math.PI * 1.5, -Math.PI / 5, Math.PI / 5), .1); // Render infection
+      // Infection
+
+      if (this.infectionStage >= 1 && this.visible) this.game.renderer.drawSprite({
+        texture: (0, _math.asImage)(this.game.getAssetByName("infection")),
+        position: this.position,
+        flip: this.flip,
+        opacity: this.opacity,
+        layer: "plants"
+      });
+      var frame = this.target ? 1 + (this.isEating ? Math.floor(this.game.clock.elapsed / 20) % 2 : 0) : 0; // Datura
+
+      if (this.infectionStage >= 2 && this.visible) this.game.renderer.drawSprite({
+        texture: (0, _math.asImage)(this.game.getAssetByName("datura")),
+        frame: new _math.Vector2(this.infectionStage - 2 + frame, 0),
+        width: 2,
+        height: 2,
+        position: this.daturaPosition.add(new _math.Vector2(0, 30)),
+        opacity: this.opacity,
+        layer: "plants",
+        origin: new _math.Vector2(4, -40),
+        // Rotate
+        rotation: this.daturaRotation
+      });
+      this.renderTongue();
+    }
+  }, {
+    key: "sticking",
+    value: function sticking() {
+      var _this2 = this;
+
+      if (this.infectionStage < 3 || !this.allowInfect) return;
+      var body = this.game.children.find(function (child) {
+        return child.collider.type == "dynamic" && (child.position.distance(_this2.daturaPosition) < 100 || child.position.distance(_this2.startTonguePosition) < 100);
+      });
+      this.target = body;
+
+      if (!this.target) {
+        this.tongueTo(this.startTonguePosition);
+        this.tongueVelocity.copy(this.tongueVelocity.mul(.97));
+      } else {
+        this.tongueVelocity.copy(this.tongueVelocity.mul(0)); // Tongue to target
+
+        if (this.tonguePosition.distance(this.target.position) < 20) this.tonguePosition = this.target.position.expand();else this.tonguePosition.lerp(this.target.position, .4); // Move player to datura
+
+        if (body) if (body.position.distance(this.daturaPosition) > 10) body.velocity.copy(body.velocity.add(body.position.sub(this.daturaPosition).normalize().mul(-4)));
+      }
+    }
+  }, {
+    key: "renderTongue",
+    value: function renderTongue() {
+      if (this.infectionStage < 3) return;
+      var sin = this.isEating ? (Math.sin(this.game.clock.elapsed / 4) + 1) / 2 : 0;
+      if (this.visible) // Tongue line
+        this.game.renderer.drawLine({
+          color: "#fbc67e",
+          width: 4 + sin * 4,
+          points: [this.position.add(new _math.Vector2(4, _config.Config.SPRITE_SIZE - 22)), this.tonguePosition.add(new _math.Vector2(4))],
+          opacity: this.opacity,
+          layer: "plants"
+        }); // Tongue point
+
+      this.game.renderer.drawSprite({
+        texture: (0, _math.asImage)(this.game.getAssetByName("datura-tongue")),
+        scale: _math.Vector2.all(1 + sin / 4),
+        position: this.tonguePosition.add(new _math.Vector2(6)),
+        layer: "plants"
+      });
+    }
+  }, {
+    key: "tongueTo",
+    value: function tongueTo(position) {
+      var to = position.sub(this.tonguePosition).mul(.04);
+      this.tongueVelocity.copy(this.tongueVelocity.add(to));
+    }
+  }, {
+    key: "infect",
+    value: function infect() {
+      if ((0, _noise.simplex2)(this.position.x, this.position.y) > (!this.blockBelow ? .25 : .9)) {
+        this.allowInfect = true;
+        this.allowDecorations = false;
+      }
+    }
+  }, {
+    key: "growInfection",
+    value: function growInfection() {
+      if (!this.allowInfect) return;
+
+      if (this.game.tick(_config.Config.INFECTION_GROW_TICK) && this.infectionStage < 3) {
+        if ((0, _math.chance)(_config.Config.INFECTION_GROW_CHANCE)) {
+          var needStage = this.infectionStage + 1;
+          this.checkEmptySpace();
+          if (needStage > 1 && this.blockBelow) return;
+          this.infectionStage = needStage;
+          this.saveData();
+        }
+      }
+    }
+  }, {
+    key: "onBreak",
+    value: function onBreak() {
+      if (this.infectionStage >= 2 && this.allowInfect) this.particlesColors = [_config.Color.ORANGE, _config.Color.BLACK];
+
+      _get(_getPrototypeOf(InfectedOre.prototype), "onBreak", this).call(this);
+    }
+  }, {
+    key: "checkEmptySpace",
+    value: function checkEmptySpace() {
+      this.blockBelow = this.checkBlockIn(new _math.Vector2(0, 1), true);
+    }
+  }, {
+    key: "saveData",
+    value: function saveData() {
+      this.game.generator.modifyOre(this.inChunkId, {
+        infectionStage: this.infectionStage
+      });
+    }
+  }]);
+
+  return InfectedOre;
+}(_Ore2.Ore);
+
+exports.InfectedOre = InfectedOre;
+},{"../../config":"ts/config.ts","../../engine/utils/math":"ts/engine/utils/math.ts","../../engine/utils/noise":"ts/engine/utils/noise.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Basalt.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Basalt = void 0;
+
+var _config = require("../../config");
+
+var _InfectedOre2 = require("./InfectedOre");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Basalt = /*#__PURE__*/function (_InfectedOre) {
+  _inherits(Basalt, _InfectedOre);
+
+  var _super = _createSuper(Basalt);
+
+  function Basalt(position, data) {
+    var _this;
+
+    _classCallCheck(this, Basalt);
+
+    _this = _super.call(this, "basalt", position, data);
+    _this.particlesColors = [_config.Color.GREY];
+    return _this;
+  }
+
+  return Basalt;
+}(_InfectedOre2.InfectedOre);
+
+exports.Basalt = Basalt;
+},{"../../config":"ts/config.ts","./InfectedOre":"ts/objects/ores/InfectedOre.ts"}],"ts/objects/ores/BurntBasalt.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.BurntBasalt = void 0;
+
+var _config = require("../../config");
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var BurntBasalt = /*#__PURE__*/function (_Ore) {
+  _inherits(BurntBasalt, _Ore);
+
+  var _super = _createSuper(BurntBasalt);
+
+  function BurntBasalt(position) {
+    var _this;
+
+    _classCallCheck(this, BurntBasalt);
+
+    _this = _super.call(this, "burnt-basalt", position); // this.needToolLevel = 4;
+    // this.hp = 80;
+
+    _this.particlesColors = [_config.Color.DARK_GREY];
+    return _this;
+  }
+
+  return BurntBasalt;
+}(_Ore2.Ore);
+
+exports.BurntBasalt = BurntBasalt;
+},{"../../config":"ts/config.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Cidium.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Cidium = void 0;
+
+var _config = require("../../config");
+
+var _RawCidium = require("../raws/RawCidium");
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Cidium = /*#__PURE__*/function (_Ore) {
+  _inherits(Cidium, _Ore);
+
+  var _super = _createSuper(Cidium);
+
+  function Cidium(position) {
+    var _this;
+
+    _classCallCheck(this, Cidium);
+
+    _this = _super.call(this, "cidium", position); // this.hp = 20;
+
+    _this.particlesColors = [_config.Color.BLACK, _config.Color.YELLOW];
+    _this.allowDecorations = true;
+    return _this;
+  }
+
+  _createClass(Cidium, [{
+    key: "onBreak",
+    value: function onBreak() {
+      _get(_getPrototypeOf(Cidium.prototype), "onBreak", this).call(this);
+
+      this.dropItem(_RawCidium.RawCidium);
+    }
+  }]);
+
+  return Cidium;
+}(_Ore2.Ore);
+
+exports.Cidium = Cidium;
+},{"../../config":"ts/config.ts","../raws/RawCidium":"ts/objects/raws/RawCidium.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/FallingORe.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FallingOre = void 0;
+
+var _config = require("../../config");
+
+var _Particles = require("../../engine/components/Particles");
+
+var _math = require("../../engine/utils/math");
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var FallingOre = /*#__PURE__*/function (_Ore) {
+  _inherits(FallingOre, _Ore);
+
+  var _super = _createSuper(FallingOre);
+
+  function FallingOre(type, position) {
+    var _this;
+
+    _classCallCheck(this, FallingOre);
+
+    _this = _super.call(this, type, position);
+    _this.elapsedBeforeFall = 0;
+    _this.allowFall = false;
+    _this.willFall = false;
+    _this.allowGravity = false;
+    _this.customColliderType = "solid";
+    return _this;
+  }
+
+  _createClass(FallingOre, [{
+    key: "init",
+    value: function init() {
+      var _this2 = this;
+
+      _get(_getPrototypeOf(FallingOre.prototype), "init", this).call(this);
+
+      this.acceleration.y = .98;
+      this.game.generator.onWorldChange(this.id, this.position, function () {
+        if (!_this2.checkBlockIn(new _math.Vector2(0, 1), false)) {
+          _this2.allowGravity = true;
+          _this2.animateScaleTo = .7;
+
+          _this2.crumble();
+        }
+      });
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      _get(_getPrototypeOf(FallingOre.prototype), "update", this).call(this);
+
+      this.gravity();
+    }
+  }, {
+    key: "gravity",
+    value: function gravity() {
+      var _a;
+
+      if (this.game.generator.checkIsInLoadedChunk(this.position)) {
+        if (this.allowGravity) {
+          if ((this.game.clock.elapsed - this.elapsedBeforeFall) % _config.Config.ORE_FALL_DELAY == 0 && !this.allowFall) this.allowFall = true;
+
+          if (this.allowFall) {
+            if ((_a = this.collider.collidesWith) === null || _a === void 0 ? void 0 : _a.bottom) {
+              this.fallDestroy();
+            }
+
+            this.customColliderType = "dynamic"; // this.collider.type = "dynamic";
+
+            this.collider.width = this.collider.height = _config.Config.SPRITE_SCALE * 6;
+            this.velocity.y++;
+            var player = this.game.getChildById("player");
+
+            if (player && this.game.physics.collide(player, this).any) {
+              player.hit((0, _math.clamp)((0, _math.randomInt)(0, 5), 2, 5));
+            }
+          }
+        }
+      } else {
+        // this.velocity.y = 0;
+        if (!this.allowFall) this.elapsedBeforeFall = this.game.clock.elapsed;else this.fallDestroy();
+      }
+
+      this.collider.collidesWith = null;
+    }
+  }, {
+    key: "fallDestroy",
+    value: function fallDestroy() {
+      (0, _Particles.SpawnParticles)(this.game, this.position);
+      this.sound.play(this.game, "fall-stone-break");
+      this.game.removeChildById(this.id);
+      this.game.generator.destroyOre(this.inChunkId);
+    }
+  }, {
+    key: "crumble",
+    value: function crumble() {
+      (0, _Particles.SpawnParticles)(this.game, this.position.add(new _math.Vector2(0, 40)), {
+        velocity: function velocity() {
+          return new _math.Vector2((0, _math.random)(-2, 2), 0);
+        },
+        box: function box() {
+          return new _math.Vector2((0, _math.random)(-40, 40), 0);
+        },
+        count: 5
+      });
+    }
+  }]);
+
+  return FallingOre;
+}(_Ore2.Ore);
+
+exports.FallingOre = FallingOre;
+},{"../../config":"ts/config.ts","../../engine/components/Particles":"ts/engine/components/Particles.ts","../../engine/utils/math":"ts/engine/utils/math.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/CrackedStone.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CrackedStone = void 0;
+
+var _FallingORe = require("./FallingORe");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var CrackedStone = /*#__PURE__*/function (_FallingOre) {
+  _inherits(CrackedStone, _FallingOre);
+
+  var _super = _createSuper(CrackedStone);
+
+  function CrackedStone(position) {
+    _classCallCheck(this, CrackedStone);
+
+    return _super.call(this, "cracked-stone", position); // this.hp = 6;
+  }
+
+  return CrackedStone;
+}(_FallingORe.FallingOre);
+
+exports.CrackedStone = CrackedStone;
+},{"./FallingORe":"ts/objects/ores/FallingORe.ts"}],"ts/objects/ores/DeepStone.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DeepStone = void 0;
+
+var _InfectedOre2 = require("./InfectedOre");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var DeepStone = /*#__PURE__*/function (_InfectedOre) {
+  _inherits(DeepStone, _InfectedOre);
+
+  var _super = _createSuper(DeepStone);
+
+  function DeepStone(position, data) {
+    var _this;
+
+    _classCallCheck(this, DeepStone);
+
+    _this = _super.call(this, "deep-stone", position, data);
+    _this.randomRotate = false;
+    _this.allowDecorations = true;
+    return _this;
+  }
+
+  return DeepStone;
+}(_InfectedOre2.InfectedOre);
+
+exports.DeepStone = DeepStone;
+},{"./InfectedOre":"ts/objects/ores/InfectedOre.ts"}],"ts/objects/ores/Destrony.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Destrony = void 0;
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Destrony = /*#__PURE__*/function (_Ore) {
+  _inherits(Destrony, _Ore);
+
+  var _super = _createSuper(Destrony);
+
+  function Destrony(position) {
+    var _this;
+
+    _classCallCheck(this, Destrony);
+
+    _this = _super.call(this, "destrony", position);
+    _this.unbreakable = true;
+    _this.randomRotate = false;
+    return _this;
+  }
+
+  return Destrony;
+}(_Ore2.Ore);
+
+exports.Destrony = Destrony;
+},{"./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/FetusStone.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FetusStone = void 0;
+
+var _config = require("../../config");
+
+var _Particles = require("../../engine/components/Particles");
+
+var _math = require("../../engine/utils/math");
+
+var _HealingFetus = require("../food/HealingFetus");
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var FetusStone = /*#__PURE__*/function (_Ore) {
+  _inherits(FetusStone, _Ore);
+
+  var _super = _createSuper(FetusStone);
+
+  function FetusStone(position, data) {
+    var _this;
+
+    _classCallCheck(this, FetusStone);
+
+    _this = _super.call(this, "fetus-stone", position);
+    _this.randomRotate = false;
+    _this.playerIsNear = false;
+    _this.length = data ? (data === null || data === void 0 ? void 0 : data.length) || null : null;
+    _this.maxLength = data ? (data === null || data === void 0 ? void 0 : data.maxLength) || 1 : 1;
+    _this.allowGrow = true;
+    _this.grabbedCount = data ? (data === null || data === void 0 ? void 0 : data.grabbedCount) || null : null;
+    _this.breakAudioNames = ["plant-break"];
+    _this.hitAudioName = "plant-hit";
+    return _this;
+  }
+
+  _createClass(FetusStone, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(FetusStone.prototype), "init", this).call(this);
+
+      if (this.length === null) {
+        this.maxLength = (0, _math.randomInt)(_config.Config.VINE_MIN_LENGTH, _config.Config.VINE_MAX_LENGTH);
+        this.length = (0, _math.clamp)((0, _math.randomInt)(1, 4), 0, this.maxLength);
+        this.saveData();
+      }
+
+      if (this.grabbedCount == null) {
+        this.grabbedCount = (0, _math.clamp)((0, _math.randomInt)(-2, 4), 0, 4);
+        this.saveData();
+      }
+
+      this.checkEmptySpace();
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      _get(_getPrototypeOf(FetusStone.prototype), "update", this).call(this); // this.grabbing();
+
+
+      if (this.game.tick(_config.Config.VINE_GROW_TICK)) if ((0, _math.chance)(_config.Config.VINE_GROW_CHANCE)) this.grow();
+      if (this.game.tick(_config.Config.VINE_GROW_TICK * 2)) if ((0, _math.chance)(_config.Config.VINE_GROW_CHANCE * .3) && this.grabbedCount != null) {
+        this.grabbedCount--;
+        this.grabbedCount = (0, _math.clamp)(this.grabbedCount, 0, this.length || 0);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      _get(_getPrototypeOf(FetusStone.prototype), "render", this).call(this);
+
+      if (this.allowGrow) this.renderVine();
+    }
+  }, {
+    key: "grab",
+    value: function grab() {
+      if (this.grabbedCount == null || this.grabbedCount >= (this.length || 0)) return;
+      this.grabbedCount++;
+      this.grabbedCount = (0, _math.clamp)(this.grabbedCount, 0, this.length || 0);
+      this.dropItem(_HealingFetus.HealingFetus, 100, new _math.Vector2(0, _config.Config.SPRITE_SIZE * this.grabbedCount));
+    }
+  }, {
+    key: "onBreak",
+    value: function onBreak() {
+      var _this2 = this;
+
+      _get(_getPrototypeOf(FetusStone.prototype), "onBreak", this).call(this);
+
+      if (!this.length) return;
+      var size = _config.Config.SPRITE_SIZE;
+      (0, _Particles.SpawnParticles)(this.game, this.position, {
+        count: 4,
+        colors: [_config.Color.ORANGE],
+        velocity: function velocity() {
+          return new _math.Vector2((0, _math.random)(1, 1.5));
+        },
+        gravity: .01,
+        opacity: 0,
+        downOpacity: -.01,
+        downSize: .008,
+        rotationVelocity: function rotationVelocity() {
+          return (0, _math.random)(-.01, .01);
+        },
+        box: function box() {
+          return new _math.Vector2((0, _math.random)(-size * .4, size * .4), (0, _math.random)(0, size * (_this2.length || 1)));
+        }
+      });
+    }
+  }, {
+    key: "renderVine",
+    value: function renderVine() {
+      var _this3 = this;
+
+      if (!this.length) return;
+      var size = _config.Config.SPRITE_SIZE;
+
+      for (var i = 0; i < this.length; i++) {
+        var spriteIndex = 0;
+        if (i == 0) spriteIndex = 0;
+        if (i > 0) spriteIndex = 1;
+        if (i == this.length - 1) spriteIndex = 2;
+        var pos = this.position.add(new _math.Vector2(0, size + i * size));
+        var t = 1 - this.game.camera.position.y / 200;
+        var d = this.game.camera.position.distance(pos) - 200;
+        var darkenFactor = (d > 96 ? 1 : d / 96) + (t > 0 ? t : 0);
+        if (darkenFactor < 1 || !_config.Config.ALLOW_DARK) this.game.renderer.drawSprite({
+          texture: (0, _math.asImage)(this.game.getAssetByName("fetus-vine")),
+          position: pos.add(new _math.Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / _config.Config.SPRITE_SIZE) * i * 1.5)),
+          frame: new _math.Vector2(+(i < (this.grabbedCount || 0)), spriteIndex),
+          flip: {
+            x: i % 2 == 0 || i % 3 == 0,
+            y: false
+          },
+          opacity: _config.Config.ALLOW_DARK ? 1 - darkenFactor : 1
+        });
+      } // Spawn particles
+
+
+      if (this.game.tick(40) || this.game.tick(120)) (0, _Particles.SpawnParticles)(this.game, this.position, {
+        count: 1,
+        colors: [_config.Color.ORANGE],
+        velocity: function velocity() {
+          return new _math.Vector2((0, _math.random)(.2, .5));
+        },
+        gravity: .01,
+        opacity: 0,
+        downOpacity: -.01,
+        downSize: .008,
+        rotationVelocity: function rotationVelocity() {
+          return (0, _math.random)(-.01, .01);
+        },
+        box: function box() {
+          return new _math.Vector2((0, _math.random)(-size * .4, size * .4), (0, _math.random)(0, size * (_this3.length || 1)));
+        }
+      });
+    }
+  }, {
+    key: "grow",
+    value: function grow() {
+      if (this.length === null) return;
+      var needLength = this.length;
+      var height = 0;
+      if (needLength + 1 < this.maxLength) needLength++;
+
+      for (var i = 1; i < 8; i++) {
+        height++;
+        if (this.checkBlockIn(new _math.Vector2(0, i))) break;
+      }
+
+      if (this.checkBlockIn(new _math.Vector2(0, needLength))) needLength--;
+      this.length = (0, _math.clamp)(needLength, 0, height);
+      this.saveData();
+    }
+  }, {
+    key: "saveData",
+    value: function saveData() {
+      this.game.generator.modifyOre(this.inChunkId, {
+        length: this.length,
+        grabbedCount: this.grabbedCount,
+        maxLength: this.maxLength
+      });
+    }
+  }, {
+    key: "checkEmptySpace",
+    value: function checkEmptySpace() {
+      if (this.checkBlockIn(new _math.Vector2(0, 1)) && this.allowGrow) this.allowGrow = false;
+    }
+  }]);
+
+  return FetusStone;
+}(_Ore2.Ore);
+
+exports.FetusStone = FetusStone;
+},{"../../config":"ts/config.ts","../../engine/components/Particles":"ts/engine/components/Particles.ts","../../engine/utils/math":"ts/engine/utils/math.ts","../food/HealingFetus":"ts/objects/food/HealingFetus.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/raws/RawManty.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RawManty = void 0;
+
+var _DangerRaw2 = require("./DangerRaw");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var RawManty = /*#__PURE__*/function (_DangerRaw) {
+  _inherits(RawManty, _DangerRaw);
+
+  var _super = _createSuper(RawManty);
+
+  function RawManty(position) {
+    _classCallCheck(this, RawManty);
+
+    return _super.call(this, "raw-manty", position);
+  }
+
+  return RawManty;
+}(_DangerRaw2.DangerRaw);
+
+exports.RawManty = RawManty;
+},{"./DangerRaw":"ts/objects/raws/DangerRaw.ts"}],"ts/objects/ores/DangerOre.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7489,333 +8032,7 @@ var DangerOre = /*#__PURE__*/function (_Ore) {
 }(_Ore2.Ore);
 
 exports.DangerOre = DangerOre;
-},{"./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Rady.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Rady = void 0;
-
-var _config = require("../../config");
-
-var _RawRady = require("../raws/RawRady");
-
-var _DangerOre2 = require("./DangerOre");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Rady = /*#__PURE__*/function (_DangerOre) {
-  _inherits(Rady, _DangerOre);
-
-  var _super = _createSuper(Rady);
-
-  function Rady(position) {
-    var _this;
-
-    _classCallCheck(this, Rady);
-
-    _this = _super.call(this, "rady", position);
-    _this.particlesColors = [_config.Color.GREY, _config.Color.GREEN];
-    return _this;
-  }
-
-  _createClass(Rady, [{
-    key: "onBreak",
-    value: function onBreak() {
-      _get(_getPrototypeOf(Rady.prototype), "onBreak", this).call(this);
-
-      this.dropRawOre(_RawRady.RawRady);
-    }
-  }]);
-
-  return Rady;
-}(_DangerOre2.DangerOre);
-
-exports.Rady = Rady;
-},{"../../config":"ts/config.ts","../raws/RawRady":"ts/objects/raws/RawRady.ts","./DangerOre":"ts/objects/ores/DangerOre.ts"}],"ts/objects/ores/BurntBasalt.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.BurntBasalt = void 0;
-
-var _config = require("../../config");
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var BurntBasalt = /*#__PURE__*/function (_Ore) {
-  _inherits(BurntBasalt, _Ore);
-
-  var _super = _createSuper(BurntBasalt);
-
-  function BurntBasalt(position) {
-    var _this;
-
-    _classCallCheck(this, BurntBasalt);
-
-    _this = _super.call(this, "burnt-basalt", position); // this.needToolLevel = 4;
-    // this.hp = 80;
-
-    _this.particlesColors = [_config.Color.DARK_GREY];
-    return _this;
-  }
-
-  return BurntBasalt;
-}(_Ore2.Ore);
-
-exports.BurntBasalt = BurntBasalt;
-},{"../../config":"ts/config.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Nerius.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Nerius = void 0;
-
-var _config = require("../../config");
-
-var _RawNerius = require("../raws/RawNerius");
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Nerius = /*#__PURE__*/function (_Ore) {
-  _inherits(Nerius, _Ore);
-
-  var _super = _createSuper(Nerius);
-
-  function Nerius(position) {
-    var _this;
-
-    _classCallCheck(this, Nerius);
-
-    _this = _super.call(this, "nerius", position);
-    _this.randomRotate = false;
-    _this.particlesColors = [_config.Color.BLACK, "#fff"];
-    return _this;
-  }
-
-  _createClass(Nerius, [{
-    key: "onBreak",
-    value: function onBreak() {
-      _get(_getPrototypeOf(Nerius.prototype), "onBreak", this).call(this);
-
-      this.dropRawOre(_RawNerius.RawNerius); // this.dropRawOre(game, RawGradeCidium, 100);
-    }
-  }]);
-
-  return Nerius;
-}(_Ore2.Ore);
-
-exports.Nerius = Nerius;
-},{"../../config":"ts/config.ts","../raws/RawNerius":"ts/objects/raws/RawNerius.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/StonyGround.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.StonyGround = void 0;
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var StonyGround = /*#__PURE__*/function (_Ore) {
-  _inherits(StonyGround, _Ore);
-
-  var _super = _createSuper(StonyGround);
-
-  function StonyGround(position) {
-    var _this;
-
-    _classCallCheck(this, StonyGround);
-
-    _this = _super.call(this, "stony-ground", position);
-    _this.allowDecorations = true;
-    return _this;
-  }
-
-  return StonyGround;
-}(_Ore2.Ore);
-
-exports.StonyGround = StonyGround;
-},{"./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Destrony.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Destrony = void 0;
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Destrony = /*#__PURE__*/function (_Ore) {
-  _inherits(Destrony, _Ore);
-
-  var _super = _createSuper(Destrony);
-
-  function Destrony(position) {
-    var _this;
-
-    _classCallCheck(this, Destrony);
-
-    _this = _super.call(this, "destrony", position);
-    _this.unbreakable = true;
-    _this.randomRotate = false;
-    return _this;
-  }
-
-  return Destrony;
-}(_Ore2.Ore);
-
-exports.Destrony = Destrony;
-},{"./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/raws/RawManty.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.RawManty = void 0;
-
-var _DangerRaw2 = require("./DangerRaw");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var RawManty = /*#__PURE__*/function (_DangerRaw) {
-  _inherits(RawManty, _DangerRaw);
-
-  var _super = _createSuper(RawManty);
-
-  function RawManty(position) {
-    _classCallCheck(this, RawManty);
-
-    return _super.call(this, "raw-manty", position);
-  }
-
-  return RawManty;
-}(_DangerRaw2.DangerRaw);
-
-exports.RawManty = RawManty;
-},{"./DangerRaw":"ts/objects/raws/DangerRaw.ts"}],"ts/objects/ores/Manty.ts":[function(require,module,exports) {
+},{"./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Manty.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7873,7 +8090,7 @@ var Manty = /*#__PURE__*/function (_DangerOre) {
     value: function onBreak() {
       _get(_getPrototypeOf(Manty.prototype), "onBreak", this).call(this);
 
-      this.dropRawOre(_RawManty.RawManty);
+      this.dropItem(_RawManty.RawManty);
     }
   }]);
 
@@ -7881,264 +8098,7 @@ var Manty = /*#__PURE__*/function (_DangerOre) {
 }(_DangerOre2.DangerOre);
 
 exports.Manty = Manty;
-},{"../raws/RawManty":"ts/objects/raws/RawManty.ts","./DangerOre":"ts/objects/ores/DangerOre.ts"}],"ts/objects/ores/FetusStone.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.FetusStone = void 0;
-
-var _config = require("../../config");
-
-var _Particles = require("../../engine/components/Particles");
-
-var _math = require("../../engine/utils/math");
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var FetusStone = /*#__PURE__*/function (_Ore) {
-  _inherits(FetusStone, _Ore);
-
-  var _super = _createSuper(FetusStone);
-
-  function FetusStone(position, data) {
-    var _this;
-
-    _classCallCheck(this, FetusStone);
-
-    _this = _super.call(this, "fetus-stone", position);
-    _this.randomRotate = false;
-    _this.playerIsNear = false;
-    _this.length = data ? (data === null || data === void 0 ? void 0 : data.length) || null : null;
-    _this.maxLength = data ? (data === null || data === void 0 ? void 0 : data.maxLength) || 1 : 1;
-    _this.allowGrow = true;
-    _this.grabbedCount = data ? (data === null || data === void 0 ? void 0 : data.grabbedCount) || 0 : 0;
-    _this.breakAudioNames = ["plant-break"];
-    _this.hitAudioName = "plant-hit";
-    return _this;
-  }
-
-  _createClass(FetusStone, [{
-    key: "init",
-    value: function init() {
-      _get(_getPrototypeOf(FetusStone.prototype), "init", this).call(this);
-
-      if (this.length === null) {
-        this.maxLength = (0, _math.clamp)((0, _math.randomInt)(-1, _config.Config.VINE_MAX_LENGTH), _config.Config.VINE_MIN_LENGTH, _config.Config.VINE_MAX_LENGTH);
-        this.length = (0, _math.clamp)((0, _math.randomInt)(0, 4), 0, this.maxLength);
-        this.saveData();
-      }
-
-      if (this.grabbedCount == null) {
-        this.grabbedCount = 0;
-        this.saveData();
-      }
-
-      this.checkEmptySpace();
-    }
-  }, {
-    key: "update",
-    value: function update() {
-      _get(_getPrototypeOf(FetusStone.prototype), "update", this).call(this); // this.grabbing();
-
-
-      if (this.game.tick(_config.Config.VINE_GROW_TICK)) if ((0, _math.chance)(_config.Config.VINE_GROW_CHANCE)) this.grow();
-      if (this.game.tick(_config.Config.VINE_GROW_TICK * 2)) if ((0, _math.chance)(_config.Config.VINE_GROW_CHANCE * .2) && this.grabbedCount != null) {
-        this.grabbedCount--;
-        this.grabbedCount = (0, _math.clamp)(this.grabbedCount, 0, this.length || 0);
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      _get(_getPrototypeOf(FetusStone.prototype), "render", this).call(this);
-
-      if (this.allowGrow) this.renderVine();
-    }
-  }, {
-    key: "grab",
-    value: function grab() {
-      if (this.grabbedCount == null) return;
-      this.grabbedCount++;
-      this.grabbedCount = (0, _math.clamp)(this.grabbedCount, 0, this.length || 0);
-      console.log(true);
-    }
-  }, {
-    key: "grabbing",
-    value: function grabbing() {
-      var player = this.game.getChildById("player");
-      if (!player) return;
-      var vineHeight = (this.length || 0) * _config.Config.SPRITE_SIZE;
-
-      if (this.game.physics.collideWithRect({
-        id: player.id,
-        position: player.position,
-        width: player.collider.width,
-        height: player.collider.height
-      }, {
-        id: this.id,
-        position: this.position.add(new _math.Vector2(0, vineHeight / 2)),
-        width: this.collider.width / 2,
-        height: this.collider.height + vineHeight
-      }).any) {
-        console.log(true);
-        player.nearFetusStone = this;
-        player.actionType = "grab";
-      } else {
-        player.actionType = "";
-        player.nearFetusStone = undefined;
-      }
-    }
-  }, {
-    key: "onBreak",
-    value: function onBreak() {
-      var _this2 = this;
-
-      _get(_getPrototypeOf(FetusStone.prototype), "onBreak", this).call(this);
-
-      if (!this.length) return;
-      var size = _config.Config.SPRITE_SIZE;
-      (0, _Particles.SpawnParticles)(this.game, this.position, {
-        count: 4,
-        colors: [_config.Color.ORANGE],
-        velocity: function velocity() {
-          return new _math.Vector2((0, _math.random)(1, 1.5));
-        },
-        gravity: .01,
-        opacity: 0,
-        downOpacity: -.01,
-        downSize: .008,
-        rotationVelocity: function rotationVelocity() {
-          return (0, _math.random)(-.01, .01);
-        },
-        box: function box() {
-          return new _math.Vector2((0, _math.random)(-size * .4, size * .4), (0, _math.random)(0, size * (_this2.length || 1)));
-        }
-      });
-    }
-  }, {
-    key: "renderVine",
-    value: function renderVine() {
-      var _this3 = this;
-
-      if (!this.length) return;
-      var size = _config.Config.SPRITE_SIZE;
-
-      for (var i = 0; i < this.length; i++) {
-        var spriteIndex = 0;
-        if (i == 0) spriteIndex = 0;
-        if (i > 0) spriteIndex = 1;
-        if (i == this.length - 1) spriteIndex = 2;
-        var pos = this.position.add(new _math.Vector2(0, size + i * size));
-        var t = 1 - this.game.camera.position.y / 200;
-        var d = this.game.camera.position.distance(pos) - 200;
-        var darkenFactor = (d > 96 ? 1 : d / 96) + (t > 0 ? t : 0);
-        if (darkenFactor < 1 || !_config.Config.ALLOW_DARK) this.game.renderer.drawSprite({
-          texture: (0, _math.asImage)(this.game.getAssetByName("fetus-vine")),
-          position: pos.add(new _math.Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / _config.Config.SPRITE_SIZE) * i * 1.5)),
-          frame: new _math.Vector2(0, spriteIndex),
-          flip: {
-            x: i % 2 == 0 || i % 3 == 0,
-            y: false
-          },
-          opacity: _config.Config.ALLOW_DARK ? 1 - darkenFactor : 1
-        });
-        this.game.renderer.drawText({
-          text: i > this.length - 1 - (this.grabbedCount || 0) ? "grabbed" : "",
-          position: pos,
-          layer: "particles"
-        });
-      }
-
-      this.game.renderer.drawText({
-        text: (this.grabbedCount || 0).toString(),
-        position: this.position,
-        layer: "particles"
-      }); // Spawn particles
-
-      if (this.game.tick(40) || this.game.tick(120)) (0, _Particles.SpawnParticles)(this.game, this.position, {
-        count: 1,
-        colors: [_config.Color.ORANGE],
-        velocity: function velocity() {
-          return new _math.Vector2((0, _math.random)(.2, .5));
-        },
-        gravity: .01,
-        opacity: 0,
-        downOpacity: -.01,
-        downSize: .008,
-        rotationVelocity: function rotationVelocity() {
-          return (0, _math.random)(-.01, .01);
-        },
-        box: function box() {
-          return new _math.Vector2((0, _math.random)(-size * .4, size * .4), (0, _math.random)(0, size * (_this3.length || 1)));
-        }
-      });
-    }
-  }, {
-    key: "grow",
-    value: function grow() {
-      if (this.length === null) return;
-      var needLength = this.length;
-      var height = 0;
-      if (needLength + 1 < this.maxLength) needLength++;
-
-      for (var i = 1; i < 8; i++) {
-        height++;
-        if (this.checkBlockIn(new _math.Vector2(0, i))) break;
-      }
-
-      if (this.checkBlockIn(new _math.Vector2(0, needLength))) needLength--;
-      this.length = (0, _math.clamp)(needLength, 0, height);
-      this.saveData();
-    }
-  }, {
-    key: "saveData",
-    value: function saveData() {
-      this.game.generator.modifyOre(this.inChunkId, {
-        length: this.length,
-        grabbedCount: this.grabbedCount,
-        maxLength: this.maxLength
-      });
-    }
-  }, {
-    key: "checkEmptySpace",
-    value: function checkEmptySpace() {
-      if (this.checkBlockIn(new _math.Vector2(0, 1)) && this.allowGrow) this.allowGrow = false;
-    }
-  }]);
-
-  return FetusStone;
-}(_Ore2.Ore);
-
-exports.FetusStone = FetusStone;
-},{"../../config":"ts/config.ts","../../engine/components/Particles":"ts/engine/components/Particles.ts","../../engine/utils/math":"ts/engine/utils/math.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/MushroomStone.ts":[function(require,module,exports) {
+},{"../raws/RawManty":"ts/objects/raws/RawManty.ts","./DangerOre":"ts/objects/ores/DangerOre.ts"}],"ts/objects/ores/MushroomStone.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8248,62 +8208,353 @@ var MushroomStone = /*#__PURE__*/function (_Ore) {
 }(_Ore2.Ore);
 
 exports.MushroomStone = MushroomStone;
-},{"../../config":"ts/config.ts","../../engine/components/Particles":"ts/engine/components/Particles.ts","../../engine/utils/math":"ts/engine/utils/math.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/main.ts":[function(require,module,exports) {
+},{"../../config":"ts/config.ts","../../engine/components/Particles":"ts/engine/components/Particles.ts","../../engine/utils/math":"ts/engine/utils/math.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Nerius.ts":[function(require,module,exports) {
 "use strict";
 
-var _assets = require("./managers/assets");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Nerius = void 0;
 
-var _engine = require("./engine");
+var _config = require("../../config");
 
-var _Player = require("./objects/entities/Player");
+var _RawNerius = require("../raws/RawNerius");
 
-var _level = require("./managers/level");
+var _Ore2 = require("./Ore");
 
-var _Stone = require("./objects/ores/Stone");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _CrackedStone = require("./objects/ores/CrackedStone");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _config = require("./config");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-var _DeepStone = require("./objects/ores/DeepStone");
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var _Cidium = require("./objects/ores/Cidium");
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
 
-var _dome = require("./managers/dome");
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
-var _Osmy = require("./objects/ores/Osmy");
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-var _Basalt = require("./objects/ores/Basalt");
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var _math = require("./engine/utils/math");
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-var _Antin = require("./objects/ores/Antin");
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-var _Rady = require("./objects/ores/Rady");
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var _BurntBasalt = require("./objects/ores/BurntBasalt");
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-var _Nerius = require("./objects/ores/Nerius");
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var _StonyGround = require("./objects/ores/StonyGround");
+var Nerius = /*#__PURE__*/function (_Ore) {
+  _inherits(Nerius, _Ore);
 
-var _Destrony = require("./objects/ores/Destrony");
+  var _super = _createSuper(Nerius);
 
-var _Manty = require("./objects/ores/Manty");
+  function Nerius(position) {
+    var _this;
 
-var _FetusStone = require("./objects/ores/FetusStone");
+    _classCallCheck(this, Nerius);
 
-var _MushroomStone = require("./objects/ores/MushroomStone");
+    _this = _super.call(this, "nerius", position);
+    _this.randomRotate = false;
+    _this.particlesColors = [_config.Color.BLACK, "#fff"];
+    return _this;
+  }
 
-var game = new _engine.Game();
-var player = game.add(new _Player.Player()); // const robot = game.add<Robot>(new Robot(new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2 - Config.SPRITE_SIZE / 2, Config.SPRITE_SIZE)));
+  _createClass(Nerius, [{
+    key: "onBreak",
+    value: function onBreak() {
+      _get(_getPrototypeOf(Nerius.prototype), "onBreak", this).call(this);
 
-var level = (0, _level.initLevel)(game);
-var lastLoop = Date.now();
-var fps = 0;
-game.addInit(function () {
-  (0, _assets.initAssets)(game);
-  (0, _dome.initDome)(game);
+      this.dropItem(_RawNerius.RawNerius); // this.dropRawOre(game, RawGradeCidium, 100);
+    }
+  }]);
+
+  return Nerius;
+}(_Ore2.Ore);
+
+exports.Nerius = Nerius;
+},{"../../config":"ts/config.ts","../raws/RawNerius":"ts/objects/raws/RawNerius.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Osmy.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Osmy = void 0;
+
+var _config = require("../../config");
+
+var _RawGradeCidium = require("../raws/RawGradeCidium");
+
+var _RawOsmy = require("../raws/RawOsmy");
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Osmy = /*#__PURE__*/function (_Ore) {
+  _inherits(Osmy, _Ore);
+
+  var _super = _createSuper(Osmy);
+
+  function Osmy(position) {
+    var _this;
+
+    _classCallCheck(this, Osmy);
+
+    _this = _super.call(this, "osmy", position);
+    _this.randomRotate = false;
+    _this.particlesColors = [_config.Color.BLACK, _config.Color.BLUE];
+    _this.allowDecorations = true;
+    return _this;
+  }
+
+  _createClass(Osmy, [{
+    key: "onBreak",
+    value: function onBreak() {
+      _get(_getPrototypeOf(Osmy.prototype), "onBreak", this).call(this);
+
+      this.dropItem(_RawOsmy.RawOsmy);
+      this.dropItem(_RawGradeCidium.RawGradeCidium, 100);
+    }
+  }]);
+
+  return Osmy;
+}(_Ore2.Ore);
+
+exports.Osmy = Osmy;
+},{"../../config":"ts/config.ts","../raws/RawGradeCidium":"ts/objects/raws/RawGradeCidium.ts","../raws/RawOsmy":"ts/objects/raws/RawOsmy.ts","./Ore":"ts/objects/ores/Ore.ts"}],"ts/objects/ores/Rady.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Rady = void 0;
+
+var _config = require("../../config");
+
+var _RawRady = require("../raws/RawRady");
+
+var _DangerOre2 = require("./DangerOre");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Rady = /*#__PURE__*/function (_DangerOre) {
+  _inherits(Rady, _DangerOre);
+
+  var _super = _createSuper(Rady);
+
+  function Rady(position) {
+    var _this;
+
+    _classCallCheck(this, Rady);
+
+    _this = _super.call(this, "rady", position);
+    _this.particlesColors = [_config.Color.GREY, _config.Color.GREEN];
+    return _this;
+  }
+
+  _createClass(Rady, [{
+    key: "onBreak",
+    value: function onBreak() {
+      _get(_getPrototypeOf(Rady.prototype), "onBreak", this).call(this);
+
+      this.dropItem(_RawRady.RawRady);
+    }
+  }]);
+
+  return Rady;
+}(_DangerOre2.DangerOre);
+
+exports.Rady = Rady;
+},{"../../config":"ts/config.ts","../raws/RawRady":"ts/objects/raws/RawRady.ts","./DangerOre":"ts/objects/ores/DangerOre.ts"}],"ts/objects/ores/Stone.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Stone = void 0;
+
+var _InfectedOre2 = require("./InfectedOre");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Stone = /*#__PURE__*/function (_InfectedOre) {
+  _inherits(Stone, _InfectedOre);
+
+  var _super = _createSuper(Stone);
+
+  function Stone(position, data) {
+    var _this;
+
+    _classCallCheck(this, Stone);
+
+    _this = _super.call(this, "stone", position, data);
+    _this.allowDecorations = true;
+    return _this;
+  }
+
+  return Stone;
+}(_InfectedOre2.InfectedOre);
+
+exports.Stone = Stone;
+},{"./InfectedOre":"ts/objects/ores/InfectedOre.ts"}],"ts/objects/ores/StonyGround.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.StonyGround = void 0;
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var StonyGround = /*#__PURE__*/function (_Ore) {
+  _inherits(StonyGround, _Ore);
+
+  var _super = _createSuper(StonyGround);
+
+  function StonyGround(position) {
+    var _this;
+
+    _classCallCheck(this, StonyGround);
+
+    _this = _super.call(this, "stony-ground", position);
+    _this.allowDecorations = true;
+    return _this;
+  }
+
+  return StonyGround;
+}(_Ore2.Ore);
+
+exports.StonyGround = StonyGround;
+},{"./Ore":"ts/objects/ores/Ore.ts"}],"ts/managers/generator.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.initGenerator = initGenerator;
+
+var _config = require("../config");
+
+var _math = require("../engine/utils/math");
+
+var _Antin = require("../objects/ores/Antin");
+
+var _Basalt = require("../objects/ores/Basalt");
+
+var _BurntBasalt = require("../objects/ores/BurntBasalt");
+
+var _Cidium = require("../objects/ores/Cidium");
+
+var _CrackedStone = require("../objects/ores/CrackedStone");
+
+var _DeepStone = require("../objects/ores/DeepStone");
+
+var _Destrony = require("../objects/ores/Destrony");
+
+var _FetusStone = require("../objects/ores/FetusStone");
+
+var _Manty = require("../objects/ores/Manty");
+
+var _MushroomStone = require("../objects/ores/MushroomStone");
+
+var _Nerius = require("../objects/ores/Nerius");
+
+var _Osmy = require("../objects/ores/Osmy");
+
+var _Rady = require("../objects/ores/Rady");
+
+var _Stone = require("../objects/ores/Stone");
+
+var _StonyGround = require("../objects/ores/StonyGround");
+
+function initGenerator(game) {
   game.generator.settings = [// > Stones
   {
     value: [0, 1],
@@ -8372,8 +8623,8 @@ game.addInit(function () {
   }, // Mushroom stone
   {
     value: [0, 1],
-    height: [0, _config.GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - 15],
-    // height: [GeneratorConfig.BASALT_LAYER_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT-15],
+    // height: [0, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT-15],
+    height: [_config.GeneratorConfig.BASALT_LAYER_HEIGHT, _config.GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - 15],
     divider: 2,
     block: _MushroomStone.MushroomStone,
     rules: function rules(noiseX, noiseY, getValue) {
@@ -8384,15 +8635,15 @@ game.addInit(function () {
   // Cidium
   {
     value: [.95, 1],
-    height: [0, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
-    // height: [12, GeneratorConfig.BASALT_LAYER_HEIGHT/2],
+    // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
+    height: [12, _config.GeneratorConfig.BASALT_LAYER_HEIGHT / 2],
     divider: 5,
     block: _Cidium.Cidium
   }, // Osmy - deep stone layer
   {
     value: [0, .7],
-    height: [0, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT],
-    // height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+    // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+    height: [50, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT],
     divider: 4,
     block: _Osmy.Osmy,
     rules: function rules(noiseX, noiseY, getValue) {
@@ -8401,15 +8652,15 @@ game.addInit(function () {
     }
   }, {
     value: [.9, 1],
-    height: [0, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT],
-    // height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+    // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+    height: [100, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT],
     divider: 3,
     block: _Nerius.Nerius
   }, // Antin - basalt layer
   {
     value: [0, .6],
-    height: [0, _config.Config.WORLD_HEIGHT - 40],
-    // height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
+    // height: [0, Config.WORLD_HEIGHT - 40],
+    height: [_config.GeneratorConfig.BASALT_LAYER_HEIGHT + 10, _config.Config.WORLD_HEIGHT - 22],
     divider: 3,
     block: _Antin.Antin,
     rules: function rules(noiseX, noiseY, getValue) {
@@ -8418,15 +8669,15 @@ game.addInit(function () {
   }, // Rady - basalt layer
   {
     value: [0, .3],
-    height: [0, _config.Config.WORLD_HEIGHT - 5],
-    // height: [200, Config.WORLD_HEIGHT - 5],
+    // height: [0, Config.WORLD_HEIGHT - 5],
+    height: [200, _config.Config.WORLD_HEIGHT - 5],
     divider: 2,
     block: _Rady.Rady
   }, // > Manty layer
   {
     value: [0, .3],
-    height: [0, _config.Config.WORLD_HEIGHT - 1],
-    // height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
+    // height: [0, Config.WORLD_HEIGHT - 1],
+    height: [_config.Config.WORLD_HEIGHT - 5, _config.Config.WORLD_HEIGHT - 1],
     divider: 2,
     block: _Manty.Manty
   }, {
@@ -8445,47 +8696,86 @@ game.addInit(function () {
     divider: 5,
     block: null
   }];
+}
+},{"../config":"ts/config.ts","../engine/utils/math":"ts/engine/utils/math.ts","../objects/ores/Antin":"ts/objects/ores/Antin.ts","../objects/ores/Basalt":"ts/objects/ores/Basalt.ts","../objects/ores/BurntBasalt":"ts/objects/ores/BurntBasalt.ts","../objects/ores/Cidium":"ts/objects/ores/Cidium.ts","../objects/ores/CrackedStone":"ts/objects/ores/CrackedStone.ts","../objects/ores/DeepStone":"ts/objects/ores/DeepStone.ts","../objects/ores/Destrony":"ts/objects/ores/Destrony.ts","../objects/ores/FetusStone":"ts/objects/ores/FetusStone.ts","../objects/ores/Manty":"ts/objects/ores/Manty.ts","../objects/ores/MushroomStone":"ts/objects/ores/MushroomStone.ts","../objects/ores/Nerius":"ts/objects/ores/Nerius.ts","../objects/ores/Osmy":"ts/objects/ores/Osmy.ts","../objects/ores/Rady":"ts/objects/ores/Rady.ts","../objects/ores/Stone":"ts/objects/ores/Stone.ts","../objects/ores/StonyGround":"ts/objects/ores/StonyGround.ts"}],"ts/main.ts":[function(require,module,exports) {
+"use strict";
+
+var _assets = require("./managers/assets");
+
+var _engine = require("./engine");
+
+var _Player = require("./objects/entities/Player");
+
+var _level = require("./managers/level");
+
+var _config = require("./config");
+
+var _dome = require("./managers/dome");
+
+var _math = require("./engine/utils/math");
+
+var _generator = require("./managers/generator");
+
+var game = new _engine.Game();
+var player = game.add(new _Player.Player());
+var level = (0, _level.initLevel)(game);
+game.addInit(function () {
+  (0, _assets.initAssets)(game);
+  (0, _dome.initDome)(game);
+  (0, _generator.initGenerator)(game);
   game.camera.follow(player.position);
 });
 game.addUpdate(function () {
-  var thisLoop = Date.now();
-  if (game.clock.elapsed % 30 == 0) fps = +(1000 / (thisLoop - lastLoop)).toFixed(1);
-  lastLoop = thisLoop;
-  level.update(player);
   game.camera.follow(player.position, .1);
   game.generator.generateChunksAt(game.camera.position);
 });
 game.addRender(function (renderer) {
+  level.render();
+  if (_config.Config.IS_DEV) renderDebug(renderer);
+});
+
+function renderDebug(renderer) {
   renderer.drawText({
-    text: fps.toString(),
+    text: game.clock.fps.toString(),
     font: "20px Pixel",
-    position: new _math.Vector2(40, 40),
+    position: new _math.Vector2(30, 40),
+    align: "left",
     layer: "ui"
   });
   renderer.drawText({
     text: "Height: ".concat(Math.floor(player.position.y / _config.Config.SPRITE_SIZE + 1)),
     font: "20px Pixel",
-    position: new _math.Vector2(70, 80),
+    position: new _math.Vector2(30, 80),
+    align: "left",
     layer: "ui"
-  }); // for (let y = 0; y < Config.WORLD_HEIGHT / Config.CHUNK_SIZE; y ++)
-  // for (let x = 0; x < Config.WORLD_WIDTH / Config.CHUNK_SIZE; x ++)
-  //     renderer.drawRect({
-  //         position: new Vector2(x*Config.CHUNK_SIZE*Config.SPRITE_SIZE, y*Config.CHUNK_SIZE*Config.SPRITE_SIZE).add(Vector2.all(Config.SPRITE_SIZE*1.5)),
-  //         width: Config.CHUNK_SIZE,
-  //         height: Config.CHUNK_SIZE,
-  //         color: "rgba(0, 0, 0, 0)",
-  //         stroke: { width: 2, color: Color.RED }
-  //     });
-});
+  }); // renderChunks(renderer);
+}
+
+function renderChunks(renderer) {
+  for (var y = 0; y < _config.Config.WORLD_HEIGHT / _config.Config.CHUNK_SIZE; y++) {
+    for (var x = 0; x < _config.Config.WORLD_WIDTH / _config.Config.CHUNK_SIZE; x++) {
+      renderer.drawRect({
+        position: new _math.Vector2(x * _config.Config.CHUNK_SIZE * _config.Config.SPRITE_SIZE, y * _config.Config.CHUNK_SIZE * _config.Config.SPRITE_SIZE).add(_math.Vector2.all(_config.Config.SPRITE_SIZE * 1.5)),
+        width: _config.Config.CHUNK_SIZE,
+        height: _config.Config.CHUNK_SIZE,
+        color: "rgba(0, 0, 0, 0)",
+        stroke: {
+          width: 2,
+          color: _config.Color.RED
+        }
+      });
+    }
+  }
+}
+
 game.init(); // ! Debug
 
 window.addEventListener("keydown", function (e) {
   if (e.code == "KeyG") console.log(game);
   if (e.code == "KeyP") console.log(player);
   if (e.code == "KeyI") console.log(player.inventory);
-  if (e.code == "KeyM") console.log(player);
 });
-},{"./managers/assets":"ts/managers/assets.ts","./engine":"ts/engine/index.ts","./objects/entities/Player":"ts/objects/entities/Player.ts","./managers/level":"ts/managers/level.ts","./objects/ores/Stone":"ts/objects/ores/Stone.ts","./objects/ores/CrackedStone":"ts/objects/ores/CrackedStone.ts","./config":"ts/config.ts","./objects/ores/DeepStone":"ts/objects/ores/DeepStone.ts","./objects/ores/Cidium":"ts/objects/ores/Cidium.ts","./managers/dome":"ts/managers/dome.ts","./objects/ores/Osmy":"ts/objects/ores/Osmy.ts","./objects/ores/Basalt":"ts/objects/ores/Basalt.ts","./engine/utils/math":"ts/engine/utils/math.ts","./objects/ores/Antin":"ts/objects/ores/Antin.ts","./objects/ores/Rady":"ts/objects/ores/Rady.ts","./objects/ores/BurntBasalt":"ts/objects/ores/BurntBasalt.ts","./objects/ores/Nerius":"ts/objects/ores/Nerius.ts","./objects/ores/StonyGround":"ts/objects/ores/StonyGround.ts","./objects/ores/Destrony":"ts/objects/ores/Destrony.ts","./objects/ores/Manty":"ts/objects/ores/Manty.ts","./objects/ores/FetusStone":"ts/objects/ores/FetusStone.ts","./objects/ores/MushroomStone":"ts/objects/ores/MushroomStone.ts"}],"C:/Users/Aser/AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./managers/assets":"ts/managers/assets.ts","./engine":"ts/engine/index.ts","./objects/entities/Player":"ts/objects/entities/Player.ts","./managers/level":"ts/managers/level.ts","./config":"ts/config.ts","./managers/dome":"ts/managers/dome.ts","./engine/utils/math":"ts/engine/utils/math.ts","./managers/generator":"ts/managers/generator.ts"}],"C:/Users/Aser/AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -8513,7 +8803,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59362" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57852" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
