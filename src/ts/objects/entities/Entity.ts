@@ -58,7 +58,7 @@ export class Entity extends Sprite {
 
     update() {
         super.update();
-        if (!this.allowMove) {
+        if (!this.allowMove || this.game.paused) {
             this.movement.set();
             this.velocity.set();
         }

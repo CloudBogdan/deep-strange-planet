@@ -85,6 +85,7 @@ import recycler_ui_img from "../../images/ui/recycler-ui.png"; // @ts-ignore
 import description_ui_img from "../../images/ui/description-ui.png"; // @ts-ignore
 import oxygen_generator_ui_img from "../../images/ui/oxygen-generator-ui.png"; // @ts-ignore
 import health_img from "../../images/ui/health.png"; // @ts-ignore
+import menu_img from "../../images/ui/menu.png"; // @ts-ignore
 import item_robot_img from "../../images/ui/item-robot.png"; // @ts-ignore
 import storage_level_up_img from "../../images/ui/storage-level-up.png"; // @ts-ignore
 
@@ -199,6 +200,7 @@ export function initAssets(game: Game) {
     game.loadAsset("description-ui", [description_ui_img])
     game.loadAsset("oxygen-generator-ui", [oxygen_generator_ui_img])
     game.loadAsset("health", [health_img])
+    game.loadAsset("menu", [menu_img])
     game.loadAsset("item-robot", [item_robot_img])
     game.loadAsset("storage-level-up", [storage_level_up_img])
 

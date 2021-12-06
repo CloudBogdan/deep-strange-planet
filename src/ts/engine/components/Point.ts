@@ -2,7 +2,7 @@ import { ComponentType } from "../../types";
 import { Game } from "../Game";
 import { Collider, ColliderType } from "../Physics";
 import { Renderer } from "../Renderer";
-import { standardName as standardName, Vector2 } from "../utils/math";
+import { safeValue, standardName as standardName, Vector2 } from "../utils/math";
 
 let __id = 0;
 
@@ -11,6 +11,7 @@ export type IPointProps = {
     rotation?: number
     scale?: Vector2
     layer?: string
+    visible?: boolean
 
     colliderType?: ColliderType
 
@@ -31,6 +32,7 @@ export class Point {
     position: Vector2
     rotation: number
     scale: Vector2
+    visible: boolean
 
     collider: Collider
     
@@ -47,6 +49,7 @@ export class Point {
         this.acceleration = Vector2.all();
         this.rotation = props?.rotation || 0;
         this.scale = props?.scale || Vector2.all();
+        this.visible = safeValue(props?.visible, true);
 
         this.collider = new Collider(this);
         this.collider.type = props?.colliderType || "dynamic";

@@ -1,17 +1,11 @@
 import { Color, Config } from "../../config";
-import { Game } from "../../engine";
-import { asAudio, asImage, assetIsValid, chance, clamp, compareNames, lerp, random, safeValue, Vector2 } from "../../engine/utils/math";
-import { Direction } from "../../types";
+import { asImage, chance, clamp, lerp, random, Vector2 } from "../../engine/utils/math";
 import { Entity } from "./Entity";
-import { Ore } from "../ores/Ore";
-import { Raw, RawType } from "../raws/Raw";
-import { Renderer } from "../../engine/Renderer";
 import { ItemParent } from "../item/ItemParent";
 import { Robot } from "./Robot";
-import { Sound } from "../../engine/components/Sound";
 import { Food } from "../food/Food";
 import { FetusStone } from "../ores/FetusStone";
-import { StalactiteOre } from "../ores/StalactiteOre";
+import { OxygenGenerator } from "../gear/OxygenGenerator";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -51,7 +45,13 @@ const tools: { [key: string]: Tool }  = {
 export class Player extends Entity {
     oxygenHungry: boolean
     oxygenHungryStartElapsed: number
-    oxygenHungryElapsed: number
+
+    dieElapsed: number
+    dieUI: boolean
+    respawnTimer: number
+    animatedDieUI: number
+    tries: number
+    dieMessage: "respawn" | "replay"
     
     wire: Vector2
     inventory: {
@@ -83,7 +83,13 @@ export class Player extends Entity {
         this.hp = 12;
         this.oxygenHungry = false;
         this.oxygenHungryStartElapsed = 0;
-        this.oxygenHungryElapsed = 0;
+
+        this.dieElapsed = 0;
+        this.dieUI = false;
+        this.respawnTimer = 0;
+        this.animatedDieUI = 0;
+        this.tries = 2;
+        this.dieMessage = "respawn";
 
         this.wire = this.position.expand();
         this.inventory = {
@@ -118,6 +124,11 @@ export class Player extends Entity {
     init() {
         super.init();
         
+        const tries = this.game.loadKey("tries", 2);
+        this.tries = tries <= 0 ? 2 : tries;
+        this.hp = this.game.loadKey("player-hp", 12);
+        this.toolLevel = this.game.loadKey("player-toolLevel", 1);
+        
         this.collider.width = 10 * Config.SPRITE_SCALE;
         this.collider.height = 10 * Config.SPRITE_SCALE;
         this.collider.offset = new Vector2(3, 0);
@@ -133,11 +144,13 @@ export class Player extends Entity {
             this.nearFetusStone.grab();
             
         });
+
+        this.saveData();
     }
 
     update() {
         super.update();
-        if (!this.allowMove) return;
+        if (!this.allowMove || this.game.paused) return;
 
         this.movement.set(
             (+this.game.gamepad.keys.right - +this.game.gamepad.keys.left),
@@ -163,8 +176,10 @@ export class Player extends Entity {
         else
             this.actionType = null;
 
-        if (Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) <= 0)
-            this.die();
+        // Oxygen hungry
+        if (!this.game.paused)
+            if (Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60 <= 0)
+                this.die();
 
         // Sounds
         this.footsStep();
@@ -190,17 +205,21 @@ export class Player extends Entity {
         this.animatedTimerScale = lerp(this.animatedTimerScale, 1, .2);
 
         this.bounds();
+        this.saveData();
     }
     render() {
         super.render();
         
         this.renderUI();    
+        if (this.dieUI)
+            this.renderDieUI();
     }
     renderUI() {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
 
         if (this.oxygenHungry) this.renderOxygenHungryUI();
+        if (this.game.paused) return;
         this.renderHealthUI();
         
         // Tip text
@@ -244,6 +263,60 @@ export class Player extends Entity {
         });
     }
 
+    renderDieUI() {
+        const size = Config.SPRITE_SIZE;
+        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
+
+        this.animatedDieUI = clamp(lerp(this.animatedDieUI, 4, .01), 0, 4);
+        this.respawnTimer = Config.RESPAWN_TIME - Math.floor((this.game.clock.elapsed - this.dieElapsed) / 60);
+
+        // BG
+        this.game.renderer.drawRect({
+            color: "#000",
+            width: innerWidth / size,
+            height: innerHeight / size,
+            position: windowCenter,
+            layer: "ui",
+        });
+
+        // Texts
+        this.game.renderer.drawText({
+            text: this.dieMessage == "respawn" ? "Все совершают ошибки..." : "Все совершают ошибки, на которые нужен шанс...",
+            font: "34px Pixel",
+            opacity: clamp(this.animatedDieUI, 1, 2) - 1,
+            stroke: { width: 0, color: "#000" },
+            position: new Vector2().add(windowCenter),
+            layer: "ui"
+        })
+        this.game.renderer.drawText({
+            text: this.dieMessage == "respawn" ? "Последний шанс, чтобы их исправить" : "Шанс, который вы упустили",
+            opacity: clamp(this.animatedDieUI, 1.5, 2.5) - 1.5,
+            stroke: { width: 0, color: "#000" },
+            position: new Vector2(0, 30).add(windowCenter),
+            layer: "ui"
+        });
+        this.game.renderer.drawText({
+            text: this.dieMessage == "respawn" ? `Тебя приведут в сознание через:\n0:${ this.respawnTimer }` : `Тебя заменит другой доброволец через:\n0:${ this.respawnTimer }`,
+            opacity: clamp(this.animatedDieUI, 2.5, 3.5) - 2.5,
+            stroke: { width: 0, color: "#000" },
+            position: new Vector2(0, 80).add(windowCenter),
+            layer: "ui"
+        });
+
+        // Die timer
+        if (this.respawnTimer <= 0) {
+            this.game.paused = false;
+            this.dieElapsed = 0;
+            if (this.tries > 0) {
+                this.oxygenHungryStartElapsed = this.game.clock.elapsed;
+                this.dieUI = false;
+            } else {
+                this.game.clearAllKeys();
+                location.reload();
+            }
+        }
+    
+    }
     renderHealthUI() {
         const size = Config.SPRITE_SIZE;
         
@@ -278,10 +351,10 @@ export class Player extends Entity {
 
     }
     renderOxygenHungryUI() {
-        const loseConsciousnessIn = Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed);
+        const loseConsciousnessIn = Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60;
 
-        if (loseConsciousnessIn % 60 == 0)
-            this.animatedTimerScale = loseConsciousnessIn / 60 < 20 ? 1.5 : 1.2
+        if (loseConsciousnessIn % 1 == 0)
+            this.animatedTimerScale = loseConsciousnessIn < 20 ? 1.5 : 1.2
         
         this.game.renderer.drawText({
             text: "Кислородное голодание!",
@@ -295,7 +368,7 @@ export class Player extends Entity {
             layer: "ui"
         });
         this.game.renderer.drawText({
-            text: `0:${ Math.floor(loseConsciousnessIn / 60) }`,
+            text: `0:${ Math.floor(loseConsciousnessIn) }`,
             position: new Vector2(innerWidth/2, 180),
             scale: Vector2.all(this.animatedTimerScale),
             font: "30px Pixel",
@@ -356,36 +429,6 @@ export class Player extends Entity {
 
         })
     }
-    /*
-    fallStalactite() {
-        if (!chance(50)) return;
-
-        const stalactite = this.game.getChildrenByName<StalactiteOre>("basalt").find(ore=> {
-            if (ore.stalactiteLength <= 0 || ore.allowFall) return false;
-            
-            const stalactiteHeight = ore.stalactiteLength * Config.SPRITE_SIZE + 8 * Config.SPRITE_SIZE;
-            
-            return ore.stalactiteLength > 0 && !ore.allowFall && this.game.physics.collideWithRect({
-                id: this.id,
-                position: this.position,
-                width: this.collider.width,
-                height: this.collider.height,
-            }, {
-                id: ore.id,
-                position: ore.position.add(new Vector2(0, stalactiteHeight / 2)),
-                width: ore.collider.width,
-                height: ore.collider.height + stalactiteHeight,
-            }).any;
-
-        });
-        //
-        if (!stalactite) return;
-
-        console.log(stalactite.stalactiteLength);
-        stalactite.fall();
-
-    }
-    */
     
     pickup(item: ItemParent, type: string, count: number) {
         this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
@@ -423,14 +466,33 @@ export class Player extends Entity {
         this.game.camera.shake();
         this.sound.play(this.game, chance(1) ? "bonk" : "hit");
 
+        this.saveData();
         super.hit(damage);
     }
     die() {
+        this.tries --;
+        
+        if (this.tries < 1)
+            this.dieMessage = "replay";
+        
         this.oxygenHungryStartElapsed = this.game.clock.elapsed;
+        this.dieElapsed = this.game.clock.elapsed;
+        this.dieUI = true;
+        this.animatedDieUI = -1;
         
         this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
         this.hp = 12;
         this.wire.copy(this.position);
+
+        this.game.camera.position.copy(this.position);
+        this.game.paused = true;
+
+        // Oxygen generator add oxygen
+        const generator = this.game.getChildById<OxygenGenerator>("oxygen-generator");
+        if (generator) {
+            generator.oxygenLevel += 30;
+        }
+        this.saveData();
     }
     heal(heal: number) {
         if (this.hp >= 12) return
@@ -507,5 +569,10 @@ export class Player extends Entity {
     }
     checkItemInInventory(name: string) {
         return this.inventory.slots[name] && this.inventory.slots[name].count > 0;
+    }
+    saveData() {
+        this.game.saveKey("tries", this.tries.toString());
+        this.game.saveKey("player-hp", this.hp.toString());
+        this.game.saveKey("player-toolLevel", this.toolLevel.toString());
     }
 }

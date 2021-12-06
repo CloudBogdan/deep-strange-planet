@@ -27,15 +27,21 @@ export class OxygenGenerator extends Gear {
 
     }
 
+    init() {
+        super.init();
+
+        this.batteryLevel = this.game.loadKey("generator-batteryLevel", 100);
+        this.oxygenLevel = this.game.loadKey("generator-oxygenLevel", 100);
+    }
     update() {
         super.update();
-
-        this.work();        
-        this.checkBattery();
-
+        if (this.game.paused) return;
+        
         if (this.player) {
             this.player.oxygenHungry = this.oxygenLevel <= 0;
         }
+        this.work();        
+        this.checkBattery();
 
         if (this.oxygenLevel <= 50 || this.batteryLevel <= 10) {
             // Shake
@@ -75,9 +81,12 @@ export class OxygenGenerator extends Gear {
         if (this.batteryLevel < 90) {
             if (this.game.tick(this.batteryLevel > 20 ? Config.OXYGEN_GENERATOR_OXYGEN_DEFUSE_TICK : (this.batteryLevel <= 0 ? 20 : 60)) && this.oxygenLevel > 0)
                 this.updateOxygenLevel(-randomInt(1, 3));
+            this.saveData();
         } else {
             if (this.game.tick(30))
                 this.updateOxygenLevel(randomInt(1, 3));
+                
+            this.saveData();
         }
         
         // Remove battery
@@ -87,6 +96,8 @@ export class OxygenGenerator extends Gear {
             // Add oxygen
             if (this.batteryLevel > 20)
                 this.updateOxygenLevel(randomInt(0, 8));
+
+            this.saveData();
         }
     }
     updateBatteryLevel(value: number) {
@@ -203,5 +214,10 @@ export class OxygenGenerator extends Gear {
         this.playerWithBattery = true;
         this.interactText = "Зарядить";
 
+    }
+
+    saveData() {
+        this.game.saveKey("generator-oxygenLevel", this.oxygenLevel.toString());
+        this.game.saveKey("generator-batteryLevel", this.batteryLevel.toString());
     }
 }

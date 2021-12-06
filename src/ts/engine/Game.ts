@@ -26,6 +26,7 @@ type Camera = {
 }
 
 export class Game extends Container {
+    paused: boolean
     gamepad: Gamepad
     camera: Camera
     
@@ -44,6 +45,7 @@ export class Game extends Container {
     constructor() {
         super();
 
+        this.paused = !false;
         this.gamepad = new Gamepad();
         this.camera = {
             position: Vector2.zero(),
@@ -82,6 +84,19 @@ export class Game extends Container {
         this.physics = new Physics(this);
         this.generator = new Generator(this);
 
+    }
+
+    saveKey(key: string, value: string) {
+        localStorage.setItem(key, value);
+    }
+    loadKey<T>(key: string, safe: T): T {
+        if (localStorage.getItem(key))
+            return JSON.parse(localStorage.getItem(key)!);
+        else
+            return safe;
+    }
+    clearAllKeys() {
+        localStorage.clear();
     }
 
     loadAsset(name: string, src: Asset["src"], type?: AssetType) {

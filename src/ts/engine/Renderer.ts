@@ -1,3 +1,4 @@
+import { ISpriteProps } from ".";
 import { Color, Config, GeneratorConfig } from "../config";
 import { Particle } from "./components/Particles";
 import { Game } from "./Game";
@@ -37,6 +38,7 @@ export type DrawTextProps = {
     scale?: Vector2
     opacity?: number
     layer?: string
+    stroke?: StrokeSettings
 };
 
 export class Renderer {
@@ -208,14 +210,16 @@ export class Renderer {
         
         this.startTransform(props.layer, props.position, props.rotation, props.scale, props.opacity);
 
+        const stroke = safeValue(props.stroke, { width: 8, color: Color.STONE_LAYER_COLOR });
+
         function renderText(text: string, pos: Vector2) {
             context.strokeText(text, pos.x, pos.y);
             context.fillText(text, pos.x, pos.y);
         }
         
-        context.strokeStyle = Color.STONE_LAYER_COLOR;
-        context.lineWidth = 8;
-        context.miterLimit = 8;
+        context.strokeStyle = stroke.color;
+        context.lineWidth = stroke.width;
+        context.miterLimit = stroke.width;
         context.lineJoin = "round";
         
         context.fillStyle = props.color || "#fff";

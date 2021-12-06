@@ -23,7 +23,6 @@ export class Sprite extends Point {
 
     assetName: string
     texture: HTMLImageElement | null | undefined;
-    visible: boolean
     opacity: number
     
     constructor(name: string, assetName: string, props?: ISpriteProps) {
@@ -41,7 +40,6 @@ export class Sprite extends Point {
 
         this.assetName = assetName;
         this.texture = null;
-        this.visible = true;
     }
     
     init() {

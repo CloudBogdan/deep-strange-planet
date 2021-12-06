@@ -23,6 +23,7 @@ export class Text extends Point {
     render() {
         super.render();
 
-        this.game.renderer.drawText({ ...this });
+        if (this.visible)
+            this.game.renderer.drawText({ ...this });
     }
 }

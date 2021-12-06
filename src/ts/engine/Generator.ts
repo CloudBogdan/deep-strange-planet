@@ -39,15 +39,17 @@ export class Generator {
     constructor(game: Game) {
         this.game = game;
 
-        this.seed = Config.IS_DEV ? 1636721068016 : Date.now();
+        const needSeed = game.loadKey("seed", Date.now());
+        this.seed = Config.IS_DEV ? 1636721068016 : (typeof needSeed == "number" ? needSeed : Date.now());
         seed(this.seed);
+        game.saveKey("seed", this.seed.toString());
         console.log(`%cСид мира: ${ this.seed }`, `background: ${ Color.BLACK };color: ${ Color.YELLOW };padding:15px;font-size:20px;`);
 
         this.onWorldChangeListeners = [];
 
         this.chunks = [];
-        this.destroyedOres = [];
-        this.modifiedOres = {};
+        this.destroyedOres = game.loadKey("destroyedOres", []);
+        this.modifiedOres = game.loadKey("modifiedOres", {});
         this.settings = [];
         this.range = [
             new Vector2(1, 0), new Vector2(-1, 0),
@@ -159,15 +161,23 @@ export class Generator {
             if ((listener.pos != null && listener.pos.distance(inChunkIdToPosition(inChunkId)) < 200) || !listener.pos)
                 listener.callback()
         });
+
+        this.saveData();
         
     }
     modifyOre(inChunkId: Point["id"], data: Generator["modifiedOres"][0]["data"]) {
         this.modifiedOres[inChunkId] = data;
+        this.saveData();
     }
     onWorldChange(id: string, pos: Vector2 | null, callback: Generator["onWorldChangeListeners"][0]["callback"], listenChunks?: boolean) {
         this.onWorldChangeListeners.push({ id, pos, callback, listenChunks });
     }
     removeListenerById(id: string) {
         this.onWorldChangeListeners = this.onWorldChangeListeners.filter(listener=> listener.id != id);
+    }
+
+    saveData() {
+        this.game.saveKey("destroyedOres", JSON.stringify(this.destroyedOres));
+        this.game.saveKey("modifiedOres", JSON.stringify(this.modifiedOres));
     }
 }

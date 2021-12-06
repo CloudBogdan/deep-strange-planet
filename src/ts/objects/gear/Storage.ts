@@ -49,6 +49,9 @@ export class Storage extends Gear {
     init() {
         super.init();
 
+        this.level = this.game.loadKey("storage-level", 1);
+        this.contains = this.game.loadKey("storage-contains", { totalCount: 0, slots: {} });
+        
         this.calculateTotalCount();
     }
 
@@ -139,6 +142,8 @@ export class Storage extends Gear {
         // Play store audio
         this.sound.play(this.game, "store");
         this.player.spawnText(totalStoredCount.toString());
+
+        this.saveData();
     }
     drop(slotName: string, count: number) {
         if (!this.contains.slots[slotName]) return
@@ -157,6 +162,8 @@ export class Storage extends Gear {
         Object.keys(this.contains.slots).map(slotName=> {
             this.contains.totalCount += this.contains.slots[slotName].count;
         });
+
+        this.saveData();
     }
 
     renderUI() {
@@ -271,5 +278,9 @@ export class Storage extends Gear {
     filterItems(slots: Storage["contains"]["slots"]) {
         return Object.keys(slots).filter(name=> slots[name].count > 0);
         // return Object.keys(slots).filter(name=> name.indexOf("raw") >= 0 && ((slots[name] as any).count ? (slots[name] as any).count > 0 : slots[name] > 0));
+    }
+    saveData() {
+        this.game.saveKey("storage-contains", JSON.stringify(this.contains));
+        this.game.saveKey("storage-level", this.level.toString());
     }
 }
