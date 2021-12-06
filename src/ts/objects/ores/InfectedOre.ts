@@ -85,11 +85,12 @@ export class InfectedOre extends Ore {
         
         if (!this.allowInfect) return;
 
-        this.game.renderer.drawText({
-            text: "Inf",
-            position: this.position,
-            layer: "particles"
-        })
+        if (Config.IS_DEV)
+            this.game.renderer.drawText({
+                text: "Infected",
+                position: this.position,
+                layer: "particles"
+            })
         
         this.daturaRotation = lerp(
             this.daturaRotation,

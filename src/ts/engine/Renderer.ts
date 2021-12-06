@@ -57,7 +57,6 @@ export class Renderer {
             "ui": this.createLayer("ui", true, 0),
             "debug": this.createLayer("debug", false),
         };
-        console.log(this.layers);
         
         document.body.style.background = Color.STONE_LAYER_COLOR;
     }

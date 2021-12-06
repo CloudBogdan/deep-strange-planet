@@ -1,5 +1,4 @@
 import { Color } from "../../config";
-import { Game } from "../../engine";
 import { Vector2 } from "../../engine/utils/math";
 import { RawGradeCidium } from "../raws/RawGradeCidium";
 import { RawOsmy } from "../raws/RawOsmy";
@@ -18,6 +17,6 @@ export class Osmy extends Ore {
         super.onBreak();
 
         this.dropItem(RawOsmy);
-        this.dropItem(RawGradeCidium, 100);
+        this.dropItem(RawGradeCidium, 15);
     }
 }

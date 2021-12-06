@@ -68,13 +68,14 @@ function renderChunks(renderer: Renderer) {
 game.init();
 
 // ! Debug
-window.addEventListener("keydown", e=> {
-    
-    if (e.code == "KeyG")
-        console.log(game);
-    if (e.code == "KeyP")
-        console.log(player);
-    if (e.code == "KeyI")
-        console.log(player.inventory);
+if (Config.IS_DEV)
+    window.addEventListener("keydown", e=> {
+        
+        if (e.code == "KeyG")
+            console.log(game);
+        if (e.code == "KeyP")
+            console.log(player);
+        if (e.code == "KeyI")
+            console.log(player.inventory);
 
-});
+    });

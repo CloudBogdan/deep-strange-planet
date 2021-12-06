@@ -2,7 +2,7 @@ import { Game } from "./Game"
 import { Ore } from "../objects/ores/Ore"
 import { clamp, inChunkIdToPosition, inRange, Vector2 } from "./utils/math"
 import { Point } from "./components/Point";
-import { Config } from "../config";
+import { Color, Config } from "../config";
 import { perlin2, seed } from "./utils/noise";
 import { Block } from "../objects/Block";
 import messages from "../messages";
@@ -40,8 +40,8 @@ export class Generator {
         this.game = game;
 
         this.seed = Config.IS_DEV ? 1636721068016 : Date.now();
-        console.log(this.seed);
         seed(this.seed);
+        console.log(`%cСид мира: ${ this.seed }`, `background: ${ Color.BLACK };color: ${ Color.YELLOW };padding:15px;font-size:20px;`);
 
         this.onWorldChangeListeners = [];
 

@@ -3,7 +3,8 @@ import { GearLevel } from "./objects/gear/Gear";
 
 export enum Config {
     ALLOW_DARK = 1,
-    IS_DEV = 1, // ! IS DEV!!!!
+    IS_DEV = 0, // ! IS DEV!!!!
+    ALLOW_HUNK = 0, // ! IS DEV!!!!
     
     // World size and chunks size in blocks
     WORLD_WIDTH = 82,
@@ -25,11 +26,11 @@ export enum Config {
     VINE_MAX_LENGTH = 8,
 
     MAX_STALACTITE_LENGTH = 4,
-    STALACTITE_GROW_TICK = 100,
-    STALACTITE_GROW_CHANCE = 100,
+    STALACTITE_GROW_TICK = 300,
+    STALACTITE_GROW_CHANCE = 10,
 
     INFECTION_GROW_TICK = IS_DEV ? 100 : 200,
-    INFECTION_GROW_CHANCE = IS_DEV ? 100 : 10,
+    INFECTION_GROW_CHANCE = IS_DEV ? 100 : 18,
     
     ROBOT_PICKUP_DISTANCE = SPRITE_SIZE,
     ROBOT_DAMAGE = 4,

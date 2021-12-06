@@ -44,7 +44,7 @@ const tools: { [key: string]: Tool }  = {
     },
     "6": {
         speed: 16,
-        damage: 2
+        damage: 6
     },
 }
 
@@ -91,7 +91,7 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = Config.IS_DEV ? 1 : 1;
+        this.toolLevel = Config.ALLOW_HUNK ? 6 : 1;
         this.allowPlaceRobot = false;
         this.allowEatFood = false;
         this.actionType = null;
@@ -106,7 +106,7 @@ export class Player extends Entity {
         this.animatedCameraRotation = 0;
         this.animatedTimerScale = 1;
 
-        if (Config.IS_DEV)
+        if (Config.ALLOW_HUNK)
             window.addEventListener("keydown", e=> {
                 if (e.code == "KeyT") {
                     this.collider.collidable = !this.collider.collidable;

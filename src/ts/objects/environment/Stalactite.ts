@@ -1,5 +1,6 @@
 import { Color, Config } from "../../config";
-import { asImage, chance, Vector2 } from "../../engine/utils/math";
+import { SpawnParticles } from "../../engine/components/Particles";
+import { asImage, chance, randomInt, Vector2 } from "../../engine/utils/math";
 import { Block } from "../Block";
 import { Entity } from "../entities/Entity";
 import { FallingOre } from "../ores/FallingORe";
@@ -39,6 +40,7 @@ export class Stalactite extends FallingOre {
         }
 
         this.tryFall();
+        this.particles();
     }
     render() {
         const size = Config.SPRITE_SIZE;
@@ -119,6 +121,17 @@ export class Stalactite extends FallingOre {
 
         this.length = 0;
         this.saveData();
+    }
+    particles() {
+        if (this.game.tick(randomInt(100, 150)) && chance(60))
+            SpawnParticles(this.game, this.position.add(new Vector2(0, this.length * Config.SPRITE_SIZE - Config.SPRITE_SIZE * .8)), {
+                count: 1,
+                colors: [Color.BLUE],
+                gravity: .08,
+                velocity: ()=> new Vector2(0, 0),
+                size: [.6, .6]
+            })
+        
     }
 
     saveData() {
