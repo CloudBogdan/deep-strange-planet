@@ -11,6 +11,7 @@ import { Robot } from "./Robot";
 import { Sound } from "../../engine/components/Sound";
 import { Food } from "../food/Food";
 import { FetusStone } from "../ores/FetusStone";
+import { StalactiteOre } from "../ores/StalactiteOre";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -90,7 +91,7 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = Config.IS_DEV ? 3 : 1;
+        this.toolLevel = Config.IS_DEV ? 1 : 1;
         this.allowPlaceRobot = false;
         this.allowEatFood = false;
         this.actionType = null;
@@ -109,7 +110,7 @@ export class Player extends Entity {
             window.addEventListener("keydown", e=> {
                 if (e.code == "KeyT") {
                     this.collider.collidable = !this.collider.collidable;
-                    this.moveSpeed = !this.collider.collidable ? 50 : this.initialMoveSpeed;
+                    this.moveSpeed = !this.collider.collidable ? 100 : this.initialMoveSpeed;
                 }
             })
     }
@@ -146,6 +147,8 @@ export class Player extends Entity {
         this.pullWire();
 
         this.grabFetus();
+        // if (this.game.tick(60))
+        //     this.fallStalactite();
 
         this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 11;
         this.allowPlaceRobot = this.position.y > 20;
@@ -246,13 +249,12 @@ export class Player extends Entity {
         
         for (let i = 0; i < 4; i ++) {
             let frame = 0;
-            const sine = this.hp <= 6 ? Math.sin(this.game.clock.elapsed / 10 + i) * 4 : 0;
 
             if (
                 (i == 0 && this.hp <= 11) ||
                 (i == 1 && this.hp <= 8) ||
                 (i == 2 && this.hp <= 5) ||
-                (i == 3 && this.hp <= 2)
+                (i == 3 && this.hp <= 1)
             )
                 frame = 1;
             if (
@@ -262,20 +264,17 @@ export class Player extends Entity {
                 (i == 3 && this.hp <= 0)
             )
                 frame = 2;
+
+            const sine = Math.sin(this.game.clock.elapsed / 10 + i) * 2 * frame;
             
             this.game.renderer.drawSprite({
                 texture: asImage(this.game.getAssetByName("health")),
                 frame: new Vector2(frame),
-                position: new Vector2(innerWidth - size - i * size * .8, innerHeight - size + sine),
+                scale: Vector2.all(.8),
+                position: new Vector2(innerWidth - size - i * size * .6, innerHeight - size + sine),
                 layer: "ui"
             });
         }
-
-        this.game.renderer.drawText({
-            text: this.hp.toString(),
-            position: new Vector2(100, 100),
-            layer: "ui"
-        })
 
     }
     renderOxygenHungryUI() {
@@ -341,9 +340,9 @@ export class Player extends Entity {
     grabFetus() {
         this.nearFetusStone = this.game.getChildrenByName<FetusStone>("fetus-stone").find(ore=> {
 
-            const vineHeight = (ore.length || 0) * Config.SPRITE_SIZE;
+            const vineHeight = (ore.vineLength || 0) * Config.SPRITE_SIZE;
             
-            return (ore.length || 0) > 0 && (ore.grabbedCount || 0) < (ore.length || 0) && (this.game.physics.collideWithRect({
+            return (ore.vineLength || 0) > 0 && (ore.grabbedCount || 0) < (ore.vineLength || 0) && this.game.physics.collideWithRect({
                 id: this.id,
                 position: this.position,
                 width: this.collider.width,
@@ -353,10 +352,40 @@ export class Player extends Entity {
                 position: ore.position.add(new Vector2(0, vineHeight / 2)),
                 width: ore.collider.width / 2,
                 height: ore.collider.height + vineHeight,
-            }).any)
+            }).any
 
         })
     }
+    /*
+    fallStalactite() {
+        if (!chance(50)) return;
+
+        const stalactite = this.game.getChildrenByName<StalactiteOre>("basalt").find(ore=> {
+            if (ore.stalactiteLength <= 0 || ore.allowFall) return false;
+            
+            const stalactiteHeight = ore.stalactiteLength * Config.SPRITE_SIZE + 8 * Config.SPRITE_SIZE;
+            
+            return ore.stalactiteLength > 0 && !ore.allowFall && this.game.physics.collideWithRect({
+                id: this.id,
+                position: this.position,
+                width: this.collider.width,
+                height: this.collider.height,
+            }, {
+                id: ore.id,
+                position: ore.position.add(new Vector2(0, stalactiteHeight / 2)),
+                width: ore.collider.width,
+                height: ore.collider.height + stalactiteHeight,
+            }).any;
+
+        });
+        //
+        if (!stalactite) return;
+
+        console.log(stalactite.stalactiteLength);
+        stalactite.fall();
+
+    }
+    */
     
     pickup(item: ItemParent, type: string, count: number) {
         this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
@@ -385,14 +414,16 @@ export class Player extends Entity {
 
     }
     hit(damage: number) {
-        super.hit(damage);
+        if (this.hp <= 0)
+            this.die();
+        
+        if (this.damaged) return;
 
         this.damageAnimatedOpacity = 1.5;
         this.game.camera.shake();
         this.sound.play(this.game, chance(1) ? "bonk" : "hit");
 
-        if (this.hp <= 0)
-            this.die();
+        super.hit(damage);
     }
     die() {
         this.oxygenHungryStartElapsed = this.game.clock.elapsed;
@@ -405,7 +436,7 @@ export class Player extends Entity {
         if (this.hp >= 12) return
         
         this.hp += heal;
-        this.hp = clamp(this.hp, 0, 10);
+        this.hp = clamp(this.hp, 0, 12);
         this.spawnText(`+${ heal }`, undefined, Color.GREEN);
     }
     upgradeTool(levelUp: number) {

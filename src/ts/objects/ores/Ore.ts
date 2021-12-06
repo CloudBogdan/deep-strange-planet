@@ -8,7 +8,8 @@ import { Block } from "../Block";
 export type OreType =
     "stone" | "stony-ground" | "deep-stone" | "destrony" | "manty" |
     "cracked-stone" | "basalt" | "burnt-basalt" |
-    "cidium" | "osmy" | "antin" | "rady" | "nerius" | "fetus-stone" | "mushroom-stone";
+    "cidium" | "osmy" | "antin" | "rady" | "nerius" | "fetus-stone" | "mushroom-stone" |
+    "stalactite";
 
 export class Ore extends Block {
     oreType: OreType
@@ -61,6 +62,8 @@ export class Ore extends Block {
     init() {
         super.init();
 
+        if (!this.allowDecorations) return;
+        
         // Top
         if (!this.checkBlockIn(new Vector2(0, -1)))
             this.allowTopDecorations = true;

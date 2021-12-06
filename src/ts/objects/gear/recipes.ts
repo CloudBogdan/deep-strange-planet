@@ -23,12 +23,29 @@ const recipes = (recycler: Recycler)=> ({
         }),
     }),
 
-    // Craft battery
+    // Craft drill
     "drill": new Recipe({
         recipe: ()=> ({
             // "ready-cidium": { count: 1 },
             "ready-cidium": { count: 2 },
             "raw-nerius": { count: 2 },
+        }),
+    }),
+
+    // Craft box
+    "box": new Recipe({
+        recipe: ()=> ({
+            "ready-cidium": { count: 1 },
+            "raw-nerius": { count: 4 },
+        }),
+    }),
+
+    // Craft card
+    "card": new Recipe({
+        recipe: ()=> ({
+            "ready-cidium": { count: 2 },
+            "raw-osmy": { count: 3 },
+            "raw-grade-cidium": { count: 1 },
         }),
     }),
     
@@ -45,7 +62,7 @@ const recipes = (recycler: Recycler)=> ({
         // Render icon
         icon: (game, pos, opacity)=> {
             game.renderer.drawSprite({
-                texture: asImage(game.getAssetByName("gear-storage-1")),
+                texture: asImage(game.getAssetByName("storage-level-up")),
                 position: pos,
                 width: 2,
                 height: 2,
@@ -66,7 +83,7 @@ const recipes = (recycler: Recycler)=> ({
     "tool-level-up": new Recipe({
         recipe: ()=> [
             { "ready-cidium": { count: 3 }  }, // Level 2
-            { "ready-cidium": { count: 2 }, "raw-osmy": { count: 2 }, "raw-grade-cidium": { count: 1 } }, // Level 3
+            { "ready-cidium": { count: 2 }, "card": { count: 1 }, "raw-grade-cidium": { count: 1 } }, // Level 3
             { "ready-cidium": { count: 3 }, "raw-osmy": { count: 4 }, "drill": { count: 1 }, "raw-antin": { count: 3 } }, // Level 4
         ][recycler.player ? recycler.player?.toolLevel - 1 : 0] as any,
         onCraft: ()=> {
@@ -95,11 +112,11 @@ const recipes = (recycler: Recycler)=> ({
     // Craft bottle
     "bottle": new Recipe({
         recipe: ()=> ({
-            "ready-cidium": { count: 1 },
-            "raw-osmy": { count: 8 },
+            "ready-cidium": { count: 3 },
+            "box": { count: 1 },
             "raw-antin": { count: 4 },
-            "raw-nerius": { count: 3 }
-        } as any),
+            "raw-grade-cidium": { count: 2 }
+        }),
         onCraft: ()=> {
             if (!recycler.player) return
             recycler.player.hasBottle = true;
@@ -109,8 +126,12 @@ const recipes = (recycler: Recycler)=> ({
 
     // Craft robot
     "item-robot": new Recipe({
-        // recipe: ()=> ({ "raw-cidium": { count: 1 } } as any),
-        recipe: ()=> ({ "battery": { count: 1 }, "drill": { count: 1 }, "raw-nerius": { count: 5 } } as any),
+        recipe: ()=> ({
+            "battery": { count: 1 },
+            "drill": { count: 1 },
+            "box": { count: 1 },
+            "card": { count: 1 }
+        }),
         isRemoved: ()=> recycler.player ? recycler.player.hasBottle : false
     }),
     

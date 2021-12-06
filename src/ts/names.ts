@@ -25,7 +25,7 @@ export const ObjectNames: NamesType = {
     },
     "raw-grade-cidium": {
         name: buildName(prefixes.raw, "второсортный цидиум"),
-        desc: "Цидиум 2-го сорта, руда, иногда встречающаяся вместе с осмием",
+        desc: "Цидиум 2-го сорта, руда, иногда встречающаяся вместе с осмием. Выделяет менее сильную энергию, чем цидиум",
     },
     "raw-antin": {
         name: buildName(prefixes.raw, "антин"),
@@ -75,6 +75,14 @@ export const ObjectNames: NamesType = {
     "drill": {
         name: "Бур",
         desc: "Изпользуется в квафте чего-либо"
+    },
+    "box": {
+        name: "Корпус",
+        desc: "Прочный корпус из нериуса. Из него можно что-нибудь соорудить"
+    },
+    "card": {
+        name: "Плата",
+        desc: "Умная плата для роботов"
     },
     "item-robot": {
         name: "Робот",

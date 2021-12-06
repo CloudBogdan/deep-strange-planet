@@ -41,6 +41,8 @@ import ready_cidium_img from "../../images/ready/ready-cidium.png"; // @ts-ignor
 // > Items
 import battery_img from "../../images/items/battery.png"; // @ts-ignore
 import drill_img from "../../images/items/drill.png"; // @ts-ignore
+import box_img from "../../images/items/box.png"; // @ts-ignore
+import card_img from "../../images/items/card.png"; // @ts-ignore
 
 // > Plants
 import fetus_vine_img from "../../images/flora/fetus-vine.png"; // @ts-ignore
@@ -48,6 +50,7 @@ import mushroom_img from "../../images/flora/mushroom.png"; // @ts-ignore
 import infection_img from "../../images/flora/infection.png"; // @ts-ignore
 import datura_img from  "../../images/flora/datura.png"; // @ts-ignore
 import plants_img from  "../../images/flora/plants.png"; // @ts-ignore
+import stalactite_img from  "../../images/flora/stalactite.png"; // @ts-ignore
 import datura_tongue_img from  "../../images/flora/datura-tongue.png"; // @ts-ignore
 
 // > Food
@@ -81,9 +84,9 @@ import storage_ui_img from "../../images/ui/storage-ui.png"; // @ts-ignore
 import recycler_ui_img from "../../images/ui/recycler-ui.png"; // @ts-ignore
 import description_ui_img from "../../images/ui/description-ui.png"; // @ts-ignore
 import oxygen_generator_ui_img from "../../images/ui/oxygen-generator-ui.png"; // @ts-ignore
-import health_bar_plate_img from "../../images/ui/health-bar-plate.png"; // @ts-ignore
-import health_bar_img from "../../images/ui/health-bar.png"; // @ts-ignore
 import health_img from "../../images/ui/health.png"; // @ts-ignore
+import item_robot_img from "../../images/ui/item-robot.png"; // @ts-ignore
+import storage_level_up_img from "../../images/ui/storage-level-up.png"; // @ts-ignore
 
 // > Audio
 import stone_hit_mp from "../../audio/stone-hit.mp3"; // @ts-ignore
@@ -152,6 +155,8 @@ export function initAssets(game: Game) {
     // > Items
     game.loadAsset("battery", [battery_img]);
     game.loadAsset("drill", [drill_img]);
+    game.loadAsset("box", [box_img]);
+    game.loadAsset("card", [card_img]);
 
     // > Plants
     game.loadAsset("fetus-vine", [fetus_vine_img]);
@@ -160,6 +165,7 @@ export function initAssets(game: Game) {
     game.loadAsset("plants", [plants_img]);
     game.loadAsset("datura-tongue", [datura_tongue_img]);
     game.loadAsset("infection", [infection_img]);
+    game.loadAsset("stalactite", [stalactite_img]);
 
     // > Food
     game.loadAsset("food-fetus", [food_fetus_img]);
@@ -192,9 +198,9 @@ export function initAssets(game: Game) {
     game.loadAsset("recycler-ui", [recycler_ui_img])
     game.loadAsset("description-ui", [description_ui_img])
     game.loadAsset("oxygen-generator-ui", [oxygen_generator_ui_img])
-    game.loadAsset("health-bar-plate", [health_bar_plate_img])
-    game.loadAsset("health-bar", [health_bar_img])
     game.loadAsset("health", [health_img])
+    game.loadAsset("item-robot", [item_robot_img])
+    game.loadAsset("storage-level-up", [storage_level_up_img])
 
     // > Audio
     game.loadAsset("stone-hit", stone_hit_mp, "audio")

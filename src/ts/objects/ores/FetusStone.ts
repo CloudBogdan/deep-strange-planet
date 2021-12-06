@@ -6,8 +6,8 @@ import { HealingFetus } from "../food/HealingFetus";
 import { Ore } from "./Ore";
 
 export class FetusStone extends Ore {
-    length: number | null
-    maxLength: number
+    vineLength: number | null
+    maxVineLength: number
     allowGrow: boolean
     playerIsNear: boolean
     grabbedCount: number | null
@@ -18,8 +18,8 @@ export class FetusStone extends Ore {
         this.randomRotate = false;
 
         this.playerIsNear = false;
-        this.length = data ? (data?.length || null) : null;
-        this.maxLength = data ? (data?.maxLength || 1) : 1;
+        this.vineLength = data ? (data?.length || null) : null;
+        this.maxVineLength = data ? (data?.maxLength || 1) : 1;
         this.allowGrow = true;
         this.grabbedCount = data ? (data?.grabbedCount || null) : null;
 
@@ -30,9 +30,9 @@ export class FetusStone extends Ore {
     init() {
         super.init();
 
-        if (this.length === null) {
-            this.maxLength = randomInt(Config.VINE_MIN_LENGTH, Config.VINE_MAX_LENGTH);
-            this.length = clamp(randomInt(1, 4), 0, this.maxLength);
+        if (this.vineLength === null) {
+            this.maxVineLength = randomInt(Config.VINE_MIN_LENGTH, Config.VINE_MAX_LENGTH);
+            this.vineLength = clamp(randomInt(1, 4), 0, this.maxVineLength);
             this.saveData();
         }
         if (this.grabbedCount == null) {
@@ -41,19 +41,20 @@ export class FetusStone extends Ore {
         }
             
         this.checkEmptySpace();
+        if (!this.allowGrow)
+            this.vineLength = 0;
     }
     update() {
         super.update();
 
-        // this.grabbing();
-        
+        if (!this.allowGrow) return;
         if (this.game.tick(Config.VINE_GROW_TICK))
             if (chance(Config.VINE_GROW_CHANCE))
                 this.grow();
         if (this.game.tick(Config.VINE_GROW_TICK * 2))
             if (chance(Config.VINE_GROW_CHANCE * .3) && this.grabbedCount != null) {
                 this.grabbedCount --;
-                this.grabbedCount = clamp(this.grabbedCount, 0, this.length || 0)
+                this.grabbedCount = clamp(this.grabbedCount, 0, this.vineLength || 0)
             }
     }
 
@@ -65,17 +66,17 @@ export class FetusStone extends Ore {
     }
 
     grab() {
-        if (this.grabbedCount == null || this.grabbedCount >= (this.length || 0)) return;
+        if (this.grabbedCount == null || this.grabbedCount >= (this.vineLength || 0)) return;
         
         this.grabbedCount ++;
-        this.grabbedCount = clamp(this.grabbedCount, 0, this.length || 0)
+        this.grabbedCount = clamp(this.grabbedCount, 0, this.vineLength || 0)
 
         this.dropItem(HealingFetus, 100, new Vector2(0, Config.SPRITE_SIZE * this.grabbedCount));
     }
 
     onBreak() {
         super.onBreak();
-        if (!this.length) return;
+        if (!this.vineLength) return;
         const size = Config.SPRITE_SIZE;
 
         SpawnParticles(this.game, this.position, {
@@ -87,23 +88,23 @@ export class FetusStone extends Ore {
             downOpacity: -.01,
             downSize: .008,
             rotationVelocity: ()=> random(-.01, .01),
-            box: ()=> new Vector2(random(-size*.4, size*.4), random(0, size * (this.length || 1)))
+            box: ()=> new Vector2(random(-size*.4, size*.4), random(0, size * (this.vineLength || 1)))
         });
     }
 
     renderVine() {
-        if (!this.length) return;
+        if (!this.vineLength) return;
         const size = Config.SPRITE_SIZE;
         
-        for (let i = 0; i < this.length; i ++) {
-            let spriteIndex = 0
+        for (let i = 0; i < this.vineLength; i ++) {
+            let frame = 0
 
             if (i == 0)
-                spriteIndex = 0;
+                frame = 0;
             if (i > 0)
-                spriteIndex = 1;
-            if (i == this.length - 1)
-                spriteIndex = 2;
+                frame = 1;
+            if (i == this.vineLength - 1)
+                frame = 2;
             
             const pos = this.position.add(new Vector2(0, size + i * size));
                 
@@ -117,7 +118,7 @@ export class FetusStone extends Ore {
                     position: pos.add(new Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / Config.SPRITE_SIZE) * i * 1.5)),
                     frame: new Vector2(
                         +(i < (this.grabbedCount || 0)),
-                        spriteIndex
+                        frame
                     ),
                     flip: { x: i % 2 == 0 || i % 3 == 0, y: false },
                     opacity: Config.ALLOW_DARK ? 1 - darkenFactor : 1
@@ -135,17 +136,17 @@ export class FetusStone extends Ore {
                 downOpacity: -.01,
                 downSize: .008,
                 rotationVelocity: ()=> random(-.01, .01),
-                box: ()=> new Vector2(random(-size*.4, size*.4), random(0, size * (this.length || 1)))
+                box: ()=> new Vector2(random(-size*.4, size*.4), random(0, size * (this.vineLength || 1)))
             });
         
     }
     grow() {
-        if (this.length === null) return;
+        if (this.vineLength === null || !this.allowGrow) return;
 
-        let needLength = this.length;
+        let needLength = this.vineLength;
         let height = 0;
         
-        if (needLength + 1 < this.maxLength)
+        if (needLength + 1 < this.maxVineLength)
             needLength ++;
 
         for (let i = 1; i < 8; i ++) {
@@ -157,20 +158,19 @@ export class FetusStone extends Ore {
         if (this.checkBlockIn(new Vector2(0, needLength)))
             needLength --;
 
-        this.length = clamp(needLength, 0, height);
+        this.vineLength = clamp(needLength, 0, height);
 
         this.saveData();
     }
 
     saveData() {
         this.game.generator.modifyOre(this.inChunkId, {
-            length: this.length,
+            length: this.vineLength,
             grabbedCount: this.grabbedCount,
-            maxLength: this.maxLength
+            maxLength: this.maxVineLength
         });
     }
     checkEmptySpace() {
-        if (this.checkBlockIn(new Vector2(0, 1)) && this.allowGrow)
-            this.allowGrow = false;
+        this.allowGrow = !this.checkBlockIn(new Vector2(0, 1));
     }
 }

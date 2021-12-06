@@ -41,6 +41,7 @@ export class Entity extends Sprite {
         this.stayAnimation = `${ name }-stay`;
         this.walkAnimation = `${ name }-walk`;
         this.moveSpeedDown = 0;
+        this.group = "entity";
         
         this.movement = new Vector2();
         this.allowMove = true;
@@ -78,8 +79,7 @@ export class Entity extends Sprite {
     dig(damage: number, speed: number, level: ToolLevel, direction: Direction) {
         
         if (this.collider.collidesWith != null && this.collider.collidesWith.any && this.collider.collidesWith.id!.indexOf("ore-") >= 0) {
-            const ore = this.game.getChildById<Ore>(this.collider.collidesWith.id, true);
-            // const tool = tools[this.toolLevel.toString()];
+            const ore = this.game.getChildById<Ore>(this.collider.collidesWith.id);
 
             if (ore == undefined) return;
 

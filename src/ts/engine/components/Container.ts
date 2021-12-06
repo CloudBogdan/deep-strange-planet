@@ -21,7 +21,10 @@ export class Container {
     getChildrenByName<T>(name: Point["name"]): T[] {
         return (this.children.filter(child=> child.name.indexOf(name) >= 0) as any[]) as T[];
     }
-    getChildById<T>(id: Point["id"] | null, expandAll?: boolean): T | undefined {
+    getChildrenByGroupName<T>(groupName: Point["group"]): T[] {
+        return (this.children.filter(child=> child.group.indexOf(groupName) >= 0) as any[]) as T[];
+    }
+    getChildById<T>(id: Point["id"] | null): T | undefined {
         if (id)
             return this.children.find(child=> child.id.indexOf(id) >= 0) as T | undefined;
     }
@@ -37,7 +40,7 @@ export class Container {
     }
     removeChildrenByGroupName(group: string) {
         this.children.map(child=> {
-            if (child.group && compareNames(child.group, group)) {
+            if (compareNames(child.group, group)) {
                 this.removeChildById(child.id);
             }
         });

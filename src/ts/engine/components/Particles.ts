@@ -1,7 +1,6 @@
 import { Game } from "../Game";
 import { asImage, random, safeValue, Vector2 } from "../utils/math";
 import { Color, Config } from "../../config";
-import { Point } from "./Point";
 import { Renderer } from "../Renderer";
 
 type ParticlesSettings = {
@@ -88,6 +87,15 @@ export function SpawnParticles(game: Game, position: Vector2, settings?: Particl
     for (let i = settings?.count || 10; i --;)
         game.renderer.particles.push(new Particle(position.expand().add(box ? box() : Vector2.zero()), settings));
 
+}
+
+export function SpawnCrumbleParticles(game: Game, position: Vector2, colors?: ParticlesSettings["colors"]) {
+    SpawnParticles(game, position, {
+        velocity: ()=> new Vector2(random(-2, 2), 0),
+        box: ()=> new Vector2(random(-40, 40), 0),
+        colors,
+        count: 5,
+    });
 }
 
 export function SpawnDisputesParticles(game: Game, position: Vector2, intensity?: number) {

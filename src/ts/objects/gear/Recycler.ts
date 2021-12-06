@@ -52,8 +52,6 @@ export class Recycler extends Gear {
             const focused = this.ui.focused.slot + (this.ui.focused.row - 1) * this.maxRowItemsCount;
             const recipesKeys = this.getRecipesKeys();
             const recipe = this.recipes[recipesKeys[focused]];
-
-            console.log(recipesKeys[focused]);
             
             // Craft
             if (recipe.canCraft(this.storage)) {
@@ -141,7 +139,7 @@ export class Recycler extends Gear {
                     );
                 else
                     this.game.renderer.drawSprite({
-                        texture: asImage(this.game.getAssetByName(recipeName.replace("item-", ""))),
+                        texture: asImage(this.game.getAssetByName(recipeName)),
                         position: pos,
                         opacity: this.recipes[recipeName].canCraft(this.storage) ? 1 : .5,
                         layer: "ui"
@@ -176,7 +174,7 @@ export class Recycler extends Gear {
                     renderIcon(this.game, pos, 1);   
                 else
                     this.game.renderer.drawSprite({
-                        texture: asImage(this.game.getAssetByName(recipesKeys[selectedSlot].replace("item-", ""))),
+                        texture: asImage(this.game.getAssetByName(recipesKeys[selectedSlot])),
                         position: pos,
                         layer: "ui"
                     })

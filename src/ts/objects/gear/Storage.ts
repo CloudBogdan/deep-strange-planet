@@ -30,6 +30,7 @@ export class Storage extends Gear {
         if (Config.IS_DEV)
             this.contains = { totalCount: 0, slots: {
                 "raw-cidium": { count: 1 },
+                "raw-grade-cidium": { count: 1 },
                 "raw-osmy": { count: 1 },
                 "ready-cidium": { count: 1 },
                 "item-robot": { count: 1 },
@@ -76,8 +77,8 @@ export class Storage extends Gear {
             this.ui.enabled = false;
             return;
         }
-        if (this.ui.enabled && this.ui.focused.row == 1) {
-            const slotName = this.filterItems(this.contains.slots)[this.ui.ghostFocused.slot];
+        if (this.ui.enabled && this.ui.focused.row != 0) {
+            const slotName = this.filterItems(this.contains.slots)[this.ui.ghostFocused.slot + (this.ui.ghostFocused.row - 1) * this.maxRowItemsCount];
             this.drop(slotName, 1);
             return;
         }
@@ -193,7 +194,7 @@ export class Storage extends Gear {
             description: item.desc, 
             renderIcon: (pos)=> {
                 this.game.renderer.drawSprite({
-                    texture: asImage(this.game.getAssetByName(name.replace("item-", ""))),
+                    texture: asImage(this.game.getAssetByName(name)),
                     position: pos,
                     layer: "ui"
                 });
@@ -248,7 +249,7 @@ export class Storage extends Gear {
 
                 // Draw item sprite
                 this.game.renderer.drawSprite({
-                    texture: asImage(this.game.getAssetByName(slot.replace("item-", ""))),
+                    texture: asImage(this.game.getAssetByName(slot)),
                     position: pos,
                     layer: "ui"
                 });

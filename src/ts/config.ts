@@ -16,10 +16,17 @@ export enum Config {
     PARTICLES_GRAVITY = .4,
     WORLD_X_CENTER = WORLD_WIDTH * SPRITE_SIZE / 2, // In pixels
 
+    OXYGEN_GENERATOR_BATTERY_DEFUSE_TICK = 400,
+    OXYGEN_GENERATOR_OXYGEN_DEFUSE_TICK = 250,
+
     VINE_GROW_TICK = 200,
     VINE_GROW_CHANCE = 16,
     VINE_MIN_LENGTH = 4,
     VINE_MAX_LENGTH = 8,
+
+    MAX_STALACTITE_LENGTH = 4,
+    STALACTITE_GROW_TICK = 100,
+    STALACTITE_GROW_CHANCE = 100,
 
     INFECTION_GROW_TICK = IS_DEV ? 100 : 200,
     INFECTION_GROW_CHANCE = IS_DEV ? 100 : 10,
@@ -79,6 +86,7 @@ export const OreSettings: { [key: string]: { hp: number, tool?: ToolLevel } } = 
     "rady": { hp: 58, tool: 4 },
     "root-stone": { hp: 14 },
     "mushroom-stone": { hp: 32, tool: 3 },
+    "stalactite": { hp: 26, tool: 2 },
 }
 export const ItemSettings: { [key: string]: { lineColor: Color, storage: GearLevel } } = {
     "raw-cidium": {

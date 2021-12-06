@@ -22,7 +22,7 @@ export class Point {
     id: string
     type: ComponentType
     name: string
-    group: string | null
+    group: string
     inited: boolean
     layer: string
     
@@ -38,7 +38,7 @@ export class Point {
         this.id = `${ name }-${ __id ++ }`;
         this.type = "point";
         this.name = standardName(name);
-        this.group = props?.group ? standardName(props.group) : null;
+        this.group = props?.group ? standardName(props.group) : "";
         this.inited = false;
         this.layer = props?.layer || "game";
 
