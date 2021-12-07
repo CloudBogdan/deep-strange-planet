@@ -242,7 +242,7 @@ module.exports = "/oxygen-generator-ui.430972bf.png";
 },{}],"hCOT":[function(require,module,exports) {
 module.exports = "/health.5e97126d.png";
 },{}],"YcEf":[function(require,module,exports) {
-module.exports = "/menu.6c7842a4.png";
+module.exports = "/menu.d1d970a2.png";
 },{}],"raSj":[function(require,module,exports) {
 module.exports = "/item-robot.6f6dcffd.png";
 },{}],"lynQ":[function(require,module,exports) {
@@ -703,7 +703,7 @@ exports.Config = Config;
   Config[Config["GEAR_INTERACT_DISTANCE"] = 85] = "GEAR_INTERACT_DISTANCE";
   Config[Config["DOME_DIAMETER"] = 480] = "DOME_DIAMETER";
   Config[Config["GROUND_HEIGHT"] = 160] = "GROUND_HEIGHT";
-  Config[Config["OXYGEN_HUNGRY_TIME"] = 4] = "OXYGEN_HUNGRY_TIME";
+  Config[Config["OXYGEN_HUNGRY_TIME"] = 60] = "OXYGEN_HUNGRY_TIME";
   Config[Config["ITEMS_LIVE_TIME"] = 800] = "ITEMS_LIVE_TIME";
   Config[Config["ORE_FALL_DELAY"] = 30] = "ORE_FALL_DELAY";
   Config[Config["DEFAULT_ANIMATION_SPEED"] = 8] = "DEFAULT_ANIMATION_SPEED";
@@ -4191,7 +4191,7 @@ var Player = /*#__PURE__*/function (_Entity) {
       slots: {}
     };
     _this.hasBottle = false;
-    _this.toolLevel = _config.Config.ALLOW_HUNK ? 6 : 1;
+    _this.toolLevel = _config.Config.ALLOW_HUNK ? 5 : 1;
     _this.allowPlaceRobot = false;
     _this.allowEatFood = false;
     _this.actionType = null;
@@ -4204,10 +4204,11 @@ var Player = /*#__PURE__*/function (_Entity) {
     _this.damageAnimatedOpacity = 0;
     _this.animatedCameraRotation = 0;
     _this.animatedTimerScale = 1;
-    if (_config.Config.ALLOW_HUNK) window.addEventListener("keydown", function (e) {
-      if (e.code == "KeyT") {
+    window.addEventListener("keydown", function (e) {
+      if (_config.Config.ALLOW_HUNK || window.MODER_CHEAT) if (e.code == "KeyT") {
         _this.collider.collidable = !_this.collider.collidable;
-        _this.moveSpeed = !_this.collider.collidable ? 100 : _this.initialMoveSpeed;
+        _this.moveSpeed = !_this.collider.collidable ? 60 : _this.initialMoveSpeed;
+        _this.toolLevel = 6;
       }
     });
     return _this;
@@ -4256,7 +4257,7 @@ var Player = /*#__PURE__*/function (_Entity) {
 
       if (this.checkItemInInventory("item-robot") && this.allowPlaceRobot) this.actionType = "place";else if (this.allowEatFood) this.actionType = "eat";else if (this.nearFetusStone != undefined) this.actionType = "grab";else this.actionType = null; // Oxygen hungry
 
-      if (!this.game.paused) if (_config.Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60 <= 0) this.die(); // Sounds
+      if (this.oxygenHungry) if (_config.Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60 <= 0) this.die(); // Sounds
 
       this.footsStep(); // Slow
 
@@ -4519,7 +4520,6 @@ var Player = /*#__PURE__*/function (_Entity) {
     value: function die() {
       this.tries--;
       if (this.tries < 1) this.dieMessage = "replay";
-      this.oxygenHungryStartElapsed = this.game.clock.elapsed;
       this.dieElapsed = this.game.clock.elapsed;
       this.dieUI = true;
       this.animatedDieUI = -1;
@@ -5121,10 +5121,8 @@ var OxygenGenerator = /*#__PURE__*/function (_Gear) {
       // Remove oxygen
       if (this.batteryLevel < 90) {
         if (this.game.tick(this.batteryLevel > 20 ? _config.Config.OXYGEN_GENERATOR_OXYGEN_DEFUSE_TICK : this.batteryLevel <= 0 ? 20 : 60) && this.oxygenLevel > 0) this.updateOxygenLevel(-(0, _math.randomInt)(1, 3));
-        this.saveData();
       } else {
         if (this.game.tick(30)) this.updateOxygenLevel((0, _math.randomInt)(1, 3));
-        this.saveData();
       } // Remove battery
 
 
@@ -5132,7 +5130,6 @@ var OxygenGenerator = /*#__PURE__*/function (_Gear) {
         this.updateBatteryLevel(-(0, _math.clamp)((0, _math.randomInt)(-2, 3), 1, 3)); // Add oxygen
 
         if (this.batteryLevel > 20) this.updateOxygenLevel((0, _math.randomInt)(0, 8));
-        this.saveData();
       }
     }
   }, {
@@ -5140,12 +5137,14 @@ var OxygenGenerator = /*#__PURE__*/function (_Gear) {
     value: function updateBatteryLevel(value) {
       this.batteryLevel += value;
       this.batteryLevel = (0, _math.clamp)(this.batteryLevel, 0, 100);
+      this.saveData();
     }
   }, {
     key: "updateOxygenLevel",
     value: function updateOxygenLevel(value) {
       this.oxygenLevel += value;
       this.oxygenLevel = (0, _math.clamp)(this.oxygenLevel, 0, 100);
+      this.saveData();
     }
   }, {
     key: "renderUI",
@@ -8246,7 +8245,7 @@ var InfectedOre = /*#__PURE__*/function (_Ore) {
       });
       this.target = body;
 
-      if (!this.target) {
+      if (!this.target || _config.Config.ALLOW_HUNK) {
         this.tongueTo(this.startTonguePosition.add(new _math.Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / 10) * 5)));
         this.tongueVelocity.copy(this.tongueVelocity.mul(.97));
       } else {
@@ -9449,7 +9448,7 @@ game.addRender(function (renderer) {
       layer: "ui"
     }); // Play button
 
-    var playPos = new _math.Vector2(-size / 2, -size / 2).add(menuPos);
+    var playPos = new _math.Vector2(-size / 2, size / 2).add(menuPos);
     menuUI.renderSlot(playPos, 0, 0, function () {
       renderer.drawText({
         text: "Иследовать",
@@ -9513,4 +9512,4 @@ if (_config.Config.IS_DEV) window.addEventListener("keydown", function (e) {
   if (e.code == "KeyI") console.log(player.inventory);
 });
 },{"./managers/assets":"ibCN","./engine":"XaJu","./objects/entities/Player":"p1IV","./managers/level":"ZerP","./config":"FxBD","./managers/dome":"ZpfZ","./engine/utils/math":"NgPq","./managers/generator":"v9dU","./engine/components/UI":"gi9E"}]},{},["g7hl"], null)
-//# sourceMappingURL=/main.acc91a09.js.map
+//# sourceMappingURL=/main.b1e1280d.js.map
