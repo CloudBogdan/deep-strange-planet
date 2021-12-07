@@ -177,7 +177,7 @@ export class Player extends Entity {
             this.actionType = null;
 
         // Oxygen hungry
-        if (!this.game.paused)
+        if (this.oxygenHungry)
             if (Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60 <= 0)
                 this.die();
 
@@ -475,7 +475,6 @@ export class Player extends Entity {
         if (this.tries < 1)
             this.dieMessage = "replay";
         
-        this.oxygenHungryStartElapsed = this.game.clock.elapsed;
         this.dieElapsed = this.game.clock.elapsed;
         this.dieUI = true;
         this.animatedDieUI = -1;

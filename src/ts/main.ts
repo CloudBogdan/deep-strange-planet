@@ -87,7 +87,7 @@ game.addRender(renderer=> {
             })
         
         // Play button
-        const playPos = new Vector2(-size / 2, -size / 2).add(menuPos);
+        const playPos = new Vector2(-size / 2, size / 2).add(menuPos);
         menuUI.renderSlot(playPos, 0, 0, ()=> {
 
             renderer.drawText({

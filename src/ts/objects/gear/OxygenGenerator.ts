@@ -81,12 +81,9 @@ export class OxygenGenerator extends Gear {
         if (this.batteryLevel < 90) {
             if (this.game.tick(this.batteryLevel > 20 ? Config.OXYGEN_GENERATOR_OXYGEN_DEFUSE_TICK : (this.batteryLevel <= 0 ? 20 : 60)) && this.oxygenLevel > 0)
                 this.updateOxygenLevel(-randomInt(1, 3));
-            this.saveData();
         } else {
             if (this.game.tick(30))
                 this.updateOxygenLevel(randomInt(1, 3));
-                
-            this.saveData();
         }
         
         // Remove battery
@@ -96,17 +93,17 @@ export class OxygenGenerator extends Gear {
             // Add oxygen
             if (this.batteryLevel > 20)
                 this.updateOxygenLevel(randomInt(0, 8));
-
-            this.saveData();
         }
     }
     updateBatteryLevel(value: number) {
         this.batteryLevel += value;
         this.batteryLevel = clamp(this.batteryLevel, 0, 100);
+        this.saveData();
     }
     updateOxygenLevel(value: number) {
         this.oxygenLevel += value;
         this.oxygenLevel = clamp(this.oxygenLevel, 0, 100);
+        this.saveData();
     }
     
     renderUI() {
