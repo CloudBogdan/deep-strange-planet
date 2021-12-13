@@ -58,10 +58,13 @@ export class Entity extends Sprite {
 
     update() {
         super.update();
+        this.bounds();
+        
         if (!this.allowMove || this.game.paused) {
             this.movement.set();
             this.velocity.set();
         }
+
 
         if (!this.damaged) {
             this.damagedElapsed = this.game.clock.elapsed;
@@ -124,6 +127,38 @@ export class Entity extends Sprite {
         this.damaged = true;
 
         this.spawnText(`-${ damage }`, undefined, Color.RED);
+    }
+    bounds() {
+        // World bounds
+        const worldWidth = Math.floor((Config.WORLD_WIDTH * Config.SPRITE_SIZE));
+        
+        // By width
+        if (this.position.x < 0)
+            this.position.x = 0
+        else if (this.position.x > worldWidth)
+            this.position.x = worldWidth
+        
+        // Dome bounds
+        const halfDiameter = Config.DOME_DIAMETER / 2;
+
+        if (this.position.x > Config.WORLD_X_CENTER - halfDiameter + 40 && this.position.x < Config.WORLD_X_CENTER + halfDiameter - 40) {
+            if (this.position.y < -Config.SPRITE_SIZE / 2) {
+        
+                if (this.position.y < -Config.GROUND_HEIGHT) {
+                    this.position.y = -Config.GROUND_HEIGHT;
+                }
+                if (this.position.x < Config.WORLD_X_CENTER - halfDiameter + 48)
+                    this.position.x = Config.WORLD_X_CENTER - halfDiameter + 48;
+                if (this.position.x > Config.WORLD_X_CENTER + halfDiameter - 48)
+                    this.position.x = Config.WORLD_X_CENTER + halfDiameter - 48;
+
+            }
+
+        } else {
+            // By height
+            if (this.position.y < -Config.SPRITE_SIZE / 2)
+                this.position.y = -Config.SPRITE_SIZE / 2;
+        }
     }
 
     spawnText(text: string, offset?: Vector2, color?: string) {

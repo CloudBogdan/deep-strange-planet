@@ -8,7 +8,8 @@ import { ObjectNames } from "../../names";
 import { Player } from "../entities/Player";
 
 export type GearType = 
-    "gear-storage" | "gear-recycler" | "gear-upgrader" | "gear-oxygen-generator";
+    "gear-storage" | "gear-recycler" | "gear-upgrader" | "gear-oxygen-generator" |
+    "gear-documentation";
 export type GearLevel = 1 | 2 | 3;
 export const MaxGearLevel = 3;
 
@@ -18,10 +19,13 @@ export class Gear extends Sprite {
     interactButton: Button
     player: Player | undefined
 
+    maxRowItemsCount: number
     gearType: GearType;
     level: GearLevel
     playerIsNear: boolean
     allowInteract: boolean
+    allowActionButton: boolean
+    actionButtonAssetName: string
 
     headerOffset: Vector2
     interactText: string
@@ -42,10 +46,13 @@ export class Gear extends Sprite {
         this.interactButton = new Button();
         this.player = undefined;
         
+        this.maxRowItemsCount = 5;
         this.gearType = type;
         this.level = level;
         this.playerIsNear = false;
         this.allowInteract = true;
+        this.allowActionButton = true;
+        this.actionButtonAssetName = "close";
 
         this.headerOffset = new Vector2();
         this.interactText = "";
@@ -62,6 +69,9 @@ export class Gear extends Sprite {
         this.game.gamepad.onKeyDown(this.id, "enter", ()=> {
             if (!this.playerIsNear) return;
 
+            if (this.ui.enabled)
+                this.onUIAction();
+            
             if (this.player)
                 this.onInteract();
         });
@@ -69,9 +79,10 @@ export class Gear extends Sprite {
 
     update() {
         super.update();
-        
-        this.ui.allowSelectSlots = true;
-        
+
+        if (this.game.paused)
+            this.ui.enabled = false;
+            
         this.checkInteract();
     }
 
@@ -79,26 +90,9 @@ export class Gear extends Sprite {
         super.render();
 
         this.renderUI();
-
-        if (this.playerIsNear && this.allowInteract) {
-            const outlineAsset = this.game.getAssetByName([this.gearType, 1, "outline"].join("-"));
-
-            // Draw gear outline
-            this.game.renderer.drawSprite({
-                texture: asImage(outlineAsset),
-                width: 2, height: 2,
-                position: this.position,
-                layer: this.layer,
-                flip: this.flip
-            });
-
-            this.game.renderer.drawText({
-                text: this.interactText,
-                font: "22px Pixel",
-                position: this.position.add(new Vector2(0, -70))
-            });
-                
-        }
+        this.renderOutline();
+        if (this.allowActionButton)
+            this.renderActionButton();
     }
     renderUI() {
         this.ui.render();
@@ -107,43 +101,28 @@ export class Gear extends Sprite {
             const size = Config.SPRITE_SIZE;
             const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
 
-            this.game.renderer.drawRect({
+            // Background
+            this.ui.rect({
                 color: "rgba(0, 0, 0, .6)",
                 width: innerWidth / Config.SPRITE_SIZE,
                 height: innerHeight / Config.SPRITE_SIZE,
                 position: new Vector2(innerWidth / 2, innerHeight / 2),
-                layer: "ui"
             });
 
             // Container
-            this.game.renderer.drawSprite({
-                texture: asImage(this.game.getAssetByName([this.gearType.replace("gear-", ""), "ui"].join("-"))),
+            this.ui.sprite([this.gearType.replace("gear-", ""), "ui"].join("-"), {
                 position: new Vector2(0, -size).add(windowCenter),
                 width: 7,
                 height: 5,
-                layer: "ui"
             });
-            // Preview
-            // this.game.renderer.drawSprite({
-            //     texture: asImage(this.game.getAssetByName([this.gearType, 1].join("-"))),
-            //     position: new Vector2(-size * 2, -size - 15).add(windowCenter).add(this.headerOffset),
-            //     width: 2,
-            //     height: 2,
-            //     layer: "ui"
-            // });
             // Title
-            this.game.renderer.drawText({
-                text: `${ ObjectNames[this.name].name } ${ this.level }ур.`,
+            this.ui.text(`${ ObjectNames[this.name].name } ${ this.level }ур.`, {
                 position: new Vector2(-size*2.25, -size - 15).add(windowCenter).add(this.headerOffset),
-                // position: new Vector2(-size*2 - size/4, -size*2 + 10).add(windowCenter).add(this.headerOffset),
                 align: "left",
-                layer: "ui"
             });
-            // Close
-            this.game.renderer.drawText({
-                text: `[OK] - ${ this.tipText }`,
+            // Tip text
+            this.ui.text(`[OK] - ${ this.tipText }`, {
                 position: new Vector2(-size * 3 + 20, -size * 2 - 40).add(windowCenter).add(this.headerOffset),
-                layer: "ui",
                 align: "left"
             })
 
@@ -151,9 +130,44 @@ export class Gear extends Sprite {
         
         // Draw interact button
         if (this.playerIsNear && !this.ui.enabled) {
-            this.interactButton.position = this.position.add(new Vector2(0, -110));
+            this.interactButton.position = this.position.add(new Vector2(0, -10 - this.height * 50));
             this.interactButton.render(this.game);
         }
+    }
+    renderOutline() {
+        if (this.playerIsNear && this.allowInteract) {
+            // Draw gear outline
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName([this.gearType, 1, "outline"].join("-"))),
+                width: this.width, height: this.height,
+                position: this.position,
+                layer: this.layer,
+                flip: this.flip
+            });
+
+            // Interact text
+            this.game.renderer.drawText({
+                text: this.interactText,
+                font: "22px Pixel",
+                position: this.position.add(new Vector2(0, -70)),
+                layer: "game-ui"
+            });
+                
+        }
+    }
+    renderActionButton() {
+        const size = Config.SPRITE_SIZE;
+            const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
+
+        const pos = new Vector2(size*2, -size - 20).add(windowCenter).add(this.headerOffset);
+        this.ui.renderFocusable(pos.add(new Vector2(-2, 2)), 0, 0, ()=> {
+
+            this.ui.sprite(this.actionButtonAssetName, {
+                position: pos,
+            });
+
+        }, 14 / Config.SPRITE_PIXEL_SIZE);
+
     }
 
     upgrade(levelUp: number) {
@@ -181,13 +195,18 @@ export class Gear extends Sprite {
     checkInteract() {
         if (!this.player) return;
 
-        this.playerIsNear = this.player.position.distance(this.position) < Config.GEAR_INTERACT_DISTANCE;
+        this.playerIsNear =
+            this.player.position.distance(this.position) < Config.GEAR_INTERACT_DISTANCE &&
+            ((this.player.position.x > this.position.x && this.player.flip.x) || (this.player.position.x < this.position.x && !this.player.flip.x));
         if (this.playerIsNear)
             this.player.allowMove = !this.ui.enabled;
     }
 
     onInteract() {
         this.interactButton.click();
+    }
+    onUIAction() {
+        
     }
     
 }

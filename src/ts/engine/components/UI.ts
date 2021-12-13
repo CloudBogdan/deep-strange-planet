@@ -1,6 +1,6 @@
 import { Color, Config } from "../../config";
 import { Game } from "../Game";
-import { Renderer, StrokeSettings } from "../Renderer";
+import { DrawRectProps, DrawSpriteProps, DrawTextProps, Renderer, StrokeSettings } from "../Renderer";
 import { asImage, assetIsValid, clamp, lerp, random, safeValue, Vector2, wrapText } from "../utils/math";
 import { SpawnParticles } from "./Particles";
 
@@ -31,7 +31,7 @@ export class Button {
         
         this.position = Vector2.zero(); 
         this.assetName = assetName || "interact";
-        this.layer = layer || "game";
+        this.layer = layer || "game-ui";
 
         this.animatedPosY = 0;
         this.allowScale = safeValue(allowScale, true);
@@ -56,7 +56,7 @@ export class Button {
 }
 
 export class UI {
-    game: Game | null
+    game!: Game
     enabled: boolean
     
     allowSelectSlots: boolean
@@ -65,12 +65,9 @@ export class UI {
         slot: number
     }
     ghostFocused: UI["focused"]
-    // Length - is rows
-    // [num, num, ...] - is slots
     template: number[]
     
     constructor() {
-        this.game = null;
         this.enabled = true;
 
         this.allowSelectSlots = true;
@@ -83,7 +80,7 @@ export class UI {
         this.game = game;
 
         game.gamepad.onAnyKeyDown("ui-listener", name=> {
-            if (this.allowSelectSlots && this.enabled)
+            if (!this.allowSelectSlots || !this.enabled) return
 
             switch (name) {
                 case "right":
@@ -127,14 +124,14 @@ export class UI {
         this.focused.slot = clamp(this.focused.slot, 0, this.template[this.focused.row]-1);
     }
     render() {
-        if (!this.game || !this.enabled) return;
+        if (!this.enabled) return;
     }
     updateTemplate(template: UI["template"]) {
         this.template = template.filter(t=> t > 0)
     }
 
-    renderSlot(pos: Vector2, row: number, slot: number, render: ()=> void, width?: number, height?: number, ghost?: boolean) {
-        if (!this.game || !this.enabled) return;
+    renderFocusable(pos: Vector2, row: number, slot: number, render: ()=> void, width?: number, height?: number, ghost?: boolean) {
+        if (!this.enabled) return;
 
         const isFocused = this.focused.row == row && this.focused.slot == slot;
         const isGhostFocused = this.ghostFocused.row == row && this.ghostFocused.slot == slot;
@@ -144,14 +141,13 @@ export class UI {
         render();
         
         if (isFocused || (isGhostFocused && ghost)) {
-            this.game.renderer.drawRect({
+            this.rect({
                 color: "rgba(0, 0, 0, 0)",
                 width: safeValue(width, 1),
                 height: safeValue(height, 1),
                 position: pos.apply(Math.floor),
                 stroke: { width: 4, color: Color.ORANGE },
                 opacity: (isGhostFocused && !isFocused) ? .2 : 1,
-                layer: "ui"
             });
         }
 
@@ -163,51 +159,43 @@ export class UI {
         description: string,
         renderIcon: (pos: Vector2)=> void
     }) {
-        if (!this.game) return;
-
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
         const margin = 6;
         const lineHeight = 22;
 
         // Container
-        this.game.renderer.drawSprite({
-            texture: asImage(this.game.getAssetByName("description-ui")),
+        this.sprite("description-ui", {
             position: new Vector2(0, size * 3).add(windowCenter),
             width: 7,
             height: 5,
-            layer: "ui"
         });
         
         // Icon
         props.renderIcon(new Vector2(-2.5 * size + size / 2, size + 70).add(windowCenter));
 
         // Texts
-        const title = wrapText(props.title, 26);
+        const titleTextWrapped = wrapText(props.title, 26);
+        const specialText = props.specials.join("\n");
+        const descriptionText = wrapText(props.description, 31).text;
         
         // Title
-        this.game.renderer.drawText({
-            text: title.text,
+        this.text(titleTextWrapped.text, {
             font: "20px Pixel",
             position: new Vector2(-size * 1.3, size + 70 - size / 2 + 15).add(windowCenter),
             align: "left",
             color: props.titleColor || "#fff",
-            layer: "ui"
         });
         // Specials
-        this.game.renderer.drawText({
-            text: props.specials.join("\n"),
+        this.text(specialText, {
             color: Color.ORANGE,
-            position: new Vector2(-size * 1.3, size + 70 + margin + (title.wrapCount >= 1 ? lineHeight : 0)).add(windowCenter),
+            position: new Vector2(-size * 1.3, size + 70 + margin + (titleTextWrapped.wrapCount >= 1 ? lineHeight : 0)).add(windowCenter),
             align: "left",
-            layer: "ui"
         });
         // Description
-        this.game.renderer.drawText({
-            text: wrapText(props.description, 31).text,
-            position: new Vector2(-size * 1.3, size + 70 + lineHeight + margin * 2 + lineHeight * title.wrapCount + lineHeight * (props.specials.length - 1)).add(windowCenter),
+        this.text(descriptionText, {
+            position: new Vector2(-size * 1.3, size + 70 + lineHeight + margin * 2 + lineHeight * titleTextWrapped.wrapCount + lineHeight * (props.specials.length - 1)).add(windowCenter),
             align: "left",
-            layer: "ui"
         });
 
     }
@@ -241,8 +229,6 @@ export class UI {
     }
 
     spawnMessageText(text: string) {
-        if (!this.game) return;
-        
         SpawnParticles(this.game, new Vector2(20, innerHeight - 40), {
             // custom: new Text("store-text", text, { font: "22px Pixel" }),
             render(renderer, part) {
@@ -262,5 +248,30 @@ export class UI {
             velocity: ()=> new Vector2(0, -1.5),
             downSize: .08,
         });
+    }
+    isFocused(row: number, slot: number): boolean {
+        return this.focused.row == row && this.focused.slot == slot;
+    }
+
+    // Render
+    sprite(assetName: string, props?: DrawSpriteProps) {
+        this.game.renderer.drawSprite({
+            ...props,
+            layer: "ui",
+            texture: asImage(this.game.getAssetByName(assetName)),
+        });
+    }
+    text(text: string, props?: DrawTextProps) {
+        this.game.renderer.drawText({
+            ...props,
+            layer: "ui",
+            text
+        });
+    }
+    rect(props?: DrawRectProps) {
+        this.game.renderer.drawRect({
+            ...props,
+            layer: "ui"
+        }); 
     }
 }

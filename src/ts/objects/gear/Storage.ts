@@ -19,31 +19,17 @@ export class Storage extends Gear {
             [key: string]: { count: number }
         }
     }
-    interactType: InteractType
     maxTotalCount: number
-    maxRowItemsCount: number
-    actionType: "drop" | "close"
+    interactType: InteractType
     
     constructor(props?: ISpriteProps) {
         super("gear-storage", 1, props);
         
-        if (Config.IS_DEV)
-            this.contains = { totalCount: 0, slots: {
-                "raw-cidium": { count: 1 },
-                "raw-grade-cidium": { count: 1 },
-                "raw-osmy": { count: 1 },
-                "ready-cidium": { count: 1 },
-                "item-robot": { count: 1 },
-                "food-fetus": { count: 2 },
-                "raw-manty": { count: 1 },
-            } };
-        else
-            this.contains = { totalCount: 0, slots: {} };
+        this.contains = { totalCount: 0, slots: {} };
         this.interactType = "view";
         this.maxTotalCount = MaxStorageTotalCount[`${ this.level }-level`];
         this.headerOffset.set(0, -Config.SPRITE_SIZE);
-        this.maxRowItemsCount = 5;
-        this.actionType = "close";
+        this.changeMaxTotalCount();
     }
 
     init() {
@@ -52,6 +38,7 @@ export class Storage extends Gear {
         this.level = this.game.loadKey("storage-level", 1);
         this.contains = this.game.loadKey("storage-contains", { totalCount: 0, slots: {} });
         
+        this.changeMaxTotalCount();
         this.calculateTotalCount();
     }
 
@@ -67,39 +54,13 @@ export class Storage extends Gear {
             this.contains.totalCount >= this.maxTotalCount ||
             this.filterItems(this.player.inventory.slots).length == this.filterItems(this.player.inventory.slots).filter(name=> safeValue(ItemSettings[name], { lineColor: "#fff", storage: 1 }).storage > this.level).length
         ) ? "view" : "store";
-        this.actionType = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "close" : "drop";
+
+        this.actionButtonAssetName = (this.ui.focused.row == 0) ? "close" : "drop";
 
         this.interactText = this.interactType == "view" ? "Содержимое" : "Сложить";
-        this.tipText = this.actionType == "close" ? "закрыть" : "выбросить x1";
+        this.tipText = this.actionButtonAssetName == "close" ? "закрыть" : "выбросить x1";
     }
-
-    onInteract() {
-        super.onInteract();
-
-        if (this.ui.enabled && this.ui.focused.row == 0 && this.ui.focused.slot == 0) {
-            this.ui.enabled = false;
-            return;
-        }
-        if (this.ui.enabled && this.ui.focused.row != 0) {
-            const slotName = this.filterItems(this.contains.slots)[this.ui.ghostFocused.slot + (this.ui.ghostFocused.row - 1) * this.maxRowItemsCount];
-            this.drop(slotName, 1);
-            return;
-        }
-        
-        if (this.interactType == "store") {
-            this.ui.enabled = false;
-            this.store();
-        } else if (this.interactType == "view") {
-            if (!this.ui.enabled) {
-                this.ui.focused.row = 0;
-                this.ui.focused.slot = 0;
-            }
-            this.ui.enabled = true;
-            if (this.ui.enabled)
-                this.sound.play(this.game, "storage");
-        }        
-
-    }
+    
     upgrade(levelUp: number) {
         super.upgrade(levelUp);
 
@@ -173,7 +134,7 @@ export class Storage extends Gear {
 
         const slotNames = this.filterItems(this.contains.slots);
         this.ui.updateTemplate([
-            slotNames.length > 0 ? 1 : 0,
+            1,
             clamp(slotNames.length, 0, this.maxRowItemsCount),
             slotNames.length > this.maxRowItemsCount ? slotNames.length - this.maxRowItemsCount : 0,
         ]);
@@ -184,14 +145,14 @@ export class Storage extends Gear {
             
         this.renderInventoryUI(slotNames);
 
-        const name = slotNames[this.ui.ghostFocused.slot]
+        const name = slotNames[this.ui.ghostFocused.slot + (this.ui.ghostFocused.row-1)*this.maxRowItemsCount]
         const item = ObjectNames[name];
         if (!item) return;
         
         const oreSettings = OreSettings[name.replace("raw-", "")];
         const special = [
             oreSettings ? `> Нужен инструмент ${ oreSettings.tool || 1 }ур. и выше` : "> Можно найти",
-            item.special || ""
+            ...item.special || ""
         ].filter(t=> t != "");
 
         // Render description
@@ -217,19 +178,8 @@ export class Storage extends Gear {
         // Close button
         if (slots.length == 0) {
             this.ui.focused.row = 0;
-            this.ui.focused.slot = 0;
+            this.ui.bounds();
         }
-        
-        const pos = new Vector2(size*2, -size * 2 - 20).add(windowCenter);
-        this.ui.renderSlot(pos.add(new Vector2(-2, 2)), 0, 0, ()=> {
-
-            this.game.renderer.drawSprite({
-                texture: asImage(this.game.getAssetByName(this.actionType)),
-                position: pos,
-                layer: "ui"
-            });
-
-        }, 14 / Config.SPRITE_PIXEL_SIZE);
 
         // Draw count text
         this.game.renderer.drawText({
@@ -247,7 +197,7 @@ export class Storage extends Gear {
                 Math.floor(index / this.maxRowItemsCount) * size
             ).add(windowCenter).add(new Vector2(0, -size));
 
-            this.ui.renderSlot(
+            this.ui.renderFocusable(
                 pos,
                 Math.floor(index / this.maxRowItemsCount) + 1,
                 index % this.maxRowItemsCount,
@@ -275,6 +225,34 @@ export class Storage extends Gear {
         
     }
 
+    onInteract() {
+        super.onInteract();
+
+        if (this.ui.enabled && this.ui.focused.row == 0 && this.ui.focused.slot == 0) {
+            this.ui.enabled = false;
+            return;
+        }
+        if (this.ui.enabled && this.ui.focused.row != 0) {
+            const slotName = this.filterItems(this.contains.slots)[this.ui.ghostFocused.slot + (this.ui.ghostFocused.row - 1) * this.maxRowItemsCount];
+            this.drop(slotName, 1);
+            return;
+        }
+        
+        if (this.interactType == "store") {
+            this.ui.enabled = false;
+            this.store();
+        } else if (this.interactType == "view") {
+            if (!this.ui.enabled) {
+                this.ui.focused.row = 0;
+                this.ui.focused.slot = 0;
+            }
+            this.ui.enabled = true;
+            if (this.ui.enabled)
+                this.sound.play(this.game, "storage");
+        }        
+
+    }
+
     filterItems(slots: Storage["contains"]["slots"]) {
         return Object.keys(slots).filter(name=> slots[name].count > 0);
         // return Object.keys(slots).filter(name=> name.indexOf("raw") >= 0 && ((slots[name] as any).count ? (slots[name] as any).count > 0 : slots[name] > 0));
@@ -282,5 +260,8 @@ export class Storage extends Gear {
     saveData() {
         this.game.saveKey("storage-contains", JSON.stringify(this.contains));
         this.game.saveKey("storage-level", this.level.toString());
+    }
+    changeMaxTotalCount() {
+        this.maxTotalCount = MaxStorageTotalCount[`${ this.level }-level`];
     }
 }

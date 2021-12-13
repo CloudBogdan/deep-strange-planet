@@ -69,6 +69,8 @@ import gear_oxygen_generator_1_img from "../../images/gear/gear-oxygen-generator
 import gear_storage_1_outline_img from "../../images/gear/gear-storage-1-outline.png"; // @ts-ignore
 import gear_recycler_1_outline_img from "../../images/gear/gear-recycler-1-outline.png"; // @ts-ignore
 import gear_oxygen_generator_1_outline_img from "../../images/gear/gear-oxygen-generator-1-outline.png"; // @ts-ignore
+import gear_documentation_img from "../../images/gear/gear-documentation-1.png"; // @ts-ignore
+import gear_documentation_outline_img from "../../images/gear/gear-documentation-1-outline.png"; // @ts-ignore
 
 // > UI
 import interact_img from "../../images/ui/interact.png"; // @ts-ignore
@@ -83,9 +85,12 @@ import level_up_img from "../../images/ui/level-up.png"; // @ts-ignore
 import storage_ui_img from "../../images/ui/storage-ui.png"; // @ts-ignore
 import recycler_ui_img from "../../images/ui/recycler-ui.png"; // @ts-ignore
 import description_ui_img from "../../images/ui/description-ui.png"; // @ts-ignore
+import documentation_ui_img from "../../images/ui/documentation-ui.png"; // @ts-ignore
 import oxygen_generator_ui_img from "../../images/ui/oxygen-generator-ui.png"; // @ts-ignore
 import health_img from "../../images/ui/health.png"; // @ts-ignore
+import basics_img from "../../images/ui/basics.png"; // @ts-ignore
 import menu_img from "../../images/ui/menu.png"; // @ts-ignore
+import logo_img from "../../images/ui/logo.png"; // @ts-ignore
 import item_robot_img from "../../images/ui/item-robot.png"; // @ts-ignore
 import storage_level_up_img from "../../images/ui/storage-level-up.png"; // @ts-ignore
 
@@ -184,6 +189,8 @@ export function initAssets(game: Game) {
     game.loadAsset("gear-storage-1-outline", [gear_storage_1_outline_img])
     game.loadAsset("gear-recycler-1-outline", [gear_recycler_1_outline_img])
     game.loadAsset("gear-oxygen-generator-1-outline", [gear_oxygen_generator_1_outline_img])
+    game.loadAsset("gear-documentation-1", [gear_documentation_img])
+    game.loadAsset("gear-documentation-1-outline", [gear_documentation_outline_img])
 
     // > UI
     game.loadAsset("interact", [interact_img])
@@ -198,9 +205,12 @@ export function initAssets(game: Game) {
     game.loadAsset("level-up", [level_up_img])
     game.loadAsset("recycler-ui", [recycler_ui_img])
     game.loadAsset("description-ui", [description_ui_img])
+    game.loadAsset("documentation-ui", [documentation_ui_img])
     game.loadAsset("oxygen-generator-ui", [oxygen_generator_ui_img])
     game.loadAsset("health", [health_img])
+    game.loadAsset("basics", [basics_img])
     game.loadAsset("menu", [menu_img])
+    game.loadAsset("logo", [logo_img])
     game.loadAsset("item-robot", [item_robot_img])
     game.loadAsset("storage-level-up", [storage_level_up_img])
 

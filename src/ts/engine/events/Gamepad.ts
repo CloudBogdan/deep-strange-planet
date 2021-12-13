@@ -1,3 +1,5 @@
+import { Config } from "../../config"
+
 export class Gamepad {
     eventKeys: {
         [name: string]: string[]
@@ -39,13 +41,15 @@ export class Gamepad {
         this.onAnyKeyDownListeners = [];
         
         window.addEventListener("keydown", e=> {
+            if (!Config.IS_DEV)
+                e.preventDefault();
             this.updateKey(e.code, true)
 
             if (this.pressed) return;
             this.onKeyDownListeners.map(listener=> {
                 this.eventKeys[listener.name].map(key=> {
                     
-                    if (e.code == key) {
+                    if (e.code.toLowerCase() == key.toLowerCase() || e.key.toLowerCase() == key.toLowerCase()) {
                         listener.callback();
                         this.pressed = true;
                     }
@@ -57,7 +61,7 @@ export class Gamepad {
                 
                     this.eventKeys[ekey].map(key=> {
     
-                        if (key == e.code) {
+                        if (e.code.toLowerCase() == key.toLowerCase() || e.key.toLowerCase() == key.toLowerCase()) {
                             listener.callback(ekey);
                             this.pressed = true;
                         }
@@ -69,6 +73,8 @@ export class Gamepad {
             
         });
         window.addEventListener("keyup", e=> {
+            if (!Config.IS_DEV)
+                e.preventDefault();
             this.updateKey(e.code, false);
             this.pressed = false;
         });

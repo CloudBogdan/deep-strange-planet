@@ -19,14 +19,14 @@ export class Container {
     }
 
     getChildrenByName<T>(name: Point["name"]): T[] {
-        return (this.children.filter(child=> child.name.indexOf(name) >= 0) as any[]) as T[];
+        return (this.children.filter(child=> child.name.indexOf(name.toLowerCase()) >= 0) as any[]) as T[];
     }
     getChildrenByGroupName<T>(groupName: Point["group"]): T[] {
-        return (this.children.filter(child=> child.group.indexOf(groupName) >= 0) as any[]) as T[];
+        return (this.children.filter(child=> child.group.indexOf(groupName.toLowerCase()) >= 0) as any[]) as T[];
     }
     getChildById<T>(id: Point["id"] | null): T | undefined {
         if (id)
-            return this.children.find(child=> child.id.indexOf(id) >= 0) as T | undefined;
+            return this.children.find(child=> child.id.indexOf(id.toLowerCase()) >= 0) as T | undefined;
     }
     removeChildById(id: Point["id"]) {
         this.children = this.children.filter(child=> {

@@ -17,11 +17,17 @@ export class OxygenGenerator extends Gear {
 
         this.startPosition = this.position.expand();
         
-        this.oxygenLevel = 100;
-        this.batteryLevel = 100;
+        if (Config.IS_DEV) {
+            this.oxygenLevel = 10;
+            this.batteryLevel = 5;
+        } else {
+            this.oxygenLevel = 100;
+            this.batteryLevel = 100;
+        }
         this.animatedOxygenLevel = 100;
         this.animatedBatteryLevel = 100;
         this.playerWithBattery = false;
+        this.allowActionButton = false;
 
         this.headerOffset.set(0, -Config.SPRITE_SIZE / 2 - 15);
 
@@ -29,6 +35,7 @@ export class OxygenGenerator extends Gear {
 
     init() {
         super.init();
+        if (Config.IS_DEV) return;
 
         this.batteryLevel = this.game.loadKey("generator-batteryLevel", 100);
         this.oxygenLevel = this.game.loadKey("generator-oxygenLevel", 100);
@@ -39,6 +46,8 @@ export class OxygenGenerator extends Gear {
         
         if (this.player) {
             this.player.oxygenHungry = this.oxygenLevel <= 0;
+            if (this.oxygenLevel > 0)
+                this.player.oxygenHungryStartElapsed = this.game.clock.elapsed;
         }
         this.work();        
         this.checkBattery();
@@ -73,6 +82,7 @@ export class OxygenGenerator extends Gear {
 
             this.player.foldItemsTo("battery", 1, this.position);
             this.updateBatteryLevel(randomInt(50, 65));
+            this.updateOxygenLevel(randomInt(10, 14));
         }
     }
 

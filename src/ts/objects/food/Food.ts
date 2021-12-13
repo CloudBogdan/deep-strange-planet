@@ -18,4 +18,10 @@ export class Food extends ItemParent {
     onEat(player: Player) {
         
     }
+    whenPicked(player: Player) {
+        super.whenPicked(player);
+
+        if (player.hp < 12)
+            player.expectedActionType = { name: "eat", priority: 1 };
+    }
 }

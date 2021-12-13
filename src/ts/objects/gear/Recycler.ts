@@ -10,8 +10,6 @@ import { Storage } from "./Storage";
 export class Recycler extends Gear {
     storage: Storage
     recipes: { [key: string]: Recipe }
-    maxRowItemsCount: number
-    actionType: "craft" | "close"
     
     constructor(storage: Storage, props?: ISpriteProps) {
         super("gear-recycler", 1, props);
@@ -19,11 +17,9 @@ export class Recycler extends Gear {
         this.ui.focused.slot = 1;
         this.ui.focused.row = 10;
 
-        this.maxRowItemsCount = 5;
         this.storage = storage;
         this.recipes = recipes(this);
         this.headerOffset.set(0, -Config.SPRITE_SIZE);
-        this.actionType = "close";
     }
     
     onInteract() {
@@ -74,8 +70,8 @@ export class Recycler extends Gear {
 
         const recipesKeys = this.getRecipesKeys();
 
-        this.actionType = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "close" : "craft";
-        this.tipText = this.actionType == "close" ? "закрыть" : "изготовить";
+        this.actionButtonAssetName = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "close" : "craft";
+        this.tipText = this.actionButtonAssetName == "close" ? "закрыть" : "изготовить";
 
         this.ui.updateTemplate([
             1,
@@ -92,18 +88,6 @@ export class Recycler extends Gear {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor);
         
-        // Close button
-        const pos = new Vector2(size*2, -size - 20).add(windowCenter).add(this.headerOffset);
-        this.ui.renderSlot(pos.add(new Vector2(-2, 2)), 0, 0, ()=> {
-
-            this.game.renderer.drawSprite({
-                texture: asImage(this.game.getAssetByName(this.actionType)),
-                position: pos,
-                layer: "ui"
-            });
-
-        }, 14 / Config.SPRITE_PIXEL_SIZE);
-        
         recipes.map((recipeName, index)=> {
 
             // Render recipe
@@ -112,7 +96,7 @@ export class Recycler extends Gear {
                 -size + Math.floor(index / this.maxRowItemsCount) * size
             ).add(windowCenter);
 
-            this.ui.renderSlot(
+            this.ui.renderFocusable(
                 pos,
                 // Row
                 Math.floor(index / this.maxRowItemsCount) + 1,

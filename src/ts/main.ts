@@ -8,32 +8,22 @@ import { asImage, Vector2 } from "./engine/utils/math";
 import { initGenerator } from "./managers/generator";
 import { Renderer } from "./engine/Renderer";
 import { UI } from "./engine/components/UI";
+import { initMenu } from "./stages/menu";
 
 const game = new Game();
 
-const menuUI = new UI();
-menuUI.updateTemplate([1, 1]);
-
 const player = game.add<Player>(new Player());
 const level = initLevel(game);
+const menu = initMenu(game, player);
 
 game.addInit(()=> {
-    
-    menuUI.init(game);
     
     initAssets(game);
     initDome(game);
     initGenerator(game);
+    menu.init();
     
     game.camera.follow(player.position);
-    
-    // UI actions
-    game.gamepad.onKeyDown("menu-ui", "enter", ()=> {
-
-        if (menuUI.focused.row == 0)
-            game.paused = false;
-
-    });
 });
 game.addUpdate(()=> {
     if (!game.paused)
@@ -42,74 +32,12 @@ game.addUpdate(()=> {
         game.camera.follow(new Vector2(-300, -50).add(player.position), 1);
     game.generator.generateChunksAt(game.camera.position);
 
-    menuUI.allowSelectSlots = game.paused && player.respawnTimer <= 0;
+    menu.update();
 });
 game.addRender(renderer=> {
 
     level.render();
-    
-    // Render UI
-    if (menuUI.allowSelectSlots) {
-        const size = Config.SPRITE_SIZE;
-        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
-        const menuPos = new Vector2(windowCenter.x / 2, windowCenter.y);
-    
-        renderer.drawRect({
-            position: windowCenter,
-            width: innerWidth / size,
-            height: innerHeight / size,
-            color: "rgba(0, 0, 0, .5)",
-            layer: "ui"
-        })
-        renderer.drawSprite({
-            texture: asImage(game.getAssetByName("menu")),
-            width: 6,
-            height: 6,
-            position: menuPos,
-            layer: "ui"
-        })
-        
-        // About text
-        if (menuUI.focused.row == 1)
-            renderer.drawText({
-                text: [
-                    `> Идея: Bogdanov`,
-                    `> Худоник: Bogdanov`,
-                    `> Программист: Bogdanov`,
-                    `> Саунд-дизайнер: Bogdanov`,
-                    `> Оператор: Bogdanov`,
-                    `> Бариста: Bogdanov`,
-                    `> Псих-поддержка: Bogdanov`,
-                ].join("\n"),
-                font: "28px Pixel",
-                position: new Vector2(innerWidth / 1.75, innerHeight / 2 - 50),
-                layer: "ui"
-            })
-        
-        // Play button
-        const playPos = new Vector2(-size / 2, size / 2).add(menuPos);
-        menuUI.renderSlot(playPos, 0, 0, ()=> {
-
-            renderer.drawText({
-                text: "Иследовать",
-                position: playPos.add(new Vector2(0, -5)),
-                layer: "ui"
-            })
-            
-        }, 3.2, 1.2);
-        // About button
-        const aboutPos = new Vector2(-size, size * 1.5).add(menuPos);
-        menuUI.renderSlot(aboutPos, 1, 0, ()=> {
-
-            renderer.drawText({
-                text: "Об игрe",
-                position: aboutPos.add(new Vector2(0, -5)),
-                layer: "ui"
-            })
-            
-        }, 2);
-        
-    }
+    menu.render(renderer);
     
     if (Config.IS_DEV)
         renderDebug(renderer);

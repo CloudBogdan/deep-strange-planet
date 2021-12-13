@@ -44,17 +44,18 @@ export class ItemParent extends Sprite {
     update() {
         super.update();
 
-        if (!this.game.renderer.inCameraViewport(this.position)) {
-            if (this.game.clock.elapsed - this.liveStartElapsed >= Config.ITEMS_LIVE_TIME)
-                this.game.removeChildById(this.id);
-        } else {
-            this.liveStartElapsed = this.game.clock.elapsed;
+        if (this.picked) {
+            const player = this.game.getChildById<Player>("player");
+            if (player)
+                this.whenPicked(player);
         }
         
         if (this.allowPickup) {
+            // Move to player wire
             this.followPlayer(this.game.getChildById<Player>("player"));
             this.collideWidthOtherItems((this.game.children as ItemParent[]).filter(child=> child.group == "items" && child.allowPickup && child.picked));
         } else {
+            // Fold
             this.moveTo(this.foldToPosition);
             if (this.foldToPosition.distance(this.position) < 30)
                 this.game.removeChildById(this.id);
@@ -67,6 +68,7 @@ export class ItemParent extends Sprite {
     pickup(player: Player, count: number) {
         player.pickup(this, this.name, count);
     }
+    whenPicked(player: Player) {}
 
     followPlayer(player: Player | undefined) {
         if (!player) return;

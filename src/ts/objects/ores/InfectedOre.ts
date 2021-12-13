@@ -136,7 +136,7 @@ export class InfectedOre extends Ore {
         const body = this.game.children.find(child=> child.collider.type == "dynamic" && (child.position.distance(this.daturaPosition) < 100 || child.position.distance(this.startTonguePosition) < 100))
         this.target = body;
         
-        if (!this.target) {
+        if (!this.target || Config.ALLOW_HUNK) {
             this.tongueTo(this.startTonguePosition.add(new Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / 10) * 5)))
             this.tongueVelocity.copy(this.tongueVelocity.mul(.97))
         }

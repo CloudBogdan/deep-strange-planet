@@ -8,6 +8,7 @@ import { random, Vector2 } from "./utils/math";
 import { Generator } from "./Generator";
 import { Sound } from "./components/Sound";
 import messages from "../messages";
+import { Config } from "../config";
 
 export type Clock = {
     elapsed: number
@@ -84,12 +85,18 @@ export class Game extends Container {
         this.physics = new Physics(this);
         this.generator = new Generator(this);
 
+        // if (Config.IS_DEV)
+        //     this.clearAllKeys();
     }
 
     saveKey(key: string, value: string) {
+        if (Config.IS_DEV) return;
+        
         localStorage.setItem(key, value);
     }
     loadKey<T>(key: string, safe: T): T {
+        if (Config.IS_DEV) return safe;
+        
         if (localStorage.getItem(key))
             return JSON.parse(localStorage.getItem(key)!);
         else

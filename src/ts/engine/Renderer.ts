@@ -39,6 +39,16 @@ export type DrawTextProps = {
     opacity?: number
     layer?: string
     stroke?: StrokeSettings
+    lineHeight?: number
+};
+export type DrawSpriteProps = {
+    texture?: HTMLImageElement | undefined,
+    width?: number, height?: number,
+    position?: Vector2, rotation?: number, offset?: Vector2, origin?: Vector2
+    layer?: string,
+    scale?: Vector2, flip?: { x: boolean, y: boolean },
+    opacity?: number, repeat?: Vector2,
+    frame?: Vector2, framed?: boolean
 };
 
 export class Renderer {
@@ -55,8 +65,10 @@ export class Renderer {
             "bg": this.createLayer("bg"),
             "game": this.createLayer("game"),
             "plants": this.createLayer("plants"),
+            "game-ui": this.createLayer("game-ui"),
             "particles": this.createLayer("particles"),
             "ui": this.createLayer("ui", true, 0),
+            "upper-ui": this.createLayer("upper-ui", true, 0),
             "debug": this.createLayer("debug", false),
         };
         
@@ -234,7 +246,7 @@ export class Renderer {
         const text = props.text || "";
         if (text.indexOf("\n") >= 0) {
             for (let i = 0; i < text.split("\n").length; i ++)
-                renderText(text.split("\n")[i], new Vector2(0, i * (parseInt(context.font.split(" ")[0]))));
+                renderText(text.split("\n")[i], new Vector2(0, i * safeValue(props.lineHeight, parseInt(context.font.split(" ")[0]))));
         } else
             renderText(text, Vector2.zero());
 
@@ -243,15 +255,7 @@ export class Renderer {
         this.endTransform(props.layer);
     }
     
-    drawSprite(props: {
-        texture: HTMLImageElement | undefined,
-        width?: number, height?: number,
-        position?: Vector2, rotation?: number, offset?: Vector2, origin?: Vector2
-        layer?: string,
-        scale?: Vector2, flip?: { x: boolean, y: boolean },
-        opacity?: number, repeat?: Vector2,
-        frame?: Vector2, framed?: boolean
-    }) {
+    drawSprite(props: DrawSpriteProps) {
         try {
             if (!props.texture) return;
 

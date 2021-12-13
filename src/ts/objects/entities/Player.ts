@@ -4,8 +4,9 @@ import { Entity } from "./Entity";
 import { ItemParent } from "../item/ItemParent";
 import { Robot } from "./Robot";
 import { Food } from "../food/Food";
-import { FetusStone } from "../ores/FetusStone";
 import { OxygenGenerator } from "../gear/OxygenGenerator";
+import { Storage } from "../gear/Storage";
+import { Recycler } from "../gear/Recycler";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -43,11 +44,16 @@ const tools: { [key: string]: Tool }  = {
 }
 
 export class Player extends Entity {
+    storage!: Storage
+    oxygenGenerator!: OxygenGenerator
+    recycler!: Recycler
+    
     oxygenHungry: boolean
+    loseConsciousnessIn: number
     oxygenHungryStartElapsed: number
 
     dieElapsed: number
-    dieUI: boolean
+    dead: boolean
     respawnTimer: number
     animatedDieUI: number
     tries: number
@@ -68,8 +74,9 @@ export class Player extends Entity {
     allowPlaceRobot: boolean
     allowEatFood: boolean
     actionText: { [name: string]: string }
-    actionType: "grab" | "place" | "eat" | null
-    nearFetusStone: FetusStone | undefined;
+    actionType: { name: "none" | "grab" | "place" | "eat", priority: number } | null
+    expectedActionType: Player["actionType"]
+    // nearFetusStone: FetusStone | undefined;
 
     damageAnimatedOpacity: number
     animatedCameraRotation: number
@@ -79,13 +86,14 @@ export class Player extends Entity {
         super("player", "player-stay", {
             position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE)
         });
-    
+        
         this.hp = 12;
         this.oxygenHungry = false;
+        this.loseConsciousnessIn = 0;
         this.oxygenHungryStartElapsed = 0;
 
         this.dieElapsed = 0;
-        this.dieUI = false;
+        this.dead = false;
         this.respawnTimer = 0;
         this.animatedDieUI = 0;
         this.tries = 2;
@@ -97,28 +105,46 @@ export class Player extends Entity {
             slots: {}
         };
         this.hasBottle = false;
-        this.toolLevel = Config.ALLOW_HUNK ? 6 : 1;
+        this.toolLevel = Config.ALLOW_HUNK ? 5 : 1;
         this.allowPlaceRobot = false;
         this.allowEatFood = false;
         this.actionType = null;
+        this.expectedActionType = null;
         this.actionText = {
             "grab": "cобрать",
             "place": "установить",
             "eat": "съесть"
         }
-        this.nearFetusStone = undefined;
 
         this.damageAnimatedOpacity = 0;
         this.animatedCameraRotation = 0;
         this.animatedTimerScale = 1;
 
-        if (Config.ALLOW_HUNK)
-            window.addEventListener("keydown", e=> {
+        window.addEventListener("keydown", e=> {
+            if (Config.ALLOW_HUNK || (window as any).MODER_CHEAT || Config.IS_DEV) {
+                
                 if (e.code == "KeyT") {
                     this.collider.collidable = !this.collider.collidable;
-                    this.moveSpeed = !this.collider.collidable ? 100 : this.initialMoveSpeed;
+                    this.moveSpeed = !this.collider.collidable ? 60 : this.initialMoveSpeed;
+                    this.toolLevel = 6;
+
+                    const storage = this.game.getChildById<Storage>("gear-storage");
+                    if (!storage) return;
+                    
+                    storage.contains = { totalCount: 0, slots: {
+                        "raw-grade-cidium": { count: 2 },
+                        "ready-cidium": { count: 2 },
+                        "battery": { count: 2 },
+                        "item-robot": { count: 2 },
+                        "food-fetus": { count: 2 },
+                        "raw-manty": { count: 1 },
+                        "raw-rady": { count: 1 },
+                    } };
+                    storage.calculateTotalCount();
                 }
-            })
+
+            }
+        })
     }
     
     init() {
@@ -140,46 +166,45 @@ export class Player extends Entity {
 
             this.useFood();
             
-            if (!this.nearFetusStone || this.allowEatFood) return;
-            this.nearFetusStone.grab();
-            
         });
 
         this.saveData();
+
+        // Gears
+        this.storage = this.game.getChildById("gear-storage")!;
+        this.recycler = this.game.getChildById("gear-recycler")!;
+        this.oxygenGenerator = this.game.getChildById("gear-oxygen-generator")!;
     }
 
     update() {
         super.update();
-        if (!this.allowMove || this.game.paused) return;
 
-        this.movement.set(
-            (+this.game.gamepad.keys.right - +this.game.gamepad.keys.left),
-            (+this.game.gamepad.keys.down - +this.game.gamepad.keys.up)
-        );
-        this.move();
+        if (this.allowMove && !this.game.paused) {
+            this.movement.set(
+                (+this.game.gamepad.keys.right - +this.game.gamepad.keys.left),
+                (+this.game.gamepad.keys.down - +this.game.gamepad.keys.up)
+            );
+            this.move();
+        }
+
         this.pullWire();
-
-        this.grabFetus();
-        // if (this.game.tick(60))
-        //     this.fallStalactite();
+        this.changeActionType();
 
         this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 11;
         this.allowPlaceRobot = this.position.y > 20;
-        
-        // Fetus grab
-        if (this.checkItemInInventory("item-robot") && this.allowPlaceRobot)
-            this.actionType = "place";
-        else if (this.allowEatFood)
-            this.actionType = "eat"
-        else if (this.nearFetusStone != undefined)
-            this.actionType = "grab";
-        else
-            this.actionType = null;
 
         // Oxygen hungry
-        if (this.oxygenHungry)
-            if (Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60 <= 0)
-                this.die();
+        if (!this.game.paused) {
+            this.oxygenHungry = this.oxygenGenerator.oxygenLevel <= 0;
+            if (this.oxygenHungry) {
+                this.loseConsciousnessIn = Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60;
+                
+                if (this.loseConsciousnessIn <= 0) {
+                    this.die();
+                    console.log(true);
+                }
+            }
+        }
 
         // Sounds
         this.footsStep();
@@ -188,9 +213,6 @@ export class Player extends Entity {
         this.moveSpeedDown =
             (this.checkItemInInventory("raw-nerius") ? 2 : 0) +
             (this.checkItemInInventory("ready-cidium") ? -2 : 0);
-
-        if (!this.oxygenHungry)
-            this.oxygenHungryStartElapsed = this.game.clock.elapsed;
         
         // Dig
         const tool = tools[this.toolLevel.toString()];
@@ -203,29 +225,176 @@ export class Player extends Entity {
         //
         this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .05);
         this.animatedTimerScale = lerp(this.animatedTimerScale, 1, .2);
-
-        this.bounds();
-        this.saveData();
     }
     render() {
         super.render();
         
-        this.renderUI();    
-        if (this.dieUI)
-            this.renderDieUI();
+        this.renderUI();
     }
+    
+    changeActionType() {
+        if (this.game.tick(40))
+            this.expectedActionType = null;
+        
+        if (this.expectedActionType) {
+            if (this.actionType) {
+                if (this.expectedActionType.name != this.actionType?.name && this.actionType.priority < this.expectedActionType.priority)
+                    this.actionType = this.expectedActionType;
+            } else {
+                this.actionType = this.expectedActionType;
+            }
+        } else
+            this.actionType = null;
+
+    }
+    pickup(item: ItemParent, type: string, count: number) {
+        this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
+        this.inventory.slots[type].count += count;
+        const instances = this.inventory.slots[type].instances;
+        this.inventory.slots[type].instances.push(item);
+            
+        this.inventory.slots[type].instances = instances.filter((i, index)=> instances.indexOf(i) == index);
+
+        this.calculateTotalCount()
+    }
+    calculateTotalCount() {
+        this.inventory.totalCount = 0;
+
+        this.getInventorySlotNames().map(slotName=> {
+
+            this.inventory.totalCount += this.inventory.slots[slotName].count;
+
+        });
+
+        this.saveData();
+    }
+    pullWire() {
+        
+        if (this.position.distance(this.wire) > Config.WIRE_LENGTH) {
+            this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown)));
+        }
+
+    }
+    hit(damage: number) {
+        if (this.hp <= 0)
+            this.die();
+        
+        if (this.damaged) return;
+
+        this.damageAnimatedOpacity = 1.5;
+        this.game.camera.shake();
+        this.sound.play(this.game, chance(1) ? "bonk" : "hit");
+
+        this.saveData();
+        super.hit(damage);
+    }
+    die() {
+        if (this.dead) return;
+        this.dead = true;
+        
+        this.tries --;
+        
+        this.oxygenHungry = false;
+        this.dieElapsed = this.game.clock.elapsed;
+        this.animatedDieUI = -1;
+
+        if (this.tries < 1) {
+            this.dieMessage = "replay";
+        } else {
+            this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
+            this.hp = 12;
+            this.wire.copy(this.position);
+
+            // Oxygen generator add oxygen
+            this.oxygenGenerator.oxygenLevel = 50;
+            this.oxygenGenerator.batteryLevel = 100;
+        }
+
+        this.game.camera.position.copy(this.position);
+        this.game.paused = true;
+        
+        this.saveData();
+    }
+    heal(heal: number) {
+        if (this.hp >= 12) return
+        
+        this.hp += heal;
+        this.hp = clamp(this.hp, 0, 12);
+        this.spawnText(`+${ heal }`, undefined, Color.GREEN);
+
+        this.saveData();
+    }
+    upgradeTool(levelUp: number) {
+        if (this.toolLevel < MaxToolLevel)
+            this.toolLevel += levelUp;
+
+        this.saveData();
+    }
+    placeRobot() {
+        if (this.checkItemInInventory("item-robot")) {
+        
+            // Sub. robots count in inventory
+            this.inventory.slots["item-robot"].count --;
+
+            // Remove robot inventory instance
+            this.game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
+            this.inventory.slots["item-robot"].instances.splice(0, 1);
+            this.calculateTotalCount()
+
+        }
+        
+        // Place robot
+        this.game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
+        this.game.initChildren();
+
+        this.saveData();
+    }
+    foldItemsTo(slotName: string, count: number, position: Vector2) {
+
+        const slotInstances = this.inventory.slots[slotName].instances.filter(item=> this.game.children.indexOf(item) >= 0 && item.picked);
+            
+        for (let i = 0; i < count; i ++) {
+            if (slotInstances[i] && slotInstances[i].picked) {
+                slotInstances[i].allowPickup = false;
+                slotInstances[i].picked = false;
+                slotInstances[i].foldToPosition = position;
+            }
+        }
+        this.inventory.slots[slotName].instances.splice(0, count);
+
+        this.inventory.slots[slotName].count -= count;
+        this.calculateTotalCount();
+
+    }
+    useFood() {
+        if (this.allowEatFood) {
+
+            const foodSlotNames = this.getInventorySlotNames().filter(slotName=> slotName.indexOf("food") >= 0);
+            (this.inventory.slots[foodSlotNames[0]].instances[0] as Food).onEat(this);
+            this.game.removeChildById(this.inventory.slots[foodSlotNames[0]].instances[0].id);
+            this.inventory.slots[foodSlotNames[0]].count --;
+            this.inventory.slots[foodSlotNames[0]].instances.splice(0, 1);
+
+        }
+    }
+
+    // > Render
     renderUI() {
+        
+        if (this.dead) this.renderDieUI();
+        
+        if (this.game.paused) return;
+
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
-
+        
         if (this.oxygenHungry) this.renderOxygenHungryUI();
-        if (this.game.paused) return;
         this.renderHealthUI();
         
         // Tip text
-        if(this.actionType)
+        if(this.actionType && this.actionText[this.actionType.name])
             this.game.renderer.drawText({
-                text: `[OK] - ${ this.actionText[this.actionType] }`,
+                text: `[OK] - ${ this.actionText[this.actionType.name] }`,
                 position: new Vector2(0, 150).add(windowCenter),
                 layer: "ui"
             });
@@ -308,8 +477,8 @@ export class Player extends Entity {
             this.game.paused = false;
             this.dieElapsed = 0;
             if (this.tries > 0) {
+                this.dead = false;
                 this.oxygenHungryStartElapsed = this.game.clock.elapsed;
-                this.dieUI = false;
             } else {
                 this.game.clearAllKeys();
                 location.reload();
@@ -351,203 +520,28 @@ export class Player extends Entity {
 
     }
     renderOxygenHungryUI() {
-        const loseConsciousnessIn = Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60;
-
-        if (loseConsciousnessIn % 1 == 0)
-            this.animatedTimerScale = loseConsciousnessIn < 20 ? 1.5 : 1.2
+        if (this.loseConsciousnessIn % 1 == 0)
+            this.animatedTimerScale = this.loseConsciousnessIn < 20 ? 1.5 : 1.2
         
         this.game.renderer.drawText({
             text: "Кислородное голодание!",
             position: new Vector2(innerWidth/2, 100),
             font: "24px Pixel",
-            layer: "ui"
+            layer: "upper-ui"
         });
         this.game.renderer.drawText({
-            text: `Вы потеряйте сознание через:`,
+            text: `Вы потеряете сознание через:`,
             position: new Vector2(innerWidth/2, 130),
-            layer: "ui"
+            layer: "upper-ui"
         });
         this.game.renderer.drawText({
-            text: `0:${ Math.floor(loseConsciousnessIn) }`,
+            text: `0:${ Math.floor(this.loseConsciousnessIn) }`,
             position: new Vector2(innerWidth/2, 180),
             scale: Vector2.all(this.animatedTimerScale),
             font: "30px Pixel",
-            layer: "ui"
+            layer: "upper-ui"
         });
         
-    }
-
-    bounds() {
-        // World bounds
-        const worldWidth = Math.floor((Config.WORLD_WIDTH * Config.SPRITE_SIZE));
-        
-        // By width
-        if (this.position.x < 0)
-            this.position.x = 0
-        else if (this.position.x > worldWidth)
-            this.position.x = worldWidth
-        
-        // Dome bounds
-        const halfDiameter = Config.DOME_DIAMETER / 2;
-
-        if (this.position.x > Config.WORLD_X_CENTER - halfDiameter + 40 && this.position.x < Config.WORLD_X_CENTER + halfDiameter - 40) {
-            if (this.position.y < -Config.SPRITE_SIZE / 2) {
-        
-                if (this.position.y < -Config.GROUND_HEIGHT) {
-                    this.position.y = -Config.GROUND_HEIGHT;
-                }
-                if (this.position.x < Config.WORLD_X_CENTER - halfDiameter + 48)
-                    this.position.x = Config.WORLD_X_CENTER - halfDiameter + 48;
-                if (this.position.x > Config.WORLD_X_CENTER + halfDiameter - 48)
-                    this.position.x = Config.WORLD_X_CENTER + halfDiameter - 48;
-
-            }
-
-        } else {
-            // By height
-            if (this.position.y < -Config.SPRITE_SIZE / 2)
-                this.position.y = -Config.SPRITE_SIZE / 2;
-        }
-    }
-    
-    grabFetus() {
-        this.nearFetusStone = this.game.getChildrenByName<FetusStone>("fetus-stone").find(ore=> {
-
-            const vineHeight = (ore.vineLength || 0) * Config.SPRITE_SIZE;
-            
-            return (ore.vineLength || 0) > 0 && (ore.grabbedCount || 0) < (ore.vineLength || 0) && this.game.physics.collideWithRect({
-                id: this.id,
-                position: this.position,
-                width: this.collider.width,
-                height: this.collider.height,
-            }, {
-                id: ore.id,
-                position: ore.position.add(new Vector2(0, vineHeight / 2)),
-                width: ore.collider.width / 2,
-                height: ore.collider.height + vineHeight,
-            }).any
-
-        })
-    }
-    
-    pickup(item: ItemParent, type: string, count: number) {
-        this.inventory.slots[type] = this.inventory.slots[type] || { count: 0, instances: [] };
-        this.inventory.slots[type].count += count;
-        const instances = this.inventory.slots[type].instances;
-        this.inventory.slots[type].instances.push(item);
-            
-        this.inventory.slots[type].instances = instances.filter((i, index)=> instances.indexOf(i) == index);
-
-        this.calculateTotalCount()
-    }
-    calculateTotalCount() {
-        this.inventory.totalCount = 0;
-
-        this.getInventorySlotNames().map(slotName=> {
-
-            this.inventory.totalCount += this.inventory.slots[slotName].count;
-
-        });
-    }
-    pullWire() {
-        
-        if (this.position.distance(this.wire) > Config.WIRE_LENGTH) {
-            this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown)));
-        }
-
-    }
-    hit(damage: number) {
-        if (this.hp <= 0)
-            this.die();
-        
-        if (this.damaged) return;
-
-        this.damageAnimatedOpacity = 1.5;
-        this.game.camera.shake();
-        this.sound.play(this.game, chance(1) ? "bonk" : "hit");
-
-        this.saveData();
-        super.hit(damage);
-    }
-    die() {
-        this.tries --;
-        
-        if (this.tries < 1)
-            this.dieMessage = "replay";
-        
-        this.dieElapsed = this.game.clock.elapsed;
-        this.dieUI = true;
-        this.animatedDieUI = -1;
-        
-        this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
-        this.hp = 12;
-        this.wire.copy(this.position);
-
-        this.game.camera.position.copy(this.position);
-        this.game.paused = true;
-
-        // Oxygen generator add oxygen
-        const generator = this.game.getChildById<OxygenGenerator>("oxygen-generator");
-        if (generator) {
-            generator.oxygenLevel += 30;
-        }
-        this.saveData();
-    }
-    heal(heal: number) {
-        if (this.hp >= 12) return
-        
-        this.hp += heal;
-        this.hp = clamp(this.hp, 0, 12);
-        this.spawnText(`+${ heal }`, undefined, Color.GREEN);
-    }
-    upgradeTool(levelUp: number) {
-        if (this.toolLevel < MaxToolLevel)
-            this.toolLevel += levelUp;
-    }
-    placeRobot() {
-        if (this.checkItemInInventory("item-robot")) {
-        
-            // Sub. robots count in inventory
-            this.inventory.slots["item-robot"].count --;
-
-            // Remove robot inventory instance
-            this.game.removeChildById(this.inventory.slots["item-robot"].instances[0].id);
-            this.inventory.slots["item-robot"].instances.splice(0, 1);
-            this.calculateTotalCount()
-
-        }
-        
-        // Place robot
-        this.game.add(new Robot(this.position.div(Config.SPRITE_SIZE).add(Vector2.all(.5)).apply(Math.floor).mul(Config.SPRITE_SIZE)));
-        this.game.initChildren();
-    }
-    foldItemsTo(slotName: string, count: number, position: Vector2) {
-
-        const slotInstances = this.inventory.slots[slotName].instances.filter(item=> this.game.children.indexOf(item) >= 0 && item.picked);
-            
-        for (let i = 0; i < count; i ++) {
-            if (slotInstances[i] && slotInstances[i].picked) {
-                slotInstances[i].allowPickup = false;
-                slotInstances[i].picked = false;
-                slotInstances[i].foldToPosition = position;
-            }
-        }
-        this.inventory.slots[slotName].instances.splice(0, count);
-
-        this.inventory.slots[slotName].count -= count;
-        this.calculateTotalCount();
-
-    }
-    useFood() {
-        if (this.allowEatFood) {
-
-            const foodSlotNames = this.getInventorySlotNames().filter(slotName=> slotName.indexOf("food") >= 0);
-            (this.inventory.slots[foodSlotNames[0]].instances[0] as Food).onEat(this);
-            this.game.removeChildById(this.inventory.slots[foodSlotNames[0]].instances[0].id);
-            this.inventory.slots[foodSlotNames[0]].count --;
-            this.inventory.slots[foodSlotNames[0]].instances.splice(0, 1);
-
-        }
     }
 
     footsStep() {

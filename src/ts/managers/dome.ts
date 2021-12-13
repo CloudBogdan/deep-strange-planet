@@ -1,6 +1,7 @@
 import { Config } from "../config";
 import { Game, Sprite } from "../engine";
 import { Vector2 } from "../engine/utils/math";
+import { Documentation } from "../objects/gear/Documentation";
 import { OxygenGenerator } from "../objects/gear/OxygenGenerator";
 import { Recycler } from "../objects/gear/Recycler";
 import { Storage } from "../objects/gear/Storage";
@@ -12,9 +13,11 @@ export function initDome(game: Game) {
         position: domePosition.add(new Vector2(-150, 0))
     }));
 
-    
     game.add<Sprite>(new OxygenGenerator({
-        position: domePosition.add(new Vector2(0, -100))
+        position: domePosition.add(new Vector2(-60, -100))
+    }));
+    game.add<Sprite>(new Documentation({
+        position: domePosition.add(new Vector2(60, -100))
     }));
     game.add<Sprite>(new Recycler(storage, {
         flip: { x: true, y: false },

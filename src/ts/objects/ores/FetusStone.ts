@@ -6,11 +6,14 @@ import { HealingFetus } from "../food/HealingFetus";
 import { Ore } from "./Ore";
 
 export class FetusStone extends Ore {
+    player!: Player
+    
     vineLength: number | null
     maxVineLength: number
     allowGrow: boolean
     playerIsNear: boolean
     grabbedCount: number | null
+    canGrab: boolean
     
     constructor(position: Vector2, data?: { length?: number, maxLength?: number, grabbedCount?: number }) {
         super("fetus-stone", position);
@@ -22,6 +25,7 @@ export class FetusStone extends Ore {
         this.maxVineLength = data ? (data?.maxLength || 1) : 1;
         this.allowGrow = true;
         this.grabbedCount = data ? (data?.grabbedCount || null) : null;
+        this.canGrab = false;
 
         this.breakAudioNames = ["plant-break"];
         this.hitAudioName = "plant-hit";
@@ -29,6 +33,8 @@ export class FetusStone extends Ore {
 
     init() {
         super.init();
+
+        this.player = this.game.getChildById("player")!;
 
         if (this.vineLength === null) {
             this.maxVineLength = randomInt(Config.VINE_MIN_LENGTH, Config.VINE_MAX_LENGTH);
@@ -43,9 +49,18 @@ export class FetusStone extends Ore {
         this.checkEmptySpace();
         if (!this.allowGrow)
             this.vineLength = 0;
+
+        // Trigger
+        this.game.gamepad.onKeyDown(this.id, "enter", ()=> {
+            if (!this.canGrab || (this.grabbedCount || 0) >= (this.vineLength || 0)) return;
+            
+            this.grab();
+        })
     }
     update() {
         super.update();
+
+        this.tryGrab();
 
         if (!this.allowGrow) return;
         if (this.game.tick(Config.VINE_GROW_TICK))
@@ -65,6 +80,27 @@ export class FetusStone extends Ore {
             this.renderVine();
     }
 
+    tryGrab() {
+
+        const vineHeight = (this.vineLength || 0) * Config.SPRITE_SIZE;
+        const collides = (this.vineLength || 0) > 0 && (this.grabbedCount || 0) < (this.vineLength || 0) && this.game.physics.collideWithRect({
+            id: this.player.id,
+            position: this.player.position,
+            width: this.player.collider.width,
+            height: this.player.collider.height,
+        }, {
+            id: this.id,
+            position: this.position.add(new Vector2(0, vineHeight / 2)),
+            width: this.collider.width / 2,
+            height: this.collider.height + vineHeight,
+        }).any;
+        
+        this.canGrab = collides;
+        if (collides) {
+            this.player.expectedActionType = { name: "grab", priority: 2 };
+        }
+        
+    }
     grab() {
         if (this.grabbedCount == null || this.grabbedCount >= (this.vineLength || 0)) return;
         

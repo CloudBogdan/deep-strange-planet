@@ -50,7 +50,7 @@ const recipes = (recycler: Recycler)=> ({
     }),
     
     // Storage up
-    "storage-level-up": new Recipe({
+    "recipe-storage-level-up": new Recipe({
         recipe: ()=> [
             { "ready-cidium": { count: 2 }, "raw-osmy": { count: 3 } }, // Level 2
             { "ready-cidium": { count: 4 }, "raw-osmy": { count: 3 }, "raw-grade-cidium": { count: 2 } }, // Level 3
@@ -80,7 +80,7 @@ const recipes = (recycler: Recycler)=> ({
     }),
 
     // Tool up
-    "tool-level-up": new Recipe({
+    "recipe-tool-level-up": new Recipe({
         recipe: ()=> [
             { "ready-cidium": { count: 3 }  }, // Level 2
             { "ready-cidium": { count: 2 }, "card": { count: 1 }, "raw-grade-cidium": { count: 1 } }, // Level 3
