@@ -22,6 +22,10 @@ export class Entity extends Sprite {
     stayAnimation: string
     walkAnimation: string
     moveSpeedDown: number
+    startPosition: Vector2
+
+    dead: boolean
+    interest: boolean
 
     movement: Vector2
     allowMove: boolean
@@ -42,6 +46,10 @@ export class Entity extends Sprite {
         this.walkAnimation = `${ name }-walk`;
         this.moveSpeedDown = 0;
         this.group = "entity";
+        this.startPosition = this.position.expand();
+
+        this.dead = false;
+        this.interest = true;
         
         this.movement = new Vector2();
         this.allowMove = true;
@@ -65,7 +73,6 @@ export class Entity extends Sprite {
             this.velocity.set();
         }
 
-
         if (!this.damaged) {
             this.damagedElapsed = this.game.clock.elapsed;
             this.visible = true;
@@ -80,6 +87,7 @@ export class Entity extends Sprite {
         this.animate();
     }
     dig(damage: number, speed: number, level: ToolLevel, direction: Direction) {
+        if (this.dead) return;
         
         if (this.collider.collidesWith != null && this.collider.collidesWith.any && this.collider.collidesWith.id!.indexOf("ore-") >= 0) {
             const ore = this.game.getChildById<Ore>(this.collider.collidesWith.id);
@@ -105,6 +113,8 @@ export class Entity extends Sprite {
     }
 
     move() {
+        if (!this.allowMove || this.game.paused) return;
+
         if (this.movement.x != 0)
             this.flip.x = this.movement.x < 0;
         
@@ -112,7 +122,7 @@ export class Entity extends Sprite {
         this.velocity.y = this.movement.normalize().y * (this.moveSpeed - this.moveSpeedDown);
     }
     animate() {
-        if (!this.allowAnimate) return;
+        if (!this.allowAnimate || this.dead) return;
         
         if (this.velocity.x != 0 || this.velocity.y != 0)
             this.playAnimation(this.walkAnimation, 4);
@@ -127,6 +137,13 @@ export class Entity extends Sprite {
         this.damaged = true;
 
         this.spawnText(`-${ damage }`, undefined, Color.RED);
+    }
+    die() {
+        if (this.dead) return;
+        
+        this.allowMove = false;
+        this.interest = false;
+        this.dead = true;
     }
     bounds() {
         // World bounds
@@ -182,5 +199,9 @@ export class Entity extends Sprite {
             downSize: 0,
             box: ()=> new Vector2(random(-10, 10), random(-10, 10))
         });
+    }
+    blink() {
+        if (!this.dead)
+            super.blink();
     }
 }

@@ -258,10 +258,17 @@ export class Storage extends Gear {
         // return Object.keys(slots).filter(name=> name.indexOf("raw") >= 0 && ((slots[name] as any).count ? (slots[name] as any).count > 0 : slots[name] > 0));
     }
     saveData() {
+        super.saveData();
         this.game.saveKey("storage-contains", JSON.stringify(this.contains));
         this.game.saveKey("storage-level", this.level.toString());
     }
     changeMaxTotalCount() {
         this.maxTotalCount = MaxStorageTotalCount[`${ this.level }-level`];
+    }
+    reset(): void {
+        this.contains.totalCount = 0;
+        this.contains.slots = {};
+        
+        super.reset();
     }
 }

@@ -5,6 +5,7 @@ import { Game } from "./Game";
 import { safeValue, Vector2 } from "./utils/math";
 
 type RendererLayer = {
+    render: boolean
     canvas: HTMLCanvasElement
     context: CanvasRenderingContext2D
     update: boolean
@@ -64,6 +65,7 @@ export class Renderer {
         this.layers = {
             "bg": this.createLayer("bg"),
             "game": this.createLayer("game"),
+            "player": this.createLayer("player"),
             "plants": this.createLayer("plants"),
             "game-ui": this.createLayer("game-ui"),
             "particles": this.createLayer("particles"),
@@ -87,7 +89,13 @@ export class Renderer {
         const context = canvas.getContext("2d")!;
         context.imageSmoothingEnabled = false;
 
-        return { canvas, context, update: safeValue(update, true), cameraFactor: safeValue(cameraFactor, 1) };
+        return {
+            render: true,
+            canvas,
+            context,
+            update: safeValue(update, true),
+            cameraFactor: safeValue(cameraFactor, 1)
+        };
     }
 
     render() {
@@ -179,6 +187,8 @@ export class Renderer {
     
     // Draw primitives
     drawRect(props: DrawRectProps) {
+        if (!this.layers[props.layer || "game"].render) return;
+        
         const w = Math.floor(safeValue(props.width, 1) * Config.SPRITE_SIZE);
         const h = Math.floor(safeValue(props.height, 1) * Config.SPRITE_SIZE);
 
@@ -199,6 +209,8 @@ export class Renderer {
         this.endTransform(props.layer);
     }
     drawLine(props: DrawLineProps) { 
+        if (!this.layers[props.layer || "game"].render) return;
+        
         const context = this.getContext(props.layer);
         context.save();
 
@@ -218,6 +230,8 @@ export class Renderer {
         context.restore();
     }
     drawText(props: DrawTextProps) { 
+        if (!this.layers[props.layer || "game"].render) return;
+        
         const context = this.getContext(props.layer);
         
         this.startTransform(props.layer, props.position, props.rotation, props.scale, props.opacity);
@@ -256,6 +270,8 @@ export class Renderer {
     }
     
     drawSprite(props: DrawSpriteProps) {
+        if (!this.layers[props.layer || "game"].render) return;
+        
         try {
             if (!props.texture) return;
 

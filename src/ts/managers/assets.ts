@@ -3,6 +3,7 @@ import { Game } from "../engine"; // @ts-ignore
 // > Player
 import player_stay_img from "../../images/player/stay.png"; // @ts-ignore
 import player_walk_img from "../../images/player/walk.png"; // @ts-ignore
+import player_dead_img from "../../images/player/dead.png"; // @ts-ignore
 
 // > Entities
 import robot_img from "../../images/entities/robot.png"; // @ts-ignore
@@ -123,6 +124,7 @@ export function initAssets(game: Game) {
     // > Player
     game.loadAsset("player-stay", [player_stay_img]);
     game.loadAsset("player-walk", [player_walk_img]);
+    game.loadAsset("player-dead", [player_dead_img]);
 
     // > Entities
     game.loadAsset("robot", [robot_img]);

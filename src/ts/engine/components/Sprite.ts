@@ -1,5 +1,5 @@
 import { IPointProps, Point } from "./Point";
-import { asImage, assetIsValid, Vector2 } from "../utils/math";
+import { asImage, assetIsValid, clamp, safeValue, Vector2 } from "../utils/math";
 import messages from "../../messages";
 import { Config } from "../../config";
 
@@ -70,7 +70,7 @@ export class Sprite extends Point {
             this.visible = !this.visible;
     }
 
-    playAnimation(assetName: string, framesCount: number, speed?: number) {
+    playAnimation(assetName: string, framesCount: number, speed?: number, loop?: boolean) {
         this.texture = asImage(this.game.getAssetByName(assetName));
         
         if (framesCount <= 1) {
@@ -79,9 +79,12 @@ export class Sprite extends Point {
         }
 
         if (this.game.tick(speed || Config.DEFAULT_ANIMATION_SPEED)) {
+            // const allow = safeValue(loop, true);
             this.frame.x ++;
-            if (this.frame.x >= framesCount)
+            if (this.frame.x >= framesCount && safeValue(loop, true))
                 this.frame.x = 0;
+
+            this.frame.x = clamp(this.frame.x, 0, framesCount);
         }
     }
 }

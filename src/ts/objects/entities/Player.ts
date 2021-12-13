@@ -7,6 +7,7 @@ import { Food } from "../food/Food";
 import { OxygenGenerator } from "../gear/OxygenGenerator";
 import { Storage } from "../gear/Storage";
 import { Recycler } from "../gear/Recycler";
+import { Timer } from "../../engine";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -49,12 +50,9 @@ export class Player extends Entity {
     recycler!: Recycler
     
     oxygenHungry: boolean
-    loseConsciousnessIn: number
-    oxygenHungryStartElapsed: number
+    oxygenHungryTimer: Timer
 
-    dieElapsed: number
-    dead: boolean
-    respawnTimer: number
+    respawnTimer: Timer
     animatedDieUI: number
     tries: number
     dieMessage: "respawn" | "replay"
@@ -84,17 +82,15 @@ export class Player extends Entity {
     
     constructor() {
         super("player", "player-stay", {
-            position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE)
+            position: new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE),
+            layer: "player"
         });
         
         this.hp = 12;
         this.oxygenHungry = false;
-        this.loseConsciousnessIn = 0;
-        this.oxygenHungryStartElapsed = 0;
+        this.oxygenHungryTimer = new Timer(Config.OXYGEN_HUNGRY_TIME);
 
-        this.dieElapsed = 0;
-        this.dead = false;
-        this.respawnTimer = 0;
+        this.respawnTimer = new Timer(Config.RESPAWN_TIME);
         this.animatedDieUI = 0;
         this.tries = 2;
         this.dieMessage = "respawn";
@@ -178,14 +174,38 @@ export class Player extends Entity {
 
     update() {
         super.update();
+        
+        this.game.renderer.layers["ui"].render = !this.dead; 
+        
+        // Timers
+        this.respawnTimer.update(this.game.clock.elapsed);
+        this.oxygenHungryTimer.update(this.game.clock.elapsed);
 
-        if (this.allowMove && !this.game.paused) {
-            this.movement.set(
-                (+this.game.gamepad.keys.right - +this.game.gamepad.keys.left),
-                (+this.game.gamepad.keys.down - +this.game.gamepad.keys.up)
-            );
-            this.move();
+        // Animations
+        if (this.dead) {
+            this.playAnimation("player-dead", 5, 26, false)
+            if (this.frame.x >= 5) {
+                if (!this.respawnTimer.started)
+                    this.animatedDieUI = -4;
+                this.respawnTimer.start(this.game.clock.elapsed);
+            }
+
+            if (this.respawnTimer.isTriggered()) {
+                // Respawn
+                if (this.tries > 0)
+                    this.respawn();
+                else {
+                    this.respawn();
+                    this.gameOver();
+                }
+            }
         }
+        
+        this.movement.set(
+            (+this.game.gamepad.keys.right - +this.game.gamepad.keys.left),
+            (+this.game.gamepad.keys.down - +this.game.gamepad.keys.up)
+        );
+        this.move();
 
         this.pullWire();
         this.changeActionType();
@@ -194,18 +214,7 @@ export class Player extends Entity {
         this.allowPlaceRobot = this.position.y > 20;
 
         // Oxygen hungry
-        if (!this.game.paused) {
-            this.oxygenHungry = this.oxygenGenerator.oxygenLevel <= 0;
-            if (this.oxygenHungry) {
-                this.loseConsciousnessIn = Config.OXYGEN_HUNGRY_TIME - (this.game.clock.elapsed - this.oxygenHungryStartElapsed) / 60;
-                
-                if (this.loseConsciousnessIn <= 0) {
-                    this.die();
-                    console.log(true);
-                }
-            }
-        }
-
+        this.doOxygenHungry();
         // Sounds
         this.footsStep();
 
@@ -215,12 +224,7 @@ export class Player extends Entity {
             (this.checkItemInInventory("ready-cidium") ? -2 : 0);
         
         // Dig
-        const tool = tools[this.toolLevel.toString()];
-
-        if (this.movement.x != 0)
-            this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.x > 0 ? "right" : "left");
-        else if (this.movement.y != 0)
-            this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.y > 0 ? "bottom" : "top");
+        this.digging();
 
         //
         this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .05);
@@ -276,44 +280,55 @@ export class Player extends Entity {
 
     }
     hit(damage: number) {
+        if (!this.damaged) {
+
+            this.damageAnimatedOpacity = 1.5;
+            this.game.camera.shake();
+            this.sound.play(this.game, chance(1) ? "bonk" : "hit");
+
+            this.saveData();
+        }
+        super.hit(damage);
+        
         if (this.hp <= 0)
             this.die();
-        
-        if (this.damaged) return;
-
-        this.damageAnimatedOpacity = 1.5;
-        this.game.camera.shake();
-        this.sound.play(this.game, chance(1) ? "bonk" : "hit");
-
-        this.saveData();
-        super.hit(damage);
     }
     die() {
         if (this.dead) return;
-        this.dead = true;
         
+        this.frame.x = 0;
         this.tries --;
-        
         this.oxygenHungry = false;
-        this.dieElapsed = this.game.clock.elapsed;
-        this.animatedDieUI = -1;
-
-        if (this.tries < 1) {
-            this.dieMessage = "replay";
-        } else {
-            this.position = new Vector2(Config.WORLD_WIDTH * Config.SPRITE_SIZE / 2, -Config.SPRITE_SIZE);
-            this.hp = 12;
-            this.wire.copy(this.position);
-
-            // Oxygen generator add oxygen
-            this.oxygenGenerator.oxygenLevel = 50;
-            this.oxygenGenerator.batteryLevel = 100;
-        }
-
-        this.game.camera.position.copy(this.position);
-        this.game.paused = true;
+        this.oxygenHungryTimer.reset();
+        this.animatedDieUI = -6;
+        this.allowMove = false;
         
+        super.die();
         this.saveData();
+    }
+    respawn() {
+        if (this.oxygenGenerator.oxygenLevel <= 10) {
+            this.oxygenGenerator.oxygenLevel += 30;
+            this.oxygenGenerator.batteryLevel += 80;
+        }
+        this.respawnTimer.reset();
+        this.hp = 12;
+        this.interest = true;
+        this.dead = false;
+        this.allowMove = true;
+        this.position.copy(this.startPosition);
+        this.game.camera.position.copy(this.position);
+
+        this.saveData();
+    }
+    gameOver() {
+        this.game.clearAllKeys();
+
+        this.oxygenGenerator.reset();
+        this.storage.reset();
+        this.recycler.reset();
+        this.game.generator.reset();
+        this.reset();
     }
     heal(heal: number) {
         if (this.hp >= 12) return
@@ -323,6 +338,15 @@ export class Player extends Entity {
         this.spawnText(`+${ heal }`, undefined, Color.GREEN);
 
         this.saveData();
+    }
+
+    digging() {
+        const tool = tools[this.toolLevel.toString()];
+
+        if (this.movement.x != 0)
+            this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.x > 0 ? "right" : "left");
+        else if (this.movement.y != 0)
+            this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.y > 0 ? "bottom" : "top");
     }
     upgradeTool(levelUp: number) {
         if (this.toolLevel < MaxToolLevel)
@@ -377,11 +401,23 @@ export class Player extends Entity {
 
         }
     }
+    doOxygenHungry() {
+        if (this.dead) return;
+        
+        if (this.oxygenGenerator.oxygenLevel <= 0) {
+            this.oxygenHungryTimer.start(this.game.clock.elapsed);
+            this.oxygenHungry = true;
+        }
+        if (this.oxygenHungry) {
+            if (this.oxygenHungryTimer.isTriggered())
+                this.die();
+        }
+    }
 
     // > Render
     renderUI() {
         
-        if (this.dead) this.renderDieUI();
+        if (this.dead && this.respawnTimer.started) this.renderDieUI();
         
         if (this.game.paused) return;
 
@@ -436,8 +472,8 @@ export class Player extends Entity {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
 
-        this.animatedDieUI = clamp(lerp(this.animatedDieUI, 4, .01), 0, 4);
-        this.respawnTimer = Config.RESPAWN_TIME - Math.floor((this.game.clock.elapsed - this.dieElapsed) / 60);
+        // this.animatedDieUI = 10;
+        this.animatedDieUI = clamp(lerp(this.animatedDieUI, 4, .005), 0, 4);
 
         // BG
         this.game.renderer.drawRect({
@@ -445,45 +481,33 @@ export class Player extends Entity {
             width: innerWidth / size,
             height: innerHeight / size,
             position: windowCenter,
-            layer: "ui",
+            layer: "upper-ui",
+            opacity: clamp(this.animatedDieUI, .5, 1.5) - .5
         });
 
         // Texts
         this.game.renderer.drawText({
-            text: this.dieMessage == "respawn" ? "Все совершают ошибки..." : "Все совершают ошибки, на которые нужен шанс...",
+            text: this.tries > 0 ? "Все совершают ошибки..." : "Все совершают ошибки, на которые нужен шанс...",
             font: "34px Pixel",
             opacity: clamp(this.animatedDieUI, 1, 2) - 1,
             stroke: { width: 0, color: "#000" },
             position: new Vector2().add(windowCenter),
-            layer: "ui"
+            layer: "upper-ui"
         })
         this.game.renderer.drawText({
-            text: this.dieMessage == "respawn" ? "Последний шанс, чтобы их исправить" : "Шанс, который вы упустили",
+            text: this.tries > 0 ? "Последний шанс, чтобы их исправить" : "Шанс, который вы упустили",
             opacity: clamp(this.animatedDieUI, 1.5, 2.5) - 1.5,
             stroke: { width: 0, color: "#000" },
             position: new Vector2(0, 30).add(windowCenter),
-            layer: "ui"
+            layer: "upper-ui"
         });
         this.game.renderer.drawText({
-            text: this.dieMessage == "respawn" ? `Тебя приведут в сознание через:\n0:${ this.respawnTimer }` : `Тебя заменит другой доброволец через:\n0:${ this.respawnTimer }`,
+            text: this.tries > 0 ? `Тебя приведут в сознание через:\n0:${ this.respawnTimer.elapsedSeconds }` : `Тебя заменит другой доброволец через:\n0:${ this.respawnTimer.elapsedSeconds }`,
             opacity: clamp(this.animatedDieUI, 2.5, 3.5) - 2.5,
             stroke: { width: 0, color: "#000" },
             position: new Vector2(0, 80).add(windowCenter),
-            layer: "ui"
+            layer: "upper-ui"
         });
-
-        // Die timer
-        if (this.respawnTimer <= 0) {
-            this.game.paused = false;
-            this.dieElapsed = 0;
-            if (this.tries > 0) {
-                this.dead = false;
-                this.oxygenHungryStartElapsed = this.game.clock.elapsed;
-            } else {
-                this.game.clearAllKeys();
-                location.reload();
-            }
-        }
     
     }
     renderHealthUI() {
@@ -520,8 +544,8 @@ export class Player extends Entity {
 
     }
     renderOxygenHungryUI() {
-        if (this.loseConsciousnessIn % 1 == 0)
-            this.animatedTimerScale = this.loseConsciousnessIn < 20 ? 1.5 : 1.2
+        if (this.oxygenHungryTimer.elapsedSeconds % 1 == 0)
+            this.animatedTimerScale = this.oxygenHungryTimer.elapsedSeconds < 20 ? 1.5 : 1.2
         
         this.game.renderer.drawText({
             text: "Кислородное голодание!",
@@ -535,7 +559,7 @@ export class Player extends Entity {
             layer: "upper-ui"
         });
         this.game.renderer.drawText({
-            text: `0:${ Math.floor(this.loseConsciousnessIn) }`,
+            text: `0:${ Math.floor(this.oxygenHungryTimer.elapsedSeconds) }`,
             position: new Vector2(innerWidth/2, 180),
             scale: Vector2.all(this.animatedTimerScale),
             font: "30px Pixel",
@@ -567,5 +591,11 @@ export class Player extends Entity {
         this.game.saveKey("tries", this.tries.toString());
         this.game.saveKey("player-hp", this.hp.toString());
         this.game.saveKey("player-toolLevel", this.toolLevel.toString());
+    }
+    reset() {
+        this.toolLevel = 1;
+        [...this.game.getChildrenByName<ItemParent>("ore"), ...this.game.getChildrenByName<ItemParent>("item")].map(child=> {
+            this.game.removeChildById(child.id);
+        })
     }
 }

@@ -3,8 +3,8 @@ import { GearLevel } from "./objects/gear/Gear";
 
 export enum Config {
     ALLOW_DARK = 1,
-    IS_DEV = 0, // ! IS DEV!!!!
-    ALLOW_HUNK = 0, // ! IS DEV!!!!
+    IS_DEV = 1, // ! IS DEV!
+    ALLOW_HUNK = 0, // ! IS DEV!
     
     // World size and chunks size in blocks
     WORLD_WIDTH = 82,

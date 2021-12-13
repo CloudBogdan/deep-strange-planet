@@ -39,11 +39,8 @@ export class Generator {
     constructor(game: Game) {
         this.game = game;
 
-        const needSeed = game.loadKey("seed", Date.now());
-        this.seed = Config.IS_DEV ? 1636721068016 : (typeof needSeed == "number" ? needSeed : Date.now());
-        seed(this.seed);
-        game.saveKey("seed", this.seed.toString());
-        console.log(`%cСид мира: ${ this.seed }`, `background: ${ Color.BLACK };color: ${ Color.YELLOW };padding:15px;font-size:20px;`);
+        this.seed = 0;
+        this.changeSeed();
 
         this.onWorldChangeListeners = [];
 
@@ -176,8 +173,22 @@ export class Generator {
         this.onWorldChangeListeners = this.onWorldChangeListeners.filter(listener=> listener.id != id);
     }
 
+    changeSeed() {
+        const needSeed = this.game.loadKey("seed", Date.now());
+        this.seed = Config.IS_DEV ? 1636721068016 : (typeof needSeed == "number" ? needSeed : Date.now());
+        seed(this.seed);
+        this.game.saveKey("seed", this.seed.toString());
+        console.log(`%cСид мира: ${ this.seed }`, `background: ${ Color.BLACK };color: ${ Color.YELLOW };padding:15px;font-size:20px;`);
+    }
     saveData() {
         this.game.saveKey("destroyedOres", JSON.stringify(this.destroyedOres));
         this.game.saveKey("modifiedOres", JSON.stringify(this.modifiedOres));
+    }
+    reset() {
+        this.modifiedOres = {};
+        this.destroyedOres = [];
+        this.changeSeed();
+
+        this.saveData();
     }
 }

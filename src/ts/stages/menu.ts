@@ -35,10 +35,10 @@ export function initMenu(game: Game, player: Player) {
         });
     }
     function update() {
-        menuUI.allowSelectSlots = game.paused && player.respawnTimer <= 0;
+        menuUI.enabled = game.paused && !player.dead;
     }
     function render(renderer: Renderer) {
-        if (menuUI.allowSelectSlots) {
+        if (menuUI.enabled) {
             const size = Config.SPRITE_SIZE;
             const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
         

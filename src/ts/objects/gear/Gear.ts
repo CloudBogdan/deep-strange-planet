@@ -198,8 +198,12 @@ export class Gear extends Sprite {
         this.playerIsNear =
             this.player.position.distance(this.position) < Config.GEAR_INTERACT_DISTANCE &&
             ((this.player.position.x > this.position.x && this.player.flip.x) || (this.player.position.x < this.position.x && !this.player.flip.x));
-        if (this.playerIsNear)
-            this.player.allowMove = !this.ui.enabled;
+        if (this.playerIsNear) {
+            if (!this.player.dead)
+                this.player.allowMove = !this.ui.enabled;
+            else
+                this.ui.enabled = false;
+        }
     }
 
     onInteract() {
@@ -207,6 +211,11 @@ export class Gear extends Sprite {
     }
     onUIAction() {
         
+    }
+    saveData() {}
+    reset() {
+        this.level = 1;
+        this.saveData();
     }
     
 }
