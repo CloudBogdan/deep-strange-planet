@@ -1,5 +1,6 @@
 import { GeneratorConfig, Config } from "../config";
 import { Game } from "../engine";
+import { noise } from "../engine/Generator";
 import { inRange } from "../engine/utils/math";
 import { Antin } from "../objects/ores/Antin";
 import { Basalt } from "../objects/ores/Basalt";
@@ -16,6 +17,16 @@ import { Osmy } from "../objects/ores/Osmy";
 import { Rady } from "../objects/ores/Rady";
 import { Stone } from "../objects/ores/Stone";
 import { StonyGround } from "../objects/ores/StonyGround";
+
+export function caveRules(x: number, y: number, offsetX?: number, offsetY?: number): boolean {
+    const ox = offsetX || 0;
+    const oy = offsetY || 0;
+    
+    const res = noise((x + ox) / 30, (y + oy) / 12, 4, 3);
+    const mask = noise((x + ox) / 16, (y + oy) / 16);
+
+    return inRange(res + mask/5, 0, .6);
+}
 
 export function initGenerator(game: Game) {
 
@@ -89,92 +100,63 @@ export function initGenerator(game: Game) {
         },
 
         // > Other
-        // Fetus stone
+        // // Fetus stone
         {
-            value: [0, 1],
             height: [30, GeneratorConfig.BASALT_LAYER_HEIGHT-20],
-            divider: 2,
             block: FetusStone,
-            rules(noiseX, noiseY, getValue) {
-                return (
-                    inRange(getValue(noiseX, noiseY+1, 10), 0, .5) &&
-                    inRange(getValue(noiseX, noiseY, 8), 0, .8) 
-                    // inRange(getValue(noiseX, noiseY, 2), 0, .3)
-                );
-            }
+            rules: FetusStone.rules
+            // rules(noiseX, noiseY, getValue) {
+            //     return (
+            //         inRange(getValue(noiseX, noiseY+1, 10), 0, .5) &&
+            //         inRange(getValue(noiseX, noiseY, 8), 0, .8) 
+            //         // inRange(getValue(noiseX, noiseY, 2), 0, .3)
+            //     );
+            // }
         },
         // Mushroom stone
         {
-            value: [0, 1],
-            // height: [0, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT-15],
             height: [GeneratorConfig.BASALT_LAYER_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT-15],
-            divider: 2,
             block: MushroomStone,
-            rules(noiseX, noiseY, getValue) {
-                return (
-                    inRange(getValue(noiseX, noiseY-1, 10), 0, .5) &&
-                    inRange(getValue(noiseX, noiseY, 8), 0, .6) 
-                    // inRange(getValue(noiseX, noiseY, 2), 0, .3)
-                );
-            }
+            rules: MushroomStone.rules
         },
         
         // > Ores
         // Cidium
         {
-            value: [.95, 1],
-            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT * 3],
             height: [12, GeneratorConfig.BASALT_LAYER_HEIGHT/2],
-            divider: 5,
-            block: Cidium
+            block: Cidium,
+            rules: Cidium.rules
         },
 
         // Osmy - deep stone layer
         {
-            value: [0, .7],
-            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
-            divider: 4,
             block: Osmy,
-            rules(noiseX, noiseY, getValue) {
-                // return true;
-                return getValue(noiseX+1, noiseY+2, 4) > .85;
-            }
+            rules: Osmy.rules
         },
         {
-            value: [.9, 1],
-            // height: [0, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
-            divider: 3,
-            block: Nerius
+            block: Nerius,
+            rules: Nerius.rules
         },
         
         // Antin - basalt layer
         {
-            value: [0, .6],
-            // height: [0, Config.WORLD_HEIGHT - 40],
             height: [GeneratorConfig.BASALT_LAYER_HEIGHT + 10, Config.WORLD_HEIGHT - 22],
-            divider: 3,
             block: Antin,
-            rules(noiseX, noiseY, getValue) {
-                return inRange(getValue(noiseX+1, noiseY, 5), 0, .4);
-            }
+            rules: Antin.rules
         },
         // Rady - basalt layer
         {
-            value: [0, .3],
-            // height: [0, Config.WORLD_HEIGHT - 5],
             height: [200, Config.WORLD_HEIGHT - 5],
-            divider: 2,
-            block: Rady
+            block: Rady,
+            rules: Rady.rules
         },
         // > Manty layer
         {
-            value: [0, .3],
-            // height: [0, Config.WORLD_HEIGHT - 1],
             height: [Config.WORLD_HEIGHT - 5, Config.WORLD_HEIGHT - 1],
-            divider: 2,
-            block: Manty
+            block: Manty,
+            rules: Manty.rules
         },
         {
             value: [0, .5],
@@ -183,17 +165,11 @@ export function initGenerator(game: Game) {
             block: Manty
         },
 
-        // > Holes
+        // > Caves
         {
-            value: [0, .5],
-            height: [5, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - 20],
+            height: [5, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT],
             block: null,
-        },
-        {
-            value: [0, .4],
-            height: [GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT, Config.WORLD_HEIGHT - 40],
-            divider: 5,
-            block: null,
+            rules: caveRules
         },
     ];
     

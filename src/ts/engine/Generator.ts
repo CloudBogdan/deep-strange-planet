@@ -5,7 +5,6 @@ import { Point } from "./components/Point";
 import { Color, Config } from "../config";
 import { perlin2, seed } from "./utils/noise";
 import { Block } from "../objects/Block";
-import messages from "../messages";
 
 let __chunkId = 0;
 
@@ -14,13 +13,17 @@ export type Chunk = {
     pos: Vector2
 }
 type GeneratorSettings = {
-    value: [number, number]
+    value?: [number, number]
     height: [number, number]
     block: typeof Block | any | null
     divider?: number
-    rules?: (noiseX: number, noiseY: number, getValue: (x: number, y: number, div?: number)=> number)=> boolean
+    rules?: (x: number, y: number)=> boolean
+    // rules?: (noiseX: number, noiseY: number, getValue: (x: number, y: number, div?: number)=> number)=> boolean
 }
-
+export function noise(x: number, y: number, sharpness?: number, sharpnessDiv?: number): number {
+    const sharp = sharpness ? noise(x * sharpness, y * sharpness) : 0;
+    return clamp((perlin2(x, y) + 1) / 2 + sharp / (sharpnessDiv || 2), 0, 1);
+}
 export class Generator {
     game: Game
 
@@ -116,13 +119,17 @@ export class Generator {
     
                     const noiseX = (x + pos.x * Config.CHUNK_SIZE)
                     const noiseY = (y + pos.y * Config.CHUNK_SIZE)
-                    const getValue = (x: number, y: number, div?: number)=> (+perlin2(x / (div || 10), y / (div || 10)) + 1) / 1.5;
+                    // const getValue = (x: number, y: number, div?: number)=> (+perlin2(x / (div || 10), y / (div || 10)) + 1) / 1.5;
+                    const getValue = (x: number, y: number, div?: number)=> noise(x / (div || 10), y / (div || 10), 3);
                     const value = getValue(noiseX, noiseY, gen.divider);
     
-                    const rules = gen.rules ? gen.rules(noiseX, noiseY, getValue) : true;
+                    const isValue = gen.value ? inRange(value, gen.value[0], gen.value[1]) : true; 
+                    const rules = gen.rules ? gen.rules(noiseX, noiseY) : isValue;
                     
-                    if (inRange(value, gen.value[0], gen.value[1]) && inRange(_y, gen.height[0], gen.height[1]) && rules)
+                    if (inRange(_y, gen.height[0], gen.height[1]) && rules)
                         ores[y][x] = gen.block;
+                    // if (inRange(value, gen.value[0], gen.value[1]) && inRange(_y, gen.height[0], gen.height[1]) && rules)
+                    //     ores[y][x] = gen.block;
                 }
                 
                 const inChunkId = [x, y, pos.x, pos.y].join("-");

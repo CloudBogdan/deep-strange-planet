@@ -1,6 +1,8 @@
 import { Color, Config } from "../../config";
 import { SpawnParticles } from "../../engine/components/Particles";
-import { asImage, chance, clamp, random, randomInt, Vector2 } from "../../engine/utils/math";
+import { noise } from "../../engine/Generator";
+import { asImage, chance, clamp, inRange, random, randomInt, Vector2 } from "../../engine/utils/math";
+import { caveRules } from "../../managers/generator";
 import { Player } from "../entities/Player";
 import { HealingFetus } from "../food/HealingFetus";
 import { Ore } from "./Ore";
@@ -14,6 +16,7 @@ export class FetusStone extends Ore {
     playerIsNear: boolean
     grabbedCount: number | null
     canGrab: boolean
+    cutOff: boolean
     
     constructor(position: Vector2, data?: { length?: number, maxLength?: number, grabbedCount?: number }) {
         super("fetus-stone", position);
@@ -26,9 +29,17 @@ export class FetusStone extends Ore {
         this.allowGrow = true;
         this.grabbedCount = data ? (data?.grabbedCount || null) : null;
         this.canGrab = false;
+        this.cutOff = false;
 
         this.breakAudioNames = ["plant-break"];
         this.hitAudioName = "plant-hit";
+    }
+
+    static rules(x: number, y: number): boolean {
+        const res = noise(x / 8, y / 8);
+        const haveEmptySpace = caveRules(x, y, 0, 1);
+        
+        return inRange(res, 0, .8) && haveEmptySpace;
     }
 
     init() {
@@ -63,6 +74,7 @@ export class FetusStone extends Ore {
         this.tryGrab();
 
         if (!this.allowGrow) return;
+        
         if (this.game.tick(Config.VINE_GROW_TICK))
             if (chance(Config.VINE_GROW_CHANCE))
                 this.grow();
@@ -71,6 +83,9 @@ export class FetusStone extends Ore {
                 this.grabbedCount --;
                 this.grabbedCount = clamp(this.grabbedCount, 0, this.vineLength || 0)
             }
+
+        if (this.game.tick(100) && !this.cutOff)
+            this.checkEmptySpaceToGrow();
     }
 
     render() {
@@ -177,26 +192,33 @@ export class FetusStone extends Ore {
         
     }
     grow() {
-        if (this.vineLength === null || !this.allowGrow) return;
+        if (this.vineLength === null || !this.allowGrow || this.vineLength >= this.maxVineLength) return;
 
         let needLength = this.vineLength;
-        let height = 0;
         
-        if (needLength + 1 < this.maxVineLength)
+        if (needLength < this.maxVineLength)
             needLength ++;
 
-        for (let i = 1; i < 8; i ++) {
-            height ++;
-            if (this.checkBlockIn(new Vector2(0, i)))
-                break;
-        }
-
-        if (this.checkBlockIn(new Vector2(0, needLength)))
-            needLength --;
-
-        this.vineLength = clamp(needLength, 0, height);
+        this.vineLength = needLength;
+        this.checkEmptySpaceToGrow();
 
         this.saveData();
+    }
+    checkEmptySpaceToGrow() {
+        if (this.vineLength === null || !this.allowGrow) return;
+
+        let height = 0;
+
+        for (let i = 1; i < 8; i ++) {
+            if (this.checkBlockIn(new Vector2(0, i), false))
+                break;
+            else
+                height ++;
+        }
+
+        if (this.vineLength > height)
+            this.cutOff = true;
+        this.vineLength = clamp(this.vineLength, 0, height);
     }
 
     saveData() {
@@ -207,6 +229,6 @@ export class FetusStone extends Ore {
         });
     }
     checkEmptySpace() {
-        this.allowGrow = !this.checkBlockIn(new Vector2(0, 1));
+        this.allowGrow = !this.checkBlockIn(new Vector2(0, 1), false);
     }
 }

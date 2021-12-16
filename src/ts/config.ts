@@ -1,9 +1,11 @@
 import { ToolLevel } from "./objects/entities/Player";
 import { GearLevel } from "./objects/gear/Gear";
 
+export const VERSION = "1.2.0";
 export enum Config {
-    ALLOW_DARK = 1,
+    ALLOW_DARK = 1, // ! IS DEV!
     IS_DEV = 1, // ! IS DEV!
+    TEST_GEARS = 0, // ! IS DEV!
     ALLOW_HUNK = 0, // ! IS DEV!
     
     // World size and chunks size in blocks
@@ -20,8 +22,8 @@ export enum Config {
     OXYGEN_GENERATOR_BATTERY_DEFUSE_TICK = 400,
     OXYGEN_GENERATOR_OXYGEN_DEFUSE_TICK = 250,
 
-    VINE_GROW_TICK = 220,
-    VINE_GROW_CHANCE = 12,
+    VINE_GROW_TICK = IS_DEV ? 100 : 220,
+    VINE_GROW_CHANCE = IS_DEV ? 60 : 12,
     VINE_MIN_LENGTH = 4,
     VINE_MAX_LENGTH = 8,
 

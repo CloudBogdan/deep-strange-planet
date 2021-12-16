@@ -128,11 +128,11 @@ export class InfectedOre extends Ore {
     }
     growInfection() {
         if (!this.allowInfect) return;
-        this.checkEmptySpace();
-        if (!this.allowGrow) return;
         
         if (this.game.tick(Config.INFECTION_GROW_TICK) && this.infectionStage < 3) {
-            if (chance(Config.INFECTION_GROW_CHANCE)) {
+
+            this.checkEmptySpace();
+            if (this.allowGrow && chance(Config.INFECTION_GROW_CHANCE)) {
                 
                 const needStage = this.infectionStage + 1;
                 this.infectionStage = needStage;

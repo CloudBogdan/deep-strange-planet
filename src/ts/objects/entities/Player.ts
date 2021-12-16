@@ -228,7 +228,6 @@ export class Player extends Entity {
 
         //
         this.damageAnimatedOpacity = lerp(this.damageAnimatedOpacity, 0, .05);
-        this.animatedTimerScale = lerp(this.animatedTimerScale, 1, .2);
     }
     render() {
         super.render();
@@ -544,7 +543,8 @@ export class Player extends Entity {
 
     }
     renderOxygenHungryUI() {
-        if (this.oxygenHungryTimer.elapsedSeconds % 1 == 0)
+        this.animatedTimerScale = lerp(this.animatedTimerScale, 1, .2);
+        if (this.oxygenHungryTimer.elapsed / 60 % 1 == 0)
             this.animatedTimerScale = this.oxygenHungryTimer.elapsedSeconds < 20 ? 1.5 : 1.2
         
         this.game.renderer.drawText({

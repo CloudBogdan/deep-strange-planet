@@ -17,7 +17,7 @@ export class OxygenGenerator extends Gear {
 
         this.startPosition = this.position.expand();
         
-        if (Config.IS_DEV) {
+        if (Config.TEST_GEARS) {
             this.oxygenLevel = 2;
             this.batteryLevel = 2;
         } else {

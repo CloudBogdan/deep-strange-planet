@@ -37,6 +37,10 @@ export class Block extends Sprite {
         
     }
 
+    static rules(x: number, y: number): boolean {
+        return false;
+    }
+
     init() {
         super.init();
         

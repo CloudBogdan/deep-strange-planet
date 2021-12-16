@@ -59,6 +59,13 @@ function renderDebug(renderer: Renderer) {
         align: "left",
         layer: "ui"
     });
+    renderer.drawText({
+        text: `Pos: ${ Math.floor(player.position.x) }, ${ Math.floor(player.position.y) }`,
+        font: "20px Pixel",
+        position: new Vector2(30, 120),
+        align: "left",
+        layer: "ui"
+    });
     
     // renderChunks(renderer);
 }

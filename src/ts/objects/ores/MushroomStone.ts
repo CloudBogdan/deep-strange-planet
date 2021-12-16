@@ -1,6 +1,8 @@
 import { Color, Config } from "../../config";
 import { SpawnDisputesParticles, SpawnParticles } from "../../engine/components/Particles";
-import { asImage, clamp, random, randomInt, Vector2 } from "../../engine/utils/math";
+import { noise } from "../../engine/Generator";
+import { asImage, clamp, inRange, random, randomInt, Vector2 } from "../../engine/utils/math";
+import { caveRules } from "../../managers/generator";
 import { Player, ToolLevel } from "../entities/Player";
 import { Ore } from "./Ore";
 
@@ -17,6 +19,13 @@ export class MushroomStone extends Ore {
         this.randomRotate = false;
         this.particlesColors = [Color.GREY, Color.RED];
         this.currentFrame = randomInt(0, 4);
+    }
+
+    static rules(x: number, y: number): boolean {
+        const res = noise(x / 8, y / 8);
+        const haveEmptySpace = caveRules(x, y, 0, -1);
+        
+        return inRange(res, 0, .5) && haveEmptySpace;
     }
 
     init() {
