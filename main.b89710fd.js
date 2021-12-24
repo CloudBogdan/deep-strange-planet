@@ -710,9 +710,9 @@ exports.Config = Config;
 
 (function (Config) {
   Config[Config["ALLOW_DARK"] = 1] = "ALLOW_DARK";
-  Config[Config["IS_DEV"] = 1] = "IS_DEV";
-  Config[Config["TEST_GEARS"] = 1] = "TEST_GEARS";
-  Config[Config["ALLOW_HUNK"] = 1] = "ALLOW_HUNK"; // World size and chunks size in blocks
+  Config[Config["IS_DEV"] = 0] = "IS_DEV";
+  Config[Config["TEST_GEARS"] = 0] = "TEST_GEARS";
+  Config[Config["ALLOW_HUNK"] = 0] = "ALLOW_HUNK"; // World size and chunks size in blocks
 
   Config[Config["WORLD_WIDTH"] = 82] = "WORLD_WIDTH";
   Config[Config["WORLD_HEIGHT"] = 225] = "WORLD_HEIGHT";
