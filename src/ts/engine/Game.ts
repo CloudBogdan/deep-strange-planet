@@ -155,12 +155,19 @@ export class Game extends Container {
         this.initListeners.map(listener=> listener());
         this.initChildren();
 
-        let lastLoop = 0;
-        
+        let lastLoop = Date.now();
+
         const loop = ()=> {
             requestAnimationFrame(loop);
             this.renderer.render();
             this.clock.elapsed ++;
+
+            // Update clock
+            const thisLoop = Date.now();
+            this.clock.delta = (thisLoop - lastLoop) / 1000;
+            if (this.tick(30))
+                this.clock.fps = Math.floor(1000 / (thisLoop - lastLoop));
+            lastLoop = thisLoop;
 
             // Camera shake
             if (!this.camera.shaking) {
@@ -171,14 +178,6 @@ export class Game extends Container {
                     this.camera.shaking = false;
                 this.camera.offset.copy(this.camera.offset.add(new Vector2(random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude), random(-this.camera.shakeAmplitude, this.camera.shakeAmplitude))));
             }
-
-            // Update clock
-            const thisLoop = Date.now();
-            this.clock.delta = (thisLoop - lastLoop) / 1000;
-            if (this.tick(30)) {
-                this.clock.fps = +(1000 / (thisLoop - lastLoop)).toFixed(1);
-            }
-            lastLoop = thisLoop;
             
             // Update
             this.physics.update();
@@ -191,6 +190,7 @@ export class Game extends Container {
             this.renderer.renderParticles();
             
         }
+        // setInterval(loop, 16);
         loop();
 
         // Canvas update
