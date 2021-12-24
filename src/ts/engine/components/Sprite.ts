@@ -70,7 +70,7 @@ export class Sprite extends Point {
             this.visible = !this.visible;
     }
 
-    playAnimation(assetName: string, framesCount: number, speed?: number, loop?: boolean) {
+    playAnimation(assetName: string, framesCount: number, speed?: number, loop?: boolean, reversed?: boolean) {
         this.texture = asImage(this.game.getAssetByName(assetName));
         
         if (framesCount <= 1) {
@@ -80,7 +80,9 @@ export class Sprite extends Point {
 
         if (this.game.tick(speed || Config.DEFAULT_ANIMATION_SPEED)) {
             // const allow = safeValue(loop, true);
-            this.frame.x ++;
+            this.frame.x += reversed ? -1 : 1;
+            if (this.frame.x < 0)
+                this.frame.x = framesCount;
             if (this.frame.x >= framesCount && safeValue(loop, true))
                 this.frame.x = 0;
 

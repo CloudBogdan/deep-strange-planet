@@ -18,7 +18,7 @@ export class FetusStone extends Ore {
     canGrab: boolean
     cutOff: boolean
     
-    constructor(position: Vector2, data?: { length?: number, maxLength?: number, grabbedCount?: number }) {
+    constructor(position: Vector2, data?: any) {
         super("fetus-stone", position);
     
         this.randomRotate = false;
@@ -29,7 +29,8 @@ export class FetusStone extends Ore {
         this.allowGrow = true;
         this.grabbedCount = data ? (data?.grabbedCount || null) : null;
         this.canGrab = false;
-        this.cutOff = false;
+        // this.cutOff = false;
+        this.cutOff = data ? (data?.cutOff || false) : false;
 
         this.breakAudioNames = ["plant-break"];
         this.hitAudioName = "plant-hit";
@@ -56,8 +57,18 @@ export class FetusStone extends Ore {
             this.grabbedCount = clamp(randomInt(-2, 4), 0, 4);
             this.saveData()
         }
-            
-        this.checkEmptySpace();
+
+        if (!this.cutOff)
+            for (let i = 0; i < this.vineLength; i ++) {
+                if (!caveRules(this.tilePosition.x, this.tilePosition.y, 0, i+1)) {
+                    this.vineLength = i;
+                    this.cutOff = true;
+                    this.saveData();
+                    break;
+                }
+            }
+        
+        // this.checkEmptySpace();
         if (!this.allowGrow)
             this.vineLength = 0;
 
@@ -75,24 +86,23 @@ export class FetusStone extends Ore {
 
         if (!this.allowGrow) return;
         
-        if (this.game.tick(Config.VINE_GROW_TICK))
-            if (chance(Config.VINE_GROW_CHANCE))
-                this.grow();
+        // if ((this.vineLength || 0) < this.maxVineLength && this.allowGrow && this.game.tick(Config.VINE_GROW_TICK))
+        //     if (chance(Config.VINE_GROW_CHANCE))
+        //         this.grow();
         if (this.game.tick(Config.VINE_GROW_TICK * 2))
             if (chance(Config.VINE_GROW_CHANCE * .3) && this.grabbedCount != null) {
                 this.grabbedCount --;
                 this.grabbedCount = clamp(this.grabbedCount, 0, this.vineLength || 0)
             }
 
-        if (this.game.tick(100) && !this.cutOff)
-            this.checkEmptySpaceToGrow();
+        // if (!this.cutOff && this.game.tick(100))
+        //     this.checkEmptySpaceToGrow();
     }
 
     render() {
         super.render();
         
-        if (this.allowGrow)
-            this.renderVine();
+        this.renderVine();
     }
 
     tryGrab() {
@@ -144,7 +154,7 @@ export class FetusStone extends Ore {
     }
 
     renderVine() {
-        if (!this.vineLength) return;
+        if (!this.vineLength || !this.allowGrow) return;
         const size = Config.SPRITE_SIZE;
         
         for (let i = 0; i < this.vineLength; i ++) {
@@ -210,22 +220,24 @@ export class FetusStone extends Ore {
         let height = 0;
 
         for (let i = 1; i < 8; i ++) {
-            if (this.checkBlockIn(new Vector2(0, i), false))
+            if (this.checkBlockIn(new Vector2(0, i), false)) {
+                this.cutOff = true;
                 break;
-            else
+            } else
                 height ++;
         }
 
-        if (this.vineLength > height)
-            this.cutOff = true;
         this.vineLength = clamp(this.vineLength, 0, height);
+
+        this.saveData();
     }
 
     saveData() {
         this.game.generator.modifyOre(this.inChunkId, {
             length: this.vineLength,
             grabbedCount: this.grabbedCount,
-            maxLength: this.maxVineLength
+            maxLength: this.maxVineLength,
+            cutOff: this.cutOff
         });
     }
     checkEmptySpace() {

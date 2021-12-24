@@ -5,8 +5,8 @@ export const VERSION = "1.2.0";
 export enum Config {
     ALLOW_DARK = 1, // ! IS DEV!
     IS_DEV = 1, // ! IS DEV!
-    TEST_GEARS = 0, // ! IS DEV!
-    ALLOW_HUNK = 0, // ! IS DEV!
+    TEST_GEARS = 1, // ! IS DEV!
+    ALLOW_HUNK = 1, // ! IS DEV!
     
     // World size and chunks size in blocks
     WORLD_WIDTH = 82,
@@ -39,17 +39,17 @@ export enum Config {
     ROBOT_HIT_SPEED = 10,
     ROBOT_ALLOW_PICKUP_DELAY = 20,
 
-    PICKUP_DISTANCE = 50,
+    PICKUP_DISTANCE = 60,
     WIRE_LENGTH = 60,
     GEAR_INTERACT_DISTANCE = 85,
     DOME_DIAMETER = SPRITE_SIZE * 6,
     GROUND_HEIGHT = SPRITE_SIZE * 2,
-    OXYGEN_HUNGRY_TIME = IS_DEV ? 10 : 60,
+    OXYGEN_HUNGRY_TIME = IS_DEV ? 4 : 60,
     
     ITEMS_LIVE_TIME = 800,
     ORE_FALL_DELAY = 30,
     DEFAULT_ANIMATION_SPEED = 8,
-    RESPAWN_TIME = 12
+    RESPAWN_TIME = IS_DEV ? 4 : 12
 }
 export enum GeneratorConfig {
     LAYERS_BLEND_HEIGHT = 10,

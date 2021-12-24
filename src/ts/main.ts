@@ -39,19 +39,19 @@ game.addRender(renderer=> {
     level.render();
     menu.render(renderer);
     
+    renderer.drawText({
+        text: `${ game.clock.fps } fps`,
+        font: "18px Pixel",
+        position: new Vector2(15, 30),
+        align: "left",
+        layer: "ui"
+    });
     if (Config.IS_DEV)
         renderDebug(renderer);
 
 });
 
 function renderDebug(renderer: Renderer) {
-    renderer.drawText({
-        text: game.clock.fps.toString(),
-        font: "20px Pixel",
-        position: new Vector2(30, 40),
-        align: "left",
-        layer: "ui"
-    });
     renderer.drawText({
         text: `Height: ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`,
         font: "20px Pixel",
@@ -60,14 +60,14 @@ function renderDebug(renderer: Renderer) {
         layer: "ui"
     });
     renderer.drawText({
-        text: `Pos: ${ Math.floor(player.position.x) }, ${ Math.floor(player.position.y) }`,
+        text: `Pos: ${ Math.floor(player.position.x / Config.SPRITE_SIZE) }, ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`,
         font: "20px Pixel",
         position: new Vector2(30, 120),
         align: "left",
         layer: "ui"
     });
     
-    // renderChunks(renderer);
+    renderChunks(renderer);
 }
 function renderChunks(renderer: Renderer) {
     for (let y = 0; y < Config.WORLD_HEIGHT / Config.CHUNK_SIZE; y ++)

@@ -57,6 +57,7 @@ export class Player extends Entity {
     tries: number
     dieMessage: "respawn" | "replay"
     
+    
     wire: Vector2
     inventory: {
         totalCount: number
@@ -175,13 +176,14 @@ export class Player extends Entity {
     update() {
         super.update();
         
-        this.game.renderer.layers["ui"].render = !this.dead; 
+        this.game.renderer.layers["ui"].render = !(this.dead || this.regaining); 
         
         // Timers
         this.respawnTimer.update(this.game.clock.elapsed);
         this.oxygenHungryTimer.update(this.game.clock.elapsed);
 
         // Animations
+        // Dead
         if (this.dead) {
             this.playAnimation("player-dead", 5, 26, false)
             if (this.frame.x >= 5) {
@@ -198,6 +200,15 @@ export class Player extends Entity {
                     this.respawn();
                     this.gameOver();
                 }
+            }
+        }
+        if (this.regaining) {
+            this.playAnimation("player-dead", 5, 26, false, true);
+
+            if (this.frame.x <= 0) {
+                this.regaining = false;
+                this.allowMove = true;
+                this.interest = true;
             }
         }
         
@@ -312,9 +323,11 @@ export class Player extends Entity {
         }
         this.respawnTimer.reset();
         this.hp = 12;
-        this.interest = true;
+        this.frame.x = 5;
+        this.interest = false;
         this.dead = false;
-        this.allowMove = true;
+        this.regaining = true;
+        // this.allowMove = true;
         this.position.copy(this.startPosition);
         this.game.camera.position.copy(this.position);
 

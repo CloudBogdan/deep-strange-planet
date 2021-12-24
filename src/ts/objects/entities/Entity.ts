@@ -26,6 +26,7 @@ export class Entity extends Sprite {
 
     dead: boolean
     interest: boolean
+    regaining: boolean
 
     movement: Vector2
     allowMove: boolean
@@ -50,6 +51,7 @@ export class Entity extends Sprite {
 
         this.dead = false;
         this.interest = true;
+        this.regaining = false;
         
         this.movement = new Vector2();
         this.allowMove = true;
@@ -68,7 +70,7 @@ export class Entity extends Sprite {
         super.update();
         this.bounds();
         
-        if (!this.allowMove || this.game.paused) {
+        if (!this.allowMove || this.regaining || this.dead || this.game.paused) {
             this.movement.set();
             this.velocity.set();
         }
@@ -87,7 +89,7 @@ export class Entity extends Sprite {
         this.animate();
     }
     dig(damage: number, speed: number, level: ToolLevel, direction: Direction) {
-        if (this.dead) return;
+        if (this.dead || this.regaining) return;
         
         if (this.collider.collidesWith != null && this.collider.collidesWith.any && this.collider.collidesWith.id!.indexOf("ore-") >= 0) {
             const ore = this.game.getChildById<Ore>(this.collider.collidesWith.id);
@@ -113,7 +115,7 @@ export class Entity extends Sprite {
     }
 
     move() {
-        if (!this.allowMove || this.game.paused) return;
+        if (!this.allowMove || this.game.paused || this.regaining || this.dead) return;
 
         if (this.movement.x != 0)
             this.flip.x = this.movement.x < 0;
@@ -122,7 +124,7 @@ export class Entity extends Sprite {
         this.velocity.y = this.movement.normalize().y * (this.moveSpeed - this.moveSpeedDown);
     }
     animate() {
-        if (!this.allowAnimate || this.dead) return;
+        if (!this.allowAnimate || this.dead || this.regaining) return;
         
         if (this.velocity.x != 0 || this.velocity.y != 0)
             this.playAnimation(this.walkAnimation, 4);
