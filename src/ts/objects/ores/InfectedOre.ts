@@ -83,16 +83,19 @@ export class InfectedOre extends Ore {
         else {
             this.tongueVelocity.copy(this.tongueVelocity.mul(0));
 
+            if ((this.target as Entity).eating !== undefined)
+                (this.target as Entity).eating = true;
+
             // Tongue to target
             if (this.tonguePosition.distance(this.target.position) < 20)
                 this.tonguePosition = this.target.position.expand();
             else
-                this.tonguePosition.lerp(this.target.position, .4);
+                this.tonguePosition.lerp(this.target.position, this.game.clock.delta * 20);
             
             // Move entity to datura
             if (body)
                 if (body.position.distance(this.daturaPosition) > 10)
-                    body.velocity.copy(body.velocity.add(body.position.sub(this.daturaPosition).normalize().mul(-4)))
+                    body.velocity.copy(body.velocity.add(body.position.sub(this.daturaPosition).normalize().mul(-2 * this.game.clock.delta * 100)))
 
         }
 
@@ -103,7 +106,7 @@ export class InfectedOre extends Ore {
             // If player - hit
             if (tar.hit) {
                 if (this.game.tick(60) && this.isEating)
-                    tar.hit(clamp(randomInt(-1, 3), 1, 3));
+                    tar.hit(clamp(randomInt(-1, 3), 1, 3), 6);
             } else {
                 // If item - eat :D
                 if (tar.position.distance(this.daturaPosition) < 80) {

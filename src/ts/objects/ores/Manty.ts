@@ -1,3 +1,4 @@
+import { Color } from "../../config";
 import { noise } from "../../engine/Generator";
 import { inRange, Vector2 } from "../../engine/utils/math";
 import { RawManty } from "../raws/RawManty";
@@ -8,6 +9,7 @@ export class Manty extends DangerOre {
         super("manty", position);
 
         this.randomRotate = false;
+        this.particlesColors = [Color.RED, Color.DARK_GREY];
     }
 
     static rules(x: number, y: number): boolean {

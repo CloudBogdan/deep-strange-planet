@@ -1,4 +1,4 @@
-import { Config } from "../config";
+import { Color, Config, VERSION } from "../config";
 import { Game } from "../engine";
 import { UI } from "../engine/components/UI";
 import { Renderer } from "../engine/Renderer";
@@ -11,108 +11,166 @@ type IButton = {
 
 export function initMenu(game: Game, player: Player) {
 
-    const menuUI = new UI();
+    const ui = new UI();
+    const menuUi = new UI();
+    const aboutUi = new UI();
     const buttons: IButton[] = [
         { text: "Иследовать" },
         { text: "Заново" },
         { text: "Об игре" }
     ];
-    menuUI.updateTemplate(buttons.map(()=> 1));
+    menuUi.updateTemplate(buttons.map(()=> 1));
     
     function init() {
-        menuUI.init(game);
+        ui.init(game);
+        menuUi.init(game);
+        aboutUi.enabled = false;
+        aboutUi.init(game);
         
         // UI actions
         game.gamepad.onKeyDown("menu-ui", "enter", ()=> {
 
-            if (menuUI.focused.row == 0)
+            if (!ui.enabled) return;
+            
+            if (aboutUi.enabled) {
+                menuUi.enabled = true;
+                aboutUi.enabled = false;
+                return;
+            }
+            
+            // Play button
+            if (menuUi.focused.row == 0)
                 game.paused = false;
-            else if (menuUI.focused.row == 1) {
+            // Retry button
+            else if (menuUi.focused.row == 1) {
                 game.clearAllKeys();
                 location.reload();
+            }
+            // About button
+            else if (menuUi.focused.row == 2) {
+                menuUi.enabled = false;
+                aboutUi.enabled = true;
             }
 
         });
     }
     function update() {
-        menuUI.enabled = game.paused && !player.dead;
+        ui.enabled = game.paused && !player.dead;
+        menuUi.allowSelectSlots = ui.enabled;
     }
-    function render(renderer: Renderer) {
-        if (menuUI.enabled) {
-            const size = Config.SPRITE_SIZE;
-            const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
+    function render() {
+        if (!ui.enabled) return;
         
-            renderer.drawRect({
-                position: windowCenter,
-                width: innerWidth / size,
-                height: innerHeight / size,
-                color: "rgba(0, 0, 0, .5)",
-                layer: "ui"
-            })
-            renderer.drawSprite({
-                texture: asImage(game.getAssetByName("logo")),
-                width: 6,
-                height: 2,
-                position: new Vector2(windowCenter.x, 160),
-                layer: "ui"
-            })
-            
-            // About text
-            if (menuUI.isFocused(buttons.length - 1, 0)) {
-                renderer.drawText({
-                    text: [
-                        `> Идея: Bogdanov`,
-                        `> Худоник: Bogdanov`,
-                        `> Программист: Bogdanov`,
-                        `> Саунд-дизайнер: Bogdanov`,
-                        `> Оператор: Bogdanov`,
-                        `> Бариста: Bogdanov`,
-                        `> Псих-поддержка: Bogdanov`,
-                    ].join("\n"),
-                    font: "22px Pixel",
-                    position: new Vector2(innerWidth - innerWidth / 4 + 140, innerHeight / 2 - 50),
-                    layer: "ui",
-                    align: "right"
-                });
-                renderer.drawText({
-                    text: `
-                        Deep strange planet - игра в жанре\n
-                        приключения, где вы выступайте в роли\n
-                        добровольца, который хочет исследовать новую\n
-                        и опасную для человечества планету ради науки.\n
-                        Предположительно, на ней есть жизнь в виде\n
-                        бактерий. Исследуй планету, пробираясь всё\n
-                        ниже, вплоть до самого ядра, собирая ценные\n
-                        для науки ресурсы, но будьте внимательней,\n
-                        следите за своим запасом кислорода,\n
-                        уворачивайтесь от обвалов и сталакитов.\n
-                        Кто знает, что там ещё может быть`,
-                    font: "18px Pixel",
-                    lineHeight: 10,
-                    position: new Vector2(innerWidth / 4 - 480, innerHeight / 2 - 50),
-                    layer: "ui",
-                    align: "left"
-                });
-            }
-            
-            // Play button
-            const buttonsPos = new Vector2().add(windowCenter);
+        const size = Config.SPRITE_SIZE;
+        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
 
-            for (let i = 0; i < buttons.length; i++) {
-                const pos = new Vector2(0, i * size).add(buttonsPos);
-                menuUI.renderFocusable(pos, i, 0, ()=> {
+        ui.rect({
+            position: windowCenter,
+            width: innerWidth / size,
+            height: innerHeight / size,
+            color: "rgba(0, 0, 0, .5)",
+        })
+        ui.sprite("logo", {
+            width: 6,
+            height: 2,
+            position: new Vector2(windowCenter.x, 160),
+        })
+        // Version
+        ui.text(`Версия - ${ VERSION }`, {
+            font: "16px Pixel",
+            position: new Vector2(innerWidth - size / 2, innerHeight - size / 2),
+            align: "right"
+        });
         
-                    renderer.drawText({
-                        text: buttons[i].text,
-                        font: `${ i == 0 ? 26 : 22 }px Pixel`,
-                        position: pos,
-                        layer: "ui"
-                    })
-                    
-                }, 2.5, .8);
-            }
+        // Render menu
+        if (menuUi.enabled && !aboutUi.enabled)
+            renderMenu(size, windowCenter);
+        if (aboutUi.enabled)
+            renderAbout(size, windowCenter);
+    }
+
+    function renderMenu(size: number, windowCenter: Vector2) {        
+        // Buttons
+        const buttonsPos = new Vector2().add(windowCenter);
+
+        for (let i = 0; i < buttons.length; i++) {
             
+            const pos = new Vector2(0, i * size).add(buttonsPos);
+            menuUi.renderFocusable(pos, i, 0, ()=> {
+    
+                menuUi.text(buttons[i].text, {
+                    font: `22px Pixel`,
+                    position: pos,
+                    layer: "ui"
+                })
+                
+            }, 2.5, .8);
+
         }
+    }
+    function renderAbout(size: number, windowCenter: Vector2) {
+
+        const aboutText = [
+            "Я Богдан, мне 15 лет. Я разрабатываю эту игру в свободное от школы время,",
+            "потому что мне это просто нравится. Каждый может привнести что-то в своё в эту игру.",
+            "Есть идеи? Отлично! Напиши мне, и мы их обсудим!",
+            "Игра была создана для турнира от Сбера на Sber Box.",
+            "@ Bogdanov :D",
+            "",
+            "[OK] - назад",
+        ];
+        const contactsTexts = [
+            "Telegram: @bbogdan_ov",
+            "Email: bbogdanov_bog908@mail.ru",
+            "Vk: bbog908"
+        ];
+        
+        aboutUi.text("Приветсвую в Deep Strange Planet!", {
+            position: new Vector2().add(windowCenter),
+            font: "22px Pixel",
+            align: "center"
+        });
+        aboutUi.text(aboutText.join("\n"), {
+            position: new Vector2(0, 46).add(windowCenter),
+            font: "18px Pixel",
+            lineHeight: 26,
+            align: "center"
+        });
+
+        contactsTexts.map((contact, index)=> {
+
+            aboutUi.text(contact, {
+                position: new Vector2(size / 2, index * 26 + size),
+                font: "18px Pixel",
+                align: "left"
+            });
+            
+        });
+        
+        /*
+        const about1 = [
+            `> Идея: Bogdanov`,
+            `> Худоник: Bogdanov`,
+            `> Программист: Bogdanov`,
+            `> Саунд-дизайнер: Bogdanov`,
+            `> Оператор: Bogdanov`,
+            `> Бариста: Bogdanov`,
+            `> Псих-поддержка: Bogdanov`,
+        ].join("\n");
+        const about2 = `
+            Deep strange planet - игра в жанре\n
+            приключения, где вы выступайте в роли\n
+            добровольца, который хочет исследовать новую\n
+            и опасную для человечества планету ради науки.\n
+            Предположительно, на ней есть жизнь в виде\n
+            бактерий. Исследуй планету, пробираясь всё\n
+            ниже, вплоть до самого ядра, собирая ценные\n
+            для науки ресурсы, но будьте внимательней,\n
+            следите за своим запасом кислорода,\n
+            уворачивайтесь от обвалов и сталакитов.\n
+            Кто знает, что там ещё может быть
+        `
+        */
     }
     
     return { init, update, render };

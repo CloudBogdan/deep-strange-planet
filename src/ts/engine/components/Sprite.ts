@@ -78,9 +78,10 @@ export class Sprite extends Point {
             return;
         }
 
-        if (this.game.tick(speed || Config.DEFAULT_ANIMATION_SPEED)) {
-            // const allow = safeValue(loop, true);
+        const tick = speed || Config.DEFAULT_ANIMATION_SPEED;
+        if (this.game.tick(tick)) {
             this.frame.x += reversed ? -1 : 1;
+
             if (this.frame.x < 0)
                 this.frame.x = framesCount;
             if (this.frame.x >= framesCount && safeValue(loop, true))

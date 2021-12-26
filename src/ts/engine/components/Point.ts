@@ -1,7 +1,6 @@
 import { ComponentType } from "../../types";
 import { Game } from "../Game";
 import { Collider, ColliderType } from "../Physics";
-import { Renderer } from "../Renderer";
 import { safeValue, standardName as standardName, Vector2 } from "../utils/math";
 
 let __id = 0;
@@ -20,9 +19,9 @@ export type IPointProps = {
 
 export class Point {
     game!: Game
-    id: string
+    readonly id: string
     type: ComponentType
-    name: string
+    readonly name: string
     group: string
     inited: boolean
     layer: string
@@ -61,8 +60,8 @@ export class Point {
     update() {
         this.velocity.x *= this.acceleration.x;
         this.velocity.y *= this.acceleration.y;
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        this.position.x += this.velocity.x * this.game.clock.delta * 80;
+        this.position.y += this.velocity.y * this.game.clock.delta * 80;
     }
     render() {
     }

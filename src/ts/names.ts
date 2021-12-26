@@ -65,11 +65,11 @@ export const ObjectNames: NamesType = {
     },
 
     // Recipes
-    "recipe-storage-level-up": {
+    "recipe-storage-upgrade": {
         name: "Улучшить хранилище",
         desc: "Улучшите своё хранилище для того, чтобы можно было хранить больше ресурсов и их типов."
     },
-    "recipe-tool-level-up": {
+    "recipe-tools-upgrade": {
         name: "Улучшить инструмент",
         desc: "Для того чтобы быстрее ломать руду прокачайте свой инструмент. Более новые уровни инструмента позволяют добывать больше типов руд"
     },
@@ -78,6 +78,10 @@ export const ObjectNames: NamesType = {
     "bottle": {
         name: "\"Специальная колба\"",
         desc: "Колба для сбора особо опасных руд. На пример таких, как радий"
+    },
+    "gps": {
+        name: "GPS",
+        desc: "Показывает, в какой стороне ваша база и автоматически ставит метки"
     },
     "battery": {
         name: "Батарея",
@@ -93,7 +97,7 @@ export const ObjectNames: NamesType = {
     },
     "card": {
         name: "Плата",
-        desc: "Умная плата для роботов"
+        desc: "Умная плата для различных приборов"
     },
     "item-robot": {
         name: "Робот",

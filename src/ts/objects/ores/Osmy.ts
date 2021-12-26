@@ -25,6 +25,6 @@ export class Osmy extends Ore {
         super.onBreak();
 
         this.dropItem(RawOsmy);
-        this.dropItem(RawGradeCidium, 35);
+        this.dropItem(RawGradeCidium, 30);
     }
 }

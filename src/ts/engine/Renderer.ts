@@ -229,6 +229,29 @@ export class Renderer {
         context.beginPath();
         context.restore();
     }
+    drawWeb(props: Omit<DrawLineProps, "points"> & { points: Vector2[] }) { 
+        if (!this.layers[props.layer || "game"].render) return;
+        
+        const context = this.getContext(props.layer);
+        context.save();
+
+        context.globalAlpha = safeValue(props.opacity, 1);
+        
+        context.lineWidth = props.width;
+        context.strokeStyle = props.color || "#fff";
+
+        const w = window.innerWidth / 2;
+        const h = window.innerHeight / 2;
+        
+        context.moveTo(props.points[0].x - this.getCameraPosition(props.layer).x + w, props.points[0].y - this.getCameraPosition(props.layer).y + h);
+        for (let i = 1; i < props.points.length-1; i ++)
+            context.lineTo(props.points[i].x - this.getCameraPosition(props.layer).x + w, props.points[i].y - this.getCameraPosition(props.layer).y + h);
+        context.lineTo(props.points[props.points.length-1].x - this.getCameraPosition(props.layer).x + w, props.points[props.points.length-1].y - this.getCameraPosition(props.layer).y + h);
+        
+        context.stroke();
+        context.beginPath();
+        context.restore();
+    }
     drawText(props: DrawTextProps) { 
         if (!this.layers[props.layer || "game"].render) return;
         

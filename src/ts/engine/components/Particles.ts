@@ -75,8 +75,8 @@ export class Particle {
         
         this.velocity.x *= .99;
         this.velocity.y *= .99;
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        this.position.x += this.velocity.x * game.clock.delta * 60;
+        this.position.y += this.velocity.y * game.clock.delta * 60;
     }
 }
 
@@ -117,5 +117,23 @@ export function SpawnDisputesParticles(game: Game, position: Vector2, intensity?
         opacity: 3 * safeValue(intensity, 1),
         downSize: .002,
         downOpacity: .01
+    });
+}
+export function SpawnUpgradeParticles(game: Game, position: Vector2) {
+    SpawnParticles(game, position, {
+        render: (renderer, part)=> {
+            renderer.drawSprite({
+                texture: asImage(game.getAssetByName("level-up")),
+                position: part.position,
+                opacity: part.size,
+                scale: Vector2.all(.8),
+                layer: "particles"
+            })
+        },
+        velocity: ()=> new Vector2(0, -1.5),
+        size: [5, 5],
+        downSize: .08,
+        count: 1,
+        gravity: 0
     });
 }

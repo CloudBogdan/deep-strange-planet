@@ -1,5 +1,5 @@
 import { Color, Config } from "../../config";
-import { asImage, chance, clamp, lerp, random, Vector2 } from "../../engine/utils/math";
+import { asImage, clamp, lerp, random, Vector2 } from "../../engine/utils/math";
 import { Entity } from "./Entity";
 import { ItemParent } from "../item/ItemParent";
 import { Robot } from "./Robot";
@@ -8,6 +8,8 @@ import { OxygenGenerator } from "../gear/OxygenGenerator";
 import { Storage } from "../gear/Storage";
 import { Recycler } from "../gear/Recycler";
 import { Timer } from "../../engine";
+import { SpawnUpgradeParticles } from "../../engine/components/Particles";
+import { UI } from "../../engine/components/UI";
 
 // > 5 is "god tool"
 export type ToolLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -36,7 +38,7 @@ const tools: { [key: string]: Tool }  = {
     },
     "5": {
         speed: 5,
-        damage: 20
+        damage: 80
     },
     "6": {
         speed: 16,
@@ -45,9 +47,11 @@ const tools: { [key: string]: Tool }  = {
 }
 
 export class Player extends Entity {
+    ui: UI
     storage!: Storage
     oxygenGenerator!: OxygenGenerator
     recycler!: Recycler
+    god: boolean
     
     oxygenHungry: boolean
     oxygenHungryTimer: Timer
@@ -56,7 +60,6 @@ export class Player extends Entity {
     animatedDieUI: number
     tries: number
     dieMessage: "respawn" | "replay"
-    
     
     wire: Vector2
     inventory: {
@@ -69,13 +72,15 @@ export class Player extends Entity {
         }
     }
     toolLevel: ToolLevel
-    hasBottle: boolean
     allowPlaceRobot: boolean
     allowEatFood: boolean
     actionText: { [name: string]: string }
     actionType: { name: "none" | "grab" | "place" | "eat", priority: number } | null
     expectedActionType: Player["actionType"]
-    // nearFetusStone: FetusStone | undefined;
+
+    hasGps: boolean
+    hasBottle: boolean
+    gpsMarkers: Vector2[]
 
     damageAnimatedOpacity: number
     animatedCameraRotation: number
@@ -90,6 +95,9 @@ export class Player extends Entity {
         this.hp = 12;
         this.oxygenHungry = false;
         this.oxygenHungryTimer = new Timer(Config.OXYGEN_HUNGRY_TIME);
+        this.god = false;
+
+        this.ui = new UI();
 
         this.respawnTimer = new Timer(Config.RESPAWN_TIME);
         this.animatedDieUI = 0;
@@ -101,7 +109,6 @@ export class Player extends Entity {
             totalCount: 0,
             slots: {}
         };
-        this.hasBottle = false;
         this.toolLevel = Config.ALLOW_HUNK ? 5 : 1;
         this.allowPlaceRobot = false;
         this.allowEatFood = false;
@@ -113,6 +120,12 @@ export class Player extends Entity {
             "eat": "съесть"
         }
 
+        this.hasGps = false;
+        this.hasBottle = false;
+        this.gpsMarkers = [
+            new Vector2(Config.HOME_POSITION_X, Config.HOME_POSITION_Y)
+        ];
+        
         this.damageAnimatedOpacity = 0;
         this.animatedCameraRotation = 0;
         this.animatedTimerScale = 1;
@@ -123,21 +136,23 @@ export class Player extends Entity {
                 if (e.code == "KeyT") {
                     this.collider.collidable = !this.collider.collidable;
                     this.moveSpeed = !this.collider.collidable ? 60 : this.initialMoveSpeed;
-                    this.toolLevel = 6;
+                    this.toolLevel = 5;
+                    this.hasBottle = true;
+                    this.hasGps = true;
+                    this.god = true;
 
-                    const storage = this.game.getChildById<Storage>("gear-storage");
-                    if (!storage) return;
-                    
-                    storage.contains = { totalCount: 0, slots: {
+                    this.storage.contains = { totalCount: 0, slots: {
                         "raw-grade-cidium": { count: 2 },
                         "ready-cidium": { count: 2 },
                         "battery": { count: 2 },
                         "item-robot": { count: 2 },
                         "food-fetus": { count: 2 },
+                        "raw-cidium": { count: 2 },
                         "raw-manty": { count: 1 },
                         "raw-rady": { count: 1 },
                     } };
-                    storage.calculateTotalCount();
+                    this.storage.calculateTotalCount();
+                    
                 }
 
             }
@@ -146,6 +161,8 @@ export class Player extends Entity {
     
     init() {
         super.init();
+
+        this.ui.init(this.game);
         
         const tries = this.game.loadKey("tries", 2);
         this.tries = tries <= 0 ? 2 : tries;
@@ -205,10 +222,12 @@ export class Player extends Entity {
         if (this.regaining) {
             this.playAnimation("player-dead", 5, 26, false, true);
 
+            // Awake
             if (this.frame.x <= 0) {
                 this.regaining = false;
                 this.allowMove = true;
                 this.interest = true;
+                this.inventory = { totalCount: 0, slots: {} };
             }
         }
         
@@ -220,6 +239,7 @@ export class Player extends Entity {
 
         this.pullWire();
         this.changeActionType();
+        this.putGpsMarkers();
 
         this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 11;
         this.allowPlaceRobot = this.position.y > 20;
@@ -285,7 +305,11 @@ export class Player extends Entity {
     pullWire() {
         
         if (this.position.distance(this.wire) > Config.WIRE_LENGTH) {
-            this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown)));
+            const to = this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown).mul(this.game.clock.delta * 100);
+
+            this.wire.x += to.x;
+            this.wire.y += to.y;
+            // this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown)));
         }
 
     }
@@ -294,14 +318,10 @@ export class Player extends Entity {
 
             this.damageAnimatedOpacity = 1.5;
             this.game.camera.shake();
-            this.sound.play(this.game, chance(1) ? "bonk" : "hit");
 
             this.saveData();
         }
         super.hit(damage);
-        
-        if (this.hp <= 0)
-            this.die();
     }
     die() {
         if (this.dead) return;
@@ -313,7 +333,10 @@ export class Player extends Entity {
         this.animatedDieUI = -6;
         this.allowMove = false;
         
-        super.die();
+        this.allowMove = false;
+        this.interest = false;
+        this.dead = true;
+        
         this.saveData();
     }
     respawn() {
@@ -327,9 +350,11 @@ export class Player extends Entity {
         this.interest = false;
         this.dead = false;
         this.regaining = true;
-        // this.allowMove = true;
         this.position.copy(this.startPosition);
+        this.wire.copy(this.position.expand());
         this.game.camera.position.copy(this.position);
+        this.inventory = { totalCount: 0, slots: {} };
+        this.gpsMarkers = [new Vector2(Config.HOME_POSITION_X, Config.HOME_POSITION_Y)];
 
         this.saveData();
     }
@@ -361,8 +386,10 @@ export class Player extends Entity {
             this.dig(tool.damage, tool.speed, this.toolLevel, this.movement.y > 0 ? "bottom" : "top");
     }
     upgradeTool(levelUp: number) {
-        if (this.toolLevel < MaxToolLevel)
-            this.toolLevel += levelUp;
+        if (this.toolLevel >= MaxToolLevel) return;
+
+        this.toolLevel += levelUp;
+        SpawnUpgradeParticles(this.game, this.position);
 
         this.saveData();
     }
@@ -426,6 +453,20 @@ export class Player extends Entity {
         }
     }
 
+    putGpsMarkers() {
+        if (!this.hasGps) return;
+
+        const near = this.gpsMarkers.filter(marker=>
+            this.position.distance(marker) < Config.GPS_MARKERS_DISTANCE
+        );
+        if (near.length == 0) {
+            this.gpsMarkers.push(this.position.expand());
+            if (this.gpsMarkers.length > Config.MAX_GPS_MARKERS)
+                this.gpsMarkers.splice(0, 1);
+        }
+        
+    }
+    
     // > Render
     renderUI() {
         
@@ -436,48 +477,91 @@ export class Player extends Entity {
         const size = Config.SPRITE_SIZE;
         const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
         
-        if (this.oxygenHungry) this.renderOxygenHungryUI();
+        this.renderOxygenHungryUI();
         this.renderHealthUI();
+        this.renderGpsUI();
         
         // Tip text
         if(this.actionType && this.actionText[this.actionType.name])
-            this.game.renderer.drawText({
-                text: `[OK] - ${ this.actionText[this.actionType.name] }`,
+            this.ui.text(`[OK] - ${ this.actionText[this.actionType.name] }`, {
                 position: new Vector2(0, 150).add(windowCenter),
-                layer: "ui"
             });
-        
-        // Tool level
-        this.game.renderer.drawSprite({
-            texture: asImage(this.game.getAssetByName("tools")),
-            position: new Vector2(size, innerHeight - size),
-            layer: "ui"
-        });
-        this.game.renderer.drawText({
-            text: this.toolLevel + "ур.",
-            position: new Vector2(size, innerHeight - size).add(Vector2.all(size * .3)),
-            font: "22px Pixel",
-            layer: "ui"
-        });
 
         // Bottle
-        if (this.hasBottle)
-            this.game.renderer.drawSprite({
-                texture: asImage(this.game.getAssetByName("bottle")),
-                position: new Vector2(size * 2 + 20, innerHeight - size),
-                layer: "ui"
-            })
+        this.ui.renderGroup(new Vector2(size, innerHeight - size), [
+            [true, pos=> {
+
+                // Tool level
+                this.ui.sprite("tools", {
+                    position: pos,
+                });
+                this.ui.text(this.toolLevel + "ур.", {
+                    position: pos.add(Vector2.all(size * .3)),
+                    font: "22px Pixel",
+                });
+
+            }],
+            [this.hasBottle, pos=> {
+
+                this.ui.sprite("bottle", {
+                    position: pos,
+                })
+
+            }],
+            [this.hasGps, pos=> {
+
+                this.ui.sprite("gps", {
+                    position: pos,
+                })
+
+            }]
+        ])
 
         // Damage vignette
-        this.game.renderer.drawSprite({
-            texture: asImage(this.game.getAssetByName("damage")),
+        this.ui.sprite("damage", {
             width: innerWidth / Config.SPRITE_SIZE,
             height: innerHeight / Config.SPRITE_SIZE,
             position: new Vector2(innerWidth / 2, innerHeight / 2),
-            layer: "ui",
             framed: false,
             opacity: this.damageAnimatedOpacity
         });
+    }
+
+    renderGpsUI() {
+        if (!this.hasGps) return;
+
+        // Home icon
+        const paddings = 120;
+        const windowCenter = new Vector2(innerWidth / 2, innerHeight / 2);
+        const screenOffset = new Vector2(this.game.camera.position.x, this.game.camera.position.y);
+        const homePos = new Vector2(Config.HOME_POSITION_X, Config.HOME_POSITION_Y);
+        const homeScreenPos = homePos.sub(screenOffset).add(windowCenter);
+        
+        if (
+            !(homeScreenPos.x >= paddings && homeScreenPos.x <= innerWidth - paddings) ||
+            !(homeScreenPos.y >= paddings && homeScreenPos.y <= innerHeight - paddings)
+        )
+            this.ui.sprite("home-icon", {
+                position: homeScreenPos.clamp(
+                    paddings, innerWidth - paddings,
+                    paddings, innerHeight - paddings
+                ),
+                scale: Vector2.all(.8)
+            });
+
+        // Markers web
+        const lastMarker = this.gpsMarkers[this.gpsMarkers.length-1];
+        const allowLineToPlayer = lastMarker ? this.position.distance(lastMarker) < Config.GPS_MARKERS_DISTANCE : false;
+        
+        this.game.renderer.drawWeb({
+            points: [
+                ...this.gpsMarkers,
+                ...(allowLineToPlayer ? [this.position.expand()] : [])
+            ],
+            width: 2,
+            layer: "particles"
+        });
+        
     }
 
     renderDieUI() {
@@ -487,8 +571,12 @@ export class Player extends Entity {
         // this.animatedDieUI = 10;
         this.animatedDieUI = clamp(lerp(this.animatedDieUI, 4, .005), 0, 4);
 
+        const titleText = this.tries > 0 ? "Все совершают ошибки..." : "Все совершают ошибки, на которые нужен шанс...";
+        const subtitleText = this.tries > 0 ? "Последний шанс, чтобы их исправить" : "Шанс, который вы упустили";
+        const timerText = this.tries > 0 ? `Тебя приведут в сознание через:\n0:${ this.respawnTimer.elapsedSeconds }` : `Тебя заменит другой доброволец через:\n0:${ this.respawnTimer.elapsedSeconds }`;
+
         // BG
-        this.game.renderer.drawRect({
+        this.ui.rect({
             color: "#000",
             width: innerWidth / size,
             height: innerHeight / size,
@@ -498,23 +586,20 @@ export class Player extends Entity {
         });
 
         // Texts
-        this.game.renderer.drawText({
-            text: this.tries > 0 ? "Все совершают ошибки..." : "Все совершают ошибки, на которые нужен шанс...",
+        this.ui.text(titleText, {
             font: "34px Pixel",
             opacity: clamp(this.animatedDieUI, 1, 2) - 1,
             stroke: { width: 0, color: "#000" },
             position: new Vector2().add(windowCenter),
             layer: "upper-ui"
         })
-        this.game.renderer.drawText({
-            text: this.tries > 0 ? "Последний шанс, чтобы их исправить" : "Шанс, который вы упустили",
+        this.ui.text(subtitleText, {
             opacity: clamp(this.animatedDieUI, 1.5, 2.5) - 1.5,
             stroke: { width: 0, color: "#000" },
             position: new Vector2(0, 30).add(windowCenter),
             layer: "upper-ui"
         });
-        this.game.renderer.drawText({
-            text: this.tries > 0 ? `Тебя приведут в сознание через:\n0:${ this.respawnTimer.elapsedSeconds }` : `Тебя заменит другой доброволец через:\n0:${ this.respawnTimer.elapsedSeconds }`,
+        this.ui.text(timerText, {
             opacity: clamp(this.animatedDieUI, 2.5, 3.5) - 2.5,
             stroke: { width: 0, color: "#000" },
             position: new Vector2(0, 80).add(windowCenter),
@@ -524,6 +609,7 @@ export class Player extends Entity {
     }
     renderHealthUI() {
         const size = Config.SPRITE_SIZE;
+        const pos = new Vector2(innerWidth - size, size);
         
         for (let i = 0; i < 4; i ++) {
             let frame = 0;
@@ -545,34 +631,31 @@ export class Player extends Entity {
 
             const sine = Math.sin(this.game.clock.elapsed / 10 + i) * 2 * frame;
             
-            this.game.renderer.drawSprite({
-                texture: asImage(this.game.getAssetByName("health")),
+            this.ui.sprite("health", {
                 frame: new Vector2(frame),
                 scale: Vector2.all(.8),
-                position: new Vector2(innerWidth - size - i * size * .6, innerHeight - size + sine),
-                layer: "ui"
+                position: pos.add(new Vector2(-i * size * .6, sine)),
             });
         }
 
     }
     renderOxygenHungryUI() {
+        if (!this.oxygenHungry) return;
+        
         this.animatedTimerScale = lerp(this.animatedTimerScale, 1, .2);
         if (this.oxygenHungryTimer.elapsed / 60 % 1 == 0)
             this.animatedTimerScale = this.oxygenHungryTimer.elapsedSeconds < 20 ? 1.5 : 1.2
         
-        this.game.renderer.drawText({
-            text: "Кислородное голодание!",
+        this.ui.text("Кислородное голодание!", {
             position: new Vector2(innerWidth/2, 100),
             font: "24px Pixel",
             layer: "upper-ui"
         });
-        this.game.renderer.drawText({
-            text: `Вы потеряете сознание через:`,
+        this.ui.text(`Вы потеряете сознание через:`, {
             position: new Vector2(innerWidth/2, 130),
             layer: "upper-ui"
         });
-        this.game.renderer.drawText({
-            text: `0:${ Math.floor(this.oxygenHungryTimer.elapsedSeconds) }`,
+        this.ui.text(`0:${ Math.floor(this.oxygenHungryTimer.elapsedSeconds) }`, {
             position: new Vector2(innerWidth/2, 180),
             scale: Vector2.all(this.animatedTimerScale),
             font: "30px Pixel",

@@ -7,7 +7,7 @@ import { Recycler } from "../objects/gear/Recycler";
 import { Storage } from "../objects/gear/Storage";
 
 export function initDome(game: Game) {
-    const domePosition = new Vector2(Math.round(Config.WORLD_X_CENTER), -Config.SPRITE_SIZE * 1.5);
+    const domePosition = new Vector2(Config.HOME_POSITION_X, Config.HOME_POSITION_Y);
 
     const storage = game.add<Storage>(new Storage({
         position: domePosition.add(new Vector2(-150, 0))

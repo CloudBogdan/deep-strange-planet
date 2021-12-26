@@ -227,7 +227,23 @@ export class UI {
         })
         
     }
+    renderGroup(pos: Vector2, renders: ([boolean, (p: Vector2)=> void])[], gap?: number, type?: "row" | "column") {
+        const t = type || "row";
 
+        renders.filter(props=> props[0]).map((renderProps, i)=> {
+
+            const offset = i * (Config.SPRITE_SIZE + (gap || 20));
+            
+            renderProps[1](pos.add(new Vector2(
+                t == "row" ? offset : 0,
+                t == "column" ? offset : 0,
+            )));
+
+        });
+
+    }
+
+    //
     spawnMessageText(text: string) {
         SpawnParticles(this.game, new Vector2(20, innerHeight - 40), {
             // custom: new Text("store-text", text, { font: "22px Pixel" }),
@@ -256,22 +272,22 @@ export class UI {
     // Render
     sprite(assetName: string, props?: DrawSpriteProps) {
         this.game.renderer.drawSprite({
-            ...props,
             layer: "ui",
+            ...props,
             texture: asImage(this.game.getAssetByName(assetName)),
         });
     }
     text(text: string, props?: DrawTextProps) {
         this.game.renderer.drawText({
-            ...props,
             layer: "ui",
+            ...props,
             text
         });
     }
     rect(props?: DrawRectProps) {
         this.game.renderer.drawRect({
+            layer: "ui",
             ...props,
-            layer: "ui"
         }); 
     }
 }

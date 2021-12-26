@@ -2,7 +2,7 @@ import { Color, Config } from "../../config";
 import { Game, ISpriteProps, Sprite } from "../../engine"
 import { Sound } from "../../engine/components/Sound";
 import { SpawnParticles } from "../../engine/components/Particles";
-import { random, safeValue, Vector2 } from "../../engine/utils/math"
+import { chance, random, safeValue, Vector2 } from "../../engine/utils/math"
 import { Direction } from "../../types";
 import { Ore } from "../ores/Ore";
 import { ToolLevel } from "./Player";
@@ -27,6 +27,7 @@ export class Entity extends Sprite {
     dead: boolean
     interest: boolean
     regaining: boolean
+    eating: boolean
 
     movement: Vector2
     allowMove: boolean
@@ -39,7 +40,7 @@ export class Entity extends Sprite {
         
         this.sound = new Sound();
         this.hp = props?.hp || 10;
-        this.moveSpeed = props?.moveSpeed || 5;
+        this.moveSpeed = props?.moveSpeed || 4;
         this.initialMoveSpeed = this.moveSpeed;
         this.damaged = false;
         this.damagedElapsed = 0;
@@ -52,6 +53,7 @@ export class Entity extends Sprite {
         this.dead = false;
         this.interest = true;
         this.regaining = false;
+        this.eating = false;
         
         this.movement = new Vector2();
         this.allowMove = true;
@@ -138,14 +140,14 @@ export class Entity extends Sprite {
         this.hp -= damage;
         this.damaged = true;
 
+        this.sound.play(this.game, chance(1) ? "bonk" : "hit");
         this.spawnText(`-${ damage }`, undefined, Color.RED);
+
+        if (this.hp <= 0)
+            this.die();
     }
     die() {
-        if (this.dead) return;
-        
-        this.allowMove = false;
-        this.interest = false;
-        this.dead = true;
+        this.game.removeChildById(this.id);
     }
     bounds() {
         // World bounds

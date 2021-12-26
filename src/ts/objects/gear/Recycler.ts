@@ -3,6 +3,7 @@ import { Game, ISpriteProps } from "../../engine";
 import { asImage, clamp, safeSlot, safeValue, Vector2 } from "../../engine/utils/math";
 import { ObjectNames } from "../../names";
 import { Items } from "../../objects";
+import { Player } from "../entities/Player";
 import { Gear, GearLevel } from "./Gear";
 import recipes from "./recipes";
 import { Storage } from "./Storage";
@@ -10,6 +11,7 @@ import { Storage } from "./Storage";
 export class Recycler extends Gear {
     storage: Storage
     recipes: { [key: string]: Recipe }
+    player!: Player
     
     constructor(storage: Storage, props?: ISpriteProps) {
         super("gear-recycler", 1, props);
@@ -18,8 +20,48 @@ export class Recycler extends Gear {
         this.ui.focused.row = 10;
 
         this.storage = storage;
-        this.recipes = recipes(this);
+        this.recipes = {
+            "ready-cidium": new Recipe({
+                recipe: ()=> ({
+                    "raw-cidium": { count: 2 },
+                }),
+            }),
+    
+            // Craft battery
+            "battery": new Recipe({
+                recipe: ()=> ({
+                    "ready-cidium": { count: 1 },
+                    "raw-cidium": { count: 2 },
+                }),
+            }),
+    
+            // Craft drill
+            "drill": new Recipe({
+                recipe: ()=> ({
+                    // "ready-cidium": { count: 1 },
+                    "ready-cidium": { count: 2 },
+                    "raw-nerius": { count: 2 },
+                }),
+            }),
+    
+            // Craft box
+            "box": new Recipe({
+                recipe: ()=> ({
+                    "ready-cidium": { count: 1 },
+                    "raw-nerius": { count: 4 },
+                }),
+            }),
+        };
         this.headerOffset.set(0, -Config.SPRITE_SIZE);
+    }
+
+    init() {
+        super.init();
+        
+        const player = this.game.getChildById<Player>("player")!;
+        this.player = player;
+        
+        this.recipes = recipes(this);
     }
     
     onInteract() {
@@ -69,6 +111,7 @@ export class Recycler extends Gear {
         super.renderUI();
 
         const recipesKeys = this.getRecipesKeys();
+        if (recipesKeys.length == 0) return;
 
         this.actionButtonAssetName = (this.ui.focused.row == 0 && this.ui.focused.slot == 0) ? "close" : "craft";
         this.tipText = this.actionButtonAssetName == "close" ? "закрыть" : "изготовить";
@@ -102,34 +145,25 @@ export class Recycler extends Gear {
                 Math.floor(index / this.maxRowItemsCount) + 1,
                 // Slot
                 index % this.maxRowItemsCount,
+                // Render icon
                 ()=> {
+                    const currentRecipe = this.recipes[recipeName];
                 
-                // Background
-                this.game.renderer.drawRect({
-                    position: pos,
-                    color: Color.STONE_LAYER_COLOR,
-                    layer: "ui",
-                    width: .5,
-                    height: .5,
-                });
-                
-                // Render recipe icon
-                const renderIcon = this.recipes[recipeName].icon;
-                if (renderIcon)
-                    renderIcon(
-                        this.game,
-                        pos,
-                        this.recipes[recipeName].canCraft(this.storage) ? 1 : .5
-                    );
-                else
-                    this.game.renderer.drawSprite({
-                        texture: asImage(this.game.getAssetByName(recipeName)),
+                    // Background
+                    this.game.renderer.drawRect({
                         position: pos,
-                        opacity: this.recipes[recipeName].canCraft(this.storage) ? 1 : .5,
-                        layer: "ui"
-                    })
+                        color: Color.STONE_LAYER_COLOR,
+                        layer: "ui",
+                        width: .5,
+                        height: .5,
+                    });
+                    
+                    // Render recipe icon
+                    this.renderRecipeIcon(recipeName, currentRecipe, pos);
 
-            }, 1, 1, true);
+                },
+                1, 1, true
+            );
 
         });
 
@@ -140,8 +174,9 @@ export class Recycler extends Gear {
 
         // Get recipe by focused slot
         const selectedSlot = this.ui.ghostFocused.slot + (this.ui.ghostFocused.row - 1) * this.maxRowItemsCount;
-        const currentRecipe = this.recipes[recipesKeys[selectedSlot]];
-        const recipeDescription = ObjectNames[recipesKeys[selectedSlot]];
+        const recipeName = recipesKeys[selectedSlot];
+        const currentRecipe = this.recipes[recipeName];
+        const recipeDescription = ObjectNames[recipeName];
 
         if (!recipeDescription) return;
 
@@ -153,15 +188,9 @@ export class Recycler extends Gear {
             specials: ["", ""],
             description: recipeDescription.desc,
             renderIcon: (pos)=> {
-                const renderIcon = currentRecipe.icon
-                if (renderIcon)
-                    renderIcon(this.game, pos, 1);   
-                else
-                    this.game.renderer.drawSprite({
-                        texture: asImage(this.game.getAssetByName(recipesKeys[selectedSlot])),
-                        position: pos,
-                        layer: "ui"
-                    })
+
+                this.renderRecipeIcon(recipeName, currentRecipe, pos);
+
             }
         });
 
@@ -198,6 +227,35 @@ export class Recycler extends Gear {
         });
 
     }
+    renderRecipeIcon(recipeName: string, currentRecipe: Recipe, pos: Vector2) {
+        const renderIcon = currentRecipe.icon;
+        
+        if (renderIcon)
+            renderIcon(
+                this.game,
+                pos,
+                currentRecipe.canCraft(this.storage) ? 1 : .5
+            );
+        else {
+
+            this.game.renderer.drawSprite({
+                texture: asImage(this.game.getAssetByName(recipeName)),
+                width: currentRecipe.iconSize,
+                height: currentRecipe.iconSize,
+                framed: false,
+                position: pos,
+                opacity: currentRecipe.canCraft(this.storage) ? 1 : .5,
+                layer: "ui"
+            });
+            if (currentRecipe.type == "upgrade")
+                this.game.renderer.drawText({
+                    text: `${ currentRecipe.upgradeLevel }ур.`,
+                    position: pos.add(Vector2.all(Config.SPRITE_SIZE * .3)),
+                    layer: "ui",
+                });
+            
+        }
+    }
 
     getRecipesKeys(): string[] {
         return Object.keys(this.recipes).filter(name=> !this.recipes[name].isRemoved())
@@ -208,18 +266,29 @@ export class Recipe {
     recipe: ()=> Storage["contains"]["slots"]
     _onCraft: ((game: Game)=> void) | undefined
     isRemoved: ()=> boolean
-    icon: ((game: Game, pos: Vector2, opacity: number)=> void) | undefined
+    icon: ((game: Game, pos: Vector2, opacity: number)=> void) | null
+    
+    type: "upgrade" | "craft"
+    upgradeLevel: number
+    iconSize: number
     
     constructor(props: {
         recipe: Recipe["recipe"]
         onCraft?: Recipe["_onCraft"]
         icon?: Recipe["icon"]
         isRemoved?: Recipe["isRemoved"]
+        type?: Recipe["type"]
+        upgradeLevel?: number
+        iconSize?: number
     }) {
         this.recipe = props.recipe;
         this._onCraft = props.onCraft;
-        this.icon = props.icon;
+        this.icon = props.icon || null;
         this.isRemoved = props.isRemoved || (()=> false);
+        
+        this.type = props.type || "craft";
+        this.upgradeLevel = props.upgradeLevel || 0;
+        this.iconSize = props.iconSize || 1;
     }
 
     canCraft(storage: Storage): boolean {

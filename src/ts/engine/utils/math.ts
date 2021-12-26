@@ -73,6 +73,9 @@ export class Vector2 {
         return 0;
 
     }
+    clamp(xMin: number, xMax: number, yMin: number, yMax: number): Vector2 {
+        return new Vector2(clamp(this.x, xMin, xMax), clamp(this.y, yMin, yMax));
+    }
 
     static add(vec1: Vector2, vec2: Vector2): Vector2 {
         return new Vector2(vec1.x + vec2.x, vec1.y + vec2.y);

@@ -27,7 +27,7 @@ game.addInit(()=> {
 });
 game.addUpdate(()=> {
     if (!game.paused)
-        game.camera.follow(player.position, .1);
+        game.camera.follow(player.position, game.clock.delta * 7);
     else
         game.camera.follow(new Vector2(-300, -50).add(player.position), 1);
     game.generator.generateChunksAt(game.camera.position);
@@ -37,7 +37,7 @@ game.addUpdate(()=> {
 game.addRender(renderer=> {
 
     level.render();
-    menu.render(renderer);
+    menu.render();
     
     renderer.drawText({
         text: `${ game.clock.fps } fps`,
@@ -46,28 +46,26 @@ game.addRender(renderer=> {
         align: "left",
         layer: "ui"
     });
-    if (Config.IS_DEV)
+    if (Config.IS_DEV || player.god)
         renderDebug(renderer);
 
 });
 
 function renderDebug(renderer: Renderer) {
     renderer.drawText({
-        text: `Height: ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`,
+        text: [
+            `Delta: ${ game.clock.delta }`,
+            `Height: ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`,
+            `Pos: ${ Math.floor(player.position.x / Config.SPRITE_SIZE) }, ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`,
+        ].join("\n"),
         font: "20px Pixel",
+        lineHeight: 30,
         position: new Vector2(30, 80),
         align: "left",
         layer: "ui"
     });
-    renderer.drawText({
-        text: `Pos: ${ Math.floor(player.position.x / Config.SPRITE_SIZE) }, ${ Math.floor(player.position.y / Config.SPRITE_SIZE + 1) }`,
-        font: "20px Pixel",
-        position: new Vector2(30, 120),
-        align: "left",
-        layer: "ui"
-    });
     
-    renderChunks(renderer);
+    // renderChunks(renderer);
 }
 function renderChunks(renderer: Renderer) {
     for (let y = 0; y < Config.WORLD_HEIGHT / Config.CHUNK_SIZE; y ++)

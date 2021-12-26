@@ -4,9 +4,9 @@ import { GearLevel } from "./objects/gear/Gear";
 export const VERSION = "1.2.0";
 export enum Config {
     ALLOW_DARK = 1, // ! IS DEV!
-    IS_DEV = 1, // ! IS DEV!
-    TEST_GEARS = 1, // ! IS DEV!
-    ALLOW_HUNK = 1, // ! IS DEV!
+    IS_DEV = 0, // ! IS DEV!
+    TEST_GEARS = 0, // ! IS DEV!
+    ALLOW_HUNK = 0, // ! IS DEV!
     
     // World size and chunks size in blocks
     WORLD_WIDTH = 82,
@@ -18,6 +18,9 @@ export enum Config {
     SPRITE_SIZE = SPRITE_PIXEL_SIZE * SPRITE_SCALE,
     PARTICLES_GRAVITY = .4,
     WORLD_X_CENTER = WORLD_WIDTH * SPRITE_SIZE / 2, // In pixels
+
+    HOME_POSITION_X = Math.floor(WORLD_X_CENTER),
+    HOME_POSITION_Y = -Config.SPRITE_SIZE * 1.5,
 
     OXYGEN_GENERATOR_BATTERY_DEFUSE_TICK = 400,
     OXYGEN_GENERATOR_OXYGEN_DEFUSE_TICK = 250,
@@ -39,12 +42,14 @@ export enum Config {
     ROBOT_HIT_SPEED = 10,
     ROBOT_ALLOW_PICKUP_DELAY = 20,
 
-    PICKUP_DISTANCE = 60,
+    PICKUP_DISTANCE = 50,
     WIRE_LENGTH = 60,
     GEAR_INTERACT_DISTANCE = 85,
     DOME_DIAMETER = SPRITE_SIZE * 6,
     GROUND_HEIGHT = SPRITE_SIZE * 2,
     OXYGEN_HUNGRY_TIME = IS_DEV ? 4 : 60,
+    GPS_MARKERS_DISTANCE = 400,
+    MAX_GPS_MARKERS = 20,
     
     ITEMS_LIVE_TIME = 800,
     ORE_FALL_DELAY = 30,

@@ -35,8 +35,10 @@ export class Storage extends Gear {
     init() {
         super.init();
 
-        this.level = this.game.loadKey("storage-level", 1);
-        this.contains = this.game.loadKey("storage-contains", { totalCount: 0, slots: {} });
+        if (!Config.TEST_GEARS) {
+            this.level = this.game.loadKey("storage-level", 1);
+            this.contains = this.game.loadKey("storage-contains", { totalCount: 0, slots: {} });
+        }
         
         this.changeMaxTotalCount();
         this.calculateTotalCount();

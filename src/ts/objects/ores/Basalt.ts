@@ -1,8 +1,8 @@
 import { Color } from "../../config";
 import { Vector2 } from "../../engine/utils/math";
-import { StalactiteOre } from "./StalactiteOre";
+import { Ore } from "./Ore";
 
-export class Basalt extends StalactiteOre {
+export class Basalt extends Ore {
     constructor(position: Vector2, data: any) {
         super("basalt", position, data);
 

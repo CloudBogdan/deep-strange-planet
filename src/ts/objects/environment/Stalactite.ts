@@ -12,10 +12,7 @@ export class Stalactite extends FallingOre {
         super("stalactite", position.div(Config.SPRITE_SIZE).apply(Math.floor));
 
         this.length = length;
-        // const inChunkId = parentInChunkId.split("-");
-        // inChunkId[1] = (+inChunkId[1] + 1).toString()
         this.inChunkId = parentInChunkId;
-        // this.inChunkId = inChunkId.join("-");
         this.group = this.inChunkId;
 
         this.damage = [4, 6];
@@ -28,10 +25,11 @@ export class Stalactite extends FallingOre {
         super.init();
 
         this.damage[0] = this.length + 4;
+        this.damage[1] = this.length + 6;
     }
     update() {
         super.update();
-        this.growing();
+        // this.growing();
         
         if (this.length <= 0) return;
 

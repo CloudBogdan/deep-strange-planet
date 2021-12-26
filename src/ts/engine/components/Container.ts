@@ -48,6 +48,7 @@ export class Container {
     
     add<T>(child: Point | Group): T {
         this.children.push(child as any);
+        // child.init();
         return child as any;
     }
 

@@ -89,7 +89,7 @@ export class Generator {
         // Remove chunks
         this.chunks.map((chunk, index)=> {
 
-            if (this.game.camera.position.distance(chunk.pos.mul(Config.SPRITE_SIZE * Config.CHUNK_SIZE)) > 700) {
+            if (this.game.camera.position.distance(chunk.pos.mul(Config.SPRITE_SIZE * Config.CHUNK_SIZE)) > 800) {
                 this.game.removeChildrenByGroupName(chunk.group);
                 this.chunks.splice(index, 1);
             }

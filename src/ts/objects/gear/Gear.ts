@@ -1,7 +1,7 @@
 import { Config } from "../../config";
 import { ISpriteProps, Sprite } from "../../engine";
 import { Sound } from "../../engine/components/Sound";
-import { SpawnParticles } from "../../engine/components/Particles";
+import { SpawnParticles, SpawnUpgradeParticles } from "../../engine/components/Particles";
 import { UI, Button } from "../../engine/components/UI";
 import { asImage, Vector2 } from "../../engine/utils/math";
 import { ObjectNames } from "../../names";
@@ -174,22 +174,7 @@ export class Gear extends Sprite {
         if (this.level < MaxGearLevel) {
             this.level += levelUp;
 
-            SpawnParticles(this.game, this.position, {
-                render: (renderer, part)=> {
-                    renderer.drawSprite({
-                        texture: asImage(this.game.getAssetByName("level-up")),
-                        position: part.position,
-                        opacity: part.size,
-                        scale: Vector2.all(.8),
-                        layer: "particles"
-                    })
-                },
-                velocity: ()=> new Vector2(0, -1.5),
-                size: [5, 5],
-                downSize: .08,
-                count: 1,
-                gravity: 0
-            });
+            SpawnUpgradeParticles(this.game, this.position);
         }
     }
     checkInteract() {

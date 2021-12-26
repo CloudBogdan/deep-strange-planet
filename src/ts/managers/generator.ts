@@ -15,6 +15,7 @@ import { MushroomStone } from "../objects/ores/MushroomStone";
 import { Nerius } from "../objects/ores/Nerius";
 import { Osmy } from "../objects/ores/Osmy";
 import { Rady } from "../objects/ores/Rady";
+import { StalactiteStone } from "../objects/ores/StalactiteStone";
 import { Stone } from "../objects/ores/Stone";
 import { StonyGround } from "../objects/ores/StonyGround";
 
@@ -100,24 +101,23 @@ export function initGenerator(game: Game) {
         },
 
         // > Other
-        // // Fetus stone
+        // Fetus stone
         {
             height: [30, GeneratorConfig.BASALT_LAYER_HEIGHT-20],
             block: FetusStone,
             rules: FetusStone.rules
-            // rules(noiseX, noiseY, getValue) {
-            //     return (
-            //         inRange(getValue(noiseX, noiseY+1, 10), 0, .5) &&
-            //         inRange(getValue(noiseX, noiseY, 8), 0, .8) 
-            //         // inRange(getValue(noiseX, noiseY, 2), 0, .3)
-            //     );
-            // }
         },
         // Mushroom stone
         {
             height: [GeneratorConfig.BASALT_LAYER_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT-15],
             block: MushroomStone,
             rules: MushroomStone.rules
+        },
+        // Stalactite stone
+        {
+            height: [GeneratorConfig.BASALT_LAYER_HEIGHT, GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT-15],
+            block: StalactiteStone,
+            rules: StalactiteStone.rules
         },
         
         // > Ores
