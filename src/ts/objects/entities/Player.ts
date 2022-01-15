@@ -137,7 +137,7 @@ export class Player extends Entity {
                     this.collider.collidable = !this.collider.collidable;
                     this.moveSpeed = !this.collider.collidable ? 60 : this.initialMoveSpeed;
                     this.toolLevel = 5;
-                    this.hasBottle = true;
+                    // this.hasBottle = true;
                     this.hasGps = true;
                     this.god = true;
 
@@ -239,7 +239,7 @@ export class Player extends Entity {
 
         this.pullWire();
         this.changeActionType();
-        this.putGpsMarkers();
+        // this.putGpsMarkers();
 
         this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 11;
         this.allowPlaceRobot = this.position.y > 20;
@@ -305,7 +305,7 @@ export class Player extends Entity {
     pullWire() {
         
         if (this.position.distance(this.wire) > Config.WIRE_LENGTH) {
-            const to = this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown).mul(this.game.clock.delta * 100);
+            const to = this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown);
 
             this.wire.x += to.x;
             this.wire.y += to.y;
@@ -487,8 +487,8 @@ export class Player extends Entity {
                 position: new Vector2(0, 150).add(windowCenter),
             });
 
-        // Bottle
-        this.ui.renderGroup(new Vector2(size, innerHeight - size), [
+        //
+        this.ui.renderGroup(new Vector2(size, size), [
             [true, pos=> {
 
                 // Tool level
@@ -540,16 +540,22 @@ export class Player extends Entity {
         if (
             !(homeScreenPos.x >= paddings && homeScreenPos.x <= innerWidth - paddings) ||
             !(homeScreenPos.y >= paddings && homeScreenPos.y <= innerHeight - paddings)
-        )
+        ) {
+            const pos = homeScreenPos.clamp(
+                paddings, innerWidth - paddings,
+                paddings, innerHeight - paddings
+            );
             this.ui.sprite("home-icon", {
-                position: homeScreenPos.clamp(
-                    paddings, innerWidth - paddings,
-                    paddings, innerHeight - paddings
-                ),
+                position: pos,
                 scale: Vector2.all(.8)
             });
-
-        // Markers web
+            this.ui.text(Math.floor(this.position.distance(homePos) / Config.SPRITE_SIZE).toString(), {
+                position: pos.add(new Vector2(0, 40))
+            })
+        }
+        
+    }
+    renderGpsMarkers() {
         const lastMarker = this.gpsMarkers[this.gpsMarkers.length-1];
         const allowLineToPlayer = lastMarker ? this.position.distance(lastMarker) < Config.GPS_MARKERS_DISTANCE : false;
         
@@ -561,7 +567,6 @@ export class Player extends Entity {
             width: 2,
             layer: "particles"
         });
-        
     }
 
     renderDieUI() {

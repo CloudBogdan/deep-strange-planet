@@ -1,6 +1,7 @@
 import { Color, Config } from "../../config";
 import { SpawnParticles } from "../../engine/components/Particles";
 import { asImage, chance, randomInt, Vector2 } from "../../engine/utils/math";
+import { child_of } from "../../types";
 import { Block } from "../Block";
 import { Entity } from "../entities/Entity";
 import { FallingOre } from "../ores/FallingORe";
@@ -8,12 +9,12 @@ import { FallingOre } from "../ores/FallingORe";
 export class Stalactite extends FallingOre {
     length: number
     
-    constructor(length: number, parentInChunkId: Block["inChunkId"], position: Vector2) {
+    constructor(length: number, parentGroup: string, parentInChunkId: Block["inChunkId"], position: Vector2) {
         super("stalactite", position.div(Config.SPRITE_SIZE).apply(Math.floor));
 
         this.length = length;
-        this.inChunkId = parentInChunkId;
-        this.group = this.inChunkId;
+        this.inChunkId = child_of + parentInChunkId;
+        this.group = parentGroup;
 
         this.damage = [4, 6];
         this.particlesColors = [Color.GREY];
@@ -26,10 +27,11 @@ export class Stalactite extends FallingOre {
 
         this.damage[0] = this.length + 4;
         this.damage[1] = this.length + 6;
+
+        this.saveData();
     }
     update() {
         super.update();
-        // this.growing();
         
         if (this.length <= 0) return;
 
@@ -114,8 +116,14 @@ export class Stalactite extends FallingOre {
         }
 
     }
-    fallDestroy() {
-        super.fallDestroy();
+    fallBreak() {
+        super.fallBreak();
+
+        this.length = 0;
+        this.saveData();
+    }
+    onBreak() {
+        super.onBreak();
 
         this.length = 0;
         this.saveData();
@@ -133,6 +141,8 @@ export class Stalactite extends FallingOre {
     }
 
     saveData() {
-        this.game.generator.modifyOre(this.inChunkId, { length: this.length });
+        this.game.generator.modifyOre(this.inChunkId.replace(child_of, ""), {
+            length: this.length
+        });
     }
 }

@@ -19,9 +19,9 @@ export type IPointProps = {
 
 export class Point {
     game!: Game
-    readonly id: string
+    id: string
     type: ComponentType
-    readonly name: string
+    name: string
     group: string
     inited: boolean
     layer: string
@@ -60,8 +60,8 @@ export class Point {
     update() {
         this.velocity.x *= this.acceleration.x;
         this.velocity.y *= this.acceleration.y;
-        this.position.x += this.velocity.x * this.game.clock.delta * 80;
-        this.position.y += this.velocity.y * this.game.clock.delta * 80;
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
     }
     render() {
     }

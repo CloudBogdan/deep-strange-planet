@@ -40,7 +40,7 @@ export class Entity extends Sprite {
         
         this.sound = new Sound();
         this.hp = props?.hp || 10;
-        this.moveSpeed = props?.moveSpeed || 4;
+        this.moveSpeed = props?.moveSpeed || 5;
         this.initialMoveSpeed = this.moveSpeed;
         this.damaged = false;
         this.damagedElapsed = 0;

@@ -76,7 +76,7 @@ export function initMenu(game: Game, player: Player) {
             position: new Vector2(windowCenter.x, 160),
         })
         // Version
-        ui.text(`Версия - ${ VERSION }`, {
+        ui.text(`Версия ${ VERSION }`, {
             font: "16px Pixel",
             position: new Vector2(innerWidth - size / 2, innerHeight - size / 2),
             align: "right"

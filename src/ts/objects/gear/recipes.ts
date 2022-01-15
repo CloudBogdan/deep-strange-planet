@@ -106,9 +106,9 @@ function recipes(recycler: Recycler): Recycler["recipes"] {
                 "card": { count: 1 },
             }),
             onCraft: ()=> {
-                recycler.player.hasBottle = true;
+                recycler.player.hasGps = true;
             },
-            isRemoved: ()=> recycler.player.hasBottle
+            isRemoved: ()=> recycler.player.hasGps
         }),
 
         // Craft robot

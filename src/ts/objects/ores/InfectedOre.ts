@@ -90,12 +90,12 @@ export class InfectedOre extends Ore {
             if (this.tonguePosition.distance(this.target.position) < 20)
                 this.tonguePosition = this.target.position.expand();
             else
-                this.tonguePosition.lerp(this.target.position, this.game.clock.delta * 20);
+                this.tonguePosition.lerp(this.target.position, .5);
             
             // Move entity to datura
             if (body)
                 if (body.position.distance(this.daturaPosition) > 10)
-                    body.velocity.copy(body.velocity.add(body.position.sub(this.daturaPosition).normalize().mul(-2 * this.game.clock.delta * 100)))
+                    body.velocity.copy(body.velocity.add(body.position.sub(this.daturaPosition).normalize().mul(-4)))
 
         }
 

@@ -88,6 +88,7 @@ export class Renderer {
 
         const context = canvas.getContext("2d")!;
         context.imageSmoothingEnabled = false;
+        // new ImageData()
 
         return {
             render: true,

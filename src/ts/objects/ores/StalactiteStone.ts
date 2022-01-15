@@ -12,14 +12,14 @@ export class StalactiteStone extends Ore {
     
     stalactiteLength: number
     allowGrow: boolean
-    hasStalactite: boolean
+    stalactiteSpawned: boolean
     
     constructor(position: Vector2, data?: any, props?: ISpriteProps) {
         super("basalt", position, props);
 
-        this.stalactiteLength = data ? data?.length || 0 : 0;
+        this.stalactiteLength = data?.length === undefined ? -1 : data?.length;
         this.allowGrow = true;
-        this.hasStalactite = false;
+        this.stalactiteSpawned = false;
     }
 
     static rules(x: number, y: number): boolean {
@@ -34,8 +34,10 @@ export class StalactiteStone extends Ore {
 
         if (!this.allowGrow) return;
 
-        const variants: number[] = [1, 1, 2, 2, 2, 3, 3];
-        this.stalactiteLength = variants[randomInt(0, variants.length - 1)];
+        if (this.stalactiteLength < 0) {
+            const variants: number[] = [1, 1, 2, 2, 2, 3, 3];
+            this.stalactiteLength = variants[randomInt(0, variants.length - 1)];
+        }
 
         for (let i = 0; i < this.stalactiteLength; i ++) {
             if (!caveRules(this.tilePosition.x, this.tilePosition.y, 0, i+1)) {
@@ -44,20 +46,21 @@ export class StalactiteStone extends Ore {
             } 
         }
 
-        if (this.stalactiteLength != 0 && !this.hasStalactite) {
-            this.game.add(new Stalactite(this.stalactiteLength, this.inChunkId, this.position.add(new Vector2(0, Config.SPRITE_SIZE))));
+        if (!this.stalactiteSpawned && this.stalactiteLength > 0) {
+            this.game.add(new Stalactite(this.stalactiteLength, this.group, this.inChunkId, this.position.add(new Vector2(0, Config.SPRITE_SIZE))));
             this.game.initChildren();
-            this.hasStalactite = true;
+            this.stalactiteSpawned = true;
         }
     }
 
     render() {
         super.render();
 
-        this.game.renderer.drawText({
-            text: this.stalactiteLength.toString(),
-            position: this.position.expand(),
-            layer: "particles"
-        })
+        if (Config.IS_DEV)
+            this.game.renderer.drawText({
+                text: this.stalactiteLength.toString(),
+                position: this.position.expand(),
+                layer: "particles"
+            })
     }
 }

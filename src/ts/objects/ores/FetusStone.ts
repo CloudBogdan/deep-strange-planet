@@ -176,7 +176,7 @@ export class FetusStone extends Ore {
             if (darkenFactor < 1 || !Config.ALLOW_DARK)
                 this.game.renderer.drawSprite({
                     texture: asImage(this.game.getAssetByName(`fetus-vine`)),
-                    position: pos.add(new Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / Config.SPRITE_SIZE) * i * 1.5)),
+                    position: pos.add(new Vector2(Math.sin(this.game.clock.elapsed / 60 + this.position.x / Config.SPRITE_SIZE) * i * 1.5)),
                     frame: new Vector2(
                         +(i < (this.grabbedCount || 0)),
                         frame

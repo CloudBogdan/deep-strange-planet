@@ -23,10 +23,21 @@ export function caveRules(x: number, y: number, offsetX?: number, offsetY?: numb
     const ox = offsetX || 0;
     const oy = offsetY || 0;
     
-    const res = noise((x + ox) / 30, (y + oy) / 12, 4, 3);
-    const mask = noise((x + ox) / 16, (y + oy) / 16);
+    const caves = noise((x + ox) / 20, (y + oy) / 10, 4, 3);
+    const smallCaves = noise((x + ox) / 10, (y + oy) / 10, 3, 2);
+    const largeCaves = noise((x + ox) / 30, (y + oy) / 18, 3, 2);
+    
+    const sharpness = noise((x + ox) / 10, (y + oy) / 10);
+    const smallCavesMask = noise((x + ox) / 40, (y + oy) / 40);
+    const largeCavesMask = noise((x + ox) / 20, (y + oy) / 20);
 
-    return inRange(res + mask/5, 0, .6);
+    return (
+        (inRange(caves, 0, .5) ||
+        inRange(smallCaves, 0, .5) ||
+        inRange(largeCaves, 0, .6)) &&
+        !inRange(sharpness, 0, .4)
+        // (inRange(largeCaves, 0, .6) || (inRange(largeCaves, 0, .7) && inRange(sharpness, 0, .4)))
+    );
 }
 
 export function initGenerator(game: Game) {
@@ -35,7 +46,7 @@ export function initGenerator(game: Game) {
         // > Stones
         {
             value: [0, 1],
-            height: [0, 43],
+            height: [0, GeneratorConfig.DEEP_STONE_LAYER_HEIGHT],
             block: Stone,
         },
         {
@@ -55,14 +66,14 @@ export function initGenerator(game: Game) {
         // Deep stone blend layer
         {
             value: [.8, 1],
-            height: [30, 43],
+            height: [GeneratorConfig.DEEP_STONE_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT, GeneratorConfig.DEEP_STONE_LAYER_HEIGHT],
             divider: 2,
             block: DeepStone
         },
         // Deep stone layer
         {
             value: [0, 1],
-            height: [42, GeneratorConfig.BASALT_LAYER_HEIGHT],
+            height: [GeneratorConfig.DEEP_STONE_LAYER_HEIGHT, GeneratorConfig.BASALT_LAYER_HEIGHT],
             block: DeepStone
         },
 
@@ -130,12 +141,12 @@ export function initGenerator(game: Game) {
 
         // Osmy - deep stone layer
         {
-            height: [50, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            height: [GeneratorConfig.DEEP_STONE_LAYER_HEIGHT+6, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             block: Osmy,
             rules: Osmy.rules
         },
         {
-            height: [100, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
+            height: [GeneratorConfig.BASALT_LAYER_HEIGHT - 60, GeneratorConfig.BASALT_LAYER_HEIGHT - GeneratorConfig.LAYERS_BLEND_HEIGHT],
             block: Nerius,
             rules: Nerius.rules
         },

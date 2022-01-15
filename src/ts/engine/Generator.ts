@@ -182,7 +182,8 @@ export class Generator {
 
     changeSeed() {
         const needSeed = this.game.loadKey("seed", Date.now());
-        this.seed = Config.IS_DEV ? 1636721068016 : (typeof needSeed == "number" ? needSeed : Date.now());
+        this.seed = (typeof needSeed == "number" ? needSeed : Date.now());
+        // this.seed = Config.IS_DEV ? 1636721068016 : (typeof needSeed == "number" ? needSeed : Date.now());
         seed(this.seed);
         this.game.saveKey("seed", this.seed.toString());
         console.log(`%cСид мира: ${ this.seed }`, `background: ${ Color.BLACK };color: ${ Color.YELLOW };padding:15px;font-size:20px;`);

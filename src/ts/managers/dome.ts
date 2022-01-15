@@ -9,15 +9,15 @@ import { Storage } from "../objects/gear/Storage";
 export function initDome(game: Game) {
     const domePosition = new Vector2(Config.HOME_POSITION_X, Config.HOME_POSITION_Y);
 
-    const storage = game.add<Storage>(new Storage({
-        position: domePosition.add(new Vector2(-150, 0))
-    }));
-
     game.add<Sprite>(new OxygenGenerator({
         position: domePosition.add(new Vector2(-60, -100))
     }));
     game.add<Sprite>(new Documentation({
         position: domePosition.add(new Vector2(60, -100))
+    }));
+
+    const storage = game.add<Storage>(new Storage({
+        position: domePosition.add(new Vector2(-140, -10))
     }));
     game.add<Sprite>(new Recycler(storage, {
         flip: { x: true, y: false },

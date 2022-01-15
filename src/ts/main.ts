@@ -27,7 +27,7 @@ game.addInit(()=> {
 });
 game.addUpdate(()=> {
     if (!game.paused)
-        game.camera.follow(player.position, game.clock.delta * 7);
+        game.camera.follow(player.position, .1);
     else
         game.camera.follow(new Vector2(-300, -50).add(player.position), 1);
     game.generator.generateChunksAt(game.camera.position);
@@ -42,7 +42,7 @@ game.addRender(renderer=> {
     renderer.drawText({
         text: `${ game.clock.fps } fps`,
         font: "18px Pixel",
-        position: new Vector2(15, 30),
+        position: new Vector2(15, innerHeight - 30),
         align: "left",
         layer: "ui"
     });
@@ -60,8 +60,8 @@ function renderDebug(renderer: Renderer) {
         ].join("\n"),
         font: "20px Pixel",
         lineHeight: 30,
-        position: new Vector2(30, 80),
-        align: "left",
+        position: new Vector2(innerWidth - 30, innerHeight - 140),
+        align: "right",
         layer: "ui"
     });
     

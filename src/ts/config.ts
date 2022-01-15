@@ -1,7 +1,7 @@
 import { ToolLevel } from "./objects/entities/Player";
 import { GearLevel } from "./objects/gear/Gear";
 
-export const VERSION = "1.2.0";
+export const VERSION = "1.2.1";
 export enum Config {
     ALLOW_DARK = 1, // ! IS DEV!
     IS_DEV = 0, // ! IS DEV!
@@ -9,8 +9,8 @@ export enum Config {
     ALLOW_HUNK = 0, // ! IS DEV!
     
     // World size and chunks size in blocks
-    WORLD_WIDTH = 82,
-    WORLD_HEIGHT = 225,
+    WORLD_WIDTH = 140,
+    WORLD_HEIGHT = 320,
     CHUNK_SIZE = 4,
     
     SPRITE_SCALE = 5,
@@ -58,7 +58,8 @@ export enum Config {
 }
 export enum GeneratorConfig {
     LAYERS_BLEND_HEIGHT = 10,
-    BASALT_LAYER_HEIGHT = 150,
+    DEEP_STONE_LAYER_HEIGHT = 70,
+    BASALT_LAYER_HEIGHT = 190,
     BURNT_BASALT_LAYER_HEIGHT = Config.WORLD_HEIGHT - 5,
 }
 export enum Color {
