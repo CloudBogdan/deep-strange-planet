@@ -118,185 +118,189 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"xMOE":[function(require,module,exports) {
-module.exports = "./stay.83bee543.png";
+module.exports = "/stay.83bee543.png";
 },{}],"mEpo":[function(require,module,exports) {
-module.exports = "./walk.d85e3b24.png";
+module.exports = "/walk.d85e3b24.png";
 },{}],"C18s":[function(require,module,exports) {
-module.exports = "./dead.afb6108d.png";
+module.exports = "/dead.afb6108d.png";
 },{}],"Wr6M":[function(require,module,exports) {
-module.exports = "./robot.331f772c.png";
+module.exports = "/robot.331f772c.png";
 },{}],"Qntg":[function(require,module,exports) {
-module.exports = "./stone.2ff7e249.png";
+module.exports = "/stone.2ff7e249.png";
 },{}],"KP9j":[function(require,module,exports) {
-module.exports = "./stony-ground.acbbc003.png";
+module.exports = "/stony-ground.acbbc003.png";
 },{}],"EsJD":[function(require,module,exports) {
-module.exports = "./basalt.4d5e1160.png";
+module.exports = "/basalt.4d5e1160.png";
 },{}],"m5Mc":[function(require,module,exports) {
-module.exports = "./deep-stone.2484d1ea.png";
+module.exports = "/deep-stone.2484d1ea.png";
 },{}],"yhR6":[function(require,module,exports) {
-module.exports = "./burnt-basalt.e556a07f.png";
+module.exports = "/burnt-basalt.e556a07f.png";
 },{}],"zgKj":[function(require,module,exports) {
-module.exports = "./destrony.447daaed.png";
+module.exports = "/destrony.447daaed.png";
 },{}],"pf9J":[function(require,module,exports) {
-module.exports = "./manty.1308789e.png";
+module.exports = "/manty.1308789e.png";
 },{}],"bOsc":[function(require,module,exports) {
-module.exports = "./fetus-stone.c0ad3ca7.png";
+module.exports = "/fetus-stone.c0ad3ca7.png";
 },{}],"k7Mm":[function(require,module,exports) {
-module.exports = "./mushroom-stone.1e0e819c.png";
+module.exports = "/mushroom-stone.1e0e819c.png";
 },{}],"y0PF":[function(require,module,exports) {
-module.exports = "./cracked-stone.bdc7e15a.png";
+module.exports = "/cracked-stone.bdc7e15a.png";
 },{}],"FU7E":[function(require,module,exports) {
-module.exports = "./cidium.8f5094f6.png";
+module.exports = "/cidium.8f5094f6.png";
 },{}],"Zvcg":[function(require,module,exports) {
-module.exports = "./osmy.522ecac7.png";
+module.exports = "/osmy.522ecac7.png";
 },{}],"balx":[function(require,module,exports) {
-module.exports = "./antin.f3461fe6.png";
+module.exports = "/antin.f3461fe6.png";
 },{}],"DTH9":[function(require,module,exports) {
-module.exports = "./rady.cccaf8d0.png";
+module.exports = "/rady.cccaf8d0.png";
 },{}],"jfHw":[function(require,module,exports) {
-module.exports = "./nerius.94508fe9.png";
+module.exports = "/nerius.94508fe9.png";
 },{}],"DgoW":[function(require,module,exports) {
-module.exports = "./raw-cidium.ee0ee85b.png";
+module.exports = "/raw-cidium.ee0ee85b.png";
 },{}],"DJ58":[function(require,module,exports) {
-module.exports = "./raw-grade-cidium.cf6253b5.png";
+module.exports = "/raw-grade-cidium.cf6253b5.png";
 },{}],"mpJt":[function(require,module,exports) {
-module.exports = "./raw-osmy.0f93e6fc.png";
+module.exports = "/raw-osmy.0f93e6fc.png";
 },{}],"ZWGs":[function(require,module,exports) {
-module.exports = "./raw-antin.289b1625.png";
+module.exports = "/raw-antin.289b1625.png";
 },{}],"SrSE":[function(require,module,exports) {
-module.exports = "./raw-rady.6464a5a4.png";
+module.exports = "/raw-rady.6464a5a4.png";
 },{}],"ceSm":[function(require,module,exports) {
-module.exports = "./raw-nerius.489775a7.png";
+module.exports = "/raw-nerius.489775a7.png";
 },{}],"h5i8":[function(require,module,exports) {
-module.exports = "./raw-manty.8df5e986.png";
+module.exports = "/raw-manty.8df5e986.png";
 },{}],"y0Dq":[function(require,module,exports) {
-module.exports = "./ready-cidium.40f281e7.png";
+module.exports = "/ready-cidium.40f281e7.png";
 },{}],"PKyT":[function(require,module,exports) {
-module.exports = "./battery.34b833d2.png";
+module.exports = "/battery.34b833d2.png";
 },{}],"vK4S":[function(require,module,exports) {
-module.exports = "./drill.c9b2d54e.png";
+module.exports = "/drill.4fe58980.png";
 },{}],"rR8W":[function(require,module,exports) {
-module.exports = "./box.533d24e7.png";
+module.exports = "/box.533d24e7.png";
 },{}],"z9wQ":[function(require,module,exports) {
-module.exports = "./card.74a4e50d.png";
+module.exports = "/card.74a4e50d.png";
 },{}],"waqs":[function(require,module,exports) {
-module.exports = "./fetus-vine.8805c1bc.png";
+module.exports = "/fetus-vine.8805c1bc.png";
 },{}],"yylR":[function(require,module,exports) {
-module.exports = "./mushroom.c358812c.png";
+module.exports = "/mushroom.c358812c.png";
 },{}],"EKNy":[function(require,module,exports) {
-module.exports = "./infection.58223099.png";
+module.exports = "/infection.58223099.png";
 },{}],"GvwK":[function(require,module,exports) {
-module.exports = "./datura.626020b7.png";
+module.exports = "/datura.626020b7.png";
 },{}],"ObKq":[function(require,module,exports) {
-module.exports = "./plants.c448d4c2.png";
+module.exports = "/plants.c448d4c2.png";
 },{}],"aveX":[function(require,module,exports) {
-module.exports = "./stalactite.9838dbc0.png";
+module.exports = "/stalactite.9838dbc0.png";
 },{}],"qtzW":[function(require,module,exports) {
-module.exports = "./datura-tongue.6ca7ad31.png";
+module.exports = "/datura-tongue.6ca7ad31.png";
 },{}],"bcsP":[function(require,module,exports) {
-module.exports = "./food-fetus.4a1a28b9.png";
+module.exports = "/food-fetus.4a1a28b9.png";
 },{}],"aLvf":[function(require,module,exports) {
-module.exports = "./ground.40c4b239.png";
+module.exports = "/ground.40c4b239.png";
 },{}],"Q6m3":[function(require,module,exports) {
-module.exports = "./dome.a3a288e1.png";
+module.exports = "/dome.a3a288e1.png";
 },{}],"L1K5":[function(require,module,exports) {
-module.exports = "./under-stone.4fd1f7fb.png";
+module.exports = "/under-stone.4fd1f7fb.png";
 },{}],"wYG8":[function(require,module,exports) {
-module.exports = "./disputes.123ba673.png";
+module.exports = "/disputes.123ba673.png";
 },{}],"G9tz":[function(require,module,exports) {
-module.exports = "./gear-storage-1.aa0bd2ce.png";
+module.exports = "/gear-storage-1.cf529983.png";
 },{}],"FBe0":[function(require,module,exports) {
-module.exports = "./gear-recycler-1.76952c71.png";
+module.exports = "/gear-recycler-1.76952c71.png";
 },{}],"X9Py":[function(require,module,exports) {
-module.exports = "./gear-oxygen-generator-1.922af5f2.png";
+module.exports = "/gear-oxygen-generator-1.922af5f2.png";
 },{}],"j56s":[function(require,module,exports) {
-module.exports = "./gear-storage-1-outline.366ec21b.png";
+module.exports = "/gear-storage-1-outline.21cb879d.png";
 },{}],"fxXd":[function(require,module,exports) {
-module.exports = "./gear-recycler-1-outline.8cabe033.png";
+module.exports = "/gear-recycler-1-outline.8cabe033.png";
 },{}],"EdKv":[function(require,module,exports) {
-module.exports = "./gear-oxygen-generator-1-outline.65a00620.png";
+module.exports = "/gear-oxygen-generator-1-outline.65a00620.png";
 },{}],"fkgg":[function(require,module,exports) {
-module.exports = "./gear-documentation-1.35b8b26c.png";
+module.exports = "/gear-documentation-1.35b8b26c.png";
 },{}],"ro1N":[function(require,module,exports) {
-module.exports = "./gear-documentation-1-outline.617027d5.png";
+module.exports = "/gear-documentation-1-outline.617027d5.png";
 },{}],"y1NG":[function(require,module,exports) {
-module.exports = "./interact.31e5b69d.png";
+module.exports = "/interact.31e5b69d.png";
 },{}],"rLvC":[function(require,module,exports) {
-module.exports = "./close.e582d6b7.png";
+module.exports = "/close.e582d6b7.png";
 },{}],"E7cs":[function(require,module,exports) {
-module.exports = "./drop.03e03f4d.png";
+module.exports = "/drop.03e03f4d.png";
 },{}],"X2nc":[function(require,module,exports) {
-module.exports = "./craft.b8e950a2.png";
+module.exports = "/craft.b8e950a2.png";
 },{}],"R1BN":[function(require,module,exports) {
-module.exports = "./button.0edde46a.png";
+module.exports = "/button.0edde46a.png";
 },{}],"omch":[function(require,module,exports) {
-module.exports = "./tools.bf5b649a.png";
+module.exports = "/tools.bf5b649a.png";
 },{}],"arpR":[function(require,module,exports) {
-module.exports = "./bottle.6447cf72.png";
+module.exports = "/bottle.6447cf72.png";
 },{}],"nxFT":[function(require,module,exports) {
-module.exports = "./damage.fda04f1c.png";
+module.exports = "/damage.fda04f1c.png";
 },{}],"L4Si":[function(require,module,exports) {
-module.exports = "./level-up.5e70abd7.png";
+module.exports = "/level-up.5e70abd7.png";
 },{}],"l1xg":[function(require,module,exports) {
-module.exports = "./storage-ui.651d38c5.png";
+module.exports = "/storage-ui.651d38c5.png";
 },{}],"noxU":[function(require,module,exports) {
-module.exports = "./recycler-ui.382575b8.png";
+module.exports = "/recycler-ui.382575b8.png";
 },{}],"rqZe":[function(require,module,exports) {
-module.exports = "./description-ui.84d164ee.png";
+module.exports = "/description-ui.84d164ee.png";
 },{}],"E3ma":[function(require,module,exports) {
-module.exports = "./documentation-ui.90dc438b.png";
+module.exports = "/documentation-ui.90dc438b.png";
 },{}],"dYrS":[function(require,module,exports) {
-module.exports = "./oxygen-generator-ui.430972bf.png";
+module.exports = "/oxygen-generator-ui.430972bf.png";
 },{}],"hCOT":[function(require,module,exports) {
-module.exports = "./health.5e97126d.png";
+module.exports = "/health.5e97126d.png";
 },{}],"tcYH":[function(require,module,exports) {
-module.exports = "./basics.8252616e.png";
+module.exports = "/basics.8252616e.png";
 },{}],"YcEf":[function(require,module,exports) {
-module.exports = "./menu.d1d970a2.png";
+module.exports = "/menu.d1d970a2.png";
 },{}],"N5Ep":[function(require,module,exports) {
-module.exports = "./logo.453571b5.png";
+module.exports = "/logo.453571b5.png";
+},{}],"XLZT":[function(require,module,exports) {
+module.exports = "/gps.e9ad5c2d.png";
 },{}],"raSj":[function(require,module,exports) {
-module.exports = "./item-robot.6f6dcffd.png";
+module.exports = "/item-robot.6f6dcffd.png";
 },{}],"lynQ":[function(require,module,exports) {
-module.exports = "./storage-level-up.d51436c6.png";
+module.exports = "/storage-level-up.d51436c6.png";
+},{}],"pDaz":[function(require,module,exports) {
+module.exports = "/home-icon.e40f7491.png";
 },{}],"mhX9":[function(require,module,exports) {
-module.exports = "./stone-hit.0ffe4d73.mp3";
+module.exports = "/stone-hit.0ffe4d73.mp3";
 },{}],"oGfi":[function(require,module,exports) {
-module.exports = "./stone-break-1.1dc9d8bb.mp3";
+module.exports = "/stone-break-1.1dc9d8bb.mp3";
 },{}],"e16U":[function(require,module,exports) {
-module.exports = "./stone-break-2.e64d0953.mp3";
+module.exports = "/stone-break-2.e64d0953.mp3";
 },{}],"qXYu":[function(require,module,exports) {
-module.exports = "./stone-break-3.b662a49d.mp3";
+module.exports = "/stone-break-3.b662a49d.mp3";
 },{}],"ccHt":[function(require,module,exports) {
-module.exports = "./fall-stone-break.d0cd3cd7.mp3";
+module.exports = "/fall-stone-break.d0cd3cd7.mp3";
 },{}],"Fezn":[function(require,module,exports) {
-module.exports = "./plant-break.c65e9751.mp3";
+module.exports = "/plant-break.c65e9751.mp3";
 },{}],"Mdb7":[function(require,module,exports) {
-module.exports = "./plant-hit.e0d075c4.mp3";
+module.exports = "/plant-hit.e0d075c4.mp3";
 },{}],"wmq4":[function(require,module,exports) {
-module.exports = "./wave.e276fd24.mp3";
+module.exports = "/wave.e276fd24.mp3";
 },{}],"GkZp":[function(require,module,exports) {
-module.exports = "./bonk.312a5d94.mp3";
+module.exports = "/bonk.312a5d94.mp3";
 },{}],"dGDn":[function(require,module,exports) {
-module.exports = "./hit.185e7507.mp3";
+module.exports = "/hit.185e7507.mp3";
 },{}],"Js59":[function(require,module,exports) {
-module.exports = "./1.c194776b.mp3";
+module.exports = "/1.c194776b.mp3";
 },{}],"z5Ql":[function(require,module,exports) {
-module.exports = "./2.edf8b100.mp3";
+module.exports = "/2.edf8b100.mp3";
 },{}],"Y3GC":[function(require,module,exports) {
-module.exports = "./3.7a188545.mp3";
+module.exports = "/3.7a188545.mp3";
 },{}],"m6nY":[function(require,module,exports) {
-module.exports = "./storage.b5dfc3de.mp3";
+module.exports = "/storage.b5dfc3de.mp3";
 },{}],"kTm5":[function(require,module,exports) {
-module.exports = "./store.605eab52.mp3";
+module.exports = "/store.605eab52.mp3";
 },{}],"STXI":[function(require,module,exports) {
-module.exports = "./craft.a5e086cb.mp3";
+module.exports = "/craft.a5e086cb.mp3";
 },{}],"hhqH":[function(require,module,exports) {
-module.exports = "./error.e3f940b9.mp3";
+module.exports = "/error.e3f940b9.mp3";
 },{}],"WCli":[function(require,module,exports) {
-module.exports = "./motor.1d058c72.mp3";
+module.exports = "/motor.1d058c72.mp3";
 },{}],"hebx":[function(require,module,exports) {
-module.exports = "./motor-start.15d335af.mp3";
+module.exports = "/motor-start.15d335af.mp3";
 },{}],"ibCN":[function(require,module,exports) {
 "use strict";
 
@@ -443,9 +447,13 @@ var _menu = _interopRequireDefault(require("../../images/ui/menu.png"));
 
 var _logo = _interopRequireDefault(require("../../images/ui/logo.png"));
 
+var _gps = _interopRequireDefault(require("../../images/ui/gps.png"));
+
 var _itemRobot = _interopRequireDefault(require("../../images/ui/item-robot.png"));
 
 var _storageLevelUp = _interopRequireDefault(require("../../images/ui/storage-level-up.png"));
+
+var _homeIcon = _interopRequireDefault(require("../../images/ui/home-icon.png"));
 
 var _stoneHit = _interopRequireDefault(require("../../audio/stone-hit.mp3"));
 
@@ -571,6 +579,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // @ts-ignore
 // @ts-ignore
 // @ts-ignore
+// @ts-ignore
+// @ts-ignore
 // > Audio
 // @ts-ignore
 // @ts-ignore
@@ -673,8 +683,11 @@ function initAssets(game) {
   game.loadAsset("basics", [_basics.default]);
   game.loadAsset("menu", [_menu.default]);
   game.loadAsset("logo", [_logo.default]);
+  game.loadAsset("gps", [_gps.default]);
   game.loadAsset("item-robot", [_itemRobot.default]);
-  game.loadAsset("storage-level-up", [_storageLevelUp.default]); // > Audio
+  game.loadAsset("recipe-storage-upgrade", [_storageLevelUp.default]);
+  game.loadAsset("recipe-tools-upgrade", [_tools.default]);
+  game.loadAsset("home-icon", [_homeIcon.default]); // > Audio
 
   game.loadAsset("stone-hit", _stoneHit.default, "audio");
   game.loadAsset("stone-break-1", _stoneBreak.default, "audio");
@@ -696,14 +709,14 @@ function initAssets(game) {
   game.loadAsset("motor", _motor.default, "audio");
   game.loadAsset("motor-start", _motorStart.default, "audio");
 }
-},{"../../images/player/stay.png":"xMOE","../../images/player/walk.png":"mEpo","../../images/player/dead.png":"C18s","../../images/entities/robot.png":"Wr6M","../../images/ores/stone.png":"Qntg","../../images/ores/stony-ground.png":"KP9j","../../images/ores/basalt.png":"EsJD","../../images/ores/deep-stone.png":"m5Mc","../../images/ores/burnt-basalt.png":"yhR6","../../images/ores/destrony.png":"zgKj","../../images/ores/manty.png":"pf9J","../../images/ores/fetus-stone.png":"bOsc","../../images/ores/mushroom-stone.png":"k7Mm","../../images/ores/cracked-stone.png":"y0PF","../../images/ores/cidium.png":"FU7E","../../images/ores/osmy.png":"Zvcg","../../images/ores/antin.png":"balx","../../images/ores/rady.png":"DTH9","../../images/ores/nerius.png":"jfHw","../../images/raw/raw-cidium.png":"DgoW","../../images/raw/raw-grade-cidium.png":"DJ58","../../images/raw/raw-osmy.png":"mpJt","../../images/raw/raw-antin.png":"ZWGs","../../images/raw/raw-rady.png":"SrSE","../../images/raw/raw-nerius.png":"ceSm","../../images/raw/raw-manty.png":"h5i8","../../images/ready/ready-cidium.png":"y0Dq","../../images/items/battery.png":"PKyT","../../images/items/drill.png":"vK4S","../../images/items/box.png":"rR8W","../../images/items/card.png":"z9wQ","../../images/flora/fetus-vine.png":"waqs","../../images/flora/mushroom.png":"yylR","../../images/flora/infection.png":"EKNy","../../images/flora/datura.png":"GvwK","../../images/flora/plants.png":"ObKq","../../images/flora/stalactite.png":"aveX","../../images/flora/datura-tongue.png":"qtzW","../../images/food/food-fetus.png":"bcsP","../../images/environment/ground.png":"aLvf","../../images/environment/dome.png":"Q6m3","../../images/environment/under-stone.png":"L1K5","../../images/environment/disputes.png":"wYG8","../../images/gear/gear-storage-1.png":"G9tz","../../images/gear/gear-recycler-1.png":"FBe0","../../images/gear/gear-oxygen-generator-1.png":"X9Py","../../images/gear/gear-storage-1-outline.png":"j56s","../../images/gear/gear-recycler-1-outline.png":"fxXd","../../images/gear/gear-oxygen-generator-1-outline.png":"EdKv","../../images/gear/gear-documentation-1.png":"fkgg","../../images/gear/gear-documentation-1-outline.png":"ro1N","../../images/ui/interact.png":"y1NG","../../images/ui/close.png":"rLvC","../../images/ui/drop.png":"E7cs","../../images/ui/craft.png":"X2nc","../../images/ui/button.png":"R1BN","../../images/ui/tools.png":"omch","../../images/ui/bottle.png":"arpR","../../images/ui/damage.png":"nxFT","../../images/ui/level-up.png":"L4Si","../../images/ui/storage-ui.png":"l1xg","../../images/ui/recycler-ui.png":"noxU","../../images/ui/description-ui.png":"rqZe","../../images/ui/documentation-ui.png":"E3ma","../../images/ui/oxygen-generator-ui.png":"dYrS","../../images/ui/health.png":"hCOT","../../images/ui/basics.png":"tcYH","../../images/ui/menu.png":"YcEf","../../images/ui/logo.png":"N5Ep","../../images/ui/item-robot.png":"raSj","../../images/ui/storage-level-up.png":"lynQ","../../audio/stone-hit.mp3":"mhX9","../../audio/stone-break/stone-break-1.mp3":"oGfi","../../audio/stone-break/stone-break-2.mp3":"e16U","../../audio/stone-break/stone-break-3.mp3":"qXYu","../../audio/stone-break/fall-stone-break.mp3":"ccHt","../../audio/plants/plant-break.mp3":"Fezn","../../audio/plants/plant-hit.mp3":"Mdb7","../../audio/plants/wave.mp3":"wmq4","../../audio/bonk.mp3":"GkZp","../../audio/hit/hit.mp3":"dGDn","../../audio/steps/1.mp3":"Js59","../../audio/steps/2.mp3":"z5Ql","../../audio/steps/3.mp3":"Y3GC","../../audio/gear/storage.mp3":"m6nY","../../audio/gear/store.mp3":"kTm5","../../audio/gear/craft.mp3":"STXI","../../audio/gear/error.mp3":"hhqH","../../audio/robot/motor.mp3":"WCli","../../audio/robot/motor-start.mp3":"hebx"}],"FxBD":[function(require,module,exports) {
+},{"../../images/player/stay.png":"xMOE","../../images/player/walk.png":"mEpo","../../images/player/dead.png":"C18s","../../images/entities/robot.png":"Wr6M","../../images/ores/stone.png":"Qntg","../../images/ores/stony-ground.png":"KP9j","../../images/ores/basalt.png":"EsJD","../../images/ores/deep-stone.png":"m5Mc","../../images/ores/burnt-basalt.png":"yhR6","../../images/ores/destrony.png":"zgKj","../../images/ores/manty.png":"pf9J","../../images/ores/fetus-stone.png":"bOsc","../../images/ores/mushroom-stone.png":"k7Mm","../../images/ores/cracked-stone.png":"y0PF","../../images/ores/cidium.png":"FU7E","../../images/ores/osmy.png":"Zvcg","../../images/ores/antin.png":"balx","../../images/ores/rady.png":"DTH9","../../images/ores/nerius.png":"jfHw","../../images/raw/raw-cidium.png":"DgoW","../../images/raw/raw-grade-cidium.png":"DJ58","../../images/raw/raw-osmy.png":"mpJt","../../images/raw/raw-antin.png":"ZWGs","../../images/raw/raw-rady.png":"SrSE","../../images/raw/raw-nerius.png":"ceSm","../../images/raw/raw-manty.png":"h5i8","../../images/ready/ready-cidium.png":"y0Dq","../../images/items/battery.png":"PKyT","../../images/items/drill.png":"vK4S","../../images/items/box.png":"rR8W","../../images/items/card.png":"z9wQ","../../images/flora/fetus-vine.png":"waqs","../../images/flora/mushroom.png":"yylR","../../images/flora/infection.png":"EKNy","../../images/flora/datura.png":"GvwK","../../images/flora/plants.png":"ObKq","../../images/flora/stalactite.png":"aveX","../../images/flora/datura-tongue.png":"qtzW","../../images/food/food-fetus.png":"bcsP","../../images/environment/ground.png":"aLvf","../../images/environment/dome.png":"Q6m3","../../images/environment/under-stone.png":"L1K5","../../images/environment/disputes.png":"wYG8","../../images/gear/gear-storage-1.png":"G9tz","../../images/gear/gear-recycler-1.png":"FBe0","../../images/gear/gear-oxygen-generator-1.png":"X9Py","../../images/gear/gear-storage-1-outline.png":"j56s","../../images/gear/gear-recycler-1-outline.png":"fxXd","../../images/gear/gear-oxygen-generator-1-outline.png":"EdKv","../../images/gear/gear-documentation-1.png":"fkgg","../../images/gear/gear-documentation-1-outline.png":"ro1N","../../images/ui/interact.png":"y1NG","../../images/ui/close.png":"rLvC","../../images/ui/drop.png":"E7cs","../../images/ui/craft.png":"X2nc","../../images/ui/button.png":"R1BN","../../images/ui/tools.png":"omch","../../images/ui/bottle.png":"arpR","../../images/ui/damage.png":"nxFT","../../images/ui/level-up.png":"L4Si","../../images/ui/storage-ui.png":"l1xg","../../images/ui/recycler-ui.png":"noxU","../../images/ui/description-ui.png":"rqZe","../../images/ui/documentation-ui.png":"E3ma","../../images/ui/oxygen-generator-ui.png":"dYrS","../../images/ui/health.png":"hCOT","../../images/ui/basics.png":"tcYH","../../images/ui/menu.png":"YcEf","../../images/ui/logo.png":"N5Ep","../../images/ui/gps.png":"XLZT","../../images/ui/item-robot.png":"raSj","../../images/ui/storage-level-up.png":"lynQ","../../images/ui/home-icon.png":"pDaz","../../audio/stone-hit.mp3":"mhX9","../../audio/stone-break/stone-break-1.mp3":"oGfi","../../audio/stone-break/stone-break-2.mp3":"e16U","../../audio/stone-break/stone-break-3.mp3":"qXYu","../../audio/stone-break/fall-stone-break.mp3":"ccHt","../../audio/plants/plant-break.mp3":"Fezn","../../audio/plants/plant-hit.mp3":"Mdb7","../../audio/plants/wave.mp3":"wmq4","../../audio/bonk.mp3":"GkZp","../../audio/hit/hit.mp3":"dGDn","../../audio/steps/1.mp3":"Js59","../../audio/steps/2.mp3":"z5Ql","../../audio/steps/3.mp3":"Y3GC","../../audio/gear/storage.mp3":"m6nY","../../audio/gear/store.mp3":"kTm5","../../audio/gear/craft.mp3":"STXI","../../audio/gear/error.mp3":"hhqH","../../audio/robot/motor.mp3":"WCli","../../audio/robot/motor-start.mp3":"hebx"}],"FxBD":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.VERSION = exports.OreSettings = exports.ItemSettings = exports.GeneratorConfig = exports.Config = exports.Color = void 0;
-var VERSION = "1.2.0";
+var VERSION = "1.2.1";
 exports.VERSION = VERSION;
 var Config;
 exports.Config = Config;
@@ -714,14 +727,16 @@ exports.Config = Config;
   Config[Config["TEST_GEARS"] = 0] = "TEST_GEARS";
   Config[Config["ALLOW_HUNK"] = 0] = "ALLOW_HUNK"; // World size and chunks size in blocks
 
-  Config[Config["WORLD_WIDTH"] = 82] = "WORLD_WIDTH";
-  Config[Config["WORLD_HEIGHT"] = 225] = "WORLD_HEIGHT";
+  Config[Config["WORLD_WIDTH"] = 140] = "WORLD_WIDTH";
+  Config[Config["WORLD_HEIGHT"] = 320] = "WORLD_HEIGHT";
   Config[Config["CHUNK_SIZE"] = 4] = "CHUNK_SIZE";
   Config[Config["SPRITE_SCALE"] = 5] = "SPRITE_SCALE";
   Config[Config["SPRITE_PIXEL_SIZE"] = 16] = "SPRITE_PIXEL_SIZE";
   Config[Config["SPRITE_SIZE"] = 80] = "SPRITE_SIZE";
   Config[Config["PARTICLES_GRAVITY"] = 0.4] = "PARTICLES_GRAVITY";
-  Config[Config["WORLD_X_CENTER"] = 3280] = "WORLD_X_CENTER";
+  Config[Config["WORLD_X_CENTER"] = 5600] = "WORLD_X_CENTER";
+  Config[Config["HOME_POSITION_X"] = Math.floor(Config.WORLD_X_CENTER)] = "HOME_POSITION_X";
+  Config[Config["HOME_POSITION_Y"] = -120] = "HOME_POSITION_Y";
   Config[Config["OXYGEN_GENERATOR_BATTERY_DEFUSE_TICK"] = 400] = "OXYGEN_GENERATOR_BATTERY_DEFUSE_TICK";
   Config[Config["OXYGEN_GENERATOR_OXYGEN_DEFUSE_TICK"] = 250] = "OXYGEN_GENERATOR_OXYGEN_DEFUSE_TICK";
   Config[Config["VINE_GROW_TICK"] = Config.IS_DEV ? 100 : 220] = "VINE_GROW_TICK";
@@ -737,12 +752,14 @@ exports.Config = Config;
   Config[Config["ROBOT_DAMAGE"] = 4] = "ROBOT_DAMAGE";
   Config[Config["ROBOT_HIT_SPEED"] = 10] = "ROBOT_HIT_SPEED";
   Config[Config["ROBOT_ALLOW_PICKUP_DELAY"] = 20] = "ROBOT_ALLOW_PICKUP_DELAY";
-  Config[Config["PICKUP_DISTANCE"] = 60] = "PICKUP_DISTANCE";
+  Config[Config["PICKUP_DISTANCE"] = 50] = "PICKUP_DISTANCE";
   Config[Config["WIRE_LENGTH"] = 60] = "WIRE_LENGTH";
   Config[Config["GEAR_INTERACT_DISTANCE"] = 85] = "GEAR_INTERACT_DISTANCE";
   Config[Config["DOME_DIAMETER"] = 480] = "DOME_DIAMETER";
   Config[Config["GROUND_HEIGHT"] = 160] = "GROUND_HEIGHT";
   Config[Config["OXYGEN_HUNGRY_TIME"] = Config.IS_DEV ? 4 : 60] = "OXYGEN_HUNGRY_TIME";
+  Config[Config["GPS_MARKERS_DISTANCE"] = 400] = "GPS_MARKERS_DISTANCE";
+  Config[Config["MAX_GPS_MARKERS"] = 20] = "MAX_GPS_MARKERS";
   Config[Config["ITEMS_LIVE_TIME"] = 800] = "ITEMS_LIVE_TIME";
   Config[Config["ORE_FALL_DELAY"] = 30] = "ORE_FALL_DELAY";
   Config[Config["DEFAULT_ANIMATION_SPEED"] = 8] = "DEFAULT_ANIMATION_SPEED";
@@ -754,8 +771,9 @@ exports.GeneratorConfig = GeneratorConfig;
 
 (function (GeneratorConfig) {
   GeneratorConfig[GeneratorConfig["LAYERS_BLEND_HEIGHT"] = 10] = "LAYERS_BLEND_HEIGHT";
-  GeneratorConfig[GeneratorConfig["BASALT_LAYER_HEIGHT"] = 150] = "BASALT_LAYER_HEIGHT";
-  GeneratorConfig[GeneratorConfig["BURNT_BASALT_LAYER_HEIGHT"] = 220] = "BURNT_BASALT_LAYER_HEIGHT";
+  GeneratorConfig[GeneratorConfig["DEEP_STONE_LAYER_HEIGHT"] = 70] = "DEEP_STONE_LAYER_HEIGHT";
+  GeneratorConfig[GeneratorConfig["BASALT_LAYER_HEIGHT"] = 190] = "BASALT_LAYER_HEIGHT";
+  GeneratorConfig[GeneratorConfig["BURNT_BASALT_LAYER_HEIGHT"] = 315] = "BURNT_BASALT_LAYER_HEIGHT";
 })(GeneratorConfig || (exports.GeneratorConfig = GeneratorConfig = {}));
 
 var Color;
@@ -1272,7 +1290,7 @@ exports.asImage = asImage;
 exports.assetIsValid = assetIsValid;
 exports.buildName = buildName;
 exports.chance = chance;
-exports.clamp = clamp;
+exports.clamp = _clamp;
 exports.compareNames = compareNames;
 exports.inChunkIdToPosition = inChunkIdToPosition;
 exports.inRange = inRange;
@@ -1376,6 +1394,11 @@ var Vector2 = /*#__PURE__*/function () {
       if (this.x < 0 && this.y < 0) return Math.PI + Math.atan(this.y / this.x);
       if (this.x > 0 && this.y < 0) return Math.PI * 3 / 2 + Math.abs(Math.atan(this.x / this.y));
       return 0;
+    }
+  }, {
+    key: "clamp",
+    value: function clamp(xMin, xMax, yMin, yMax) {
+      return new Vector2(_clamp(this.x, xMin, xMax), _clamp(this.y, yMin, yMax));
     }
   }], [{
     key: "add",
@@ -1499,7 +1522,7 @@ function chance(percent) {
   return randomInt(0, 100) <= percent;
 }
 
-function clamp(value, min, max) {
+function _clamp(value, min, max) {
   if (value < min) return min;else if (value > max) return max;else return value;
 }
 
@@ -1881,8 +1904,9 @@ var Sprite = /*#__PURE__*/function (_Point) {
         return;
       }
 
-      if (this.game.tick(speed || _config.Config.DEFAULT_ANIMATION_SPEED)) {
-        // const allow = safeValue(loop, true);
+      var tick = speed || _config.Config.DEFAULT_ANIMATION_SPEED;
+
+      if (this.game.tick(tick)) {
         this.frame.x += reversed ? -1 : 1;
         if (this.frame.x < 0) this.frame.x = framesCount;
         if (this.frame.x >= framesCount && (0, _math.safeValue)(loop, true)) this.frame.x = 0;
@@ -1977,7 +2001,8 @@ var Container = /*#__PURE__*/function () {
   }, {
     key: "add",
     value: function add(child) {
-      this.children.push(child);
+      this.children.push(child); // child.init();
+
       return child;
     }
   }, {
@@ -2179,7 +2204,8 @@ var Renderer = /*#__PURE__*/function () {
       canvas.height = window.innerHeight;
       document.body.appendChild(canvas);
       var context = canvas.getContext("2d");
-      context.imageSmoothingEnabled = false;
+      context.imageSmoothingEnabled = false; // new ImageData()
+
       return {
         render: true,
         canvas: canvas,
@@ -2303,6 +2329,28 @@ var Renderer = /*#__PURE__*/function () {
       var h = window.innerHeight / 2;
       context.moveTo(props.points[0].x - this.getCameraPosition(props.layer).x + w, props.points[0].y - this.getCameraPosition(props.layer).y + h);
       context.lineTo(props.points[1].x - this.getCameraPosition(props.layer).x + w, props.points[1].y - this.getCameraPosition(props.layer).y + h);
+      context.stroke();
+      context.beginPath();
+      context.restore();
+    }
+  }, {
+    key: "drawWeb",
+    value: function drawWeb(props) {
+      if (!this.layers[props.layer || "game"].render) return;
+      var context = this.getContext(props.layer);
+      context.save();
+      context.globalAlpha = (0, _math.safeValue)(props.opacity, 1);
+      context.lineWidth = props.width;
+      context.strokeStyle = props.color || "#fff";
+      var w = window.innerWidth / 2;
+      var h = window.innerHeight / 2;
+      context.moveTo(props.points[0].x - this.getCameraPosition(props.layer).x + w, props.points[0].y - this.getCameraPosition(props.layer).y + h);
+
+      for (var i = 1; i < props.points.length - 1; i++) {
+        context.lineTo(props.points[i].x - this.getCameraPosition(props.layer).x + w, props.points[i].y - this.getCameraPosition(props.layer).y + h);
+      }
+
+      context.lineTo(props.points[props.points.length - 1].x - this.getCameraPosition(props.layer).x + w, props.points[props.points.length - 1].y - this.getCameraPosition(props.layer).y + h);
       context.stroke();
       context.beginPath();
       context.restore();
@@ -2486,7 +2534,7 @@ var Generator = /*#__PURE__*/function () {
 
 
       this.chunks.map(function (chunk, index) {
-        if (_this.game.camera.position.distance(chunk.pos.mul(_config.Config.SPRITE_SIZE * _config.Config.CHUNK_SIZE)) > 700) {
+        if (_this.game.camera.position.distance(chunk.pos.mul(_config.Config.SPRITE_SIZE * _config.Config.CHUNK_SIZE)) > 800) {
           _this.game.removeChildrenByGroupName(chunk.group);
 
           _this.chunks.splice(index, 1);
@@ -2588,7 +2636,8 @@ var Generator = /*#__PURE__*/function () {
     key: "changeSeed",
     value: function changeSeed() {
       var needSeed = this.game.loadKey("seed", Date.now());
-      this.seed = _config.Config.IS_DEV ? 1636721068016 : typeof needSeed == "number" ? needSeed : Date.now();
+      this.seed = typeof needSeed == "number" ? needSeed : Date.now(); // this.seed = Config.IS_DEV ? 1636721068016 : (typeof needSeed == "number" ? needSeed : Date.now());
+
       (0, _noise.seed)(this.seed);
       this.game.saveKey("seed", this.seed.toString());
       console.log("%c\u0421\u0438\u0434 \u043C\u0438\u0440\u0430: ".concat(this.seed), "background: ".concat(_config.Color.BLACK, ";color: ").concat(_config.Color.YELLOW, ";padding:15px;font-size:20px;"));
@@ -3246,6 +3295,7 @@ exports.Particle = void 0;
 exports.SpawnCrumbleParticles = SpawnCrumbleParticles;
 exports.SpawnDisputesParticles = SpawnDisputesParticles;
 exports.SpawnParticles = SpawnParticles;
+exports.SpawnUpgradeParticles = SpawnUpgradeParticles;
 
 var _math = require("../utils/math");
 
@@ -3299,8 +3349,8 @@ var Particle = /*#__PURE__*/function () {
       this.opacity -= this.downOpacity;
       this.velocity.x *= .99;
       this.velocity.y *= .99;
-      this.position.x += this.velocity.x;
-      this.position.y += this.velocity.y;
+      this.position.x += this.velocity.x * game.clock.delta * 60;
+      this.position.y += this.velocity.y * game.clock.delta * 60;
     }
   }]);
 
@@ -3353,6 +3403,27 @@ function SpawnDisputesParticles(game, position, intensity) {
     opacity: 3 * (0, _math.safeValue)(intensity, 1),
     downSize: .002,
     downOpacity: .01
+  });
+}
+
+function SpawnUpgradeParticles(game, position) {
+  SpawnParticles(game, position, {
+    render: function render(renderer, part) {
+      renderer.drawSprite({
+        texture: (0, _math.asImage)(game.getAssetByName("level-up")),
+        position: part.position,
+        opacity: part.size,
+        scale: _math.Vector2.all(.8),
+        layer: "particles"
+      });
+    },
+    velocity: function velocity() {
+      return new _math.Vector2(0, -1.5);
+    },
+    size: [5, 5],
+    downSize: .08,
+    count: 1,
+    gravity: 0
   });
 }
 },{"../utils/math":"NgPq","../../config":"FxBD"}],"uf1p":[function(require,module,exports) {
@@ -3424,6 +3495,7 @@ var Entity = /*#__PURE__*/function (_Sprite) {
     _this.dead = false;
     _this.interest = true;
     _this.regaining = false;
+    _this.eating = false;
     _this.movement = new _math.Vector2();
     _this.allowMove = true;
     _this.allowAnimate = true;
@@ -3498,15 +3570,14 @@ var Entity = /*#__PURE__*/function (_Sprite) {
       if (this.damaged) return;
       this.hp -= damage;
       this.damaged = true;
+      this.sound.play(this.game, (0, _math.chance)(1) ? "bonk" : "hit");
       this.spawnText("-".concat(damage), undefined, _config.Color.RED);
+      if (this.hp <= 0) this.die();
     }
   }, {
     key: "die",
     value: function die() {
-      if (this.dead) return;
-      this.allowMove = false;
-      this.interest = false;
-      this.dead = true;
+      this.game.removeChildById(this.id);
     }
   }, {
     key: "bounds",
@@ -3800,6 +3871,18 @@ var UI = /*#__PURE__*/function () {
       });
     }
   }, {
+    key: "renderGroup",
+    value: function renderGroup(pos, renders, gap, type) {
+      var t = type || "row";
+      renders.filter(function (props) {
+        return props[0];
+      }).map(function (renderProps, i) {
+        var offset = i * (_config.Config.SPRITE_SIZE + (gap || 20));
+        renderProps[1](pos.add(new _math.Vector2(t == "row" ? offset : 0, t == "column" ? offset : 0)));
+      });
+    } //
+
+  }, {
     key: "spawnMessageText",
     value: function spawnMessageText(text) {
       (0, _Particles.SpawnParticles)(this.game, new _math.Vector2(20, innerHeight - 40), {
@@ -3835,25 +3918,27 @@ var UI = /*#__PURE__*/function () {
   }, {
     key: "sprite",
     value: function sprite(assetName, props) {
-      this.game.renderer.drawSprite(Object.assign(Object.assign({}, props), {
-        layer: "ui",
+      this.game.renderer.drawSprite(Object.assign(Object.assign({
+        layer: "ui"
+      }, props), {
         texture: (0, _math.asImage)(this.game.getAssetByName(assetName))
       }));
     }
   }, {
     key: "text",
     value: function text(_text, props) {
-      this.game.renderer.drawText(Object.assign(Object.assign({}, props), {
-        layer: "ui",
+      this.game.renderer.drawText(Object.assign(Object.assign({
+        layer: "ui"
+      }, props), {
         text: _text
       }));
     }
   }, {
     key: "rect",
     value: function rect(props) {
-      this.game.renderer.drawRect(Object.assign(Object.assign({}, props), {
+      this.game.renderer.drawRect(Object.assign({
         layer: "ui"
-      }));
+      }, props));
     }
   }]);
 
@@ -4363,6 +4448,10 @@ var _Robot = require("./Robot");
 
 var _engine = require("../../engine");
 
+var _Particles = require("../../engine/components/Particles");
+
+var _UI = require("../../engine/components/UI");
+
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -4422,7 +4511,7 @@ var tools = {
   },
   "5": {
     speed: 5,
-    damage: 20
+    damage: 80
   },
   "6": {
     speed: 16,
@@ -4447,6 +4536,8 @@ var Player = /*#__PURE__*/function (_Entity) {
     _this.hp = 12;
     _this.oxygenHungry = false;
     _this.oxygenHungryTimer = new _engine.Timer(_config.Config.OXYGEN_HUNGRY_TIME);
+    _this.god = false;
+    _this.ui = new _UI.UI();
     _this.respawnTimer = new _engine.Timer(_config.Config.RESPAWN_TIME);
     _this.animatedDieUI = 0;
     _this.tries = 2;
@@ -4456,7 +4547,6 @@ var Player = /*#__PURE__*/function (_Entity) {
       totalCount: 0,
       slots: {}
     };
-    _this.hasBottle = false;
     _this.toolLevel = _config.Config.ALLOW_HUNK ? 5 : 1;
     _this.allowPlaceRobot = false;
     _this.allowEatFood = false;
@@ -4467,6 +4557,9 @@ var Player = /*#__PURE__*/function (_Entity) {
       "place": "установить",
       "eat": "съесть"
     };
+    _this.hasGps = false;
+    _this.hasBottle = false;
+    _this.gpsMarkers = [new _math.Vector2(_config.Config.HOME_POSITION_X, _config.Config.HOME_POSITION_Y)];
     _this.damageAnimatedOpacity = 0;
     _this.animatedCameraRotation = 0;
     _this.animatedTimerScale = 1;
@@ -4475,12 +4568,11 @@ var Player = /*#__PURE__*/function (_Entity) {
         if (e.code == "KeyT") {
           _this.collider.collidable = !_this.collider.collidable;
           _this.moveSpeed = !_this.collider.collidable ? 60 : _this.initialMoveSpeed;
-          _this.toolLevel = 6;
+          _this.toolLevel = 5; // this.hasBottle = true;
 
-          var storage = _this.game.getChildById("gear-storage");
-
-          if (!storage) return;
-          storage.contains = {
+          _this.hasGps = true;
+          _this.god = true;
+          _this.storage.contains = {
             totalCount: 0,
             slots: {
               "raw-grade-cidium": {
@@ -4498,6 +4590,9 @@ var Player = /*#__PURE__*/function (_Entity) {
               "food-fetus": {
                 count: 2
               },
+              "raw-cidium": {
+                count: 2
+              },
               "raw-manty": {
                 count: 1
               },
@@ -4506,7 +4601,8 @@ var Player = /*#__PURE__*/function (_Entity) {
               }
             }
           };
-          storage.calculateTotalCount();
+
+          _this.storage.calculateTotalCount();
         }
       }
     });
@@ -4520,6 +4616,7 @@ var Player = /*#__PURE__*/function (_Entity) {
 
       _get(_getPrototypeOf(Player.prototype), "init", this).call(this);
 
+      this.ui.init(this.game);
       var tries = this.game.loadKey("tries", 2);
       this.tries = tries <= 0 ? 2 : tries;
       this.hp = this.game.loadKey("player-hp", 12);
@@ -4568,19 +4665,24 @@ var Player = /*#__PURE__*/function (_Entity) {
       }
 
       if (this.regaining) {
-        this.playAnimation("player-dead", 5, 26, false, true);
+        this.playAnimation("player-dead", 5, 26, false, true); // Awake
 
         if (this.frame.x <= 0) {
           this.regaining = false;
           this.allowMove = true;
           this.interest = true;
+          this.inventory = {
+            totalCount: 0,
+            slots: {}
+          };
         }
       }
 
       this.movement.set(+this.game.gamepad.keys.right - +this.game.gamepad.keys.left, +this.game.gamepad.keys.down - +this.game.gamepad.keys.up);
       this.move();
       this.pullWire();
-      this.changeActionType();
+      this.changeActionType(); // this.putGpsMarkers();
+
       this.allowEatFood = this.checkItemInInventory("food-fetus") && this.hp <= 11;
       this.allowPlaceRobot = this.position.y > 20; // Oxygen hungry
 
@@ -4646,7 +4748,9 @@ var Player = /*#__PURE__*/function (_Entity) {
     key: "pullWire",
     value: function pullWire() {
       if (this.position.distance(this.wire) > _config.Config.WIRE_LENGTH) {
-        this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown)));
+        var to = this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown);
+        this.wire.x += to.x;
+        this.wire.y += to.y; // this.wire.copy(this.wire.add(this.position.sub(this.wire).normalize().mul(this.moveSpeed - this.moveSpeedDown)));
       }
     }
   }, {
@@ -4655,13 +4759,10 @@ var Player = /*#__PURE__*/function (_Entity) {
       if (!this.damaged) {
         this.damageAnimatedOpacity = 1.5;
         this.game.camera.shake();
-        this.sound.play(this.game, (0, _math.chance)(1) ? "bonk" : "hit");
         this.saveData();
       }
 
       _get(_getPrototypeOf(Player.prototype), "hit", this).call(this, damage);
-
-      if (this.hp <= 0) this.die();
     }
   }, {
     key: "die",
@@ -4673,9 +4774,9 @@ var Player = /*#__PURE__*/function (_Entity) {
       this.oxygenHungryTimer.reset();
       this.animatedDieUI = -6;
       this.allowMove = false;
-
-      _get(_getPrototypeOf(Player.prototype), "die", this).call(this);
-
+      this.allowMove = false;
+      this.interest = false;
+      this.dead = true;
       this.saveData();
     }
   }, {
@@ -4691,10 +4792,15 @@ var Player = /*#__PURE__*/function (_Entity) {
       this.frame.x = 5;
       this.interest = false;
       this.dead = false;
-      this.regaining = true; // this.allowMove = true;
-
+      this.regaining = true;
       this.position.copy(this.startPosition);
+      this.wire.copy(this.position.expand());
       this.game.camera.position.copy(this.position);
+      this.inventory = {
+        totalCount: 0,
+        slots: {}
+      };
+      this.gpsMarkers = [new _math.Vector2(_config.Config.HOME_POSITION_X, _config.Config.HOME_POSITION_Y)];
       this.saveData();
     }
   }, {
@@ -4725,7 +4831,9 @@ var Player = /*#__PURE__*/function (_Entity) {
   }, {
     key: "upgradeTool",
     value: function upgradeTool(levelUp) {
-      if (this.toolLevel < MaxToolLevel) this.toolLevel += levelUp;
+      if (this.toolLevel >= MaxToolLevel) return;
+      this.toolLevel += levelUp;
+      (0, _Particles.SpawnUpgradeParticles)(this.game, this.position);
       this.saveData();
     }
   }, {
@@ -4792,50 +4900,99 @@ var Player = /*#__PURE__*/function (_Entity) {
       if (this.oxygenHungry) {
         if (this.oxygenHungryTimer.isTriggered()) this.die();
       }
+    }
+  }, {
+    key: "putGpsMarkers",
+    value: function putGpsMarkers() {
+      var _this5 = this;
+
+      if (!this.hasGps) return;
+      var near = this.gpsMarkers.filter(function (marker) {
+        return _this5.position.distance(marker) < _config.Config.GPS_MARKERS_DISTANCE;
+      });
+
+      if (near.length == 0) {
+        this.gpsMarkers.push(this.position.expand());
+        if (this.gpsMarkers.length > _config.Config.MAX_GPS_MARKERS) this.gpsMarkers.splice(0, 1);
+      }
     } // > Render
 
   }, {
     key: "renderUI",
     value: function renderUI() {
+      var _this6 = this;
+
       if (this.dead && this.respawnTimer.started) this.renderDieUI();
       if (this.game.paused) return;
       var size = _config.Config.SPRITE_SIZE;
       var windowCenter = new _math.Vector2(innerWidth / 2, innerHeight / 2);
-      if (this.oxygenHungry) this.renderOxygenHungryUI();
-      this.renderHealthUI(); // Tip text
+      this.renderOxygenHungryUI();
+      this.renderHealthUI();
+      this.renderGpsUI(); // Tip text
 
-      if (this.actionType && this.actionText[this.actionType.name]) this.game.renderer.drawText({
-        text: "[OK] - ".concat(this.actionText[this.actionType.name]),
-        position: new _math.Vector2(0, 150).add(windowCenter),
-        layer: "ui"
-      }); // Tool level
+      if (this.actionType && this.actionText[this.actionType.name]) this.ui.text("[OK] - ".concat(this.actionText[this.actionType.name]), {
+        position: new _math.Vector2(0, 150).add(windowCenter)
+      }); //
 
-      this.game.renderer.drawSprite({
-        texture: (0, _math.asImage)(this.game.getAssetByName("tools")),
-        position: new _math.Vector2(size, innerHeight - size),
-        layer: "ui"
-      });
-      this.game.renderer.drawText({
-        text: this.toolLevel + "ур.",
-        position: new _math.Vector2(size, innerHeight - size).add(_math.Vector2.all(size * .3)),
-        font: "22px Pixel",
-        layer: "ui"
-      }); // Bottle
+      this.ui.renderGroup(new _math.Vector2(size, size), [[true, function (pos) {
+        // Tool level
+        _this6.ui.sprite("tools", {
+          position: pos
+        });
 
-      if (this.hasBottle) this.game.renderer.drawSprite({
-        texture: (0, _math.asImage)(this.game.getAssetByName("bottle")),
-        position: new _math.Vector2(size * 2 + 20, innerHeight - size),
-        layer: "ui"
-      }); // Damage vignette
+        _this6.ui.text(_this6.toolLevel + "ур.", {
+          position: pos.add(_math.Vector2.all(size * .3)),
+          font: "22px Pixel"
+        });
+      }], [this.hasBottle, function (pos) {
+        _this6.ui.sprite("bottle", {
+          position: pos
+        });
+      }], [this.hasGps, function (pos) {
+        _this6.ui.sprite("gps", {
+          position: pos
+        });
+      }]]); // Damage vignette
 
-      this.game.renderer.drawSprite({
-        texture: (0, _math.asImage)(this.game.getAssetByName("damage")),
+      this.ui.sprite("damage", {
         width: innerWidth / _config.Config.SPRITE_SIZE,
         height: innerHeight / _config.Config.SPRITE_SIZE,
         position: new _math.Vector2(innerWidth / 2, innerHeight / 2),
-        layer: "ui",
         framed: false,
         opacity: this.damageAnimatedOpacity
+      });
+    }
+  }, {
+    key: "renderGpsUI",
+    value: function renderGpsUI() {
+      if (!this.hasGps) return; // Home icon
+
+      var paddings = 120;
+      var windowCenter = new _math.Vector2(innerWidth / 2, innerHeight / 2);
+      var screenOffset = new _math.Vector2(this.game.camera.position.x, this.game.camera.position.y);
+      var homePos = new _math.Vector2(_config.Config.HOME_POSITION_X, _config.Config.HOME_POSITION_Y);
+      var homeScreenPos = homePos.sub(screenOffset).add(windowCenter);
+
+      if (!(homeScreenPos.x >= paddings && homeScreenPos.x <= innerWidth - paddings) || !(homeScreenPos.y >= paddings && homeScreenPos.y <= innerHeight - paddings)) {
+        var pos = homeScreenPos.clamp(paddings, innerWidth - paddings, paddings, innerHeight - paddings);
+        this.ui.sprite("home-icon", {
+          position: pos,
+          scale: _math.Vector2.all(.8)
+        });
+        this.ui.text(Math.floor(this.position.distance(homePos) / _config.Config.SPRITE_SIZE).toString(), {
+          position: pos.add(new _math.Vector2(0, 40))
+        });
+      }
+    }
+  }, {
+    key: "renderGpsMarkers",
+    value: function renderGpsMarkers() {
+      var lastMarker = this.gpsMarkers[this.gpsMarkers.length - 1];
+      var allowLineToPlayer = lastMarker ? this.position.distance(lastMarker) < _config.Config.GPS_MARKERS_DISTANCE : false;
+      this.game.renderer.drawWeb({
+        points: [].concat(_toConsumableArray(this.gpsMarkers), _toConsumableArray(allowLineToPlayer ? [this.position.expand()] : [])),
+        width: 2,
+        layer: "particles"
       });
     }
   }, {
@@ -4844,9 +5001,12 @@ var Player = /*#__PURE__*/function (_Entity) {
       var size = _config.Config.SPRITE_SIZE;
       var windowCenter = new _math.Vector2(innerWidth / 2, innerHeight / 2); // this.animatedDieUI = 10;
 
-      this.animatedDieUI = (0, _math.clamp)((0, _math.lerp)(this.animatedDieUI, 4, .005), 0, 4); // BG
+      this.animatedDieUI = (0, _math.clamp)((0, _math.lerp)(this.animatedDieUI, 4, .005), 0, 4);
+      var titleText = this.tries > 0 ? "Все совершают ошибки..." : "Все совершают ошибки, на которые нужен шанс...";
+      var subtitleText = this.tries > 0 ? "Последний шанс, чтобы их исправить" : "Шанс, который вы упустили";
+      var timerText = this.tries > 0 ? "\u0422\u0435\u0431\u044F \u043F\u0440\u0438\u0432\u0435\u0434\u0443\u0442 \u0432 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u0435 \u0447\u0435\u0440\u0435\u0437:\n0:".concat(this.respawnTimer.elapsedSeconds) : "\u0422\u0435\u0431\u044F \u0437\u0430\u043C\u0435\u043D\u0438\u0442 \u0434\u0440\u0443\u0433\u043E\u0439 \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u0435\u0446 \u0447\u0435\u0440\u0435\u0437:\n0:".concat(this.respawnTimer.elapsedSeconds); // BG
 
-      this.game.renderer.drawRect({
+      this.ui.rect({
         color: "#000",
         width: innerWidth / size,
         height: innerHeight / size,
@@ -4855,8 +5015,7 @@ var Player = /*#__PURE__*/function (_Entity) {
         opacity: (0, _math.clamp)(this.animatedDieUI, .5, 1.5) - .5
       }); // Texts
 
-      this.game.renderer.drawText({
-        text: this.tries > 0 ? "Все совершают ошибки..." : "Все совершают ошибки, на которые нужен шанс...",
+      this.ui.text(titleText, {
         font: "34px Pixel",
         opacity: (0, _math.clamp)(this.animatedDieUI, 1, 2) - 1,
         stroke: {
@@ -4866,8 +5025,7 @@ var Player = /*#__PURE__*/function (_Entity) {
         position: new _math.Vector2().add(windowCenter),
         layer: "upper-ui"
       });
-      this.game.renderer.drawText({
-        text: this.tries > 0 ? "Последний шанс, чтобы их исправить" : "Шанс, который вы упустили",
+      this.ui.text(subtitleText, {
         opacity: (0, _math.clamp)(this.animatedDieUI, 1.5, 2.5) - 1.5,
         stroke: {
           width: 0,
@@ -4876,8 +5034,7 @@ var Player = /*#__PURE__*/function (_Entity) {
         position: new _math.Vector2(0, 30).add(windowCenter),
         layer: "upper-ui"
       });
-      this.game.renderer.drawText({
-        text: this.tries > 0 ? "\u0422\u0435\u0431\u044F \u043F\u0440\u0438\u0432\u0435\u0434\u0443\u0442 \u0432 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u0435 \u0447\u0435\u0440\u0435\u0437:\n0:".concat(this.respawnTimer.elapsedSeconds) : "\u0422\u0435\u0431\u044F \u0437\u0430\u043C\u0435\u043D\u0438\u0442 \u0434\u0440\u0443\u0433\u043E\u0439 \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u0435\u0446 \u0447\u0435\u0440\u0435\u0437:\n0:".concat(this.respawnTimer.elapsedSeconds),
+      this.ui.text(timerText, {
         opacity: (0, _math.clamp)(this.animatedDieUI, 2.5, 3.5) - 2.5,
         stroke: {
           width: 0,
@@ -4891,39 +5048,36 @@ var Player = /*#__PURE__*/function (_Entity) {
     key: "renderHealthUI",
     value: function renderHealthUI() {
       var size = _config.Config.SPRITE_SIZE;
+      var pos = new _math.Vector2(innerWidth - size, size);
 
       for (var i = 0; i < 4; i++) {
         var frame = 0;
         if (i == 0 && this.hp <= 11 || i == 1 && this.hp <= 8 || i == 2 && this.hp <= 5 || i == 3 && this.hp <= 1) frame = 1;
         if (i == 0 && this.hp <= 9 || i == 1 && this.hp <= 6 || i == 2 && this.hp <= 3 || i == 3 && this.hp <= 0) frame = 2;
         var sine = Math.sin(this.game.clock.elapsed / 10 + i) * 2 * frame;
-        this.game.renderer.drawSprite({
-          texture: (0, _math.asImage)(this.game.getAssetByName("health")),
+        this.ui.sprite("health", {
           frame: new _math.Vector2(frame),
           scale: _math.Vector2.all(.8),
-          position: new _math.Vector2(innerWidth - size - i * size * .6, innerHeight - size + sine),
-          layer: "ui"
+          position: pos.add(new _math.Vector2(-i * size * .6, sine))
         });
       }
     }
   }, {
     key: "renderOxygenHungryUI",
     value: function renderOxygenHungryUI() {
+      if (!this.oxygenHungry) return;
       this.animatedTimerScale = (0, _math.lerp)(this.animatedTimerScale, 1, .2);
       if (this.oxygenHungryTimer.elapsed / 60 % 1 == 0) this.animatedTimerScale = this.oxygenHungryTimer.elapsedSeconds < 20 ? 1.5 : 1.2;
-      this.game.renderer.drawText({
-        text: "Кислородное голодание!",
+      this.ui.text("Кислородное голодание!", {
         position: new _math.Vector2(innerWidth / 2, 100),
         font: "24px Pixel",
         layer: "upper-ui"
       });
-      this.game.renderer.drawText({
-        text: "\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u044F\u0435\u0442\u0435 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u0435 \u0447\u0435\u0440\u0435\u0437:",
+      this.ui.text("\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u044F\u0435\u0442\u0435 \u0441\u043E\u0437\u043D\u0430\u043D\u0438\u0435 \u0447\u0435\u0440\u0435\u0437:", {
         position: new _math.Vector2(innerWidth / 2, 130),
         layer: "upper-ui"
       });
-      this.game.renderer.drawText({
-        text: "0:".concat(Math.floor(this.oxygenHungryTimer.elapsedSeconds)),
+      this.ui.text("0:".concat(Math.floor(this.oxygenHungryTimer.elapsedSeconds)), {
         position: new _math.Vector2(innerWidth / 2, 180),
         scale: _math.Vector2.all(this.animatedTimerScale),
         font: "30px Pixel",
@@ -4958,11 +5112,11 @@ var Player = /*#__PURE__*/function (_Entity) {
   }, {
     key: "reset",
     value: function reset() {
-      var _this5 = this;
+      var _this7 = this;
 
       this.toolLevel = 1;
       [].concat(_toConsumableArray(this.game.getChildrenByName("ore")), _toConsumableArray(this.game.getChildrenByName("item"))).map(function (child) {
-        _this5.game.removeChildById(child.id);
+        _this7.game.removeChildById(child.id);
       });
     }
   }]);
@@ -4971,7 +5125,7 @@ var Player = /*#__PURE__*/function (_Entity) {
 }(_Entity2.Entity);
 
 exports.Player = Player;
-},{"../../config":"FxBD","../../engine/utils/math":"NgPq","./Entity":"uf1p","./Robot":"DqRi","../../engine":"XaJu"}],"ZerP":[function(require,module,exports) {
+},{"../../config":"FxBD","../../engine/utils/math":"NgPq","./Entity":"uf1p","./Robot":"DqRi","../../engine":"XaJu","../../engine/components/Particles":"zRqz","../../engine/components/UI":"gi9E"}],"ZerP":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5022,7 +5176,7 @@ var ObjectNames = {
   "basics": {
     name: "Базовые знания",
     desc: "",
-    special: ["> Тебе достатачно подойти к руде,\nчтобы сломать её", "> Следите за запасом кислорода!\nИ не забывайте заряжать генератор\nпри помощи батареи", "> Остерегайтесь обрушений!", "> Следите за запасом здоровья.\nЧтобы вылечится достаточно съесть\nисцеляющий фрукт"]
+    special: ["> Следите за запасом кислорода!\nИ не забывайте заряжать генератор\nпри помощи батареи", "> Остерегайтесь обрушений!", "> Следите за запасом здоровья.\nЧтобы вылечится достаточно съесть\nисцеляющий фрукт"]
   },
   // Raw
   "raw-cidium": {
@@ -5062,11 +5216,11 @@ var ObjectNames = {
     desc: "Обработанный цидиум, способен генерировать энегрию. Используется в создании батареи и других крафтов"
   },
   // Recipes
-  "recipe-storage-level-up": {
+  "recipe-storage-upgrade": {
     name: "Улучшить хранилище",
     desc: "Улучшите своё хранилище для того, чтобы можно было хранить больше ресурсов и их типов."
   },
-  "recipe-tool-level-up": {
+  "recipe-tools-upgrade": {
     name: "Улучшить инструмент",
     desc: "Для того чтобы быстрее ломать руду прокачайте свой инструмент. Более новые уровни инструмента позволяют добывать больше типов руд"
   },
@@ -5074,6 +5228,10 @@ var ObjectNames = {
   "bottle": {
     name: "\"Специальная колба\"",
     desc: "Колба для сбора особо опасных руд. На пример таких, как радий"
+  },
+  "gps": {
+    name: "GPS",
+    desc: "Показывает, в какой стороне ваша база и автоматически ставит метки"
   },
   "battery": {
     name: "Батарея",
@@ -5089,7 +5247,7 @@ var ObjectNames = {
   },
   "card": {
     name: "Плата",
-    desc: "Умная плата для роботов"
+    desc: "Умная плата для различных приборов"
   },
   "item-robot": {
     name: "Робот",
@@ -5317,28 +5475,9 @@ var Gear = /*#__PURE__*/function (_Sprite) {
   }, {
     key: "upgrade",
     value: function upgrade(levelUp) {
-      var _this4 = this;
-
       if (this.level < MaxGearLevel) {
         this.level += levelUp;
-        (0, _Particles.SpawnParticles)(this.game, this.position, {
-          render: function render(renderer, part) {
-            renderer.drawSprite({
-              texture: (0, _math.asImage)(_this4.game.getAssetByName("level-up")),
-              position: part.position,
-              opacity: part.size,
-              scale: _math.Vector2.all(.8),
-              layer: "particles"
-            });
-          },
-          velocity: function velocity() {
-            return new _math.Vector2(0, -1.5);
-          },
-          size: [5, 5],
-          downSize: .08,
-          count: 1,
-          gravity: 0
-        });
+        (0, _Particles.SpawnUpgradeParticles)(this.game, this.position);
       }
     }
   }, {
@@ -6735,17 +6874,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _config = require("../../config");
-
-var _math = require("../../engine/utils/math");
-
 var _Player = require("../entities/Player");
 
 var _Gear = require("./Gear");
 
 var _Recycler = require("./Recycler");
 
-var recipes = function recipes(recycler) {
+function recipes(recycler) {
+  // return {};
+  // const player = recycler.game.getChildById<Player>("player");
+  // if (!player) return {};
   return {
     // Craft ready cidium
     "ready-cidium": new _Recycler.Recipe({
@@ -6814,7 +6952,7 @@ var recipes = function recipes(recycler) {
       }
     }),
     // Storage up
-    "recipe-storage-level-up": new _Recycler.Recipe({
+    "recipe-storage-upgrade": new _Recycler.Recipe({
       recipe: function recipe() {
         return [{
           "ready-cidium": {
@@ -6840,32 +6978,16 @@ var recipes = function recipes(recycler) {
       onCraft: function onCraft() {
         recycler.storage.upgrade(1);
       },
-      // Render icon
-      icon: function icon(game, pos, opacity) {
-        game.renderer.drawSprite({
-          texture: (0, _math.asImage)(game.getAssetByName("storage-level-up")),
-          position: pos,
-          width: 2,
-          height: 2,
-          scale: _math.Vector2.all(.7),
-          layer: "ui",
-          opacity: opacity
-        });
-        game.renderer.drawText({
-          text: "".concat(recycler.storage.level + 1, "\u0443\u0440."),
-          position: pos.add(_math.Vector2.all(_config.Config.SPRITE_SIZE * .3)),
-          layer: "ui"
-        });
-      },
+      type: "upgrade",
+      upgradeLevel: recycler.storage.level + 1,
+      iconSize: 1.4,
       isRemoved: function isRemoved() {
         return recycler.storage.level >= _Gear.MaxGearLevel;
       }
     }),
     // Tool up
-    "recipe-tool-level-up": new _Recycler.Recipe({
+    "recipe-tools-upgrade": new _Recycler.Recipe({
       recipe: function recipe() {
-        var _a;
-
         return [{
           "ready-cidium": {
             count: 3
@@ -6894,28 +7016,15 @@ var recipes = function recipes(recycler) {
             count: 3
           }
         } // Level 4
-        ][recycler.player ? ((_a = recycler.player) === null || _a === void 0 ? void 0 : _a.toolLevel) - 1 : 0];
+        ][recycler.player.toolLevel - 1];
       },
       onCraft: function onCraft() {
-        if (!recycler.player) return;
         recycler.player.upgradeTool(1);
       },
-      icon: function icon(game, pos, opacity) {
-        if (!recycler.player) return;
-        game.renderer.drawSprite({
-          texture: (0, _math.asImage)(game.getAssetByName("tools")),
-          position: pos,
-          layer: "ui",
-          opacity: opacity
-        });
-        game.renderer.drawText({
-          text: "".concat(recycler.player.toolLevel + 1, "\u0443\u0440."),
-          position: pos.add(_math.Vector2.all(_config.Config.SPRITE_SIZE * .3)),
-          layer: "ui"
-        });
-      },
+      type: "upgrade",
+      upgradeLevel: recycler.player.toolLevel + 1,
       isRemoved: function isRemoved() {
-        return recycler.player ? recycler.player.toolLevel >= _Player.MaxToolLevel : false;
+        return recycler.player.toolLevel >= _Player.MaxToolLevel;
       }
     }),
     // Craft bottle
@@ -6937,11 +7046,35 @@ var recipes = function recipes(recycler) {
         };
       },
       onCraft: function onCraft() {
-        if (!recycler.player) return;
         recycler.player.hasBottle = true;
       },
       isRemoved: function isRemoved() {
-        return recycler.player ? recycler.player.hasBottle : false;
+        return recycler.player.hasBottle;
+      }
+    }),
+    // Craft gps
+    "gps": new _Recycler.Recipe({
+      recipe: function recipe() {
+        return {
+          "ready-cidium": {
+            count: 3
+          },
+          "raw-osmy": {
+            count: 2
+          },
+          "box": {
+            count: 1
+          },
+          "card": {
+            count: 1
+          }
+        };
+      },
+      onCraft: function onCraft() {
+        recycler.player.hasGps = true;
+      },
+      isRemoved: function isRemoved() {
+        return recycler.player.hasGps;
       }
     }),
     // Craft robot
@@ -6961,17 +7094,14 @@ var recipes = function recipes(recycler) {
             count: 1
           }
         };
-      },
-      isRemoved: function isRemoved() {
-        return recycler.player ? recycler.player.hasBottle : false;
       }
     })
   };
-};
+}
 
 var _default = recipes;
 exports.default = _default;
-},{"../../config":"FxBD","../../engine/utils/math":"NgPq","../entities/Player":"p1IV","./Gear":"IWn5","./Recycler":"m2sq"}],"m2sq":[function(require,module,exports) {
+},{"../entities/Player":"p1IV","./Gear":"IWn5","./Recycler":"m2sq"}],"m2sq":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7033,7 +7163,57 @@ var Recycler = /*#__PURE__*/function (_Gear) {
     _this.ui.focused.slot = 1;
     _this.ui.focused.row = 10;
     _this.storage = storage;
-    _this.recipes = (0, _recipes.default)(_assertThisInitialized(_this));
+    _this.recipes = {
+      "ready-cidium": new Recipe({
+        recipe: function recipe() {
+          return {
+            "raw-cidium": {
+              count: 2
+            }
+          };
+        }
+      }),
+      // Craft battery
+      "battery": new Recipe({
+        recipe: function recipe() {
+          return {
+            "ready-cidium": {
+              count: 1
+            },
+            "raw-cidium": {
+              count: 2
+            }
+          };
+        }
+      }),
+      // Craft drill
+      "drill": new Recipe({
+        recipe: function recipe() {
+          return {
+            // "ready-cidium": { count: 1 },
+            "ready-cidium": {
+              count: 2
+            },
+            "raw-nerius": {
+              count: 2
+            }
+          };
+        }
+      }),
+      // Craft box
+      "box": new Recipe({
+        recipe: function recipe() {
+          return {
+            "ready-cidium": {
+              count: 1
+            },
+            "raw-nerius": {
+              count: 4
+            }
+          };
+        }
+      })
+    };
 
     _this.headerOffset.set(0, -_config.Config.SPRITE_SIZE);
 
@@ -7041,6 +7221,15 @@ var Recycler = /*#__PURE__*/function (_Gear) {
   }
 
   _createClass(Recycler, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(Recycler.prototype), "init", this).call(this);
+
+      var player = this.game.getChildById("player");
+      this.player = player;
+      this.recipes = (0, _recipes.default)(this);
+    }
+  }, {
     key: "onInteract",
     value: function onInteract() {
       _get(_getPrototypeOf(Recycler.prototype), "onInteract", this).call(this); // Open
@@ -7084,6 +7273,7 @@ var Recycler = /*#__PURE__*/function (_Gear) {
       _get(_getPrototypeOf(Recycler.prototype), "renderUI", this).call(this);
 
       var recipesKeys = this.getRecipesKeys();
+      if (recipesKeys.length == 0) return;
       this.actionButtonAssetName = this.ui.focused.row == 0 && this.ui.focused.slot == 0 ? "close" : "craft";
       this.tipText = this.actionButtonAssetName == "close" ? "закрыть" : "изготовить";
       this.ui.updateTemplate([1, (0, _math.clamp)(recipesKeys.length, 0, this.maxRowItemsCount), recipesKeys.length > this.maxRowItemsCount ? recipesKeys.length - this.maxRowItemsCount : 0]);
@@ -7104,8 +7294,10 @@ var Recycler = /*#__PURE__*/function (_Gear) {
 
         _this2.ui.renderFocusable(pos, // Row
         Math.floor(index / _this2.maxRowItemsCount) + 1, // Slot
-        index % _this2.maxRowItemsCount, function () {
-          // Background
+        index % _this2.maxRowItemsCount, // Render icon
+        function () {
+          var currentRecipe = _this2.recipes[recipeName]; // Background
+
           _this2.game.renderer.drawRect({
             position: pos,
             color: _config.Color.STONE_LAYER_COLOR,
@@ -7115,13 +7307,7 @@ var Recycler = /*#__PURE__*/function (_Gear) {
           }); // Render recipe icon
 
 
-          var renderIcon = _this2.recipes[recipeName].icon;
-          if (renderIcon) renderIcon(_this2.game, pos, _this2.recipes[recipeName].canCraft(_this2.storage) ? 1 : .5);else _this2.game.renderer.drawSprite({
-            texture: (0, _math.asImage)(_this2.game.getAssetByName(recipeName)),
-            position: pos,
-            opacity: _this2.recipes[recipeName].canCraft(_this2.storage) ? 1 : .5,
-            layer: "ui"
-          });
+          _this2.renderRecipeIcon(recipeName, currentRecipe, pos);
         }, 1, 1, true);
       });
     }
@@ -7134,8 +7320,9 @@ var Recycler = /*#__PURE__*/function (_Gear) {
       var windowCenter = new _math.Vector2(innerWidth / 2, innerHeight / 2).apply(Math.floor); // Get recipe by focused slot
 
       var selectedSlot = this.ui.ghostFocused.slot + (this.ui.ghostFocused.row - 1) * this.maxRowItemsCount;
-      var currentRecipe = this.recipes[recipesKeys[selectedSlot]];
-      var recipeDescription = _names.ObjectNames[recipesKeys[selectedSlot]];
+      var recipeName = recipesKeys[selectedSlot];
+      var currentRecipe = this.recipes[recipeName];
+      var recipeDescription = _names.ObjectNames[recipeName];
       if (!recipeDescription) return;
 
       var isInStockCount = function isInStockCount(slotName) {
@@ -7148,12 +7335,7 @@ var Recycler = /*#__PURE__*/function (_Gear) {
         specials: ["", ""],
         description: recipeDescription.desc,
         renderIcon: function renderIcon(pos) {
-          var renderIcon = currentRecipe.icon;
-          if (renderIcon) renderIcon(_this3.game, pos, 1);else _this3.game.renderer.drawSprite({
-            texture: (0, _math.asImage)(_this3.game.getAssetByName(recipesKeys[selectedSlot])),
-            position: pos,
-            layer: "ui"
-          });
+          _this3.renderRecipeIcon(recipeName, currentRecipe, pos);
         }
       }); //
 
@@ -7187,6 +7369,27 @@ var Recycler = /*#__PURE__*/function (_Gear) {
       });
     }
   }, {
+    key: "renderRecipeIcon",
+    value: function renderRecipeIcon(recipeName, currentRecipe, pos) {
+      var renderIcon = currentRecipe.icon;
+      if (renderIcon) renderIcon(this.game, pos, currentRecipe.canCraft(this.storage) ? 1 : .5);else {
+        this.game.renderer.drawSprite({
+          texture: (0, _math.asImage)(this.game.getAssetByName(recipeName)),
+          width: currentRecipe.iconSize,
+          height: currentRecipe.iconSize,
+          framed: false,
+          position: pos,
+          opacity: currentRecipe.canCraft(this.storage) ? 1 : .5,
+          layer: "ui"
+        });
+        if (currentRecipe.type == "upgrade") this.game.renderer.drawText({
+          text: "".concat(currentRecipe.upgradeLevel, "\u0443\u0440."),
+          position: pos.add(_math.Vector2.all(_config.Config.SPRITE_SIZE * .3)),
+          layer: "ui"
+        });
+      }
+    }
+  }, {
     key: "getRecipesKeys",
     value: function getRecipesKeys() {
       var _this4 = this;
@@ -7208,11 +7411,15 @@ var Recipe = /*#__PURE__*/function () {
 
     this.recipe = props.recipe;
     this._onCraft = props.onCraft;
-    this.icon = props.icon;
+    this.icon = props.icon || null;
 
     this.isRemoved = props.isRemoved || function () {
       return false;
     };
+
+    this.type = props.type || "craft";
+    this.upgradeLevel = props.upgradeLevel || 0;
+    this.iconSize = props.iconSize || 1;
   }
 
   _createClass(Recipe, [{
@@ -7343,11 +7550,14 @@ var Storage = /*#__PURE__*/function (_Gear) {
     value: function init() {
       _get(_getPrototypeOf(Storage.prototype), "init", this).call(this);
 
-      this.level = this.game.loadKey("storage-level", 1);
-      this.contains = this.game.loadKey("storage-contains", {
-        totalCount: 0,
-        slots: {}
-      });
+      if (!_config.Config.TEST_GEARS) {
+        this.level = this.game.loadKey("storage-level", 1);
+        this.contains = this.game.loadKey("storage-contains", {
+          totalCount: 0,
+          slots: {}
+        });
+      }
+
       this.changeMaxTotalCount();
       this.calculateTotalCount();
     }
@@ -7616,15 +7826,15 @@ var _Recycler = require("../objects/gear/Recycler");
 var _Storage = require("../objects/gear/Storage");
 
 function initDome(game) {
-  var domePosition = new _math.Vector2(Math.round(_config.Config.WORLD_X_CENTER), -_config.Config.SPRITE_SIZE * 1.5);
-  var storage = game.add(new _Storage.Storage({
-    position: domePosition.add(new _math.Vector2(-150, 0))
-  }));
+  var domePosition = new _math.Vector2(_config.Config.HOME_POSITION_X, _config.Config.HOME_POSITION_Y);
   game.add(new _OxygenGenerator.OxygenGenerator({
     position: domePosition.add(new _math.Vector2(-60, -100))
   }));
   game.add(new _Documentation.Documentation({
     position: domePosition.add(new _math.Vector2(60, -100))
+  }));
+  var storage = game.add(new _Storage.Storage({
+    position: domePosition.add(new _math.Vector2(-140, -10))
   }));
   game.add(new _Recycler.Recycler(storage, {
     flip: {
@@ -8025,431 +8235,7 @@ var Antin = /*#__PURE__*/function (_Ore) {
 }(_Ore2.Ore);
 
 exports.Antin = Antin;
-},{"../../config":"FxBD","../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../raws/RawAntin":"A77P","./Ore":"ze6F"}],"VBKr":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.FallingOre = void 0;
-
-var _config = require("../../config");
-
-var _Particles = require("../../engine/components/Particles");
-
-var _math = require("../../engine/utils/math");
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var FallingOre = /*#__PURE__*/function (_Ore) {
-  _inherits(FallingOre, _Ore);
-
-  var _super = _createSuper(FallingOre);
-
-  function FallingOre(type, position) {
-    var _this;
-
-    _classCallCheck(this, FallingOre);
-
-    _this = _super.call(this, type, position);
-    _this.damage = [2, 5];
-    _this.elapsedBeforeFall = 0;
-    _this.allowDecorations = true;
-    _this.allowFall = false;
-    _this.willFall = false;
-    _this.customColliderType = "solid";
-    return _this;
-  }
-
-  _createClass(FallingOre, [{
-    key: "init",
-    value: function init() {
-      _get(_getPrototypeOf(FallingOre.prototype), "init", this).call(this);
-
-      this.acceleration.y = .98; // this.game.generator.onWorldChange(this.id, this.position, ()=> {
-      //     if (!this.checkBlockIn(new Vector2(0, 1), false)) {
-      //         this.animateScaleTo = .7;
-      //         SpawnCrumbleParticles(this.game, this.position.add(new Vector2(0, 40)));
-      //     }
-      // });
-    }
-  }, {
-    key: "update",
-    value: function update() {
-      _get(_getPrototypeOf(FallingOre.prototype), "update", this).call(this);
-
-      this.gravity();
-    }
-  }, {
-    key: "gravity",
-    value: function gravity() {
-      var _a;
-
-      if (!this.willFall) {
-        this.elapsedBeforeFall = this.game.clock.elapsed;
-        return;
-      }
-
-      if (this.game.generator.checkIsInLoadedChunk(this.position)) {
-        if ((this.game.clock.elapsed - this.elapsedBeforeFall) % _config.Config.ORE_FALL_DELAY == 0 && !this.allowFall) this.allowFall = true;
-
-        if (this.allowFall) {
-          if ((_a = this.collider.collidesWith) === null || _a === void 0 ? void 0 : _a.bottom) {
-            this.fallDestroy();
-          }
-
-          this.customColliderType = "dynamic";
-          this.velocity.y++;
-          this.hitEntity();
-        }
-      } else {
-        if (this.allowFall) this.fallDestroy();
-      }
-
-      this.collider.collidesWith = null;
-    }
-  }, {
-    key: "fall",
-    value: function fall() {
-      this.willFall = true;
-      (0, _Particles.SpawnCrumbleParticles)(this.game, this.position.add(new _math.Vector2(0, 40)), this.particlesColors);
-    }
-  }, {
-    key: "fallDestroy",
-    value: function fallDestroy() {
-      (0, _Particles.SpawnParticles)(this.game, this.position, {
-        colors: this.particlesColors
-      });
-      this.sound.play(this.game, "fall-stone-break");
-      this.game.removeChildById(this.id);
-      this.game.generator.destroyOre(this.inChunkId);
-    }
-  }, {
-    key: "hitEntity",
-    value: function hitEntity() {
-      var _this2 = this;
-
-      var entity = this.game.getChildrenByGroupName("entity").find(function (child) {
-        return _this2.game.physics.collide(_this2, child).any;
-      });
-      if (!entity) return;
-      entity.hit((0, _math.randomInt)(this.damage[0], this.damage[0]));
-    }
-  }]);
-
-  return FallingOre;
-}(_Ore2.Ore);
-
-exports.FallingOre = FallingOre;
-},{"../../config":"FxBD","../../engine/components/Particles":"zRqz","../../engine/utils/math":"NgPq","./Ore":"ze6F"}],"nq2L":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Stalactite = void 0;
-
-var _config = require("../../config");
-
-var _Particles = require("../../engine/components/Particles");
-
-var _math = require("../../engine/utils/math");
-
-var _FallingORe = require("../ores/FallingORe");
-
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Stalactite = /*#__PURE__*/function (_FallingOre) {
-  _inherits(Stalactite, _FallingOre);
-
-  var _super = _createSuper(Stalactite);
-
-  function Stalactite(length, parentInChunkId, position) {
-    var _this;
-
-    _classCallCheck(this, Stalactite);
-
-    _this = _super.call(this, "stalactite", position.div(_config.Config.SPRITE_SIZE).apply(Math.floor));
-    _this.length = length; // const inChunkId = parentInChunkId.split("-");
-    // inChunkId[1] = (+inChunkId[1] + 1).toString()
-
-    _this.inChunkId = parentInChunkId; // this.inChunkId = inChunkId.join("-");
-
-    _this.group = _this.inChunkId;
-    _this.damage = [4, 6];
-    _this.particlesColors = [_config.Color.GREY];
-
-    _this.acceleration.set(0, .98);
-
-    _this.collider.width = _config.Config.SPRITE_SIZE * .7;
-    return _this;
-  }
-
-  _createClass(Stalactite, [{
-    key: "init",
-    value: function init() {
-      _get(_getPrototypeOf(Stalactite.prototype), "init", this).call(this);
-
-      this.damage[0] = this.length + 4;
-    }
-  }, {
-    key: "update",
-    value: function update() {
-      _get(_getPrototypeOf(Stalactite.prototype), "update", this).call(this);
-
-      this.growing();
-      if (this.length <= 0) return;
-
-      if (this.allowFall) {
-        this.collider.width = _config.Config.SPRITE_SIZE * .5;
-      }
-
-      this.tryFall();
-      this.particles();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var size = _config.Config.SPRITE_SIZE;
-
-      for (var i = 0; i < this.length; i++) {
-        var pos = this.position.add(new _math.Vector2(0, i * size));
-        var frame = 0;
-        if (i == 0) frame = this.allowFall ? 3 : 0;
-        if (i > 0) frame = 1;
-
-        if (i == this.length - 1) {
-          frame = 2;
-          if (this.length == 1 && this.allowFall) frame = 4;
-        }
-
-        var t = 1 - this.game.camera.position.y / 200;
-        var d = this.game.camera.position.distance(pos) - 200;
-        var darkenFactor = (d > 96 ? 1 : d / 96) + (t > 0 ? t : 0);
-        if (darkenFactor < 1) this.game.renderer.drawSprite({
-          texture: (0, _math.asImage)(this.game.getAssetByName("stalactite")),
-          frame: new _math.Vector2(0, frame),
-          position: pos,
-          opacity: 1 - darkenFactor
-        });
-      }
-    }
-  }, {
-    key: "darken",
-    value: function darken() {}
-  }, {
-    key: "growing",
-    value: function growing() {
-      if (this.game.tick(_config.Config.STALACTITE_GROW_TICK) && (0, _math.chance)(_config.Config.STALACTITE_GROW_CHANCE)) this.grow();
-    }
-  }, {
-    key: "grow",
-    value: function grow() {
-      if (this.length >= _config.Config.MAX_STALACTITE_LENGTH) return;
-      this.length++;
-      this.damage[0] = this.length + 4;
-      this.saveData();
-    }
-  }, {
-    key: "tryFall",
-    value: function tryFall() {
-      var _this2 = this;
-
-      if (!(0, _math.chance)(40)) return;
-
-      if (this.game.tick(60)) {
-        var entity = this.game.getChildrenByGroupName("entity").find(function (child) {
-          var height = _config.Config.SPRITE_SIZE * _this2.length + 5 * _config.Config.SPRITE_SIZE;
-          return _this2.game.physics.collideWithRect({
-            id: _this2.id,
-            position: _this2.position.add(new _math.Vector2(0, height / 2)),
-            width: _config.Config.SPRITE_SIZE * .7,
-            height: height
-          }, {
-            id: child.id,
-            position: child.position,
-            width: child.collider.width,
-            height: child.collider.height
-          }).any;
-        });
-        if (!entity) return;
-        this.fall();
-      }
-    }
-  }, {
-    key: "fallDestroy",
-    value: function fallDestroy() {
-      _get(_getPrototypeOf(Stalactite.prototype), "fallDestroy", this).call(this);
-
-      this.length = 0;
-      this.saveData();
-    }
-  }, {
-    key: "particles",
-    value: function particles() {
-      if (this.game.tick((0, _math.randomInt)(100, 150)) && (0, _math.chance)(60)) (0, _Particles.SpawnParticles)(this.game, this.position.add(new _math.Vector2(0, this.length * _config.Config.SPRITE_SIZE - _config.Config.SPRITE_SIZE * .8)), {
-        count: 1,
-        colors: [_config.Color.BLUE],
-        gravity: .08,
-        velocity: function velocity() {
-          return new _math.Vector2(0, 0);
-        },
-        size: [.6, .6]
-      });
-    }
-  }, {
-    key: "saveData",
-    value: function saveData() {
-      this.game.generator.modifyOre(this.inChunkId, {
-        length: this.length
-      });
-    }
-  }]);
-
-  return Stalactite;
-}(_FallingORe.FallingOre);
-
-exports.Stalactite = Stalactite;
-},{"../../config":"FxBD","../../engine/components/Particles":"zRqz","../../engine/utils/math":"NgPq","../ores/FallingORe":"VBKr"}],"gm6M":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.StalactiteOre = void 0;
-
-var _config = require("../../config");
-
-var _math = require("../../engine/utils/math");
-
-var _noise = require("../../engine/utils/noise");
-
-var _Stalactite = require("../environment/Stalactite");
-
-var _Ore2 = require("./Ore");
-
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var StalactiteOre = /*#__PURE__*/function (_Ore) {
-  _inherits(StalactiteOre, _Ore);
-
-  var _super = _createSuper(StalactiteOre);
-
-  function StalactiteOre(type, position, data, props) {
-    var _this;
-
-    _classCallCheck(this, StalactiteOre);
-
-    _this = _super.call(this, type, position, props);
-    _this.stalactiteLength = data ? (data === null || data === void 0 ? void 0 : data.length) || 0 : 0;
-    _this.allowGrow = false;
-    return _this;
-  }
-
-  _createClass(StalactiteOre, [{
-    key: "init",
-    value: function init() {
-      _get(_getPrototypeOf(StalactiteOre.prototype), "init", this).call(this);
-
-      this.player = this.game.getChildById("player");
-      if (((0, _noise.simplex2)(this.position.x / 5, this.position.y / 5) + 1) / 2 > .4) this.checkEmptySpace();else this.allowGrow = false;
-      if (!this.allowGrow) return;
-      var variants = [0, 1, 1, 2, 2, 2, 3, 3];
-      this.stalactiteLength = variants[(0, _math.randomInt)(0, variants.length - 1)];
-      this.game.add(new _Stalactite.Stalactite(this.stalactiteLength, this.inChunkId, this.position.add(new _math.Vector2(0, _config.Config.SPRITE_SIZE))));
-      this.game.initChildren();
-    }
-  }, {
-    key: "checkEmptySpace",
-    value: function checkEmptySpace() {
-      for (var i = 0; i < _config.Config.MAX_STALACTITE_LENGTH; i++) {
-        if (this.checkBlockIn(new _math.Vector2(0, i + 1))) {
-          this.allowGrow = false;
-          break;
-        } else this.allowGrow = true;
-      }
-    }
-  }]);
-
-  return StalactiteOre;
-}(_Ore2.Ore);
-
-exports.StalactiteOre = StalactiteOre;
-},{"../../config":"FxBD","../../engine/utils/math":"NgPq","../../engine/utils/noise":"xNw6","../environment/Stalactite":"nq2L","./Ore":"ze6F"}],"S9NJ":[function(require,module,exports) {
+},{"../../config":"FxBD","../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../raws/RawAntin":"A77P","./Ore":"ze6F"}],"S9NJ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8459,7 +8245,7 @@ exports.Basalt = void 0;
 
 var _config = require("../../config");
 
-var _StalactiteOre2 = require("./StalactiteOre");
+var _Ore2 = require("./Ore");
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -8483,8 +8269,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var Basalt = /*#__PURE__*/function (_StalactiteOre) {
-  _inherits(Basalt, _StalactiteOre);
+var Basalt = /*#__PURE__*/function (_Ore) {
+  _inherits(Basalt, _Ore);
 
   var _super = _createSuper(Basalt);
 
@@ -8499,10 +8285,10 @@ var Basalt = /*#__PURE__*/function (_StalactiteOre) {
   }
 
   return _createClass(Basalt);
-}(_StalactiteOre2.StalactiteOre);
+}(_Ore2.Ore);
 
 exports.Basalt = Basalt;
-},{"../../config":"FxBD","./StalactiteOre":"gm6M"}],"G4HC":[function(require,module,exports) {
+},{"../../config":"FxBD","./Ore":"ze6F"}],"G4HC":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8638,7 +8424,144 @@ var Cidium = /*#__PURE__*/function (_Ore) {
 }(_Ore2.Ore);
 
 exports.Cidium = Cidium;
-},{"../../config":"FxBD","../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../raws/RawCidium":"lOfT","./Ore":"ze6F"}],"nAsK":[function(require,module,exports) {
+},{"../../config":"FxBD","../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../raws/RawCidium":"lOfT","./Ore":"ze6F"}],"VBKr":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FallingOre = void 0;
+
+var _config = require("../../config");
+
+var _Particles = require("../../engine/components/Particles");
+
+var _math = require("../../engine/utils/math");
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var FallingOre = /*#__PURE__*/function (_Ore) {
+  _inherits(FallingOre, _Ore);
+
+  var _super = _createSuper(FallingOre);
+
+  function FallingOre(type, position) {
+    var _this;
+
+    _classCallCheck(this, FallingOre);
+
+    _this = _super.call(this, type, position);
+    _this.damage = [2, 5];
+    _this.elapsedBeforeFall = 0;
+    _this.allowDecorations = true;
+    _this.allowFall = false;
+    _this.willFall = false;
+    _this.customColliderType = "solid";
+    return _this;
+  }
+
+  _createClass(FallingOre, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(FallingOre.prototype), "init", this).call(this);
+
+      this.acceleration.y = .98;
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      _get(_getPrototypeOf(FallingOre.prototype), "update", this).call(this);
+
+      this.gravity();
+    }
+  }, {
+    key: "gravity",
+    value: function gravity() {
+      var _a;
+
+      if (!this.willFall) {
+        this.elapsedBeforeFall = this.game.clock.elapsed;
+        return;
+      }
+
+      if (this.game.generator.checkIsInLoadedChunk(this.position)) {
+        if ((this.game.clock.elapsed - this.elapsedBeforeFall) % _config.Config.ORE_FALL_DELAY == 0 && !this.allowFall) this.allowFall = true;
+
+        if (this.allowFall) {
+          if ((_a = this.collider.collidesWith) === null || _a === void 0 ? void 0 : _a.bottom) {
+            this.fallBreak();
+          }
+
+          this.customColliderType = "dynamic";
+          this.velocity.y++;
+          this.hitEntity();
+        }
+      } else {
+        if (this.allowFall) this.fallBreak();
+      }
+
+      this.collider.collidesWith = null;
+    }
+  }, {
+    key: "fall",
+    value: function fall() {
+      this.willFall = true;
+      (0, _Particles.SpawnCrumbleParticles)(this.game, this.position.add(new _math.Vector2(0, 40)), this.particlesColors);
+    }
+  }, {
+    key: "fallBreak",
+    value: function fallBreak() {
+      (0, _Particles.SpawnParticles)(this.game, this.position, {
+        colors: this.particlesColors
+      });
+      this.sound.play(this.game, "fall-stone-break");
+      this.game.removeChildById(this.id);
+      this.game.generator.destroyOre(this.inChunkId);
+    }
+  }, {
+    key: "hitEntity",
+    value: function hitEntity() {
+      var _this2 = this;
+
+      var entity = this.game.getChildrenByGroupName("entity").find(function (child) {
+        return _this2.game.physics.collide(_this2, child).any;
+      });
+      if (!entity) return;
+      entity.hit((0, _math.randomInt)(this.damage[0], this.damage[0]));
+    }
+  }]);
+
+  return FallingOre;
+}(_Ore2.Ore);
+
+exports.FallingOre = FallingOre;
+},{"../../config":"FxBD","../../engine/components/Particles":"zRqz","../../engine/utils/math":"NgPq","./Ore":"ze6F"}],"nAsK":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8816,9 +8739,10 @@ var InfectedOre = /*#__PURE__*/function (_Ore) {
         this.tongueTo(this.startTonguePosition.add(new _math.Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / 10) * 5)));
         this.tongueVelocity.copy(this.tongueVelocity.mul(.97));
       } else {
-        this.tongueVelocity.copy(this.tongueVelocity.mul(0)); // Tongue to target
+        this.tongueVelocity.copy(this.tongueVelocity.mul(0));
+        if (this.target.eating !== undefined) this.target.eating = true; // Tongue to target
 
-        if (this.tonguePosition.distance(this.target.position) < 20) this.tonguePosition = this.target.position.expand();else this.tonguePosition.lerp(this.target.position, .4); // Move entity to datura
+        if (this.tonguePosition.distance(this.target.position) < 20) this.tonguePosition = this.target.position.expand();else this.tonguePosition.lerp(this.target.position, .5); // Move entity to datura
 
         if (body) if (body.position.distance(this.daturaPosition) > 10) body.velocity.copy(body.velocity.add(body.position.sub(this.daturaPosition).normalize().mul(-4)));
       }
@@ -8831,7 +8755,7 @@ var InfectedOre = /*#__PURE__*/function (_Ore) {
       if (this.target) {
         // If player - hit
         if (tar.hit) {
-          if (this.game.tick(60) && this.isEating) tar.hit((0, _math.clamp)((0, _math.randomInt)(-1, 3), 1, 3));
+          if (this.game.tick(60) && this.isEating) tar.hit((0, _math.clamp)((0, _math.randomInt)(-1, 3), 1, 3), 6);
         } else {
           // If item - eat :D
           if (tar.position.distance(this.daturaPosition) < 80) {
@@ -9263,7 +9187,7 @@ var FetusStone = /*#__PURE__*/function (_Ore) {
         var darkenFactor = (d > 96 ? 1 : d / 96) + (t > 0 ? t : 0);
         if (darkenFactor < 1 || !_config.Config.ALLOW_DARK) this.game.renderer.drawSprite({
           texture: (0, _math.asImage)(this.game.getAssetByName("fetus-vine")),
-          position: pos.add(new _math.Vector2(Math.sin(this.game.clock.elapsed / 40 + this.position.x / _config.Config.SPRITE_SIZE) * i * 1.5)),
+          position: pos.add(new _math.Vector2(Math.sin(this.game.clock.elapsed / 60 + this.position.x / _config.Config.SPRITE_SIZE) * i * 1.5)),
           frame: new _math.Vector2(+(i < (this.grabbedCount || 0)), frame),
           flip: {
             x: i % 2 == 0 || i % 3 == 0,
@@ -9416,6 +9340,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Manty = void 0;
 
+var _config = require("../../config");
+
 var _Generator = require("../../engine/Generator");
 
 var _math = require("../../engine/utils/math");
@@ -9462,6 +9388,7 @@ var Manty = /*#__PURE__*/function (_DangerOre) {
 
     _this = _super.call(this, "manty", position);
     _this.randomRotate = false;
+    _this.particlesColors = [_config.Color.RED, _config.Color.DARK_GREY];
     return _this;
   }
 
@@ -9484,7 +9411,7 @@ var Manty = /*#__PURE__*/function (_DangerOre) {
 }(_DangerOre2.DangerOre);
 
 exports.Manty = Manty;
-},{"../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../raws/RawManty":"GaRh","./DangerOre":"vVYW"}],"IZVu":[function(require,module,exports) {
+},{"../../config":"FxBD","../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../raws/RawManty":"GaRh","./DangerOre":"vVYW"}],"IZVu":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9754,7 +9681,7 @@ var Osmy = /*#__PURE__*/function (_Ore) {
       _get(_getPrototypeOf(Osmy.prototype), "onBreak", this).call(this);
 
       this.dropItem(_RawOsmy.RawOsmy);
-      this.dropItem(_RawGradeCidium.RawGradeCidium, 35);
+      this.dropItem(_RawGradeCidium.RawGradeCidium, 30);
     }
   }], [{
     key: "rules",
@@ -9848,7 +9775,329 @@ var Rady = /*#__PURE__*/function (_DangerOre) {
 }(_DangerOre2.DangerOre);
 
 exports.Rady = Rady;
-},{"../../config":"FxBD","../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../raws/RawRady":"yZ9h","./DangerOre":"vVYW"}],"e9U2":[function(require,module,exports) {
+},{"../../config":"FxBD","../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../raws/RawRady":"yZ9h","./DangerOre":"vVYW"}],"uE1e":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.child_of = void 0;
+var child_of = "child-of-";
+exports.child_of = child_of;
+},{}],"nq2L":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Stalactite = void 0;
+
+var _config = require("../../config");
+
+var _Particles = require("../../engine/components/Particles");
+
+var _math = require("../../engine/utils/math");
+
+var _types = require("../../types");
+
+var _FallingORe = require("../ores/FallingORe");
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Stalactite = /*#__PURE__*/function (_FallingOre) {
+  _inherits(Stalactite, _FallingOre);
+
+  var _super = _createSuper(Stalactite);
+
+  function Stalactite(length, parentGroup, parentInChunkId, position) {
+    var _this;
+
+    _classCallCheck(this, Stalactite);
+
+    _this = _super.call(this, "stalactite", position.div(_config.Config.SPRITE_SIZE).apply(Math.floor));
+    _this.length = length;
+    _this.inChunkId = _types.child_of + parentInChunkId;
+    _this.group = parentGroup;
+    _this.damage = [4, 6];
+    _this.particlesColors = [_config.Color.GREY];
+
+    _this.acceleration.set(0, .98);
+
+    _this.collider.width = _config.Config.SPRITE_SIZE * .7;
+    return _this;
+  }
+
+  _createClass(Stalactite, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(Stalactite.prototype), "init", this).call(this);
+
+      this.damage[0] = this.length + 4;
+      this.damage[1] = this.length + 6;
+      this.saveData();
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      _get(_getPrototypeOf(Stalactite.prototype), "update", this).call(this);
+
+      if (this.length <= 0) return;
+
+      if (this.allowFall) {
+        this.collider.width = _config.Config.SPRITE_SIZE * .5;
+      }
+
+      this.tryFall();
+      this.particles();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var size = _config.Config.SPRITE_SIZE;
+
+      for (var i = 0; i < this.length; i++) {
+        var pos = this.position.add(new _math.Vector2(0, i * size));
+        var frame = 0;
+        if (i == 0) frame = this.allowFall ? 3 : 0;
+        if (i > 0) frame = 1;
+
+        if (i == this.length - 1) {
+          frame = 2;
+          if (this.length == 1 && this.allowFall) frame = 4;
+        }
+
+        var t = 1 - this.game.camera.position.y / 200;
+        var d = this.game.camera.position.distance(pos) - 200;
+        var darkenFactor = (d > 96 ? 1 : d / 96) + (t > 0 ? t : 0);
+        if (darkenFactor < 1) this.game.renderer.drawSprite({
+          texture: (0, _math.asImage)(this.game.getAssetByName("stalactite")),
+          frame: new _math.Vector2(0, frame),
+          position: pos,
+          opacity: 1 - darkenFactor
+        });
+      }
+    }
+  }, {
+    key: "darken",
+    value: function darken() {}
+  }, {
+    key: "growing",
+    value: function growing() {
+      if (this.game.tick(_config.Config.STALACTITE_GROW_TICK) && (0, _math.chance)(_config.Config.STALACTITE_GROW_CHANCE)) this.grow();
+    }
+  }, {
+    key: "grow",
+    value: function grow() {
+      if (this.length >= _config.Config.MAX_STALACTITE_LENGTH) return;
+      this.length++;
+      this.damage[0] = this.length + 4;
+      this.saveData();
+    }
+  }, {
+    key: "tryFall",
+    value: function tryFall() {
+      var _this2 = this;
+
+      if (!(0, _math.chance)(40)) return;
+
+      if (this.game.tick(60)) {
+        var entity = this.game.getChildrenByGroupName("entity").find(function (child) {
+          var height = _config.Config.SPRITE_SIZE * _this2.length + 5 * _config.Config.SPRITE_SIZE;
+          return _this2.game.physics.collideWithRect({
+            id: _this2.id,
+            position: _this2.position.add(new _math.Vector2(0, height / 2)),
+            width: _config.Config.SPRITE_SIZE * .7,
+            height: height
+          }, {
+            id: child.id,
+            position: child.position,
+            width: child.collider.width,
+            height: child.collider.height
+          }).any;
+        });
+        if (!entity) return;
+        this.fall();
+      }
+    }
+  }, {
+    key: "fallBreak",
+    value: function fallBreak() {
+      _get(_getPrototypeOf(Stalactite.prototype), "fallBreak", this).call(this);
+
+      this.length = 0;
+      this.saveData();
+    }
+  }, {
+    key: "onBreak",
+    value: function onBreak() {
+      _get(_getPrototypeOf(Stalactite.prototype), "onBreak", this).call(this);
+
+      this.length = 0;
+      this.saveData();
+    }
+  }, {
+    key: "particles",
+    value: function particles() {
+      if (this.game.tick((0, _math.randomInt)(100, 150)) && (0, _math.chance)(60)) (0, _Particles.SpawnParticles)(this.game, this.position.add(new _math.Vector2(0, this.length * _config.Config.SPRITE_SIZE - _config.Config.SPRITE_SIZE * .8)), {
+        count: 1,
+        colors: [_config.Color.BLUE],
+        gravity: .08,
+        velocity: function velocity() {
+          return new _math.Vector2(0, 0);
+        },
+        size: [.6, .6]
+      });
+    }
+  }, {
+    key: "saveData",
+    value: function saveData() {
+      this.game.generator.modifyOre(this.inChunkId.replace(_types.child_of, ""), {
+        length: this.length
+      });
+    }
+  }]);
+
+  return Stalactite;
+}(_FallingORe.FallingOre);
+
+exports.Stalactite = Stalactite;
+},{"../../config":"FxBD","../../engine/components/Particles":"zRqz","../../engine/utils/math":"NgPq","../../types":"uE1e","../ores/FallingORe":"VBKr"}],"WUWB":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.StalactiteStone = void 0;
+
+var _config = require("../../config");
+
+var _Generator = require("../../engine/Generator");
+
+var _math = require("../../engine/utils/math");
+
+var _generator = require("../../managers/generator");
+
+var _Stalactite = require("../environment/Stalactite");
+
+var _Ore2 = require("./Ore");
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var StalactiteStone = /*#__PURE__*/function (_Ore) {
+  _inherits(StalactiteStone, _Ore);
+
+  var _super = _createSuper(StalactiteStone);
+
+  function StalactiteStone(position, data, props) {
+    var _this;
+
+    _classCallCheck(this, StalactiteStone);
+
+    _this = _super.call(this, "basalt", position, props);
+    _this.stalactiteLength = (data === null || data === void 0 ? void 0 : data.length) === undefined ? -1 : data === null || data === void 0 ? void 0 : data.length;
+    _this.allowGrow = true;
+    _this.stalactiteSpawned = false;
+    return _this;
+  }
+
+  _createClass(StalactiteStone, [{
+    key: "init",
+    value: function init() {
+      _get(_getPrototypeOf(StalactiteStone.prototype), "init", this).call(this);
+
+      if (!this.allowGrow) return;
+
+      if (this.stalactiteLength < 0) {
+        var variants = [1, 1, 2, 2, 2, 3, 3];
+        this.stalactiteLength = variants[(0, _math.randomInt)(0, variants.length - 1)];
+      }
+
+      for (var i = 0; i < this.stalactiteLength; i++) {
+        if (!(0, _generator.caveRules)(this.tilePosition.x, this.tilePosition.y, 0, i + 1)) {
+          this.stalactiteLength = i;
+          break;
+        }
+      }
+
+      if (!this.stalactiteSpawned && this.stalactiteLength > 0) {
+        this.game.add(new _Stalactite.Stalactite(this.stalactiteLength, this.group, this.inChunkId, this.position.add(new _math.Vector2(0, _config.Config.SPRITE_SIZE))));
+        this.game.initChildren();
+        this.stalactiteSpawned = true;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      _get(_getPrototypeOf(StalactiteStone.prototype), "render", this).call(this);
+
+      if (_config.Config.IS_DEV) this.game.renderer.drawText({
+        text: this.stalactiteLength.toString(),
+        position: this.position.expand(),
+        layer: "particles"
+      });
+    }
+  }], [{
+    key: "rules",
+    value: function rules(x, y) {
+      var res = (0, _Generator.noise)(x / 6, y / 6);
+      var haveEmptySpace = (0, _generator.caveRules)(x, y, 0, 1);
+      return (0, _math.inRange)(res, 0, .5) && haveEmptySpace;
+    }
+  }]);
+
+  return StalactiteStone;
+}(_Ore2.Ore);
+
+exports.StalactiteStone = StalactiteStone;
+},{"../../config":"FxBD","../../engine/Generator":"KT6z","../../engine/utils/math":"NgPq","../../managers/generator":"v9dU","../environment/Stalactite":"nq2L","./Ore":"ze6F"}],"e9U2":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9991,6 +10240,8 @@ var _Osmy = require("../objects/ores/Osmy");
 
 var _Rady = require("../objects/ores/Rady");
 
+var _StalactiteStone = require("../objects/ores/StalactiteStone");
+
 var _Stone = require("../objects/ores/Stone");
 
 var _StonyGround = require("../objects/ores/StonyGround");
@@ -9998,16 +10249,21 @@ var _StonyGround = require("../objects/ores/StonyGround");
 function caveRules(x, y, offsetX, offsetY) {
   var ox = offsetX || 0;
   var oy = offsetY || 0;
-  var res = (0, _Generator.noise)((x + ox) / 30, (y + oy) / 12, 4, 3);
-  var mask = (0, _Generator.noise)((x + ox) / 16, (y + oy) / 16);
-  return (0, _math.inRange)(res + mask / 5, 0, .6);
+  var caves = (0, _Generator.noise)((x + ox) / 20, (y + oy) / 10, 4, 3);
+  var smallCaves = (0, _Generator.noise)((x + ox) / 10, (y + oy) / 10, 3, 2);
+  var largeCaves = (0, _Generator.noise)((x + ox) / 30, (y + oy) / 18, 3, 2);
+  var sharpness = (0, _Generator.noise)((x + ox) / 10, (y + oy) / 10);
+  var smallCavesMask = (0, _Generator.noise)((x + ox) / 40, (y + oy) / 40);
+  var largeCavesMask = (0, _Generator.noise)((x + ox) / 20, (y + oy) / 20);
+  return ((0, _math.inRange)(caves, 0, .5) || (0, _math.inRange)(smallCaves, 0, .5) || (0, _math.inRange)(largeCaves, 0, .6)) && !(0, _math.inRange)(sharpness, 0, .4) // (inRange(largeCaves, 0, .6) || (inRange(largeCaves, 0, .7) && inRange(sharpness, 0, .4)))
+  ;
 }
 
 function initGenerator(game) {
   game.generator.settings = [// > Stones
   {
     value: [0, 1],
-    height: [0, 43],
+    height: [0, _config.GeneratorConfig.DEEP_STONE_LAYER_HEIGHT],
     block: _Stone.Stone
   }, {
     value: [.5, .6],
@@ -10023,13 +10279,13 @@ function initGenerator(game) {
   // Deep stone blend layer
   {
     value: [.8, 1],
-    height: [30, 43],
+    height: [_config.GeneratorConfig.DEEP_STONE_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT, _config.GeneratorConfig.DEEP_STONE_LAYER_HEIGHT],
     divider: 2,
     block: _DeepStone.DeepStone
   }, // Deep stone layer
   {
     value: [0, 1],
-    height: [42, _config.GeneratorConfig.BASALT_LAYER_HEIGHT],
+    height: [_config.GeneratorConfig.DEEP_STONE_LAYER_HEIGHT, _config.GeneratorConfig.BASALT_LAYER_HEIGHT],
     block: _DeepStone.DeepStone
   }, // Basalt blend layer
   {
@@ -10059,23 +10315,21 @@ function initGenerator(game) {
     height: [_config.Config.WORLD_HEIGHT, _config.Config.WORLD_HEIGHT],
     block: _Destrony.Destrony
   }, // > Other
-  // // Fetus stone
+  // Fetus stone
   {
     height: [30, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - 20],
     block: _FetusStone.FetusStone,
-    rules: _FetusStone.FetusStone.rules // rules(noiseX, noiseY, getValue) {
-    //     return (
-    //         inRange(getValue(noiseX, noiseY+1, 10), 0, .5) &&
-    //         inRange(getValue(noiseX, noiseY, 8), 0, .8) 
-    //         // inRange(getValue(noiseX, noiseY, 2), 0, .3)
-    //     );
-    // }
-
+    rules: _FetusStone.FetusStone.rules
   }, // Mushroom stone
   {
     height: [_config.GeneratorConfig.BASALT_LAYER_HEIGHT, _config.GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - 15],
     block: _MushroomStone.MushroomStone,
     rules: _MushroomStone.MushroomStone.rules
+  }, // Stalactite stone
+  {
+    height: [_config.GeneratorConfig.BASALT_LAYER_HEIGHT, _config.GeneratorConfig.BURNT_BASALT_LAYER_HEIGHT - 15],
+    block: _StalactiteStone.StalactiteStone,
+    rules: _StalactiteStone.StalactiteStone.rules
   }, // > Ores
   // Cidium
   {
@@ -10084,11 +10338,11 @@ function initGenerator(game) {
     rules: _Cidium.Cidium.rules
   }, // Osmy - deep stone layer
   {
-    height: [50, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT],
+    height: [_config.GeneratorConfig.DEEP_STONE_LAYER_HEIGHT + 6, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT],
     block: _Osmy.Osmy,
     rules: _Osmy.Osmy.rules
   }, {
-    height: [100, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT],
+    height: [_config.GeneratorConfig.BASALT_LAYER_HEIGHT - 60, _config.GeneratorConfig.BASALT_LAYER_HEIGHT - _config.GeneratorConfig.LAYERS_BLEND_HEIGHT],
     block: _Nerius.Nerius,
     rules: _Nerius.Nerius.rules
   }, // Antin - basalt layer
@@ -10118,7 +10372,7 @@ function initGenerator(game) {
     rules: caveRules
   }];
 }
-},{"../config":"FxBD","../engine/Generator":"KT6z","../engine/utils/math":"NgPq","../objects/ores/Antin":"P2Ir","../objects/ores/Basalt":"S9NJ","../objects/ores/BurntBasalt":"G4HC","../objects/ores/Cidium":"zVgn","../objects/ores/CrackedStone":"nAsK","../objects/ores/DeepStone":"IUuf","../objects/ores/Destrony":"jc3R","../objects/ores/FetusStone":"EgHC","../objects/ores/Manty":"Ms1e","../objects/ores/MushroomStone":"IZVu","../objects/ores/Nerius":"rOTL","../objects/ores/Osmy":"Fgu4","../objects/ores/Rady":"vPcC","../objects/ores/Stone":"e9U2","../objects/ores/StonyGround":"KTUq"}],"Hvfx":[function(require,module,exports) {
+},{"../config":"FxBD","../engine/Generator":"KT6z","../engine/utils/math":"NgPq","../objects/ores/Antin":"P2Ir","../objects/ores/Basalt":"S9NJ","../objects/ores/BurntBasalt":"G4HC","../objects/ores/Cidium":"zVgn","../objects/ores/CrackedStone":"nAsK","../objects/ores/DeepStone":"IUuf","../objects/ores/Destrony":"jc3R","../objects/ores/FetusStone":"EgHC","../objects/ores/Manty":"Ms1e","../objects/ores/MushroomStone":"IZVu","../objects/ores/Nerius":"rOTL","../objects/ores/Osmy":"Fgu4","../objects/ores/Rady":"vPcC","../objects/ores/StalactiteStone":"WUWB","../objects/ores/Stone":"e9U2","../objects/ores/StonyGround":"KTUq"}],"Hvfx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10133,7 +10387,9 @@ var _UI = require("../engine/components/UI");
 var _math = require("../engine/utils/math");
 
 function initMenu(game, player) {
-  var menuUI = new _UI.UI();
+  var ui = new _UI.UI();
+  var menuUi = new _UI.UI();
+  var aboutUi = new _UI.UI();
   var buttons = [{
     text: "Иследовать"
   }, {
@@ -10141,81 +10397,134 @@ function initMenu(game, player) {
   }, {
     text: "Об игре"
   }];
-  menuUI.updateTemplate(buttons.map(function () {
+  menuUi.updateTemplate(buttons.map(function () {
     return 1;
   }));
 
   function init() {
-    menuUI.init(game); // UI actions
+    ui.init(game);
+    menuUi.init(game);
+    aboutUi.enabled = false;
+    aboutUi.init(game); // UI actions
 
     game.gamepad.onKeyDown("menu-ui", "enter", function () {
-      if (menuUI.focused.row == 0) game.paused = false;else if (menuUI.focused.row == 1) {
+      if (!ui.enabled) return;
+
+      if (aboutUi.enabled) {
+        menuUi.enabled = true;
+        aboutUi.enabled = false;
+        return;
+      } // Play button
+
+
+      if (menuUi.focused.row == 0) game.paused = false; // Retry button
+      else if (menuUi.focused.row == 1) {
         game.clearAllKeys();
         location.reload();
+      } // About button
+      else if (menuUi.focused.row == 2) {
+        menuUi.enabled = false;
+        aboutUi.enabled = true;
       }
     });
   }
 
   function update() {
-    menuUI.enabled = game.paused && !player.dead;
+    ui.enabled = game.paused && !player.dead;
+    menuUi.allowSelectSlots = ui.enabled;
   }
 
-  function render(renderer) {
-    if (menuUI.enabled) {
-      var size = _config.Config.SPRITE_SIZE;
-      var windowCenter = new _math.Vector2(innerWidth / 2, innerHeight / 2);
-      renderer.drawRect({
-        position: windowCenter,
-        width: innerWidth / size,
-        height: innerHeight / size,
-        color: "rgba(0, 0, 0, .5)",
-        layer: "ui"
-      });
-      renderer.drawSprite({
-        texture: (0, _math.asImage)(game.getAssetByName("logo")),
-        width: 6,
-        height: 2,
-        position: new _math.Vector2(windowCenter.x, 160),
-        layer: "ui"
-      }); // About text
+  function render() {
+    if (!ui.enabled) return;
+    var size = _config.Config.SPRITE_SIZE;
+    var windowCenter = new _math.Vector2(innerWidth / 2, innerHeight / 2);
+    ui.rect({
+      position: windowCenter,
+      width: innerWidth / size,
+      height: innerHeight / size,
+      color: "rgba(0, 0, 0, .5)"
+    });
+    ui.sprite("logo", {
+      width: 6,
+      height: 2,
+      position: new _math.Vector2(windowCenter.x, 160)
+    }); // Version
 
-      if (menuUI.isFocused(buttons.length - 1, 0)) {
-        renderer.drawText({
-          text: ["> \u0418\u0434\u0435\u044F: Bogdanov", "> \u0425\u0443\u0434\u043E\u043D\u0438\u043A: Bogdanov", "> \u041F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0441\u0442: Bogdanov", "> \u0421\u0430\u0443\u043D\u0434-\u0434\u0438\u0437\u0430\u0439\u043D\u0435\u0440: Bogdanov", "> \u041E\u043F\u0435\u0440\u0430\u0442\u043E\u0440: Bogdanov", "> \u0411\u0430\u0440\u0438\u0441\u0442\u0430: Bogdanov", "> \u041F\u0441\u0438\u0445-\u043F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0430: Bogdanov"].join("\n"),
+    ui.text("\u0412\u0435\u0440\u0441\u0438\u044F ".concat(_config.VERSION), {
+      font: "16px Pixel",
+      position: new _math.Vector2(innerWidth - size / 2, innerHeight - size / 2),
+      align: "right"
+    }); // Render menu
+
+    if (menuUi.enabled && !aboutUi.enabled) renderMenu(size, windowCenter);
+    if (aboutUi.enabled) renderAbout(size, windowCenter);
+  }
+
+  function renderMenu(size, windowCenter) {
+    // Buttons
+    var buttonsPos = new _math.Vector2().add(windowCenter);
+
+    var _loop = function _loop(i) {
+      var pos = new _math.Vector2(0, i * size).add(buttonsPos);
+      menuUi.renderFocusable(pos, i, 0, function () {
+        menuUi.text(buttons[i].text, {
           font: "22px Pixel",
-          position: new _math.Vector2(innerWidth - innerWidth / 4 + 140, innerHeight / 2 - 50),
-          layer: "ui",
-          align: "right"
+          position: pos,
+          layer: "ui"
         });
-        renderer.drawText({
-          text: "\n                        Deep strange planet - \u0438\u0433\u0440\u0430 \u0432 \u0436\u0430\u043D\u0440\u0435\n\n                        \u043F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F, \u0433\u0434\u0435 \u0432\u044B \u0432\u044B\u0441\u0442\u0443\u043F\u0430\u0439\u0442\u0435 \u0432 \u0440\u043E\u043B\u0438\n\n                        \u0434\u043E\u0431\u0440\u043E\u0432\u043E\u043B\u044C\u0446\u0430, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0445\u043E\u0447\u0435\u0442 \u0438\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E\n\n                        \u0438 \u043E\u043F\u0430\u0441\u043D\u0443\u044E \u0434\u043B\u044F \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430 \u043F\u043B\u0430\u043D\u0435\u0442\u0443 \u0440\u0430\u0434\u0438 \u043D\u0430\u0443\u043A\u0438.\n\n                        \u041F\u0440\u0435\u0434\u043F\u043E\u043B\u043E\u0436\u0438\u0442\u0435\u043B\u044C\u043D\u043E, \u043D\u0430 \u043D\u0435\u0439 \u0435\u0441\u0442\u044C \u0436\u0438\u0437\u043D\u044C \u0432 \u0432\u0438\u0434\u0435\n\n                        \u0431\u0430\u043A\u0442\u0435\u0440\u0438\u0439. \u0418\u0441\u0441\u043B\u0435\u0434\u0443\u0439 \u043F\u043B\u0430\u043D\u0435\u0442\u0443, \u043F\u0440\u043E\u0431\u0438\u0440\u0430\u044F\u0441\u044C \u0432\u0441\u0451\n\n                        \u043D\u0438\u0436\u0435, \u0432\u043F\u043B\u043E\u0442\u044C \u0434\u043E \u0441\u0430\u043C\u043E\u0433\u043E \u044F\u0434\u0440\u0430, \u0441\u043E\u0431\u0438\u0440\u0430\u044F \u0446\u0435\u043D\u043D\u044B\u0435\n\n                        \u0434\u043B\u044F \u043D\u0430\u0443\u043A\u0438 \u0440\u0435\u0441\u0443\u0440\u0441\u044B, \u043D\u043E \u0431\u0443\u0434\u044C\u0442\u0435 \u0432\u043D\u0438\u043C\u0430\u0442\u0435\u043B\u044C\u043D\u0435\u0439,\n\n                        \u0441\u043B\u0435\u0434\u0438\u0442\u0435 \u0437\u0430 \u0441\u0432\u043E\u0438\u043C \u0437\u0430\u043F\u0430\u0441\u043E\u043C \u043A\u0438\u0441\u043B\u043E\u0440\u043E\u0434\u0430,\n\n                        \u0443\u0432\u043E\u0440\u0430\u0447\u0438\u0432\u0430\u0439\u0442\u0435\u0441\u044C \u043E\u0442 \u043E\u0431\u0432\u0430\u043B\u043E\u0432 \u0438 \u0441\u0442\u0430\u043B\u0430\u043A\u0438\u0442\u043E\u0432.\n\n                        \u041A\u0442\u043E \u0437\u043D\u0430\u0435\u0442, \u0447\u0442\u043E \u0442\u0430\u043C \u0435\u0449\u0451 \u043C\u043E\u0436\u0435\u0442 \u0431\u044B\u0442\u044C",
-          font: "18px Pixel",
-          lineHeight: 10,
-          position: new _math.Vector2(innerWidth / 4 - 480, innerHeight / 2 - 50),
-          layer: "ui",
-          align: "left"
-        });
-      } // Play button
+      }, 2.5, .8);
+    };
 
-
-      var buttonsPos = new _math.Vector2().add(windowCenter);
-
-      var _loop = function _loop(i) {
-        var pos = new _math.Vector2(0, i * size).add(buttonsPos);
-        menuUI.renderFocusable(pos, i, 0, function () {
-          renderer.drawText({
-            text: buttons[i].text,
-            font: "".concat(i == 0 ? 26 : 22, "px Pixel"),
-            position: pos,
-            layer: "ui"
-          });
-        }, 2.5, .8);
-      };
-
-      for (var i = 0; i < buttons.length; i++) {
-        _loop(i);
-      }
+    for (var i = 0; i < buttons.length; i++) {
+      _loop(i);
     }
+  }
+
+  function renderAbout(size, windowCenter) {
+    var aboutText = ["Я Богдан, мне 15 лет. Я разрабатываю эту игру в свободное от школы время,", "потому что мне это просто нравится. Каждый может привнести что-то в своё в эту игру.", "Есть идеи? Отлично! Напиши мне, и мы их обсудим!", "Игра была создана для турнира от Сбера на Sber Box.", "@ Bogdanov :D", "", "[OK] - назад"];
+    var contactsTexts = ["Telegram: @bbogdan_ov", "Email: bbogdanov_bog908@mail.ru", "Vk: bbog908"];
+    aboutUi.text("Приветсвую в Deep Strange Planet!", {
+      position: new _math.Vector2().add(windowCenter),
+      font: "22px Pixel",
+      align: "center"
+    });
+    aboutUi.text(aboutText.join("\n"), {
+      position: new _math.Vector2(0, 46).add(windowCenter),
+      font: "18px Pixel",
+      lineHeight: 26,
+      align: "center"
+    });
+    contactsTexts.map(function (contact, index) {
+      aboutUi.text(contact, {
+        position: new _math.Vector2(size / 2, index * 26 + size),
+        font: "18px Pixel",
+        align: "left"
+      });
+    });
+    /*
+    const about1 = [
+        `> Идея: Bogdanov`,
+        `> Худоник: Bogdanov`,
+        `> Программист: Bogdanov`,
+        `> Саунд-дизайнер: Bogdanov`,
+        `> Оператор: Bogdanov`,
+        `> Бариста: Bogdanov`,
+        `> Псих-поддержка: Bogdanov`,
+    ].join("\n");
+    const about2 = `
+        Deep strange planet - игра в жанре\n
+        приключения, где вы выступайте в роли\n
+        добровольца, который хочет исследовать новую\n
+        и опасную для человечества планету ради науки.\n
+        Предположительно, на ней есть жизнь в виде\n
+        бактерий. Исследуй планету, пробираясь всё\n
+        ниже, вплоть до самого ядра, собирая ценные\n
+        для науки ресурсы, но будьте внимательней,\n
+        следите за своим запасом кислорода,\n
+        уворачивайтесь от обвалов и сталакитов.\n
+        Кто знает, что там ещё может быть
+    `
+    */
   }
 
   return {
@@ -10263,33 +10572,26 @@ game.addUpdate(function () {
 });
 game.addRender(function (renderer) {
   level.render();
-  menu.render(renderer);
+  menu.render();
   renderer.drawText({
     text: "".concat(game.clock.fps, " fps"),
     font: "18px Pixel",
-    position: new _math.Vector2(15, 30),
+    position: new _math.Vector2(15, innerHeight - 30),
     align: "left",
     layer: "ui"
   });
-  if (_config.Config.IS_DEV) renderDebug(renderer);
+  if (_config.Config.IS_DEV || player.god) renderDebug(renderer);
 });
 
 function renderDebug(renderer) {
   renderer.drawText({
-    text: "Height: ".concat(Math.floor(player.position.y / _config.Config.SPRITE_SIZE + 1)),
+    text: ["Delta: ".concat(game.clock.delta), "Height: ".concat(Math.floor(player.position.y / _config.Config.SPRITE_SIZE + 1)), "Pos: ".concat(Math.floor(player.position.x / _config.Config.SPRITE_SIZE), ", ").concat(Math.floor(player.position.y / _config.Config.SPRITE_SIZE + 1))].join("\n"),
     font: "20px Pixel",
-    position: new _math.Vector2(30, 80),
-    align: "left",
+    lineHeight: 30,
+    position: new _math.Vector2(innerWidth - 30, innerHeight - 140),
+    align: "right",
     layer: "ui"
-  });
-  renderer.drawText({
-    text: "Pos: ".concat(Math.floor(player.position.x / _config.Config.SPRITE_SIZE), ", ").concat(Math.floor(player.position.y / _config.Config.SPRITE_SIZE + 1)),
-    font: "20px Pixel",
-    position: new _math.Vector2(30, 120),
-    align: "left",
-    layer: "ui"
-  });
-  renderChunks(renderer);
+  }); // renderChunks(renderer);
 }
 
 function renderChunks(renderer) {
@@ -10317,4 +10619,4 @@ if (_config.Config.IS_DEV) window.addEventListener("keydown", function (e) {
   if (e.code == "KeyI") console.log(player.inventory);
 });
 },{"./managers/assets":"ibCN","./engine":"XaJu","./objects/entities/Player":"p1IV","./managers/level":"ZerP","./config":"FxBD","./managers/dome":"ZpfZ","./engine/utils/math":"NgPq","./managers/generator":"v9dU","./stages/menu":"Hvfx"}]},{},["g7hl"], null)
-//# sourceMappingURL=/main.b89710fd.js.map
+//# sourceMappingURL=/main.498270ca.js.map
