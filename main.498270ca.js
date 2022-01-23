@@ -118,189 +118,189 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"xMOE":[function(require,module,exports) {
-module.exports = "/stay.83bee543.png";
+module.exports = "./stay.83bee543.png";
 },{}],"mEpo":[function(require,module,exports) {
-module.exports = "/walk.d85e3b24.png";
+module.exports = "./walk.d85e3b24.png";
 },{}],"C18s":[function(require,module,exports) {
-module.exports = "/dead.afb6108d.png";
+module.exports = "./dead.afb6108d.png";
 },{}],"Wr6M":[function(require,module,exports) {
-module.exports = "/robot.331f772c.png";
+module.exports = "./robot.331f772c.png";
 },{}],"Qntg":[function(require,module,exports) {
-module.exports = "/stone.2ff7e249.png";
+module.exports = "./stone.2ff7e249.png";
 },{}],"KP9j":[function(require,module,exports) {
-module.exports = "/stony-ground.acbbc003.png";
+module.exports = "./stony-ground.acbbc003.png";
 },{}],"EsJD":[function(require,module,exports) {
-module.exports = "/basalt.4d5e1160.png";
+module.exports = "./basalt.4d5e1160.png";
 },{}],"m5Mc":[function(require,module,exports) {
-module.exports = "/deep-stone.2484d1ea.png";
+module.exports = "./deep-stone.2484d1ea.png";
 },{}],"yhR6":[function(require,module,exports) {
-module.exports = "/burnt-basalt.e556a07f.png";
+module.exports = "./burnt-basalt.e556a07f.png";
 },{}],"zgKj":[function(require,module,exports) {
-module.exports = "/destrony.447daaed.png";
+module.exports = "./destrony.447daaed.png";
 },{}],"pf9J":[function(require,module,exports) {
-module.exports = "/manty.1308789e.png";
+module.exports = "./manty.1308789e.png";
 },{}],"bOsc":[function(require,module,exports) {
-module.exports = "/fetus-stone.c0ad3ca7.png";
+module.exports = "./fetus-stone.c0ad3ca7.png";
 },{}],"k7Mm":[function(require,module,exports) {
-module.exports = "/mushroom-stone.1e0e819c.png";
+module.exports = "./mushroom-stone.1e0e819c.png";
 },{}],"y0PF":[function(require,module,exports) {
-module.exports = "/cracked-stone.bdc7e15a.png";
+module.exports = "./cracked-stone.bdc7e15a.png";
 },{}],"FU7E":[function(require,module,exports) {
-module.exports = "/cidium.8f5094f6.png";
+module.exports = "./cidium.8f5094f6.png";
 },{}],"Zvcg":[function(require,module,exports) {
-module.exports = "/osmy.522ecac7.png";
+module.exports = "./osmy.522ecac7.png";
 },{}],"balx":[function(require,module,exports) {
-module.exports = "/antin.f3461fe6.png";
+module.exports = "./antin.f3461fe6.png";
 },{}],"DTH9":[function(require,module,exports) {
-module.exports = "/rady.cccaf8d0.png";
+module.exports = "./rady.cccaf8d0.png";
 },{}],"jfHw":[function(require,module,exports) {
-module.exports = "/nerius.94508fe9.png";
+module.exports = "./nerius.94508fe9.png";
 },{}],"DgoW":[function(require,module,exports) {
-module.exports = "/raw-cidium.ee0ee85b.png";
+module.exports = "./raw-cidium.ee0ee85b.png";
 },{}],"DJ58":[function(require,module,exports) {
-module.exports = "/raw-grade-cidium.cf6253b5.png";
+module.exports = "./raw-grade-cidium.cf6253b5.png";
 },{}],"mpJt":[function(require,module,exports) {
-module.exports = "/raw-osmy.0f93e6fc.png";
+module.exports = "./raw-osmy.0f93e6fc.png";
 },{}],"ZWGs":[function(require,module,exports) {
-module.exports = "/raw-antin.289b1625.png";
+module.exports = "./raw-antin.289b1625.png";
 },{}],"SrSE":[function(require,module,exports) {
-module.exports = "/raw-rady.6464a5a4.png";
+module.exports = "./raw-rady.6464a5a4.png";
 },{}],"ceSm":[function(require,module,exports) {
-module.exports = "/raw-nerius.489775a7.png";
+module.exports = "./raw-nerius.489775a7.png";
 },{}],"h5i8":[function(require,module,exports) {
-module.exports = "/raw-manty.8df5e986.png";
+module.exports = "./raw-manty.8df5e986.png";
 },{}],"y0Dq":[function(require,module,exports) {
-module.exports = "/ready-cidium.40f281e7.png";
+module.exports = "./ready-cidium.40f281e7.png";
 },{}],"PKyT":[function(require,module,exports) {
-module.exports = "/battery.34b833d2.png";
+module.exports = "./battery.34b833d2.png";
 },{}],"vK4S":[function(require,module,exports) {
-module.exports = "/drill.4fe58980.png";
+module.exports = "./drill.4fe58980.png";
 },{}],"rR8W":[function(require,module,exports) {
-module.exports = "/box.533d24e7.png";
+module.exports = "./box.533d24e7.png";
 },{}],"z9wQ":[function(require,module,exports) {
-module.exports = "/card.74a4e50d.png";
+module.exports = "./card.74a4e50d.png";
 },{}],"waqs":[function(require,module,exports) {
-module.exports = "/fetus-vine.8805c1bc.png";
+module.exports = "./fetus-vine.8805c1bc.png";
 },{}],"yylR":[function(require,module,exports) {
-module.exports = "/mushroom.c358812c.png";
+module.exports = "./mushroom.c358812c.png";
 },{}],"EKNy":[function(require,module,exports) {
-module.exports = "/infection.58223099.png";
+module.exports = "./infection.58223099.png";
 },{}],"GvwK":[function(require,module,exports) {
-module.exports = "/datura.626020b7.png";
+module.exports = "./datura.626020b7.png";
 },{}],"ObKq":[function(require,module,exports) {
-module.exports = "/plants.c448d4c2.png";
+module.exports = "./plants.c448d4c2.png";
 },{}],"aveX":[function(require,module,exports) {
-module.exports = "/stalactite.9838dbc0.png";
+module.exports = "./stalactite.9838dbc0.png";
 },{}],"qtzW":[function(require,module,exports) {
-module.exports = "/datura-tongue.6ca7ad31.png";
+module.exports = "./datura-tongue.6ca7ad31.png";
 },{}],"bcsP":[function(require,module,exports) {
-module.exports = "/food-fetus.4a1a28b9.png";
+module.exports = "./food-fetus.4a1a28b9.png";
 },{}],"aLvf":[function(require,module,exports) {
-module.exports = "/ground.40c4b239.png";
+module.exports = "./ground.40c4b239.png";
 },{}],"Q6m3":[function(require,module,exports) {
-module.exports = "/dome.a3a288e1.png";
+module.exports = "./dome.a3a288e1.png";
 },{}],"L1K5":[function(require,module,exports) {
-module.exports = "/under-stone.4fd1f7fb.png";
+module.exports = "./under-stone.4fd1f7fb.png";
 },{}],"wYG8":[function(require,module,exports) {
-module.exports = "/disputes.123ba673.png";
+module.exports = "./disputes.123ba673.png";
 },{}],"G9tz":[function(require,module,exports) {
-module.exports = "/gear-storage-1.cf529983.png";
+module.exports = "./gear-storage-1.cf529983.png";
 },{}],"FBe0":[function(require,module,exports) {
-module.exports = "/gear-recycler-1.76952c71.png";
+module.exports = "./gear-recycler-1.76952c71.png";
 },{}],"X9Py":[function(require,module,exports) {
-module.exports = "/gear-oxygen-generator-1.922af5f2.png";
+module.exports = "./gear-oxygen-generator-1.922af5f2.png";
 },{}],"j56s":[function(require,module,exports) {
-module.exports = "/gear-storage-1-outline.21cb879d.png";
+module.exports = "./gear-storage-1-outline.21cb879d.png";
 },{}],"fxXd":[function(require,module,exports) {
-module.exports = "/gear-recycler-1-outline.8cabe033.png";
+module.exports = "./gear-recycler-1-outline.8cabe033.png";
 },{}],"EdKv":[function(require,module,exports) {
-module.exports = "/gear-oxygen-generator-1-outline.65a00620.png";
+module.exports = "./gear-oxygen-generator-1-outline.65a00620.png";
 },{}],"fkgg":[function(require,module,exports) {
-module.exports = "/gear-documentation-1.35b8b26c.png";
+module.exports = "./gear-documentation-1.35b8b26c.png";
 },{}],"ro1N":[function(require,module,exports) {
-module.exports = "/gear-documentation-1-outline.617027d5.png";
+module.exports = "./gear-documentation-1-outline.617027d5.png";
 },{}],"y1NG":[function(require,module,exports) {
-module.exports = "/interact.31e5b69d.png";
+module.exports = "./interact.31e5b69d.png";
 },{}],"rLvC":[function(require,module,exports) {
-module.exports = "/close.e582d6b7.png";
+module.exports = "./close.e582d6b7.png";
 },{}],"E7cs":[function(require,module,exports) {
-module.exports = "/drop.03e03f4d.png";
+module.exports = "./drop.03e03f4d.png";
 },{}],"X2nc":[function(require,module,exports) {
-module.exports = "/craft.b8e950a2.png";
+module.exports = "./craft.b8e950a2.png";
 },{}],"R1BN":[function(require,module,exports) {
-module.exports = "/button.0edde46a.png";
+module.exports = "./button.0edde46a.png";
 },{}],"omch":[function(require,module,exports) {
-module.exports = "/tools.bf5b649a.png";
+module.exports = "./tools.bf5b649a.png";
 },{}],"arpR":[function(require,module,exports) {
-module.exports = "/bottle.6447cf72.png";
+module.exports = "./bottle.6447cf72.png";
 },{}],"nxFT":[function(require,module,exports) {
-module.exports = "/damage.fda04f1c.png";
+module.exports = "./damage.fda04f1c.png";
 },{}],"L4Si":[function(require,module,exports) {
-module.exports = "/level-up.5e70abd7.png";
+module.exports = "./level-up.5e70abd7.png";
 },{}],"l1xg":[function(require,module,exports) {
-module.exports = "/storage-ui.651d38c5.png";
+module.exports = "./storage-ui.651d38c5.png";
 },{}],"noxU":[function(require,module,exports) {
-module.exports = "/recycler-ui.382575b8.png";
+module.exports = "./recycler-ui.382575b8.png";
 },{}],"rqZe":[function(require,module,exports) {
-module.exports = "/description-ui.84d164ee.png";
+module.exports = "./description-ui.84d164ee.png";
 },{}],"E3ma":[function(require,module,exports) {
-module.exports = "/documentation-ui.90dc438b.png";
+module.exports = "./documentation-ui.90dc438b.png";
 },{}],"dYrS":[function(require,module,exports) {
-module.exports = "/oxygen-generator-ui.430972bf.png";
+module.exports = "./oxygen-generator-ui.430972bf.png";
 },{}],"hCOT":[function(require,module,exports) {
-module.exports = "/health.5e97126d.png";
+module.exports = "./health.5e97126d.png";
 },{}],"tcYH":[function(require,module,exports) {
-module.exports = "/basics.8252616e.png";
+module.exports = "./basics.8252616e.png";
 },{}],"YcEf":[function(require,module,exports) {
-module.exports = "/menu.d1d970a2.png";
+module.exports = "./menu.d1d970a2.png";
 },{}],"N5Ep":[function(require,module,exports) {
-module.exports = "/logo.453571b5.png";
+module.exports = "./logo.453571b5.png";
 },{}],"XLZT":[function(require,module,exports) {
-module.exports = "/gps.e9ad5c2d.png";
+module.exports = "./gps.e9ad5c2d.png";
 },{}],"raSj":[function(require,module,exports) {
-module.exports = "/item-robot.6f6dcffd.png";
+module.exports = "./item-robot.6f6dcffd.png";
 },{}],"lynQ":[function(require,module,exports) {
-module.exports = "/storage-level-up.d51436c6.png";
+module.exports = "./storage-level-up.d51436c6.png";
 },{}],"pDaz":[function(require,module,exports) {
-module.exports = "/home-icon.e40f7491.png";
+module.exports = "./home-icon.e40f7491.png";
 },{}],"mhX9":[function(require,module,exports) {
-module.exports = "/stone-hit.0ffe4d73.mp3";
+module.exports = "./stone-hit.0ffe4d73.mp3";
 },{}],"oGfi":[function(require,module,exports) {
-module.exports = "/stone-break-1.1dc9d8bb.mp3";
+module.exports = "./stone-break-1.1dc9d8bb.mp3";
 },{}],"e16U":[function(require,module,exports) {
-module.exports = "/stone-break-2.e64d0953.mp3";
+module.exports = "./stone-break-2.e64d0953.mp3";
 },{}],"qXYu":[function(require,module,exports) {
-module.exports = "/stone-break-3.b662a49d.mp3";
+module.exports = "./stone-break-3.b662a49d.mp3";
 },{}],"ccHt":[function(require,module,exports) {
-module.exports = "/fall-stone-break.d0cd3cd7.mp3";
+module.exports = "./fall-stone-break.d0cd3cd7.mp3";
 },{}],"Fezn":[function(require,module,exports) {
-module.exports = "/plant-break.c65e9751.mp3";
+module.exports = "./plant-break.c65e9751.mp3";
 },{}],"Mdb7":[function(require,module,exports) {
-module.exports = "/plant-hit.e0d075c4.mp3";
+module.exports = "./plant-hit.e0d075c4.mp3";
 },{}],"wmq4":[function(require,module,exports) {
-module.exports = "/wave.e276fd24.mp3";
+module.exports = "./wave.e276fd24.mp3";
 },{}],"GkZp":[function(require,module,exports) {
-module.exports = "/bonk.312a5d94.mp3";
+module.exports = "./bonk.312a5d94.mp3";
 },{}],"dGDn":[function(require,module,exports) {
-module.exports = "/hit.185e7507.mp3";
+module.exports = "./hit.185e7507.mp3";
 },{}],"Js59":[function(require,module,exports) {
-module.exports = "/1.c194776b.mp3";
+module.exports = "./1.c194776b.mp3";
 },{}],"z5Ql":[function(require,module,exports) {
-module.exports = "/2.edf8b100.mp3";
+module.exports = "./2.edf8b100.mp3";
 },{}],"Y3GC":[function(require,module,exports) {
-module.exports = "/3.7a188545.mp3";
+module.exports = "./3.7a188545.mp3";
 },{}],"m6nY":[function(require,module,exports) {
-module.exports = "/storage.b5dfc3de.mp3";
+module.exports = "./storage.b5dfc3de.mp3";
 },{}],"kTm5":[function(require,module,exports) {
-module.exports = "/store.605eab52.mp3";
+module.exports = "./store.605eab52.mp3";
 },{}],"STXI":[function(require,module,exports) {
-module.exports = "/craft.a5e086cb.mp3";
+module.exports = "./craft.a5e086cb.mp3";
 },{}],"hhqH":[function(require,module,exports) {
-module.exports = "/error.e3f940b9.mp3";
+module.exports = "./error.e3f940b9.mp3";
 },{}],"WCli":[function(require,module,exports) {
-module.exports = "/motor.1d058c72.mp3";
+module.exports = "./motor.1d058c72.mp3";
 },{}],"hebx":[function(require,module,exports) {
-module.exports = "/motor-start.15d335af.mp3";
+module.exports = "./motor-start.15d335af.mp3";
 },{}],"ibCN":[function(require,module,exports) {
 "use strict";
 
