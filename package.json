@@ -23,5 +23,6 @@
     "dependencies": {
         "caniuse-lite": "^1.0.30001274",
         "gh-pages": "^3.2.3"
-    }
+    },
+    "licence": "MIT"
 }
